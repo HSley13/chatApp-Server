@@ -117,123 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named client_1
-
-# Build rule for target.
-client_1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_1
-.PHONY : client_1
-
-# fast build rule for target.
-client_1/fast:
-	$(MAKE) $(MAKESILENT) -f client_1/CMakeFiles/client_1.dir/build.make client_1/CMakeFiles/client_1.dir/build
-.PHONY : client_1/fast
-
-#=============================================================================
-# Target rules for targets named client_1_autogen_timestamp_deps
-
-# Build rule for target.
-client_1_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_1_autogen_timestamp_deps
-.PHONY : client_1_autogen_timestamp_deps
-
-# fast build rule for target.
-client_1_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f client_1/CMakeFiles/client_1_autogen_timestamp_deps.dir/build.make client_1/CMakeFiles/client_1_autogen_timestamp_deps.dir/build
-.PHONY : client_1_autogen_timestamp_deps/fast
-
-#=============================================================================
-# Target rules for targets named client_1_autogen
-
-# Build rule for target.
-client_1_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_1_autogen
-.PHONY : client_1_autogen
-
-# fast build rule for target.
-client_1_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f client_1/CMakeFiles/client_1_autogen.dir/build.make client_1/CMakeFiles/client_1_autogen.dir/build
-.PHONY : client_1_autogen/fast
-
-#=============================================================================
-# Target rules for targets named client_2
-
-# Build rule for target.
-client_2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_2
-.PHONY : client_2
-
-# fast build rule for target.
-client_2/fast:
-	$(MAKE) $(MAKESILENT) -f client_2/CMakeFiles/client_2.dir/build.make client_2/CMakeFiles/client_2.dir/build
-.PHONY : client_2/fast
-
-#=============================================================================
-# Target rules for targets named client_2_autogen_timestamp_deps
-
-# Build rule for target.
-client_2_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_2_autogen_timestamp_deps
-.PHONY : client_2_autogen_timestamp_deps
-
-# fast build rule for target.
-client_2_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f client_2/CMakeFiles/client_2_autogen_timestamp_deps.dir/build.make client_2/CMakeFiles/client_2_autogen_timestamp_deps.dir/build
-.PHONY : client_2_autogen_timestamp_deps/fast
-
-#=============================================================================
-# Target rules for targets named client_2_autogen
-
-# Build rule for target.
-client_2_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_2_autogen
-.PHONY : client_2_autogen
-
-# fast build rule for target.
-client_2_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f client_2/CMakeFiles/client_2_autogen.dir/build.make client_2/CMakeFiles/client_2_autogen.dir/build
-.PHONY : client_2_autogen/fast
-
-#=============================================================================
-# Target rules for targets named client_3
-
-# Build rule for target.
-client_3: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_3
-.PHONY : client_3
-
-# fast build rule for target.
-client_3/fast:
-	$(MAKE) $(MAKESILENT) -f client_3/CMakeFiles/client_3.dir/build.make client_3/CMakeFiles/client_3.dir/build
-.PHONY : client_3/fast
-
-#=============================================================================
-# Target rules for targets named client_3_autogen_timestamp_deps
-
-# Build rule for target.
-client_3_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_3_autogen_timestamp_deps
-.PHONY : client_3_autogen_timestamp_deps
-
-# fast build rule for target.
-client_3_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f client_3/CMakeFiles/client_3_autogen_timestamp_deps.dir/build.make client_3/CMakeFiles/client_3_autogen_timestamp_deps.dir/build
-.PHONY : client_3_autogen_timestamp_deps/fast
-
-#=============================================================================
-# Target rules for targets named client_3_autogen
-
-# Build rule for target.
-client_3_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_3_autogen
-.PHONY : client_3_autogen
-
-# fast build rule for target.
-client_3_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f client_3/CMakeFiles/client_3_autogen.dir/build.make client_3/CMakeFiles/client_3_autogen.dir/build
-.PHONY : client_3_autogen/fast
-
-#=============================================================================
 # Target rules for targets named server
 
 # Build rule for target.
@@ -272,6 +155,45 @@ server_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f server/CMakeFiles/server_autogen.dir/build.make server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
 
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+#=============================================================================
+# Target rules for targets named client_autogen_timestamp_deps
+
+# Build rule for target.
+client_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_autogen_timestamp_deps
+.PHONY : client_autogen_timestamp_deps
+
+# fast build rule for target.
+client_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen_timestamp_deps.dir/build.make clients/CMakeFiles/client_autogen_timestamp_deps.dir/build
+.PHONY : client_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named client_autogen
+
+# Build rule for target.
+client_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_autogen
+.PHONY : client_autogen
+
+# fast build rule for target.
+client_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen.dir/build.make clients/CMakeFiles/client_autogen.dir/build
+.PHONY : client_autogen/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -280,17 +202,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... client_1_autogen"
-	@echo "... client_1_autogen_timestamp_deps"
-	@echo "... client_2_autogen"
-	@echo "... client_2_autogen_timestamp_deps"
-	@echo "... client_3_autogen"
-	@echo "... client_3_autogen_timestamp_deps"
+	@echo "... client_autogen"
+	@echo "... client_autogen_timestamp_deps"
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
-	@echo "... client_1"
-	@echo "... client_2"
-	@echo "... client_3"
+	@echo "... client"
 	@echo "... server"
 .PHONY : help
 

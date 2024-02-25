@@ -1,7 +1,7 @@
 server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /Users/test/Documents/server---clients/src/app/build/server/server_autogen/mocs_compilation.cpp \
-  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/moc_server_manager.cpp \
-  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/../../../../server/server_manager.h \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/moc_chat_window.cpp \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/../../../../server/chat_window.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
@@ -907,21 +907,6 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qtabwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
-  /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
-  /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
-  /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
-  /opt/homebrew/include/QtNetwork/qtnetwork-config.h \
-  /opt/homebrew/include/QtNetwork/qtnetworkexports.h \
-  /opt/homebrew/include/QtNetwork/qabstractsocket.h \
-  /opt/homebrew/include/QtCore/qiodevice.h \
-  /opt/homebrew/include/QtNetwork/qhostaddress.h \
-  /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
-  /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-  /opt/homebrew/include/QtCore/qtmochelpers.h \
-  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/moc_server_window.cpp \
-  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/../../../../server/server_window.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
   /opt/homebrew/include/QtWidgets/qlistview.h \
@@ -941,9 +926,6 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qstyle.h \
   /opt/homebrew/include/QtWidgets/qtabbar.h \
   /opt/homebrew/include/QtWidgets/qrubberband.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
-  /opt/homebrew/include/QtWidgets/qabstractbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h \
   /opt/homebrew/include/QtGui/qtextcursor.h \
@@ -951,4 +933,24 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/include/QtGui/qtextformat.h \
   /opt/homebrew/include/QtGui/qpen.h \
-  /opt/homebrew/include/QtGui/qtextoption.h
+  /opt/homebrew/include/QtGui/qtextoption.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
+  /opt/homebrew/include/QtWidgets/qabstractbutton.h \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
+  /opt/homebrew/include/QtNetwork/qtnetwork-config.h \
+  /opt/homebrew/include/QtNetwork/qtnetworkexports.h \
+  /opt/homebrew/include/QtNetwork/qabstractsocket.h \
+  /opt/homebrew/include/QtCore/qiodevice.h \
+  /opt/homebrew/include/QtNetwork/qhostaddress.h \
+  /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/moc_server_manager.cpp \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/../../../../server/server_manager.h \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/moc_server_window.cpp \
+  /Users/test/Documents/server---clients/src/app/build/server/server_autogen/EWIEGA46WW/../../../../server/server_window.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h

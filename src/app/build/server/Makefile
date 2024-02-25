@@ -158,6 +158,30 @@ server_autogen/fast:
 	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server_autogen.dir/build.make server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
 
+chat_window.o: chat_window.cpp.o
+.PHONY : chat_window.o
+
+# target to build an object file
+chat_window.cpp.o:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_window.cpp.o
+.PHONY : chat_window.cpp.o
+
+chat_window.i: chat_window.cpp.i
+.PHONY : chat_window.i
+
+# target to preprocess a source file
+chat_window.cpp.i:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_window.cpp.i
+.PHONY : chat_window.cpp.i
+
+chat_window.s: chat_window.cpp.s
+.PHONY : chat_window.s
+
+# target to generate assembly for a file
+chat_window.cpp.s:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_window.cpp.s
+.PHONY : chat_window.cpp.s
+
 server.o: server.cpp.o
 .PHONY : server.o
 
@@ -265,6 +289,9 @@ help:
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
 	@echo "... server"
+	@echo "... chat_window.o"
+	@echo "... chat_window.i"
+	@echo "... chat_window.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"

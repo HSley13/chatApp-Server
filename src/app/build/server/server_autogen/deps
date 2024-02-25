@@ -684,6 +684,8 @@ server_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
 	/Users/test/Documents/server---clients/src/app/build/server/server_autogen/moc_predefs.h \
 	/Users/test/Documents/server---clients/src/app/server/CMakeLists.txt \
+	/Users/test/Documents/server---clients/src/app/server/chat_window.cpp \
+	/Users/test/Documents/server---clients/src/app/server/chat_window.h \
 	/Users/test/Documents/server---clients/src/app/server/server.cpp \
 	/Users/test/Documents/server---clients/src/app/server/server_manager.cpp \
 	/Users/test/Documents/server---clients/src/app/server/server_manager.h \

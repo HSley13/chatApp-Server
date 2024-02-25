@@ -15,6 +15,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/test/Documents/server---clients/src/app/server/chat_window.h",
+			"MU",
+			"EWIEGA46WW/moc_chat_window.cpp",
+			null
+		],
+		[
 			"/Users/test/Documents/server---clients/src/app/server/server_manager.h",
 			"MU",
 			"EWIEGA46WW/moc_server_manager.cpp",
@@ -94,6 +100,11 @@
 	"SETTINGS_FILE" : "/Users/test/Documents/server---clients/src/app/build/server/CMakeFiles/server_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Users/test/Documents/server---clients/src/app/server/chat_window.cpp",
+			"MU",
+			null
+		],
 		[
 			"/Users/test/Documents/server---clients/src/app/server/server.cpp",
 			"MU",

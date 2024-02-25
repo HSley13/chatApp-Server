@@ -1,5 +1,6 @@
 #include "server_window.h"
 #include "server_manager.h"
+#include "chat_window.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTabWidget>
@@ -42,6 +43,9 @@ void server_window::new_client_connected(QTcpSocket *client)
     int id = client->property("id").toInt();
 
     list->addItem(QString("New Client Connected: %1").arg(id));
+
+    chat_window *chat_widget = new chat_window(client);
+    tabs->addTab(chat_widget, QString("Client %1").arg(id));
 }
 
 void server_window::client_disconnected(QTcpSocket *client)
@@ -60,4 +64,5 @@ void server_window::setup_server()
 
 void server_window::disconnet_all_function()
 {
+    _server->close();
 }

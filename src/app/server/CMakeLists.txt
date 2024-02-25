@@ -2,6 +2,7 @@ qt_add_executable(server
                     server.cpp
                     server_window.cpp
                     server_manager.cpp
+                    chat_window.cpp
                 )
 
 target_link_libraries(server PRIVATE
