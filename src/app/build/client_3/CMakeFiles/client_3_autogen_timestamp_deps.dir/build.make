@@ -66,10 +66,10 @@ include client_3/CMakeFiles/client_3_autogen_timestamp_deps.dir/compiler_depend.
 # Include the progress variables for this target.
 include client_3/CMakeFiles/client_3_autogen_timestamp_deps.dir/progress.make
 
-client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
 client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/uic
-client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
 client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
+client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
+client_3/CMakeFiles/client_3_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
 
 client_3_autogen_timestamp_deps: client_3/CMakeFiles/client_3_autogen_timestamp_deps
 client_3_autogen_timestamp_deps: client_3/CMakeFiles/client_3_autogen_timestamp_deps.dir/build.make

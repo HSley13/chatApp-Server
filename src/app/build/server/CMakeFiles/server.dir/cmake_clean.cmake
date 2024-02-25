@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/server.cpp.o.d"
   "CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/server.dir/server_manager.cpp.o"
+  "CMakeFiles/server.dir/server_manager.cpp.o.d"
   "CMakeFiles/server.dir/server_window.cpp.o"
   "CMakeFiles/server.dir/server_window.cpp.o.d"
   "server.app/Contents/MacOS/server"

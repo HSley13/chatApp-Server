@@ -7,4 +7,6 @@ client_3_window::client_3_window(QWidget *parent)
 {
     central_widget = new QWidget(this);
     setCentralWidget(central_widget);
+
+    resize(400, 400);
 }

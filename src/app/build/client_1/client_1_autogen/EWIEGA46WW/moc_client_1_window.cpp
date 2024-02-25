@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../../client_1/client_1_window.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)

@@ -206,6 +206,30 @@ server_autogen/mocs_compilation.cpp.s:
 	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.s
 .PHONY : server_autogen/mocs_compilation.cpp.s
 
+server_manager.o: server_manager.cpp.o
+.PHONY : server_manager.o
+
+# target to build an object file
+server_manager.cpp.o:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/server_manager.cpp.o
+.PHONY : server_manager.cpp.o
+
+server_manager.i: server_manager.cpp.i
+.PHONY : server_manager.i
+
+# target to preprocess a source file
+server_manager.cpp.i:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/server_manager.cpp.i
+.PHONY : server_manager.cpp.i
+
+server_manager.s: server_manager.cpp.s
+.PHONY : server_manager.s
+
+# target to generate assembly for a file
+server_manager.cpp.s:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/server_manager.cpp.s
+.PHONY : server_manager.cpp.s
+
 server_window.o: server_window.cpp.o
 .PHONY : server_window.o
 
@@ -247,6 +271,9 @@ help:
 	@echo "... server_autogen/mocs_compilation.o"
 	@echo "... server_autogen/mocs_compilation.i"
 	@echo "... server_autogen/mocs_compilation.s"
+	@echo "... server_manager.o"
+	@echo "... server_manager.i"
+	@echo "... server_manager.s"
 	@echo "... server_window.o"
 	@echo "... server_window.i"
 	@echo "... server_window.s"
