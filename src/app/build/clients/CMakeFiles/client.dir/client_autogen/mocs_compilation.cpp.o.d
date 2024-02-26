@@ -1,7 +1,7 @@
 clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/mocs_compilation.cpp \
-  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp \
-  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/../../../../clients/client_manager.h \
+  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/moc_client_chat.cpp \
+  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/../../../../clients/client_chat.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
@@ -907,17 +907,35 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qtabwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
+  /opt/homebrew/include/QtWidgets/qframe.h \
+  /opt/homebrew/include/QtGui/qpicture.h \
+  /opt/homebrew/include/QtCore/qiodevice.h \
+  /opt/homebrew/include/QtGui/qtextdocument.h \
+  /opt/homebrew/include/QtCore/qurl.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
+  /opt/homebrew/include/QtWidgets/qlayout.h \
+  /opt/homebrew/include/QtWidgets/qlayoutitem.h \
+  /opt/homebrew/include/QtWidgets/qboxlayout.h \
+  /opt/homebrew/include/QtWidgets/qgridlayout.h \
+  /opt/homebrew/include/QtGui/qtextcursor.h \
+  /opt/homebrew/include/QtGui/qtextformat.h \
+  /opt/homebrew/include/QtGui/qpen.h \
+  /opt/homebrew/include/QtGui/qtextoption.h \
+  /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp \
+  /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/../../../../clients/client_manager.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
   /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
   /opt/homebrew/include/QtNetwork/qtnetwork-config.h \
   /opt/homebrew/include/QtNetwork/qtnetworkexports.h \
   /opt/homebrew/include/QtNetwork/qabstractsocket.h \
-  /opt/homebrew/include/QtCore/qiodevice.h \
   /opt/homebrew/include/QtNetwork/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
-  /opt/homebrew/include/QtCore/qtmochelpers.h \
   /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/moc_client_window.cpp \
   /Users/test/Documents/server---clients/src/app/build/clients/client_autogen/EWIEGA46WW/../../../../clients/client_window.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -934,7 +952,6 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qlistview.h \
   /opt/homebrew/include/QtWidgets/qabstractitemview.h \
   /opt/homebrew/include/QtWidgets/qabstractscrollarea.h \
-  /opt/homebrew/include/QtWidgets/qframe.h \
   /opt/homebrew/include/QtCore/qabstractitemmodel.h \
   /opt/homebrew/include/QtCore/qitemselectionmodel.h \
   /opt/homebrew/include/QtWidgets/qabstractitemdelegate.h \
@@ -950,12 +967,6 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qrubberband.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h \
-  /opt/homebrew/include/QtGui/qtextcursor.h \
-  /opt/homebrew/include/QtGui/qtextdocument.h \
-  /opt/homebrew/include/QtCore/qurl.h \
-  /opt/homebrew/include/QtGui/qtextformat.h \
-  /opt/homebrew/include/QtGui/qpen.h \
-  /opt/homebrew/include/QtGui/qtextoption.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h

@@ -15,6 +15,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/test/Documents/server---clients/src/app/clients/client_chat.h",
+			"MU",
+			"EWIEGA46WW/moc_client_chat.cpp",
+			null
+		],
+		[
 			"/Users/test/Documents/server---clients/src/app/clients/client_manager.h",
 			"MU",
 			"EWIEGA46WW/moc_client_manager.cpp",
@@ -96,6 +102,11 @@
 	[
 		[
 			"/Users/test/Documents/server---clients/src/app/clients/client.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/test/Documents/server---clients/src/app/clients/client_chat.cpp",
 			"MU",
 			null
 		],

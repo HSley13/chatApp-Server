@@ -46,3 +46,12 @@ void server_manager::setup_server(int port)
 
     _server->listen(QHostAddress::Any, port);
 }
+
+void server_manager::disconnect_all_clients()
+{
+    for (QTcpSocket *client : _clients)
+    {
+        client->disconnectFromHost();
+    }
+    _clients.clear();
+}

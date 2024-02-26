@@ -11,6 +11,7 @@ class server_manager : public QMainWindow
 
 public:
     server_manager(int port = 4500, QWidget *parent = nullptr);
+    void disconnect_all_clients();
 
 private: // variables
     QWidget *central_widget;

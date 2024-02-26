@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/test/Documents/server---clients/src/app/clients/client.cpp" "clients/CMakeFiles/client.dir/client.cpp.o" "gcc" "clients/CMakeFiles/client.dir/client.cpp.o.d"
   "/Users/test/Documents/server---clients/src/app/build/clients/client_autogen/mocs_compilation.cpp" "clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o" "gcc" "clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o.d"
+  "/Users/test/Documents/server---clients/src/app/clients/client_chat.cpp" "clients/CMakeFiles/client.dir/client_chat.cpp.o" "gcc" "clients/CMakeFiles/client.dir/client_chat.cpp.o.d"
   "/Users/test/Documents/server---clients/src/app/clients/client_manager.cpp" "clients/CMakeFiles/client.dir/client_manager.cpp.o" "gcc" "clients/CMakeFiles/client.dir/client_manager.cpp.o.d"
   "/Users/test/Documents/server---clients/src/app/clients/client_window.cpp" "clients/CMakeFiles/client.dir/client_window.cpp.o" "gcc" "clients/CMakeFiles/client.dir/client_window.cpp.o.d"
   )

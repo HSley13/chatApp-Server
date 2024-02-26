@@ -1,5 +1,6 @@
 #include "client_window.h"
 #include "client_manager.h"
+#include "client_chat.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTcpServer>
@@ -13,6 +14,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QListWidgetItem>
 
 client_window::client_window(QWidget *parent)
     : QMainWindow(parent)
@@ -61,7 +63,14 @@ client_window::client_window(QWidget *parent)
 
 void client_window::data_receive(QByteArray data)
 {
-    list->addItem(data);
+    client_chat *chat_widget = new client_chat();
+    chat_widget->set_message(data);
+
+    QListWidgetItem *list_item = new QListWidgetItem();
+    list_item->setSizeHint(QSize(0, 65));
+    list->addItem(list_item);
+
+    list->setItemWidget(list_item, chat_widget);
 }
 
 void client_window::connection_func()
@@ -83,7 +92,17 @@ void client_window::send_func()
     auto message = insert_message->text().trimmed();
 
     _client->send_message(message);
-    list->addItem(message);
+
+    client_chat *chat_widget = new client_chat();
+    chat_widget->set_message(message, true);
+
+    QListWidgetItem *list_item = new QListWidgetItem();
+    list_item->setSizeHint(QSize(0, 65));
+    list_item->setBackground(QColorConstants::Svg::lightblue);
+
+    list->addItem(list_item);
+
+    list->setItemWidget(list_item, chat_widget);
 
     insert_message->clear();
 }

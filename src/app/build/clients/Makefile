@@ -206,6 +206,30 @@ client_autogen/mocs_compilation.cpp.s:
 	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.s
 .PHONY : client_autogen/mocs_compilation.cpp.s
 
+client_chat.o: client_chat.cpp.o
+.PHONY : client_chat.o
+
+# target to build an object file
+client_chat.cpp.o:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/client_chat.cpp.o
+.PHONY : client_chat.cpp.o
+
+client_chat.i: client_chat.cpp.i
+.PHONY : client_chat.i
+
+# target to preprocess a source file
+client_chat.cpp.i:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/client_chat.cpp.i
+.PHONY : client_chat.cpp.i
+
+client_chat.s: client_chat.cpp.s
+.PHONY : client_chat.s
+
+# target to generate assembly for a file
+client_chat.cpp.s:
+	cd /Users/test/Documents/server---clients/src/app/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/client_chat.cpp.s
+.PHONY : client_chat.cpp.s
+
 client_manager.o: client_manager.cpp.o
 .PHONY : client_manager.o
 
@@ -271,6 +295,9 @@ help:
 	@echo "... client_autogen/mocs_compilation.o"
 	@echo "... client_autogen/mocs_compilation.i"
 	@echo "... client_autogen/mocs_compilation.s"
+	@echo "... client_chat.o"
+	@echo "... client_chat.i"
+	@echo "... client_chat.s"
 	@echo "... client_manager.o"
 	@echo "... client_manager.i"
 	@echo "... client_manager.s"

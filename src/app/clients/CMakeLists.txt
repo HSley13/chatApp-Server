@@ -2,6 +2,7 @@ qt_add_executable(client
                     client.cpp
                     client_window.cpp
                     client_manager.cpp
+                    client_chat.cpp
                 )
 
 target_link_libraries(client PRIVATE

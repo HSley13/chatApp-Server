@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/client.cpp.o.d"
   "CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/client.dir/client_chat.cpp.o"
+  "CMakeFiles/client.dir/client_chat.cpp.o.d"
   "CMakeFiles/client.dir/client_manager.cpp.o"
   "CMakeFiles/client.dir/client_manager.cpp.o.d"
   "CMakeFiles/client.dir/client_window.cpp.o"

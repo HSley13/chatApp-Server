@@ -64,5 +64,5 @@ void server_window::setup_server()
 
 void server_window::disconnet_all_function()
 {
-    _server->close();
+    _server->disconnect_all_clients();
 }
