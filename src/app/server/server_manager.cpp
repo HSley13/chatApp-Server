@@ -11,7 +11,10 @@ server_manager::server_manager(int port, QWidget *parent)
     central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
-    setup_server(port);
+    _server = new QTcpServer(this);
+    connect(_server, &QTcpServer::newConnection, this, &server_manager::new_client_connection);
+
+    _server->listen(QHostAddress::Any, port);
 }
 
 void server_manager::on_client_disconnected()
@@ -39,19 +42,10 @@ void server_manager::new_client_connection()
     emit new_client_connected(client);
 }
 
-void server_manager::setup_server(int port)
-{
-    _server = new QTcpServer(this);
-    connect(_server, &QTcpServer::newConnection, this, &server_manager::new_client_connection);
-
-    _server->listen(QHostAddress::Any, port);
-}
-
 void server_manager::disconnect_all_clients()
 {
     for (QTcpSocket *client : _clients)
-    {
         client->disconnectFromHost();
-    }
+
     _clients.clear();
 }

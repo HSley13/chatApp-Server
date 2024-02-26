@@ -21,8 +21,6 @@ private: // variables
     QList<QTcpSocket *> _clients;
 
 private: // functions
-    void setup_server(int port);
-
 signals:
     void new_client_connected(QTcpSocket *client);
     void client_disconnected(QTcpSocket *client);

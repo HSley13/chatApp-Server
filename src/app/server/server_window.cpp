@@ -1,15 +1,8 @@
 #include "server_window.h"
 #include "server_manager.h"
 #include "chat_window.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QTabWidget>
-#include <QListWidget>
-#include <QPushButton>
-#include <QLineEdit>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QTcpSocket>
 
 server_window::server_window(QWidget *parent)
     : QMainWindow(parent)

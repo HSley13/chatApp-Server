@@ -1,6 +1,4 @@
 #include "client_window.h"
-#include <QMainWindow>
-#include <QWidget>
 #include <QTcpSocket>
 #include <QHostAddress>
 

@@ -1,16 +1,6 @@
 #include "client_window.h"
 #include "client_manager.h"
 #include "client_chat.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QMenuBar>
-#include <QMenu>
-#include <QAction>
-#include <QListWidget>
-#include <QLineEdit>
-#include <QPushButton>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

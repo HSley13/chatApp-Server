@@ -1,13 +1,7 @@
 #include "chat_window.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QListWidget>
-#include <QLineEdit>
-#include <QPushButton>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QTcpSocket>
 
 chat_window::chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent), _client(client)
