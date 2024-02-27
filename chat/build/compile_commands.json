@@ -1,0 +1,68 @@
+[
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/clients",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o -c /Users/test/Documents/server---clients/chat/build/clients/client_autogen/mocs_compilation.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/build/clients/client_autogen/mocs_compilation.cpp",
+  "output": "clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/clients",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/client.dir/client_main.cpp.o -c /Users/test/Documents/server---clients/chat/clients/client_main.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/clients/client_main.cpp",
+  "output": "clients/CMakeFiles/client.dir/client_main.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/clients",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/client.dir/client_main_window.cpp.o -c /Users/test/Documents/server---clients/chat/clients/client_main_window.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/clients/client_main_window.cpp",
+  "output": "clients/CMakeFiles/client.dir/client_main_window.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/clients",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/client.dir/client_manager.cpp.o -c /Users/test/Documents/server---clients/chat/clients/client_manager.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/clients/client_manager.cpp",
+  "output": "clients/CMakeFiles/client.dir/client_manager.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/clients",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/client.dir/client_chat_window.cpp.o -c /Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp",
+  "output": "clients/CMakeFiles/client.dir/client_chat_window.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o -c /Users/test/Documents/server---clients/chat/build/server/server_autogen/mocs_compilation.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/build/server/server_autogen/mocs_compilation.cpp",
+  "output": "server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/server_main.cpp.o -c /Users/test/Documents/server---clients/chat/server/server_main.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/server/server_main.cpp",
+  "output": "server/CMakeFiles/server.dir/server_main.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/server_main_window.cpp.o -c /Users/test/Documents/server---clients/chat/server/server_main_window.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/server/server_main_window.cpp",
+  "output": "server/CMakeFiles/server.dir/server_main_window.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/server_manager.cpp.o -c /Users/test/Documents/server---clients/chat/server/server_manager.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/server/server_manager.cpp",
+  "output": "server/CMakeFiles/server.dir/server_manager.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/server_chat_window.cpp.o -c /Users/test/Documents/server---clients/chat/server/server_chat_window.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/server/server_chat_window.cpp",
+  "output": "server/CMakeFiles/server.dir/server_chat_window.cpp.o"
+},
+{
+  "directory": "/Users/test/Documents/server---clients/chat/build/server",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/chat/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -o CMakeFiles/server.dir/chat_line.cpp.o -c /Users/test/Documents/server---clients/chat/server/chat_line.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/server/chat_line.cpp",
+  "output": "server/CMakeFiles/server.dir/chat_line.cpp.o"
+}
+]
