@@ -1,8 +1,9 @@
-qt_add_executable(client
+add_executable(client
                     client_main.cpp
                     client_main_window.cpp
                     client_manager.cpp
                     client_chat_window.cpp
+                    chat_protocol.cpp
                 )
 
 

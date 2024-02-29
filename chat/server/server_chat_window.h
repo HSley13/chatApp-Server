@@ -1,11 +1,13 @@
 #pragma once
 
+#include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTcpSocket>
 #include <QListWidget>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QStatusBar>
 
 class server_chat_window : public QMainWindow
 {
@@ -16,16 +18,24 @@ public:
 private:
     QWidget *central_widget;
 
-    QListWidget *list;
+    static QListWidget *list;
     QLineEdit *insert_message;
     QPushButton *send_button;
 
     QTcpSocket *_socket;
 
-signals:
+    chat_protocol *_protocol;
+
+    static void text_message(QString message);
+    static void is_typing();
+    // static void set_name(QString message);
+
+    static QStatusBar *status_bar;
 
 private slots:
     void send_message();
     void data_receive();
     void disconnecton();
+
+    void send_is_typing();
 };

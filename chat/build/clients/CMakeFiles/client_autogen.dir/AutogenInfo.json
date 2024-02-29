@@ -4,16 +4,18 @@
 	"CMAKE_CURRENT_BINARY_DIR" : "/Users/test/Documents/server---clients/chat/build/clients",
 	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat/clients",
 	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake",
-	"CMAKE_LIST_FILES" : 
-	[
-		"/Users/test/Documents/server---clients/chat/clients/CMakeLists.txt",
-		"/opt/homebrew/Cellar/qt/6.6.1/lib/cmake/Qt6/macos/Info.plist.app.in"
-	],
+	"CMAKE_LIST_FILES" : [ "/Users/test/Documents/server---clients/chat/clients/CMakeLists.txt" ],
 	"CMAKE_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat",
 	"DEP_FILE" : "/Users/test/Documents/server---clients/chat/build/clients/client_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "client_autogen/timestamp",
 	"HEADERS" : 
 	[
+		[
+			"/Users/test/Documents/server---clients/chat/clients/chat_protocol.h",
+			"MU",
+			"EWIEGA46WW/moc_chat_protocol.cpp",
+			null
+		],
 		[
 			"/Users/test/Documents/server---clients/chat/clients/client_chat_window.h",
 			"MU",
@@ -46,12 +48,12 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/opt/homebrew/lib/QtWidgets.framework/Headers",
+		"/opt/homebrew/lib/QtWidgets.framework",
 		"/opt/homebrew/lib/QtCore.framework/Headers",
 		"/opt/homebrew/lib/QtCore.framework",
 		"/opt/homebrew/share/qt/mkspecs/macx-clang",
 		"/opt/homebrew/include",
-		"/opt/homebrew/lib/QtWidgets.framework/Headers",
-		"/opt/homebrew/lib/QtWidgets.framework",
 		"/opt/homebrew/lib/QtGui.framework/Headers",
 		"/opt/homebrew/lib/QtGui.framework",
 		"/opt/homebrew/lib/QtNetwork.framework/Headers",
@@ -93,6 +95,11 @@
 	"SETTINGS_FILE" : "/Users/test/Documents/server---clients/chat/build/clients/CMakeFiles/client_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Users/test/Documents/server---clients/chat/clients/chat_protocol.cpp",
+			"MU",
+			null
+		],
 		[
 			"/Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp",
 			"MU",

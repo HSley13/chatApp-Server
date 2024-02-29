@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/test/Documents/server---clients/chat/server/chat_line.cpp" "server/CMakeFiles/server.dir/chat_line.cpp.o" "gcc" "server/CMakeFiles/server.dir/chat_line.cpp.o.d"
+  "/Users/test/Documents/server---clients/chat/server/chat_protocol.cpp" "server/CMakeFiles/server.dir/chat_protocol.cpp.o" "gcc" "server/CMakeFiles/server.dir/chat_protocol.cpp.o.d"
   "/Users/test/Documents/server---clients/chat/build/server/server_autogen/mocs_compilation.cpp" "server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o" "gcc" "server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o.d"
   "/Users/test/Documents/server---clients/chat/server/server_chat_window.cpp" "server/CMakeFiles/server.dir/server_chat_window.cpp.o" "gcc" "server/CMakeFiles/server.dir/server_chat_window.cpp.o.d"
   "/Users/test/Documents/server---clients/chat/server/server_main.cpp" "server/CMakeFiles/server.dir/server_main.cpp.o" "gcc" "server/CMakeFiles/server.dir/server_main.cpp.o.d"

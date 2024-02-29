@@ -2,41 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-
-	<key>CFBundleName</key>
-	<string>client</string>
-	<key>CFBundleIdentifier</key>
-	<string>a.client</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>client</string>
-
-	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-
-	<key>LSMinimumSystemVersion</key>
+	<key>CFBundleGetInfoString</key>
 	<string></string>
-
-	<key>NSHumanReadableCopyright</key>
-	<string></string>
-
 	<key>CFBundleIconFile</key>
 	<string></string>
-
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleAllowMixedLocalizations</key>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLongVersionString</key>
+	<string></string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string></string>
+	<key>CSResourcesFileMapped</key>
 	<true/>
-
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-
-	<key>NSSupportsAutomaticGraphicsSwitching</key>
-	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
 </dict>
 </plist>

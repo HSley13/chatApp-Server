@@ -28,6 +28,10 @@ client_main_window::client_main_window(QWidget *parent)
 
     menu_bar->addMenu(menu);
 
+    insert_name = new QLineEdit(this);
+    insert_name->setPlaceholderText("Insert your name here");
+    connect(insert_name, &QLineEdit::editingFinished, this, &client_main_window::send_name);
+
     list = new QListWidget(this);
 
     QLabel *message = new QLabel("Send Message-->Server", this);
@@ -40,12 +44,13 @@ client_main_window::client_main_window(QWidget *parent)
     connect(send_button, &QPushButton::clicked, this, &client_main_window::send_message);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
+    VBOX->addWidget(insert_name);
     VBOX->addWidget(list);
     VBOX->addLayout(hbox);
     VBOX->addWidget(send_button);
 }
 
-void client_main_window::data_receive(QString message)
+void client_main_window::data_text_receive(QString message)
 {
     client_chat_window *wid = new client_chat_window();
     wid->set_message(message);
@@ -68,7 +73,10 @@ void client_main_window::connection()
     connect(con, &client_manager::disconnected, this, [=]()
             { central_widget->setEnabled(false); });
 
-    connect(con, &client_manager::data_receive, this, &client_main_window::data_receive);
+    connect(con, &client_manager::text_message_received, this, &client_main_window::data_text_receive);
+    connect(con, &client_manager::is_typing_received, this, &client_main_window::set_is_typing);
+
+    connect(insert_message, &QLineEdit::textChanged, con, &client_manager::send_is_typing);
 
     con->connect_to_server();
 
@@ -79,7 +87,7 @@ void client_main_window::send_message()
 {
     QString message = insert_message->text();
 
-    con->send_message(message);
+    con->send_text(message);
 
     client_chat_window *wid = new client_chat_window();
     wid->set_message(message, true);
@@ -93,4 +101,16 @@ void client_main_window::send_message()
     list->setItemWidget(line, wid);
 
     insert_message->clear();
+}
+
+void client_main_window::send_name()
+{
+    QString name = insert_name->text();
+
+    con->send_name(name);
+}
+
+void client_main_window::set_is_typing()
+{
+    status_bar->showMessage("Serving is typing...", 7500);
 }

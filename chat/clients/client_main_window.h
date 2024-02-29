@@ -26,6 +26,7 @@ private:
 
     QListWidget *list;
     QLineEdit *insert_message;
+    QLineEdit *insert_name;
     QPushButton *send_button;
 
 signals:
@@ -33,5 +34,8 @@ signals:
 private slots:
     void connection();
     void send_message();
-    void data_receive(QString message);
+    void data_text_receive(QString message);
+    void send_name();
+
+    void set_is_typing();
 };

@@ -81,7 +81,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "client::@d1ac15f0ebbc02957c76",
-					"jsonFile" : "target-client-Debug-65226412f95cfdc7eb9e.json",
+					"jsonFile" : "target-client-Debug-9e0d7f98b5a6058c00d6.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
@@ -102,7 +102,7 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "server::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server-Debug-4e39d07c2b3edc0201cf.json",
+					"jsonFile" : "target-server-Debug-e81ff48d1b912c258661.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},

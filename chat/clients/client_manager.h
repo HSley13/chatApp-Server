@@ -1,5 +1,6 @@
 #pragma once
 
+#include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTcpSocket>
@@ -11,7 +12,9 @@ class client_manager : public QMainWindow
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
     void connect_to_server();
-    void send_message(QString message);
+    void send_text(QString text);
+    void send_name(QString name);
+    void send_is_typing();
 
 private:
     QWidget *_central_widget;
@@ -20,10 +23,14 @@ private:
     QHostAddress _ip;
     int _port;
 
+    chat_protocol *_protocol;
+
 signals:
     void connected();
     void disconnected();
-    void data_receive(QByteArray message);
+
+    void text_message_received(QString message);
+    void is_typing_received();
 
 private slots:
     void ready_read();

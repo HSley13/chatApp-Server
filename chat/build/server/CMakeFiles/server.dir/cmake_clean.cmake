@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "server_autogen"
   "CMakeFiles/server.dir/chat_line.cpp.o"
   "CMakeFiles/server.dir/chat_line.cpp.o.d"
+  "CMakeFiles/server.dir/chat_protocol.cpp.o"
+  "CMakeFiles/server.dir/chat_protocol.cpp.o.d"
   "CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/server.dir/server_chat_window.cpp.o"

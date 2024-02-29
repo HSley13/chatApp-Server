@@ -683,8 +683,10 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/qos.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/time.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
+  /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
   /Users/test/Documents/server---clients/chat/server/server_manager.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/QByteArray \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/QList \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
@@ -819,6 +821,7 @@
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpen.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtGui.framework/Versions/A/Headers/qpolygon.h \
@@ -845,11 +848,14 @@
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtNetwork.framework/Versions/A/Headers/qtnetwork-config.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkexports.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkglobal.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QStatusBar \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QTabWidget \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemdelegate.h \
@@ -857,7 +863,12 @@
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qabstractscrollarea.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qboxlayout.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qgridlayout.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlayout.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlayoutitem.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlineedit.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlistview.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qlistwidget.h \
@@ -866,6 +877,7 @@
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qrubberband.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qslider.h \
+  /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qstatusbar.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qstyle.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qstyleoption.h \
   /opt/homebrew/Cellar/qt/6.6.1/lib/QtWidgets.framework/Versions/A/Headers/qtabbar.h \

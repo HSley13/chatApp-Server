@@ -182,6 +182,30 @@ chat_line.cpp.s:
 	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_line.cpp.s
 .PHONY : chat_line.cpp.s
 
+chat_protocol.o: chat_protocol.cpp.o
+.PHONY : chat_protocol.o
+
+# target to build an object file
+chat_protocol.cpp.o:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_protocol.cpp.o
+.PHONY : chat_protocol.cpp.o
+
+chat_protocol.i: chat_protocol.cpp.i
+.PHONY : chat_protocol.i
+
+# target to preprocess a source file
+chat_protocol.cpp.i:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_protocol.cpp.i
+.PHONY : chat_protocol.cpp.i
+
+chat_protocol.s: chat_protocol.cpp.s
+.PHONY : chat_protocol.s
+
+# target to generate assembly for a file
+chat_protocol.cpp.s:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/chat_protocol.cpp.s
+.PHONY : chat_protocol.cpp.s
+
 server_autogen/mocs_compilation.o: server_autogen/mocs_compilation.cpp.o
 .PHONY : server_autogen/mocs_compilation.o
 
@@ -316,6 +340,9 @@ help:
 	@echo "... chat_line.o"
 	@echo "... chat_line.i"
 	@echo "... chat_line.s"
+	@echo "... chat_protocol.o"
+	@echo "... chat_protocol.i"
+	@echo "... chat_protocol.s"
 	@echo "... server_autogen/mocs_compilation.o"
 	@echo "... server_autogen/mocs_compilation.i"
 	@echo "... server_autogen/mocs_compilation.s"

@@ -925,6 +925,10 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtGui/qpen.h \
   /opt/homebrew/include/QtGui/qtextoption.h \
   /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp \
+  /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/../../../../server/chat_protocol.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/moc_server_chat_window.cpp \
   /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/../../../../server/server_chat_window.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
@@ -957,6 +961,8 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp \
   /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/../../../../server/server_main_window.h \
   /Users/test/Documents/server---clients/chat/build/server/server_autogen/EWIEGA46WW/../../../../server/server_manager.h \

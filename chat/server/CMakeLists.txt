@@ -1,9 +1,10 @@
-qt_add_executable(server
+add_executable(server
                     server_main.cpp
                     server_main_window.cpp
                     server_manager.cpp
                     server_chat_window.cpp
                     chat_line.cpp
+                    chat_protocol.cpp
                 )
 
 

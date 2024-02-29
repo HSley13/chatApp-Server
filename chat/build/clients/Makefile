@@ -158,6 +158,30 @@ client_autogen/fast:
 	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen.dir/build.make clients/CMakeFiles/client_autogen.dir/build
 .PHONY : client_autogen/fast
 
+chat_protocol.o: chat_protocol.cpp.o
+.PHONY : chat_protocol.o
+
+# target to build an object file
+chat_protocol.cpp.o:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_protocol.cpp.o
+.PHONY : chat_protocol.cpp.o
+
+chat_protocol.i: chat_protocol.cpp.i
+.PHONY : chat_protocol.i
+
+# target to preprocess a source file
+chat_protocol.cpp.i:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_protocol.cpp.i
+.PHONY : chat_protocol.cpp.i
+
+chat_protocol.s: chat_protocol.cpp.s
+.PHONY : chat_protocol.s
+
+# target to generate assembly for a file
+chat_protocol.cpp.s:
+	cd /Users/test/Documents/server---clients/chat/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_protocol.cpp.s
+.PHONY : chat_protocol.cpp.s
+
 client_autogen/mocs_compilation.o: client_autogen/mocs_compilation.cpp.o
 .PHONY : client_autogen/mocs_compilation.o
 
@@ -289,6 +313,9 @@ help:
 	@echo "... client_autogen"
 	@echo "... client_autogen_timestamp_deps"
 	@echo "... client"
+	@echo "... chat_protocol.o"
+	@echo "... chat_protocol.i"
+	@echo "... chat_protocol.s"
 	@echo "... client_autogen/mocs_compilation.o"
 	@echo "... client_autogen/mocs_compilation.i"
 	@echo "... client_autogen/mocs_compilation.s"
