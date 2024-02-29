@@ -112,5 +112,5 @@ void client_main_window::send_name()
 
 void client_main_window::set_is_typing()
 {
-    status_bar->showMessage("Serving is typing...", 7500);
+    status_bar->showMessage("Serving is typing...", 1000);
 }

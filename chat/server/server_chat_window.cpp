@@ -86,7 +86,7 @@ void server_chat_window::text_message(QString message)
 
 void server_chat_window::is_typing()
 {
-    status_bar->showMessage("Client is typing");
+    status_bar->showMessage("Client is typing", 1000);
 }
 
 void server_chat_window::send_message()
