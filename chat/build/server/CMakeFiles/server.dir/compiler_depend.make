@@ -6504,11 +6504,14 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
+  /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
   /Users/test/Documents/server---clients/chat/server/server_manager.h \
   /opt/homebrew/include/QtCore/q20functional.h \
   /opt/homebrew/include/QtCore/q20memory.h \
   /opt/homebrew/include/QtCore/q20type_traits.h \
   /opt/homebrew/include/QtCore/q23utility.h \
+  /opt/homebrew/include/QtCore/qabstractitemmodel.h \
   /opt/homebrew/include/QtCore/qalgorithms.h \
   /opt/homebrew/include/QtCore/qanystringview.h \
   /opt/homebrew/include/QtCore/qarraydata.h \
@@ -6549,11 +6552,13 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qhashfunctions.h \
   /opt/homebrew/include/QtCore/qiodevice.h \
   /opt/homebrew/include/QtCore/qiodevicebase.h \
+  /opt/homebrew/include/QtCore/qitemselectionmodel.h \
   /opt/homebrew/include/QtCore/qiterable.h \
   /opt/homebrew/include/QtCore/qiterator.h \
   /opt/homebrew/include/QtCore/qlatin1stringview.h \
   /opt/homebrew/include/QtCore/qline.h \
   /opt/homebrew/include/QtCore/qlist.h \
+  /opt/homebrew/include/QtCore/qlocale.h \
   /opt/homebrew/include/QtCore/qlogging.h \
   /opt/homebrew/include/QtCore/qmalloc.h \
   /opt/homebrew/include/QtCore/qmap.h \
@@ -6574,6 +6579,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qprocessordetection.h \
   /opt/homebrew/include/QtCore/qrect.h \
   /opt/homebrew/include/QtCore/qrefcount.h \
+  /opt/homebrew/include/QtCore/qregularexpression.h \
   /opt/homebrew/include/QtCore/qscopedpointer.h \
   /opt/homebrew/include/QtCore/qscopeguard.h \
   /opt/homebrew/include/QtCore/qset.h \
@@ -6614,6 +6620,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qtversionchecks.h \
   /opt/homebrew/include/QtCore/qtypeinfo.h \
   /opt/homebrew/include/QtCore/qtypes.h \
+  /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/include/QtCore/qutf8stringview.h \
   /opt/homebrew/include/QtCore/qvariant.h \
   /opt/homebrew/include/QtCore/qvarlengtharray.h \
@@ -6632,29 +6639,55 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtGui/qkeysequence.h \
   /opt/homebrew/include/QtGui/qpaintdevice.h \
   /opt/homebrew/include/QtGui/qpalette.h \
+  /opt/homebrew/include/QtGui/qpen.h \
+  /opt/homebrew/include/QtGui/qpicture.h \
   /opt/homebrew/include/QtGui/qpixelformat.h \
   /opt/homebrew/include/QtGui/qpixmap.h \
   /opt/homebrew/include/QtGui/qpolygon.h \
   /opt/homebrew/include/QtGui/qregion.h \
   /opt/homebrew/include/QtGui/qrgb.h \
   /opt/homebrew/include/QtGui/qrgba64.h \
+  /opt/homebrew/include/QtGui/qtextcursor.h \
+  /opt/homebrew/include/QtGui/qtextdocument.h \
+  /opt/homebrew/include/QtGui/qtextformat.h \
+  /opt/homebrew/include/QtGui/qtextoption.h \
   /opt/homebrew/include/QtGui/qtgui-config.h \
   /opt/homebrew/include/QtGui/qtguiexports.h \
   /opt/homebrew/include/QtGui/qtguiglobal.h \
   /opt/homebrew/include/QtGui/qtransform.h \
+  /opt/homebrew/include/QtGui/qvalidator.h \
   /opt/homebrew/include/QtGui/qwindowdefs.h \
   /opt/homebrew/include/QtNetwork/qabstractsocket.h \
   /opt/homebrew/include/QtNetwork/qhostaddress.h \
   /opt/homebrew/include/QtNetwork/qtnetwork-config.h \
   /opt/homebrew/include/QtNetwork/qtnetworkexports.h \
   /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
+  /opt/homebrew/include/QtWidgets/qabstractbutton.h \
+  /opt/homebrew/include/QtWidgets/qabstractitemdelegate.h \
+  /opt/homebrew/include/QtWidgets/qabstractitemview.h \
+  /opt/homebrew/include/QtWidgets/qabstractscrollarea.h \
+  /opt/homebrew/include/QtWidgets/qabstractslider.h \
+  /opt/homebrew/include/QtWidgets/qabstractspinbox.h \
+  /opt/homebrew/include/QtWidgets/qboxlayout.h \
+  /opt/homebrew/include/QtWidgets/qframe.h \
+  /opt/homebrew/include/QtWidgets/qgridlayout.h \
+  /opt/homebrew/include/QtWidgets/qlayout.h \
+  /opt/homebrew/include/QtWidgets/qlayoutitem.h \
+  /opt/homebrew/include/QtWidgets/qlistview.h \
+  /opt/homebrew/include/QtWidgets/qrubberband.h \
   /opt/homebrew/include/QtWidgets/qsizepolicy.h \
+  /opt/homebrew/include/QtWidgets/qslider.h \
+  /opt/homebrew/include/QtWidgets/qstyle.h \
+  /opt/homebrew/include/QtWidgets/qstyleoption.h \
+  /opt/homebrew/include/QtWidgets/qtabbar.h \
   /opt/homebrew/include/QtWidgets/qtabwidget.h \
   /opt/homebrew/include/QtWidgets/qtwidgets-config.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -6662,9 +6695,21 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
 
 

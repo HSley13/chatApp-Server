@@ -1,5 +1,6 @@
 #pragma once
 
+#include "server_chat_window.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTcpServer>
@@ -20,6 +21,7 @@ private:
     QTcpServer *_server;
 
     QList<QTcpSocket *> _clients;
+    server_chat_window *_chat;
 
     QHostAddress _ip;
     int _port;
@@ -27,6 +29,8 @@ private:
 signals:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
+
+    // void set_name_received(QString name);
 
 private slots:
     void new_connection();

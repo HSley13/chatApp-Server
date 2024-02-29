@@ -32,6 +32,9 @@ void server_manager::new_connection()
     client->setProperty("id", id);
     connect(client, &QTcpSocket::disconnected, this, &server_manager::client_disconnected);
 
+    // _chat = new server_chat_window(client);
+    // connect(_chat, &server_chat_window::set_name_received, this, &server_manager::set_name_received);
+
     emit new_client_connected(client);
 }
 

@@ -43,7 +43,6 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
 void server_chat_window::data_receive()
 {
-    QTcpSocket *envoyeur = qobject_cast<QTcpSocket *>(sender());
     QByteArray data = _socket->readAll();
 
     _protocol->laod_data(data);
@@ -61,9 +60,9 @@ void server_chat_window::data_receive()
         break;
 
         // case chat_protocol::set_name:
-        //     emit set_name_received(_protocol->G_set_name(), envoyeur);
+        //     emit set_name_received(_protocol->G_set_name());
 
-        break;
+        //     break;
 
     default:
         break;

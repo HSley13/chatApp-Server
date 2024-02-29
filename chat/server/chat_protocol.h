@@ -15,9 +15,9 @@ public:
     enum message_type
     {
         text,
-        file,
         is_typing,
-        set_name
+        set_name,
+        file
     };
 
     QByteArray text_message(QString message);

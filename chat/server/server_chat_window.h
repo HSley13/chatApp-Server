@@ -28,9 +28,11 @@ private:
 
     static void text_message(QString message);
     static void is_typing();
-    // static void set_name(QString message);
 
     static QStatusBar *status_bar;
+
+signals:
+    // void set_name_received(QString name);
 
 private slots:
     void send_message();

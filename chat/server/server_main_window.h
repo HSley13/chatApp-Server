@@ -32,5 +32,5 @@ private slots:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    // void set_name(QString name, QTcpSocket *envoyeur);
+    // void set_name(QString name);
 };

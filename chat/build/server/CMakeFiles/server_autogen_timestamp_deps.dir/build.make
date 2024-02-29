@@ -67,10 +67,10 @@ include server/CMakeFiles/server_autogen_timestamp_deps.dir/compiler_depend.make
 include server/CMakeFiles/server_autogen_timestamp_deps.dir/progress.make
 
 server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/uic
 server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/uic
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 
 server_autogen_timestamp_deps: server/CMakeFiles/server_autogen_timestamp_deps
 server_autogen_timestamp_deps: server/CMakeFiles/server_autogen_timestamp_deps.dir/build.make

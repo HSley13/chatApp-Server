@@ -115,8 +115,8 @@ server/clean: server/CMakeFiles/server_autogen.dir/clean
 # Target rules for target clients/CMakeFiles/client.dir
 
 # All Build rule for target.
-clients/CMakeFiles/client.dir/all: clients/CMakeFiles/client_autogen.dir/all
 clients/CMakeFiles/client.dir/all: clients/CMakeFiles/client_autogen_timestamp_deps.dir/all
+clients/CMakeFiles/client.dir/all: clients/CMakeFiles/client_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/depend
 	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/test/Documents/server---clients/chat/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target client"
