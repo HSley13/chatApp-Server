@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -66,11 +66,11 @@ include server/CMakeFiles/server_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include server/CMakeFiles/server_autogen_timestamp_deps.dir/progress.make
 
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
-server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
 server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/uic
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
 server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
+server/CMakeFiles/server_autogen_timestamp_deps: /opt/homebrew/share/qt/libexec/moc
 
 server_autogen_timestamp_deps: server/CMakeFiles/server_autogen_timestamp_deps
 server_autogen_timestamp_deps: server/CMakeFiles/server_autogen_timestamp_deps.dir/build.make

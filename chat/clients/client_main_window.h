@@ -22,7 +22,7 @@ private:
     QMenuBar *menu_bar;
     QMenu *menu;
 
-    client_manager *con;
+    client_manager *_client;
 
     QListWidget *list;
     QLineEdit *insert_message;
@@ -34,8 +34,8 @@ signals:
 private slots:
     void connection();
     void send_message();
-    void data_text_receive(QString message);
+    void text_message_received(QString message);
     void send_name();
 
-    void set_is_typing();
+    void is_typing_received();
 };

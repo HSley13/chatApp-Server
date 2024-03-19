@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chat_protocol.h"
+#include "server_manager.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QTcpSocket>
@@ -18,26 +19,22 @@ public:
 private:
     QWidget *central_widget;
 
-    static QListWidget *list;
+    QListWidget *list;
     QLineEdit *insert_message;
     QPushButton *send_button;
 
-    QTcpSocket *_socket;
+    server_manager *_client;
 
     chat_protocol *_protocol;
 
-    static void text_message(QString message);
-    static void is_typing();
-
-    static QStatusBar *status_bar;
-
 signals:
-    // void set_name_received(QString name);
+    void client_name_changed(QString name);
+    void is_typing(QString name);
 
 private slots:
     void send_message();
-    void data_receive();
-    void disconnecton();
+    void disconnection();
 
-    void send_is_typing();
+    void text_message_received(QString message);
+    void is_typing_received();
 };

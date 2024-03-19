@@ -19,15 +19,35 @@ void client_manager::connect_to_server()
     _socket->connectToHost(_ip, _port);
 }
 
+void client_manager::send_text(QString text)
+{
+    _socket->write(_protocol->text_message(text));
+}
+
+void client_manager::send_name(QString name)
+{
+    _socket->write(_protocol->set_name_message(name));
+}
+
+void client_manager::send_is_typing()
+{
+    _socket->write(_protocol->is_typing_message());
+}
+
 void client_manager::ready_read()
 {
     QByteArray data = _socket->readAll();
-    _protocol->laod_data(data);
+    _protocol->load_data(data);
 
-    switch (_protocol->G_type())
+    switch (_protocol->type())
     {
     case chat_protocol::text:
-        emit text_message_received(_protocol->G_message());
+        emit text_message_received(_protocol->message());
+
+        break;
+
+    case chat_protocol::set_name:
+        emit name_changed(_protocol->name());
 
         break;
 
@@ -39,19 +59,4 @@ void client_manager::ready_read()
     default:
         break;
     }
-}
-
-void client_manager::send_text(QString text)
-{
-    _socket->write(_protocol->text_message(text));
-}
-
-void client_manager::send_name(QString name)
-{
-    _socket->write(_protocol->set_name_func(name));
-}
-
-void client_manager::send_is_typing()
-{
-    _socket->write(_protocol->is_typing_func());
 }

@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -72,8 +72,8 @@ server/server_autogen/timestamp: /opt/homebrew/share/qt/libexec/moc
 server/server_autogen/timestamp: /opt/homebrew/share/qt/libexec/uic
 server/server_autogen/timestamp: server/CMakeFiles/server_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/chat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target server"
-	cd /Users/test/Documents/server---clients/chat/build/server && /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E cmake_autogen /Users/test/Documents/server---clients/chat/build/server/CMakeFiles/server_autogen.dir/AutogenInfo.json Debug
-	cd /Users/test/Documents/server---clients/chat/build/server && /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E touch /Users/test/Documents/server---clients/chat/build/server/server_autogen/timestamp
+	cd /Users/test/Documents/server---clients/chat/build/server && /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E cmake_autogen /Users/test/Documents/server---clients/chat/build/server/CMakeFiles/server_autogen.dir/AutogenInfo.json Debug
+	cd /Users/test/Documents/server---clients/chat/build/server && /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E touch /Users/test/Documents/server---clients/chat/build/server/server_autogen/timestamp
 
 server_autogen: server/CMakeFiles/server_autogen
 server_autogen: server/server_autogen/timestamp

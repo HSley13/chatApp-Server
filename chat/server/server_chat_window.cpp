@@ -4,12 +4,8 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-// Define static member variables
-QListWidget *server_chat_window::list = nullptr;
-QStatusBar *server_chat_window::status_bar = nullptr;
-
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
-    : QMainWindow(parent), _socket(client)
+    : QMainWindow(parent)
 {
     central_widget = new QWidget();
     setCentralWidget(central_widget);
@@ -17,9 +13,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     list = new QListWidget(this);
 
     _protocol = new chat_protocol();
-
-    status_bar = new QStatusBar(this);
-    setStatusBar(status_bar);
+    _client = new server_manager(client, this);
 
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
@@ -30,10 +24,11 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
 
-    connect(_socket, &QTcpSocket::readyRead, this, &server_chat_window::data_receive);
-    connect(_socket, &QTcpSocket::disconnected, this, &server_chat_window::disconnecton);
-
-    connect(insert_message, &QLineEdit::textChanged, this, &server_chat_window::send_is_typing);
+    connect(_client, &server_manager::disconnected, this, &server_chat_window::disconnection);
+    connect(_client, &server_manager::text_message_received, this, &server_chat_window::text_message_received);
+    connect(_client, &server_manager::name_changed, this, &server_chat_window::client_name_changed);
+    connect(_client, &server_manager::is_typing_received, this, &server_chat_window::is_typing_received);
+    connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(list);
@@ -41,58 +36,17 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     VBOX->addWidget(send_button);
 }
 
-void server_chat_window::data_receive()
+void server_chat_window::disconnection()
 {
-    QByteArray data = _socket->readAll();
-
-    _protocol->laod_data(data);
-
-    switch (_protocol->G_type())
-    {
-    case chat_protocol::text:
-        server_chat_window::text_message(_protocol->G_message());
-
-        break;
-
-    case chat_protocol::is_typing:
-        server_chat_window::is_typing();
-
-        break;
-
-        // case chat_protocol::set_name:
-        //     emit set_name_received(_protocol->G_set_name());
-
-        //     break;
-
-    default:
-        break;
-    }
-}
-
-void server_chat_window::text_message(QString message)
-{
-    chat_line *wid = new chat_line();
-    wid->set_message(message);
-    wid->setStyleSheet("color: black;");
-
-    QListWidgetItem *line = new QListWidgetItem();
-    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-    line->setSizeHint(QSize(0, 65));
-
-    server_chat_window::list->addItem(line);
-    server_chat_window::list->setItemWidget(line, wid);
-}
-
-void server_chat_window::is_typing()
-{
-    status_bar->showMessage("Client is typing", 1000);
+    send_button->setEnabled(false);
+    insert_message->setEnabled(false);
 }
 
 void server_chat_window::send_message()
 {
-    QString message = insert_message->text();
+    QString message = insert_message->text().trimmed();
 
-    _socket->write(_protocol->text_message(message));
+    _client->send_text(message);
 
     chat_line *wid = new chat_line();
     wid->set_message(message, true);
@@ -108,13 +62,21 @@ void server_chat_window::send_message()
     insert_message->clear();
 }
 
-void server_chat_window::send_is_typing()
+void server_chat_window::text_message_received(QString message)
 {
-    _socket->write(_protocol->is_typing_func());
+    chat_line *wid = new chat_line();
+    wid->set_message(message);
+    wid->setStyleSheet("color: black;");
+
+    QListWidgetItem *line = new QListWidgetItem();
+    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    line->setSizeHint(QSize(0, 65));
+
+    list->addItem(line);
+    list->setItemWidget(line, wid);
 }
 
-void server_chat_window::disconnecton()
+void server_chat_window::is_typing_received()
 {
-    send_button->setEnabled(false);
-    insert_message->setEnabled(false);
+    emit is_typing(_client->name());
 }

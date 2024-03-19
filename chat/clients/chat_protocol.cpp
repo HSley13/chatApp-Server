@@ -1,24 +1,11 @@
 #include "chat_protocol.h"
 #include <QTime>
 #include <QIODevice>
+#include <QDataStream>
 
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent)
 {
-    central_widget = new QWidget();
-    setCentralWidget(central_widget);
-}
-
-QByteArray chat_protocol::get_data(message_type type, QString message)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-
-    out << type << message;
-
-    return byte;
 }
 
 QByteArray chat_protocol::text_message(QString message)
@@ -26,20 +13,27 @@ QByteArray chat_protocol::text_message(QString message)
     return get_data(text, message);
 }
 
-QByteArray chat_protocol::is_typing_func()
+QByteArray chat_protocol::is_typing_message()
 {
     return get_data(is_typing, "");
 }
 
-QByteArray chat_protocol::set_name_func(QString message)
+QByteArray chat_protocol::set_name_message(QString name)
 {
-    return get_data(set_name, message);
+    return get_data(set_name, name);
 }
 
-void chat_protocol::laod_data(QByteArray data)
+void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
     in.setVersion(QDataStream::Qt_6_0);
+
+    if (in.status() != QDataStream::Ok)
+    {
+        qDebug() << "Error reading data stream";
+
+        return;
+    }
 
     in >> _type;
 
@@ -51,7 +45,7 @@ void chat_protocol::laod_data(QByteArray data)
         break;
 
     case set_name:
-        in >> _set_name;
+        in >> _name;
 
         break;
 
@@ -61,24 +55,34 @@ void chat_protocol::laod_data(QByteArray data)
         break;
 
     default:
+        qDebug() << "Unknown message type";
         break;
     }
 }
 
-chat_protocol::message_type chat_protocol::G_type() const
+QByteArray chat_protocol::get_data(message_type type, QString data)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << type << data;
+
+    return byte;
+}
+
+chat_protocol::message_type chat_protocol::type() const
 {
     return _type;
 }
 
-const QString &chat_protocol::G_message() const
+const QString &chat_protocol::message() const
 {
     return _message;
 }
-const QString &chat_protocol::G_set_name() const
+
+const QString &chat_protocol::name() const
 {
-    return _set_name;
-}
-const QString &chat_protocol::G_is_typing() const
-{
-    return _is_typing;
+    return _name;
 }

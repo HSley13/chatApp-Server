@@ -12,6 +12,7 @@ class client_manager : public QMainWindow
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
     void connect_to_server();
+
     void send_text(QString text);
     void send_name(QString name);
     void send_is_typing();
@@ -30,6 +31,7 @@ signals:
     void disconnected();
 
     void text_message_received(QString message);
+    void name_changed(QString name);
     void is_typing_received();
 
 private slots:

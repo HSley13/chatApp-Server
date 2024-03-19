@@ -21,22 +21,21 @@ public:
     };
 
     QByteArray text_message(QString message);
-    QByteArray is_typing_func();
-    QByteArray set_name_func(QString message);
+    QByteArray is_typing_message();
+    QByteArray set_name_message(QString name);
 
-    void laod_data(QByteArray data);
+    void load_data(QByteArray data);
 
-    message_type G_type() const;
-    const QString &G_message() const;
-    const QString &G_set_name() const;
-    const QString &G_is_typing() const;
+    message_type type() const;
+    const QString &message() const;
+    const QString &name() const;
 
 private:
     QWidget *central_widget;
-    QByteArray get_data(message_type type, QString message);
+    QByteArray get_data(message_type type, QString data);
 
     message_type _type;
     QString _message;
-    QString _set_name;
+    QString _name;
     QString _is_typing;
 };

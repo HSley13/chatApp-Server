@@ -7,6 +7,7 @@
 #include <QListWidget>
 #include <QTabWidget>
 #include <QPushButton>
+#include <QStatusBar>
 
 class server_main_window : public QMainWindow
 {
@@ -25,6 +26,8 @@ private:
     server_chat_window *_chat;
     server_manager *_clients;
 
+    QStatusBar *status_bar;
+
 signals:
 
 private slots:
@@ -32,5 +35,7 @@ private slots:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    // void set_name(QString name);
+    void set_client_name(QString name);
+
+    void is_typing_received(QString name);
 };

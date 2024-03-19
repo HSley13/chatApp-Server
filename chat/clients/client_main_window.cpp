@@ -25,7 +25,6 @@ client_main_window::client_main_window(QWidget *parent)
     connect(connection, &QAction::triggered, this, &client_main_window::connection);
 
     menu->addAction(connection);
-
     menu_bar->addMenu(menu);
 
     insert_name = new QLineEdit(this);
@@ -50,44 +49,30 @@ client_main_window::client_main_window(QWidget *parent)
     VBOX->addWidget(send_button);
 }
 
-void client_main_window::data_text_receive(QString message)
-{
-    client_chat_window *wid = new client_chat_window();
-    wid->set_message(message);
-    wid->setStyleSheet("color: black;");
-
-    QListWidgetItem *line = new QListWidgetItem();
-    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-    line->setSizeHint(QSize(0, 65));
-
-    list->addItem(line);
-    list->setItemWidget(line, wid);
-}
-
 void client_main_window::connection()
 {
-    con = new client_manager();
-    connect(con, &client_manager::connected, this, [=]()
+    _client = new client_manager();
+    connect(_client, &client_manager::connected, this, [=]()
             { central_widget->setEnabled(true); });
 
-    connect(con, &client_manager::disconnected, this, [=]()
+    connect(_client, &client_manager::disconnected, this, [=]()
             { central_widget->setEnabled(false); });
 
-    connect(con, &client_manager::text_message_received, this, &client_main_window::data_text_receive);
-    connect(con, &client_manager::is_typing_received, this, &client_main_window::set_is_typing);
+    connect(_client, &client_manager::text_message_received, this, &client_main_window::text_message_received);
+    connect(_client, &client_manager::is_typing_received, this, &client_main_window::is_typing_received);
 
-    connect(insert_message, &QLineEdit::textChanged, con, &client_manager::send_is_typing);
+    connect(insert_message, &QLineEdit::textChanged, _client, &client_manager::send_is_typing);
 
-    con->connect_to_server();
+    _client->connect_to_server();
 
-    status_bar->showMessage("Connected to the Server", 7500);
+    status_bar->showMessage("Connected to the Server", 1000);
 }
 
 void client_main_window::send_message()
 {
-    QString message = insert_message->text();
+    QString message = insert_message->text().trimmed();
 
-    con->send_text(message);
+    _client->send_text(message);
 
     client_chat_window *wid = new client_chat_window();
     wid->set_message(message, true);
@@ -103,14 +88,28 @@ void client_main_window::send_message()
     insert_message->clear();
 }
 
-void client_main_window::send_name()
+void client_main_window::text_message_received(QString message)
 {
-    QString name = insert_name->text();
+    client_chat_window *wid = new client_chat_window();
+    wid->set_message(message);
+    wid->setStyleSheet("color: black;");
 
-    con->send_name(name);
+    QListWidgetItem *line = new QListWidgetItem();
+    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    line->setSizeHint(QSize(0, 65));
+
+    list->addItem(line);
+    list->setItemWidget(line, wid);
 }
 
-void client_main_window::set_is_typing()
+void client_main_window::send_name()
+{
+    QString name = insert_name->text().trimmed();
+
+    _client->send_name(name);
+}
+
+void client_main_window::is_typing_received()
 {
     status_bar->showMessage("Serving is typing...", 1000);
 }

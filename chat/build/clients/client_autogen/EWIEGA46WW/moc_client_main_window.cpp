@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'client_main_window.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.1)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -22,7 +22,7 @@ QT_BEGIN_MOC_NAMESPACE
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'client_main_window.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.1. It"
+#error "This file was generated using the moc from 6.6.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -38,15 +38,15 @@ namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {};
-static constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers::stringData(
+constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers::stringData(
     "client_main_window",
     "connection",
     "",
     "send_message",
-    "data_text_receive",
+    "text_message_received",
     "message",
     "send_name",
-    "set_is_typing"
+    "is_typing_received"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
@@ -55,10 +55,10 @@ struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
     char stringdata1[11];
     char stringdata2[1];
     char stringdata3[13];
-    char stringdata4[18];
+    char stringdata4[22];
     char stringdata5[8];
     char stringdata6[10];
-    char stringdata7[14];
+    char stringdata7[19];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -68,19 +68,19 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(19, 10),  // "connection"
         QT_MOC_LITERAL(30, 0),  // ""
         QT_MOC_LITERAL(31, 12),  // "send_message"
-        QT_MOC_LITERAL(44, 17),  // "data_text_receive"
-        QT_MOC_LITERAL(62, 7),  // "message"
-        QT_MOC_LITERAL(70, 9),  // "send_name"
-        QT_MOC_LITERAL(80, 13)   // "set_is_typing"
+        QT_MOC_LITERAL(44, 21),  // "text_message_received"
+        QT_MOC_LITERAL(66, 7),  // "message"
+        QT_MOC_LITERAL(74, 9),  // "send_name"
+        QT_MOC_LITERAL(84, 18)   // "is_typing_received"
     },
     "client_main_window",
     "connection",
     "",
     "send_message",
-    "data_text_receive",
+    "text_message_received",
     "message",
     "send_name",
-    "set_is_typing"
+    "is_typing_received"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -129,12 +129,12 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_message'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'data_text_receive'
+        // method 'text_message_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'send_name'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'set_is_typing'
+        // method 'is_typing_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -148,9 +148,9 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->connection(); break;
         case 1: _t->send_message(); break;
-        case 2: _t->data_text_receive((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 2: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->send_name(); break;
-        case 4: _t->set_is_typing(); break;
+        case 4: _t->is_typing_received(); break;
         default: ;
         }
     }

@@ -397,7 +397,7 @@
 #define __UINT_LEAST8_MAX__ 255
 #define __UINT_LEAST8_TYPE__ unsigned char
 #define __USER_LABEL_PREFIX__ _
-#define __VERSION__ "Apple LLVM 15.0.0 (clang-1500.1.0.2.5)"
+#define __VERSION__ "Apple LLVM 15.0.0 (clang-1500.3.9.4)"
 #define __WCHAR_MAX__ 2147483647
 #define __WCHAR_TYPE__ int
 #define __WCHAR_WIDTH__ 32
@@ -405,7 +405,7 @@
 #define __WINT_TYPE__ int
 #define __WINT_WIDTH__ 32
 #define __aarch64__ 1
-#define __apple_build_version__ 15000100
+#define __apple_build_version__ 15000309
 #define __arm64 1
 #define __arm64__ 1
 #define __block __attribute__((__blocks__(byref)))
@@ -414,7 +414,7 @@
 #define __clang_major__ 15
 #define __clang_minor__ 0
 #define __clang_patchlevel__ 0
-#define __clang_version__ "15.0.0 (clang-1500.1.0.2.5)"
+#define __clang_version__ "15.0.0 (clang-1500.3.9.4)"
 #define __clang_wide_literal_encoding__ "UTF-32"
 #define __cplusplus 201703L
 #define __cpp_aggregate_bases 201603L
