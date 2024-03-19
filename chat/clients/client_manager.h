@@ -31,7 +31,6 @@ signals:
     void disconnected();
 
     void text_message_received(QString message);
-    void name_changed(QString name);
     void is_typing_received();
 
 private slots:

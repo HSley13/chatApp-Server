@@ -28,13 +28,6 @@ void chat_protocol::load_data(QByteArray data)
     QDataStream in(&data, QIODevice::ReadOnly);
     in.setVersion(QDataStream::Qt_6_0);
 
-    if (in.status() != QDataStream::Ok)
-    {
-        qDebug() << "Error reading data stream";
-
-        return;
-    }
-
     in >> _type;
 
     switch (_type)
@@ -55,7 +48,6 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     default:
-        qDebug() << "Unknown message type";
         break;
     }
 }

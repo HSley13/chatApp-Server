@@ -12,14 +12,11 @@ server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     _server->listen(_ip, _port);
 
     _socket = new QTcpSocket(this);
-
-    _protocol = new chat_protocol(this);
 }
 
 server_manager::server_manager(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent), _socket(client)
 {
-
     _protocol = new chat_protocol(this);
 
     connect(_socket, &QTcpSocket::connected, this, &server_manager::connected);

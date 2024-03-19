@@ -46,11 +46,6 @@ void client_manager::ready_read()
 
         break;
 
-    case chat_protocol::set_name:
-        emit name_changed(_protocol->name());
-
-        break;
-
     case chat_protocol::is_typing:
         emit is_typing_received();
 

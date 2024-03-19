@@ -13,7 +13,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     list = new QListWidget(this);
 
     _protocol = new chat_protocol();
-    _client = new server_manager(client, this);
+    _client = new server_manager(client);
 
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
@@ -28,6 +28,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     connect(_client, &server_manager::text_message_received, this, &server_chat_window::text_message_received);
     connect(_client, &server_manager::name_changed, this, &server_chat_window::client_name_changed);
     connect(_client, &server_manager::is_typing_received, this, &server_chat_window::is_typing_received);
+
     connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
