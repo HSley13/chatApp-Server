@@ -8,12 +8,12 @@ chat_protocol::chat_protocol(QWidget *parent)
 {
 }
 
-QByteArray chat_protocol::text_message(QString message)
+QByteArray chat_protocol::set_text_message(QString message)
 {
     return get_data(text, message);
 }
 
-QByteArray chat_protocol::is_typing_message()
+QByteArray chat_protocol::set_is_typing_message()
 {
     return get_data(is_typing, "");
 }

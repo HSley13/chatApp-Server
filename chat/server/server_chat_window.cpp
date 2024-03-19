@@ -45,7 +45,7 @@ void server_chat_window::disconnection()
 
 void server_chat_window::send_message()
 {
-    QString message = insert_message->text().trimmed();
+    QString message = insert_message->text();
 
     _client->send_text(message);
 

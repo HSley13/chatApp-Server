@@ -20,8 +20,8 @@ public:
         file
     };
 
-    QByteArray text_message(QString message);
-    QByteArray is_typing_message();
+    QByteArray set_text_message(QString message);
+    QByteArray set_is_typing_message();
     QByteArray set_name_message(QString name);
 
     void load_data(QByteArray data);

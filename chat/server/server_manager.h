@@ -16,7 +16,6 @@ public:
     server_manager(QTcpSocket *client, QWidget *parent = nullptr);
     void disconnect_all_clients();
 
-    // clients
     void connect_to_server();
     void send_text(QString text);
     void send_name(QString name);
@@ -40,7 +39,7 @@ signals:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    void connected();
+    // void connected();
     void disconnected();
 
     void text_message_received(QString message);

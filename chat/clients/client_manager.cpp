@@ -21,7 +21,7 @@ void client_manager::connect_to_server()
 
 void client_manager::send_text(QString text)
 {
-    _socket->write(_protocol->text_message(text));
+    _socket->write(_protocol->set_text_message(text));
 }
 
 void client_manager::send_name(QString name)
@@ -31,7 +31,7 @@ void client_manager::send_name(QString name)
 
 void client_manager::send_is_typing()
 {
-    _socket->write(_protocol->is_typing_message());
+    _socket->write(_protocol->set_is_typing_message());
 }
 
 void client_manager::ready_read()

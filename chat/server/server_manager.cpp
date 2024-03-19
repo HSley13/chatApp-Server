@@ -19,7 +19,7 @@ server_manager::server_manager(QTcpSocket *client, QWidget *parent)
 {
     _protocol = new chat_protocol(this);
 
-    connect(_socket, &QTcpSocket::connected, this, &server_manager::connected);
+    // connect(_socket, &QTcpSocket::connected, this, &server_manager::connected);
     connect(_socket, &QTcpSocket::disconnected, this, &server_manager::disconnected);
     connect(_socket, &QTcpSocket::readyRead, this, &server_manager::ready_read);
 }
@@ -55,7 +55,7 @@ void server_manager::disconnect_all_clients()
 
 void server_manager::send_text(QString text)
 {
-    _socket->write(_protocol->text_message(text));
+    _socket->write(_protocol->set_text_message(text));
 }
 
 void server_manager::send_name(QString name)
@@ -65,7 +65,7 @@ void server_manager::send_name(QString name)
 
 void server_manager::send_is_typing()
 {
-    _socket->write(_protocol->is_typing_message());
+    _socket->write(_protocol->set_is_typing_message());
 }
 
 QString server_manager::name() const

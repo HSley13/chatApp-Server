@@ -70,7 +70,7 @@ void client_main_window::connection()
 
 void client_main_window::send_message()
 {
-    QString message = insert_message->text().trimmed();
+    QString message = insert_message->text();
 
     _client->send_text(message);
 
@@ -104,7 +104,7 @@ void client_main_window::text_message_received(QString message)
 
 void client_main_window::send_name()
 {
-    QString name = insert_name->text().trimmed();
+    QString name = insert_name->text();
 
     _client->send_name(name);
 }
