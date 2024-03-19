@@ -39,7 +39,6 @@ signals:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    // void connected();
     void disconnected();
 
     void text_message_received(QString message);

@@ -19,7 +19,6 @@ server_manager::server_manager(QTcpSocket *client, QWidget *parent)
 {
     _protocol = new chat_protocol(this);
 
-    // connect(_socket, &QTcpSocket::connected, this, &server_manager::connected);
     connect(_socket, &QTcpSocket::disconnected, this, &server_manager::disconnected);
     connect(_socket, &QTcpSocket::readyRead, this, &server_manager::ready_read);
 }
