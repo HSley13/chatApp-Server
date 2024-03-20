@@ -9,6 +9,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QStatusBar>
+#include <QDir>
 
 class server_chat_window : public QMainWindow
 {
@@ -27,6 +28,8 @@ private:
 
     chat_protocol *_protocol;
 
+    QDir *dir;
+
 signals:
     void client_name_changed(QString name);
     void is_typing(QString name);
@@ -37,4 +40,11 @@ private slots:
 
     void text_message_received(QString message);
     void is_typing_received();
+
+    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void file_saved(QString path);
+
+    void link();
+
+    void on_client_name_changed(QString);
 };

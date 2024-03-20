@@ -34,6 +34,27 @@ void client_manager::send_is_typing()
     _socket->write(_protocol->set_is_typing_message());
 }
 
+void client_manager::send_init_sending_file(QString filename)
+{
+    _file_name = filename;
+    _socket->write(_protocol->set_init_sending_file_message(filename));
+}
+
+void client_manager::send_accept_file()
+{
+    _socket->write(_protocol->set_accept_file_message());
+}
+
+void client_manager::send_reject_file()
+{
+    _socket->write(_protocol->set_reject_file_message());
+}
+
+void client_manager::send_file()
+{
+    _socket->write(_protocol->set_file_message(_file_name));
+}
+
 void client_manager::ready_read()
 {
     QByteArray data = _socket->readAll();
@@ -48,6 +69,21 @@ void client_manager::ready_read()
 
     case chat_protocol::is_typing:
         emit is_typing_received();
+
+        break;
+
+    case chat_protocol::init_sending_file:
+        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
+
+        break;
+
+    case chat_protocol::accept_sending_file:
+        send_file();
+
+        break;
+
+    case chat_protocol::reject_sending_file:
+        emit reject_receiving_file();
 
         break;
 

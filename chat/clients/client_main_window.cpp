@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QFileDialog>
+#include <QMessageBox>
 
 client_main_window::client_main_window(QWidget *parent)
     : QMainWindow(parent)
@@ -36,8 +38,13 @@ client_main_window::client_main_window(QWidget *parent)
     QLabel *message = new QLabel("Send Message-->Server", this);
     insert_message = new QLineEdit(this);
     QHBoxLayout *hbox = new QHBoxLayout();
+
+    QPushButton *file = new QPushButton("...", this);
+    connect(file, &QPushButton::clicked, this, &client_main_window::send_file);
+
     hbox->addWidget(message);
     hbox->addWidget(insert_message);
+    hbox->addWidget(file);
 
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &client_main_window::send_message);
@@ -60,6 +67,8 @@ void client_main_window::connection()
 
     connect(_client, &client_manager::text_message_received, this, &client_main_window::text_message_received);
     connect(_client, &client_manager::is_typing_received, this, &client_main_window::is_typing_received);
+    connect(_client, &client_manager::init_receiving_file, this, &client_main_window::init_receiving_file);
+    connect(_client, &client_manager::reject_receiving_file, this, &client_main_window::reject_receiving_file);
 
     connect(insert_message, &QLineEdit::textChanged, _client, &client_manager::send_is_typing);
 
@@ -88,6 +97,13 @@ void client_main_window::send_message()
     insert_message->clear();
 }
 
+void client_main_window::send_file()
+{
+    static QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
+
+    _client->send_init_sending_file(file_name);
+}
+
 void client_main_window::text_message_received(QString message)
 {
     client_chat_window *wid = new client_chat_window();
@@ -112,4 +128,21 @@ void client_main_window::send_name()
 void client_main_window::is_typing_received()
 {
     status_bar->showMessage("Serving is typing...", 1000);
+}
+
+void client_main_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)
+{
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(client_name, file_name).arg(file_size);
+
+    static QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+
+    if (result == QMessageBox::Yes)
+        _client->send_accept_file();
+    else
+        _client->send_reject_file();
+}
+
+void client_main_window::reject_receiving_file()
+{
+    QMessageBox::critical(this, "File Rejected", "Sending File Rejected");
 }

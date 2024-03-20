@@ -3,6 +3,12 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QCoreApplication>
+#include <QFileDialog>
 
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent)
@@ -15,21 +21,31 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     _protocol = new chat_protocol();
     _client = new server_manager(client);
 
+    QPushButton *file = new QPushButton("Open Client Directory", this);
+    connect(file, &QPushButton::clicked, this, &server_chat_window::link);
+
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
     QHBoxLayout *hbox = new QHBoxLayout();
     hbox->addWidget(message);
     hbox->addWidget(insert_message);
+    hbox->addWidget(file);
 
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
 
     connect(_client, &server_manager::disconnected, this, &server_chat_window::disconnection);
     connect(_client, &server_manager::text_message_received, this, &server_chat_window::text_message_received);
-    connect(_client, &server_manager::name_changed, this, &server_chat_window::client_name_changed);
+    connect(_client, &server_manager::name_changed, this, &server_chat_window::on_client_name_changed);
+    connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::init_receiving_file);
+    connect(_client, &server_manager::file_saved, this, &server_chat_window::file_saved);
     connect(_client, &server_manager::is_typing_received, this, &server_chat_window::is_typing_received);
 
     connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
+
+    dir = new QDir();
+    dir->mkdir(_client->name());
+    dir->setPath("./" + _client->name());
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(list);
@@ -80,4 +96,41 @@ void server_chat_window::text_message_received(QString message)
 void server_chat_window::is_typing_received()
 {
     emit is_typing(_client->name());
+}
+
+void server_chat_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)
+{
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(client_name, file_name).arg(file_size);
+
+    static QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+
+    if (result == QMessageBox::Yes)
+        _client->send_accept_file();
+    else
+        _client->send_reject_file();
+}
+
+void server_chat_window::file_saved(QString path)
+{
+    QString message = QString("File save at: %1").arg(path);
+
+    QMessageBox::information(this, "File Saved", message);
+}
+
+void server_chat_window::link()
+{
+    QString executableDirectory = QCoreApplication::applicationDirPath();
+
+    QString clientDirectory = _client->name();
+
+    QString fullClientDirectory = QDir(executableDirectory).filePath(clientDirectory);
+
+    QString selectedDirectory = QFileDialog::getOpenFileName(this, tr("Open Client Directory"), fullClientDirectory);
+}
+
+void server_chat_window::on_client_name_changed(QString name)
+{
+    QFile::rename(dir->canonicalPath(), name);
+
+    emit client_name_changed(name);
 }

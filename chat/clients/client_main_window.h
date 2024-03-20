@@ -33,9 +33,14 @@ signals:
 
 private slots:
     void connection();
-    void send_message();
-    void text_message_received(QString message);
-    void send_name();
 
+    void send_message();
+    void send_name();
+    void send_file();
+
+    void text_message_received(QString message);
     void is_typing_received();
+
+    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void reject_receiving_file();
 };

@@ -1,4 +1,6 @@
 #include "server_manager.h"
+#include <QDir>
+#include <QDateTime>
 
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
@@ -67,6 +69,42 @@ void server_manager::send_is_typing()
     _socket->write(_protocol->set_is_typing_message());
 }
 
+void server_manager::send_init_sending_file(QString filename)
+{
+    _file_name = filename;
+    _socket->write(_protocol->set_init_sending_file_message(filename));
+}
+
+void server_manager::send_accept_file()
+{
+    _socket->write(_protocol->set_accept_file_message());
+}
+
+void server_manager::send_reject_file()
+{
+    _socket->write(_protocol->set_reject_file_message());
+}
+
+void server_manager::send_file()
+{
+    _socket->write(_protocol->set_file_message(_file_name));
+}
+
+void server_manager::save_file()
+{
+    QDir dir;
+    dir.mkdir(name());
+
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QFile file(path);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        file.write(_protocol->file_data());
+        file.close();
+        emit file_saved(path);
+    }
+}
+
 QString server_manager::name() const
 {
     int id = _socket->property("id").toInt();
@@ -96,6 +134,26 @@ void server_manager::ready_read()
 
     case chat_protocol::is_typing:
         emit is_typing_received();
+
+        break;
+
+    case chat_protocol::init_sending_file:
+        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
+
+        break;
+
+    case chat_protocol::accept_sending_file:
+        send_file();
+
+        break;
+
+    case chat_protocol::reject_sending_file:
+        emit reject_receiving_file();
+
+        break;
+
+    case chat_protocol::send_file:
+        save_file();
 
         break;
 

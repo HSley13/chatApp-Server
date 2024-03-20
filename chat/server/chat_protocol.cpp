@@ -2,6 +2,8 @@
 #include <QTime>
 #include <QIODevice>
 #include <QDataStream>
+#include <QFileInfo>
+#include <QFile>
 
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +23,50 @@ QByteArray chat_protocol::set_is_typing_message()
 QByteArray chat_protocol::set_name_message(QString name)
 {
     return get_data(set_name, name);
+}
+
+QByteArray chat_protocol::set_init_sending_file_message(QString filename)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    QFileInfo info(filename);
+
+    out << init_sending_file << info.fileName() << info.size();
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_accept_file_message()
+{
+    return get_data(accept_sending_file, "");
+}
+
+QByteArray chat_protocol::set_reject_file_message()
+{
+    return get_data(reject_sending_file, "");
+}
+
+QByteArray chat_protocol::set_file_message(QString filename)
+{
+    QByteArray byte;
+
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QDataStream out(&byte, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_6_0);
+
+        QFileInfo info(filename);
+
+        out << send_file << info.fileName() << info.size() << file.readAll();
+
+        file.close();
+    }
+
+    return byte;
 }
 
 void chat_protocol::load_data(QByteArray data)
@@ -44,6 +90,16 @@ void chat_protocol::load_data(QByteArray data)
 
     case is_typing:
         in >> _is_typing;
+
+    case init_sending_file:
+        in >> _file_name >> _file_size;
+
+        break;
+
+    case send_file:
+        in >> _file_name >> _file_size >> _file_data;
+
+        break;
 
     default:
         break;
@@ -75,4 +131,19 @@ const QString &chat_protocol::message() const
 const QString &chat_protocol::name() const
 {
     return _name;
+}
+
+const QString &chat_protocol::file_name() const
+{
+    return _file_name;
+}
+
+const qint64 &chat_protocol::file_size() const
+{
+    return _file_size;
+}
+
+const QByteArray &chat_protocol::file_data() const
+{
+    return _file_data;
 }

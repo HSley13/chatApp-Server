@@ -1116,5 +1116,52 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h \
+  /opt/homebrew/include/QtWidgets/qdialog.h \
+  /opt/homebrew/include/QtWidgets/qdialogbuttonbox.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
+  /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
+  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication \
+  /opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h \
+  /opt/homebrew/include/QtCore/qcoreevent.h \
+  /opt/homebrew/include/QtCore/qeventloop.h \
+  /opt/homebrew/include/QtCore/qnativeinterface.h \
+  /opt/homebrew/include/QtCore/qcoreapplication_platform.h \
+  /opt/homebrew/include/QtCore/qcoreapplication.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
+  /opt/homebrew/include/QtCore/qdir.h

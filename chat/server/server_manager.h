@@ -17,9 +17,14 @@ public:
     void disconnect_all_clients();
 
     void connect_to_server();
+
     void send_text(QString text);
     void send_name(QString name);
     void send_is_typing();
+
+    void send_init_sending_file(QString filename);
+    void send_accept_file();
+    void send_reject_file();
 
     QString name() const;
 
@@ -32,8 +37,13 @@ private:
     QList<QTcpSocket *> _clients;
     QTcpSocket *_socket;
 
+    QString _file_name;
+
     QHostAddress _ip;
     int _port;
+
+    void send_file();
+    void save_file();
 
 signals:
     void new_client_connected(QTcpSocket *client);
@@ -44,6 +54,11 @@ signals:
     void text_message_received(QString message);
     void name_changed(QString name);
     void is_typing_received();
+
+    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void reject_receiving_file();
+
+    void file_saved(QString path);
 
 private slots:
     void new_connection();

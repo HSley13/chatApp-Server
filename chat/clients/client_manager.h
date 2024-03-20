@@ -17,6 +17,10 @@ public:
     void send_name(QString name);
     void send_is_typing();
 
+    void send_init_sending_file(QString filename);
+    void send_accept_file();
+    void send_reject_file();
+
 private:
     QWidget *_central_widget;
 
@@ -26,12 +30,19 @@ private:
 
     chat_protocol *_protocol;
 
+    void send_file();
+
+    QString _file_name;
+
 signals:
     void connected();
     void disconnected();
 
     void text_message_received(QString message);
     void is_typing_received();
+
+    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void reject_receiving_file();
 
 private slots:
     void ready_read();

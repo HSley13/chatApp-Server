@@ -1434,6 +1434,22 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -1794,6 +1810,7 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -1815,10 +1832,13 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -1832,6 +1852,7 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -2019,8 +2040,11 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -2089,6 +2113,7 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
   /opt/homebrew/include/QtCore/qtpreprocessorsupport.h \
@@ -2144,11 +2169,15 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDataStream \
+  /opt/homebrew/lib/QtCore.framework/Headers/QFile \
+  /opt/homebrew/lib/QtCore.framework/Headers/QFileInfo \
   /opt/homebrew/lib/QtCore.framework/Headers/QIODevice \
   /opt/homebrew/lib/QtCore.framework/Headers/QTime \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qfileinfo.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -2516,6 +2545,22 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -2876,6 +2921,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -2897,10 +2943,13 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -2914,6 +2963,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -3098,6 +3148,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/include/QtCore/qbytearrayalgorithms.h \
   /opt/homebrew/include/QtCore/qbytearraylist.h \
   /opt/homebrew/include/QtCore/qbytearrayview.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
   /opt/homebrew/include/QtCore/qchar.h \
   /opt/homebrew/include/QtCore/qcompare.h \
   /opt/homebrew/include/QtCore/qcompare_impl.h \
@@ -3110,8 +3161,12 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -3182,6 +3237,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtmochelpers.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
@@ -3259,8 +3315,10 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -3644,6 +3702,22 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -4004,6 +4078,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -4025,10 +4100,13 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -4042,6 +4120,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -4220,6 +4299,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qbytearrayalgorithms.h \
   /opt/homebrew/include/QtCore/qbytearraylist.h \
   /opt/homebrew/include/QtCore/qbytearrayview.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
   /opt/homebrew/include/QtCore/qchar.h \
   /opt/homebrew/include/QtCore/qcompare.h \
   /opt/homebrew/include/QtCore/qcompare_impl.h \
@@ -4230,10 +4310,19 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qcontainerinfo.h \
   /opt/homebrew/include/QtCore/qcontainertools_impl.h \
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
+  /opt/homebrew/include/QtCore/qcoreapplication.h \
+  /opt/homebrew/include/QtCore/qcoreapplication_platform.h \
+  /opt/homebrew/include/QtCore/qcoreevent.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
+  /opt/homebrew/include/QtCore/qdir.h \
+  /opt/homebrew/include/QtCore/qeventloop.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -4262,6 +4351,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qmetatype.h \
   /opt/homebrew/include/QtCore/qminmax.h \
   /opt/homebrew/include/QtCore/qnamespace.h \
+  /opt/homebrew/include/QtCore/qnativeinterface.h \
   /opt/homebrew/include/QtCore/qnumeric.h \
   /opt/homebrew/include/QtCore/qobject.h \
   /opt/homebrew/include/QtCore/qobject_impl.h \
@@ -4304,6 +4394,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
   /opt/homebrew/include/QtCore/qtpreprocessorsupport.h \
@@ -4363,6 +4454,8 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qabstractslider.h \
   /opt/homebrew/include/QtWidgets/qabstractspinbox.h \
   /opt/homebrew/include/QtWidgets/qboxlayout.h \
+  /opt/homebrew/include/QtWidgets/qdialog.h \
+  /opt/homebrew/include/QtWidgets/qdialogbuttonbox.h \
   /opt/homebrew/include/QtWidgets/qframe.h \
   /opt/homebrew/include/QtWidgets/qgridlayout.h \
   /opt/homebrew/include/QtWidgets/qlayout.h \
@@ -4380,29 +4473,41 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
+  /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
@@ -4764,6 +4869,22 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -5124,6 +5245,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -5145,10 +5267,13 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -5162,6 +5287,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -5340,6 +5466,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/include/QtCore/qbytearrayalgorithms.h \
   /opt/homebrew/include/QtCore/qbytearraylist.h \
   /opt/homebrew/include/QtCore/qbytearrayview.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
   /opt/homebrew/include/QtCore/qchar.h \
   /opt/homebrew/include/QtCore/qcompare.h \
   /opt/homebrew/include/QtCore/qcompare_impl.h \
@@ -5355,9 +5482,13 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/include/QtCore/qcoreevent.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qeventloop.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -5429,6 +5560,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
   /opt/homebrew/include/QtCore/qtpreprocessorsupport.h \
@@ -5508,8 +5640,10 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -5895,6 +6029,22 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -6255,6 +6405,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -6276,10 +6427,13 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -6293,6 +6447,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -6471,6 +6626,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qbytearrayalgorithms.h \
   /opt/homebrew/include/QtCore/qbytearraylist.h \
   /opt/homebrew/include/QtCore/qbytearrayview.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
   /opt/homebrew/include/QtCore/qchar.h \
   /opt/homebrew/include/QtCore/qcompare.h \
   /opt/homebrew/include/QtCore/qcompare_impl.h \
@@ -6483,8 +6639,12 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -6555,6 +6715,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
   /opt/homebrew/include/QtCore/qtpreprocessorsupport.h \
@@ -6631,8 +6792,10 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -7017,6 +7180,22 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/buffer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -7377,6 +7556,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
@@ -7398,10 +7578,13 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
@@ -7415,6 +7598,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
@@ -7590,6 +7774,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qbytearrayalgorithms.h \
   /opt/homebrew/include/QtCore/qbytearraylist.h \
   /opt/homebrew/include/QtCore/qbytearrayview.h \
+  /opt/homebrew/include/QtCore/qcalendar.h \
   /opt/homebrew/include/QtCore/qchar.h \
   /opt/homebrew/include/QtCore/qcompare.h \
   /opt/homebrew/include/QtCore/qcompare_impl.h \
@@ -7602,8 +7787,12 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
+  /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
+  /opt/homebrew/include/QtCore/qfile.h \
+  /opt/homebrew/include/QtCore/qfiledevice.h \
+  /opt/homebrew/include/QtCore/qfileinfo.h \
   /opt/homebrew/include/QtCore/qflags.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
   /opt/homebrew/include/QtCore/qforeach.h \
@@ -7621,6 +7810,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qlatin1stringview.h \
   /opt/homebrew/include/QtCore/qline.h \
   /opt/homebrew/include/QtCore/qlist.h \
+  /opt/homebrew/include/QtCore/qlocale.h \
   /opt/homebrew/include/QtCore/qlogging.h \
   /opt/homebrew/include/QtCore/qmalloc.h \
   /opt/homebrew/include/QtCore/qmap.h \
@@ -7671,6 +7861,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtCore/qtdeprecationmarkers.h \
   /opt/homebrew/include/QtCore/qtenvironmentvariables.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
+  /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtCore/qtmetamacros.h \
   /opt/homebrew/include/QtCore/qtnoop.h \
   /opt/homebrew/include/QtCore/qtpreprocessorsupport.h \
@@ -7730,8 +7921,12 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDateTime \
+  /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
@@ -7759,9 +7954,17 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /opt/homebrew/include/QtGui/qguiapplication.h:
 
+/Users/test/Documents/server---clients/chat/server/server_main.cpp:
+
+/opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qurl.h:
+
+/opt/homebrew/include/QtWidgets/qdialog.h:
+
 /opt/homebrew/include/QtCore/qeventloop.h:
 
-/Users/test/Documents/server---clients/chat/server/server_main.cpp:
+/opt/homebrew/include/QtCore/qdir.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h:
 
@@ -7781,7 +7984,11 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qdir.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/QList:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QDir:
 
 /opt/homebrew/include/QtWidgets/qstyleoption.h:
 
@@ -7823,7 +8030,37 @@ server/server_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QIODevice:
 
+/opt/homebrew/include/QtCore/qfiledevice.h:
+
+/opt/homebrew/include/QtCore/qfile.h:
+
+/opt/homebrew/include/QtCore/qdatetime.h:
+
 /Users/test/Documents/server---clients/chat/server/chat_protocol.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h:
 
 /Users/test/Documents/server---clients/chat/server/chat_protocol.cpp:
 
@@ -7863,6 +8100,8 @@ server/server_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/include/QtGui/qfont.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h:
+
 /opt/homebrew/include/QtGui/qcursor.h:
 
 /opt/homebrew/include/QtGui/qcolor.h:
@@ -7884,6 +8123,8 @@ server/server_autogen/mocs_compilation.cpp:
 /opt/homebrew/include/QtCore/qtnoop.h:
 
 /opt/homebrew/include/QtCore/qtmetamacros.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h:
 
 /opt/homebrew/include/QtCore/qtextstream.h:
 
@@ -8055,6 +8296,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_useconds_t.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qfileinfo.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int8_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int32_t.h:
@@ -8209,6 +8452,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/wrap_iter.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string:
@@ -8313,6 +8558,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_identity.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_reference.h:
@@ -8371,6 +8618,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_union.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h:
@@ -8422,6 +8671,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_fundamental.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_final.h:
+
+/opt/homebrew/include/QtCore/qtimezone.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_execution_policy.h:
 
@@ -8479,6 +8730,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_abstract.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qfile.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/time.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/cmp.h:
@@ -8510,6 +8763,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/copy_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_type.h:
 
@@ -8636,6 +8891,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__threading_support:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QDateTime:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/iota.h:
 
@@ -8825,6 +9082,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/front_insert_iterator.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_extent.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/half_positive.h:
@@ -8953,6 +9212,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind_front.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/copyable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/equality_comparable.h:
@@ -9042,6 +9303,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QUrl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_frontend_dispatch.h:
 
@@ -9369,6 +9632,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/search.h:
 
+/opt/homebrew/include/QtCore/qfileinfo.h:
+
 /opt/homebrew/include/QtGui/qkeysequence.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/kill_dependency.h:
@@ -9394,6 +9659,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_upper_bound.h:
 
@@ -9438,6 +9705,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdio.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h:
 
 /opt/homebrew/include/QtCore/qbytearray.h:
 
@@ -9504,6 +9773,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exception_guard.h:
+
+/opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/auto_ptr.h:
 
@@ -9663,6 +9934,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy_if.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h:
+
 /opt/homebrew/include/QtCore/qmetacontainer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/predicate.h:
@@ -9676,6 +9949,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_sort.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_generate_n.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QFileInfo:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax_element.h:
 
@@ -9809,6 +10084,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow:
@@ -9851,6 +10128,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/binary_search.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/QFile:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_union.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_count.h:
@@ -9869,11 +10148,15 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/stable_sort.h:
 
+/opt/homebrew/include/QtWidgets/qdialogbuttonbox.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/noexcept_move_assign_container.h:
 
 /opt/homebrew/include/QtCore/qitemselectionmodel.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ostream_iterator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip:
 
 /opt/homebrew/include/QtCore/qhash.h:
 
@@ -9888,6 +10171,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__availability:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_intmax_t.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_out_out_result.h:
 
@@ -10044,6 +10329,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_arg_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_min.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityMacros.h:
 
