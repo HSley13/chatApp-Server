@@ -5579,9 +5579,13 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o
  /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h
  /opt/homebrew/include/QtWidgets/qwidget.h
  /opt/homebrew/lib/QtCore.framework/Headers/QByteArray
+ /opt/homebrew/lib/QtCore.framework/Headers/QUrl
  /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h
+ /opt/homebrew/lib/QtCore.framework/Headers/qurl.h
  /opt/homebrew/lib/QtGui.framework/Headers/QAction
+ /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices
  /opt/homebrew/lib/QtGui.framework/Headers/qaction.h
+ /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h
  /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress
  /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket
  /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h

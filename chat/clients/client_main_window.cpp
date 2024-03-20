@@ -8,6 +8,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QApplication>
+#include <QDesktopServices>
+#include <QUrl>
 
 client_main_window::client_main_window(QWidget *parent)
     : QMainWindow(parent)
@@ -163,8 +165,10 @@ void client_main_window::file_saved(QString path)
 void client_main_window::folder()
 {
     QString executable_directory = QApplication::applicationDirPath();
-
     QString full_client_directory = QDir(executable_directory).filePath("Server");
 
-    QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
+    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
+
+    if (!selected_file_path.isEmpty())
+        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }

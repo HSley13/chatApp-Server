@@ -131,11 +131,12 @@ void server_chat_window::folder()
 {
     QString executable_directory = QApplication::applicationDirPath();
 
-    QString client_directory = _client->name();
+    QString full_client_directory = QDir(executable_directory).filePath(_client->name());
 
-    QString full_client_directory = QDir(executable_directory).filePath(client_directory);
+    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
 
-    QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
+    if (!selected_file_path.isEmpty())
+        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
 void server_chat_window::on_client_name_changed(QString name)

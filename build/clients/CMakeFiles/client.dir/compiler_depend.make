@@ -5574,9 +5574,13 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QAction \
+  /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
   /opt/homebrew/lib/QtGui.framework/Headers/qaction.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
@@ -6728,6 +6732,8 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
 
 
+/opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
+
 /opt/homebrew/lib/QtGui.framework/Headers/QAction:
 
 /opt/homebrew/include/QtWidgets/qdialog.h:
@@ -6747,6 +6753,8 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 /opt/homebrew/include/QtCore/qcoreapplication.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qurl.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h:
 
@@ -8088,6 +8096,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/QUrl:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_frontend_dispatch.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/boolean_testable.h:
@@ -8555,6 +8565,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exception_guard.h:
+
+/opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/auto_ptr.h:
 
