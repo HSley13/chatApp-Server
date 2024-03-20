@@ -21,6 +21,8 @@ public:
     void send_accept_file();
     void send_reject_file();
 
+    void save_file();
+
 private:
     QWidget *_central_widget;
 
@@ -43,6 +45,8 @@ signals:
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();
+
+    void file_saved(QString path);
 
 private slots:
     void ready_read();

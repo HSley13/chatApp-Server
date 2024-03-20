@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QApplication>
 
 client_main_window::client_main_window(QWidget *parent)
     : QMainWindow(parent)
@@ -39,12 +40,16 @@ client_main_window::client_main_window(QWidget *parent)
     insert_message = new QLineEdit(this);
     QHBoxLayout *hbox = new QHBoxLayout();
 
-    QPushButton *file = new QPushButton("...", this);
-    connect(file, &QPushButton::clicked, this, &client_main_window::send_file);
+    QPushButton *file = new QPushButton("Open Server Directory", this);
+    connect(file, &QPushButton::clicked, this, &client_main_window::folder);
+
+    QPushButton *send_file = new QPushButton("...", this);
+    connect(send_file, &QPushButton::clicked, this, &client_main_window::send_file);
 
     hbox->addWidget(message);
     hbox->addWidget(insert_message);
     hbox->addWidget(file);
+    hbox->addWidget(send_file);
 
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &client_main_window::send_message);
@@ -69,6 +74,7 @@ void client_main_window::connection()
     connect(_client, &client_manager::is_typing_received, this, &client_main_window::is_typing_received);
     connect(_client, &client_manager::init_receiving_file, this, &client_main_window::init_receiving_file);
     connect(_client, &client_manager::reject_receiving_file, this, &client_main_window::reject_receiving_file);
+    connect(_client, &client_manager::file_saved, this, &client_main_window::file_saved);
 
     connect(insert_message, &QLineEdit::textChanged, _client, &client_manager::send_is_typing);
 
@@ -145,4 +151,20 @@ void client_main_window::init_receiving_file(QString client_name, QString file_n
 void client_main_window::reject_receiving_file()
 {
     QMessageBox::critical(this, "File Rejected", "Sending File Rejected");
+}
+
+void client_main_window::file_saved(QString path)
+{
+    QString message = QString("File save at: %1").arg(path);
+
+    QMessageBox::information(this, "File Saved", message);
+}
+
+void client_main_window::folder()
+{
+    QString executable_directory = QApplication::applicationDirPath();
+
+    QString full_client_directory = QDir(executable_directory).filePath("Server");
+
+    QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
 }

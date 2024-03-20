@@ -1,4 +1,6 @@
 #include "client_manager.h"
+#include <QFileDialog>
+#include <QFile>
 
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
@@ -55,6 +57,24 @@ void client_manager::send_file()
     _socket->write(_protocol->set_file_message(_file_name));
 }
 
+void client_manager::save_file()
+{
+    QDir *dir = new QDir();
+    dir->mkdir("Server");
+
+    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+
+    QFile *file = new QFile(path);
+
+    if (file->open(QIODevice::WriteOnly))
+    {
+        file->write(_protocol->file_data());
+        file->close();
+
+        emit file_saved(path);
+    }
+}
+
 void client_manager::ready_read()
 {
     QByteArray data = _socket->readAll();
@@ -86,6 +106,9 @@ void client_manager::ready_read()
         emit reject_receiving_file();
 
         break;
+
+    case chat_protocol::send_file:
+        save_file();
 
     default:
         break;

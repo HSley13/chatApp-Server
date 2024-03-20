@@ -92,15 +92,18 @@ void server_manager::send_file()
 
 void server_manager::save_file()
 {
-    QDir dir;
-    dir.mkdir(name());
+    QDir *dir = new QDir();
+    dir->mkdir(name());
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
-    QFile file(path);
-    if (file.open(QIODevice::WriteOnly))
+    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+
+    QFile *file = new QFile(path);
+
+    if (file->open(QIODevice::WriteOnly))
     {
-        file.write(_protocol->file_data());
-        file.close();
+        file->write(_protocol->file_data());
+        file->close();
+
         emit file_saved(path);
     }
 }

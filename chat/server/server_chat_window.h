@@ -44,7 +44,9 @@ private slots:
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void file_saved(QString path);
 
-    void link();
+    void folder();
+
+    void send_file();
 
     void on_client_name_changed(QString);
 };

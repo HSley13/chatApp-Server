@@ -1153,15 +1153,16 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: \
   /opt/homebrew/include/QtWidgets/qdialogbuttonbox.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
   /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
-  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication \
-  /opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h \
+  /opt/homebrew/include/QtCore/qcoreapplication.h \
   /opt/homebrew/include/QtCore/qcoreevent.h \
   /opt/homebrew/include/QtCore/qeventloop.h \
   /opt/homebrew/include/QtCore/qnativeinterface.h \
   /opt/homebrew/include/QtCore/qcoreapplication_platform.h \
-  /opt/homebrew/include/QtCore/qcoreapplication.h \
+  /opt/homebrew/include/QtGui/qguiapplication.h \
+  /opt/homebrew/include/QtGui/qinputmethod.h \
+  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
   /opt/homebrew/include/QtCore/qdir.h

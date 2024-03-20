@@ -43,4 +43,8 @@ private slots:
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();
+
+    void file_saved(QString path);
+
+    void folder();
 };

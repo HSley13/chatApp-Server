@@ -4419,8 +4419,11 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtGui/qfont.h \
   /opt/homebrew/include/QtGui/qfontinfo.h \
   /opt/homebrew/include/QtGui/qfontmetrics.h \
+  /opt/homebrew/include/QtGui/qguiapplication.h \
+  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
   /opt/homebrew/include/QtGui/qicon.h \
   /opt/homebrew/include/QtGui/qimage.h \
+  /opt/homebrew/include/QtGui/qinputmethod.h \
   /opt/homebrew/include/QtGui/qkeysequence.h \
   /opt/homebrew/include/QtGui/qpaintdevice.h \
   /opt/homebrew/include/QtGui/qpalette.h \
@@ -4473,15 +4476,11 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
-  /opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
-  /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
   /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
@@ -4490,6 +4489,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
@@ -4501,6 +4501,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
@@ -7948,19 +7949,17 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /Users/test/Documents/server---clients/chat/server/server_main_window.cpp:
 
+/Users/test/Documents/server---clients/chat/server/server_main.cpp:
+
 /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h:
+
+/opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
+
+/opt/homebrew/include/QtWidgets/qdialog.h:
 
 /opt/homebrew/include/QtGui/qguiapplication_platform.h:
 
 /opt/homebrew/include/QtGui/qguiapplication.h:
-
-/Users/test/Documents/server---clients/chat/server/server_main.cpp:
-
-/opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qurl.h:
-
-/opt/homebrew/include/QtWidgets/qdialog.h:
 
 /opt/homebrew/include/QtCore/qeventloop.h:
 
@@ -9082,8 +9081,6 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/front_insert_iterator.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qcoreapplication.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_extent.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/half_positive.h:
@@ -9303,8 +9300,6 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/QUrl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_frontend_dispatch.h:
 
@@ -10083,8 +10078,6 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder1st.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/QCoreApplication:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h:
 

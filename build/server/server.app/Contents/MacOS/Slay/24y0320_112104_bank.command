@@ -1,1 +1,0 @@
-/Users/test/Documents/banking_system/build/GUI/src/app/MyQtProject.app/Contents/MacOS/MyQtProject sleyHortes@1312

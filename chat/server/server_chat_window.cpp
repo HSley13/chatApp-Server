@@ -6,8 +6,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QDesktopServices>
-#include <QUrl>
-#include <QCoreApplication>
+#include <QApplication>
 #include <QFileDialog>
 
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
@@ -22,7 +21,10 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     _client = new server_manager(client);
 
     QPushButton *file = new QPushButton("Open Client Directory", this);
-    connect(file, &QPushButton::clicked, this, &server_chat_window::link);
+    connect(file, &QPushButton::clicked, this, &server_chat_window::folder);
+
+    QPushButton *send_file = new QPushButton("...", this);
+    connect(send_file, &QPushButton::clicked, this, &server_chat_window::send_file);
 
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
@@ -30,6 +32,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     hbox->addWidget(message);
     hbox->addWidget(insert_message);
     hbox->addWidget(file);
+    hbox->addWidget(send_file);
 
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
@@ -79,6 +82,13 @@ void server_chat_window::send_message()
     insert_message->clear();
 }
 
+void server_chat_window::send_file()
+{
+    static QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
+
+    _client->send_init_sending_file(file_name);
+}
+
 void server_chat_window::text_message_received(QString message)
 {
     chat_line *wid = new chat_line();
@@ -117,15 +127,15 @@ void server_chat_window::file_saved(QString path)
     QMessageBox::information(this, "File Saved", message);
 }
 
-void server_chat_window::link()
+void server_chat_window::folder()
 {
-    QString executableDirectory = QCoreApplication::applicationDirPath();
+    QString executable_directory = QApplication::applicationDirPath();
 
-    QString clientDirectory = _client->name();
+    QString client_directory = _client->name();
 
-    QString fullClientDirectory = QDir(executableDirectory).filePath(clientDirectory);
+    QString full_client_directory = QDir(executable_directory).filePath(client_directory);
 
-    QString selectedDirectory = QFileDialog::getOpenFileName(this, tr("Open Client Directory"), fullClientDirectory);
+    QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
 }
 
 void server_chat_window::on_client_name_changed(QString name)
