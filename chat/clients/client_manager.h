@@ -11,6 +11,7 @@ class client_manager : public QMainWindow
     Q_OBJECT
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
+
     void connect_to_server();
 
     void send_text(QString text);
@@ -21,6 +22,7 @@ public:
     void send_accept_file();
     void send_reject_file();
 
+    void send_file();
     void save_file();
 
 private:
@@ -31,8 +33,6 @@ private:
     int _port;
 
     chat_protocol *_protocol;
-
-    void send_file();
 
     QString _file_name;
 

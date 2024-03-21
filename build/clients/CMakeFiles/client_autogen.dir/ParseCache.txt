@@ -1849,6 +1849,7 @@
  mdp:/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h
  mdp:/Users/test/Documents/server---clients/build/clients/client_autogen/moc_predefs.h
  mdp:/Users/test/Documents/server---clients/chat/clients/chat_protocol.h
+ mdp:/Users/test/Documents/server---clients/chat/clients/client_chat_window.h
  mdp:/Users/test/Documents/server---clients/chat/clients/client_main_window.h
  mdp:/Users/test/Documents/server---clients/chat/clients/client_manager.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray
@@ -2010,6 +2011,7 @@
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetwork-config.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkexports.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkglobal.h
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QLabel
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QListWidget

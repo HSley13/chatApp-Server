@@ -1044,6 +1044,7 @@ server_autogen/timestamp: \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetwork-config.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkexports.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkglobal.h \
+	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \

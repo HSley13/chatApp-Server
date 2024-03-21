@@ -5,15 +5,12 @@
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
-    _central_widget = new QWidget();
-    setCentralWidget(_central_widget);
-
     _socket = new QTcpSocket(this);
     connect(_socket, &QTcpSocket::connected, this, &client_manager::connected);
     connect(_socket, &QTcpSocket::disconnected, this, &client_manager::disconnected);
     connect(_socket, &QTcpSocket::readyRead, this, &client_manager::ready_read);
 
-    _protocol = new chat_protocol();
+    _protocol = new chat_protocol(this);
 }
 
 void client_manager::connect_to_server()
@@ -59,18 +56,18 @@ void client_manager::send_file()
 
 void client_manager::save_file()
 {
-    QDir *dir = new QDir();
-    dir->mkdir("Server");
-    dir->setPath("./");
+    QDir dir;
+    dir.mkdir("Server");
+    dir.setPath("./");
 
-    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
-    QFile *file = new QFile(path);
+    QFile file(path);
 
-    if (file->open(QIODevice::WriteOnly))
+    if (file.open(QIODevice::WriteOnly))
     {
-        file->write(_protocol->file_data());
-        file->close();
+        file.write(_protocol->file_data());
+        file.close();
 
         emit file_saved(path);
     }

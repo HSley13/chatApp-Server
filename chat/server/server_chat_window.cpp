@@ -1,7 +1,4 @@
 #include "server_chat_window.h"
-#include "chat_line.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
@@ -17,7 +14,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
     list = new QListWidget(this);
 
-    _protocol = new chat_protocol();
+    _protocol = new chat_protocol(this);
     _client = new server_manager(client);
 
     QPushButton *file = new QPushButton("Open Client Directory", this);
@@ -28,7 +25,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
-    QHBoxLayout *hbox = new QHBoxLayout();
+    hbox = new QHBoxLayout();
     hbox->addWidget(message);
     hbox->addWidget(insert_message);
     hbox->addWidget(file);
@@ -46,14 +43,21 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
     connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
-    dir = new QDir();
-    dir->mkdir(_client->name());
-    dir->setPath("./" + _client->name());
+    dir.mkdir(_client->name());
+    dir.setPath("./" + _client->name());
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(list);
     VBOX->addLayout(hbox);
     VBOX->addWidget(send_button);
+}
+
+server_chat_window::~server_chat_window()
+{
+    delete central_widget;
+    delete hbox;
+    delete wid;
+    delete line;
 }
 
 void server_chat_window::disconnection()
@@ -68,11 +72,11 @@ void server_chat_window::send_message()
 
     _client->send_text(message);
 
-    chat_line *wid = new chat_line();
+    wid = new chat_line();
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
+    line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
     line->setSizeHint(QSize(0, 65));
 
@@ -96,11 +100,11 @@ void server_chat_window::send_file()
 
 void server_chat_window::text_message_received(QString message)
 {
-    chat_line *wid = new chat_line();
+    wid = new chat_line();
     wid->set_message(message);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
+    line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightgray));
     line->setSizeHint(QSize(0, 65));
 
@@ -146,7 +150,7 @@ void server_chat_window::folder()
 
 void server_chat_window::on_client_name_changed(QString name)
 {
-    QFile::rename(dir->canonicalPath(), name);
+    QFile::rename(dir.canonicalPath(), name);
 
     emit client_name_changed(name);
 }

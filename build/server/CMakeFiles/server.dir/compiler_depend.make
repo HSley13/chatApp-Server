@@ -3326,6 +3326,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
@@ -5444,6 +5445,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
   /Users/test/Documents/server---clients/chat/server/server_main_window.h \
@@ -5653,6 +5655,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpserver.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QHBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
@@ -6604,6 +6607,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
   /Users/test/Documents/server---clients/chat/server/server_main_window.h \

@@ -5,9 +5,6 @@
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
-    central_widget = new QWidget();
-    setCentralWidget(central_widget);
-
     _server = new QTcpServer(this);
     connect(_server, &QTcpServer::newConnection, this, &server_manager::new_connection);
 

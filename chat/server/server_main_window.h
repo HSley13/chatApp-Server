@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QListWidget>
 #include <QTabWidget>
+#include <QVBoxLayout>
 #include <QPushButton>
 #include <QStatusBar>
 
@@ -14,12 +15,15 @@ class server_main_window : public QMainWindow
     Q_OBJECT
 public:
     server_main_window(QWidget *parent = nullptr);
+    ~server_main_window();
 
 private:
     QWidget *central_widget;
+    QWidget *wid;
 
     QListWidget *list;
     QTabWidget *tabs;
+
     QPushButton *disconnect_all;
 
     server_manager *_server;
@@ -27,6 +31,8 @@ private:
     server_manager *_clients;
 
     QStatusBar *status_bar;
+
+    QVBoxLayout *vbox;
 
 signals:
 

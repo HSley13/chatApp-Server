@@ -1,12 +1,15 @@
 #pragma once
 
 #include "client_manager.h"
+#include "client_chat_window.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QStatusBar>
 #include <QMenuBar>
 #include <QMenu>
 #include <QListWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
 
@@ -15,21 +18,29 @@ class client_main_window : public QMainWindow
     Q_OBJECT
 public:
     client_main_window(QWidget *parent = nullptr);
+    ~client_main_window();
 
 private:
     QWidget *central_widget;
+
     QStatusBar *status_bar;
+
     QMenuBar *menu_bar;
     QMenu *menu;
 
     client_manager *_client;
+    client_chat_window *wid;
 
     QListWidget *list;
+    QListWidgetItem *line;
+
     QLineEdit *insert_message;
     QLineEdit *insert_name;
+
     QPushButton *send_button;
 
-signals:
+    QHBoxLayout *hbox;
+    QVBoxLayout *VBOX;
 
 private slots:
     void connection();
@@ -45,6 +56,5 @@ private slots:
     void reject_receiving_file();
 
     void file_saved(QString path);
-
     void folder();
 };

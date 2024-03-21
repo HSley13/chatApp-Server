@@ -1,10 +1,8 @@
 #include "client_main_window.h"
 #include "client_manager.h"
-#include "client_chat_window.h"
 #include <QAction>
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QApplication>
@@ -40,7 +38,7 @@ client_main_window::client_main_window(QWidget *parent)
 
     QLabel *message = new QLabel("Send Message-->Server", this);
     insert_message = new QLineEdit(this);
-    QHBoxLayout *hbox = new QHBoxLayout();
+    hbox = new QHBoxLayout();
 
     QPushButton *file = new QPushButton("Open Server Directory", this);
     connect(file, &QPushButton::clicked, this, &client_main_window::folder);
@@ -56,11 +54,19 @@ client_main_window::client_main_window(QWidget *parent)
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &client_main_window::send_message);
 
-    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
+    VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(insert_name);
     VBOX->addWidget(list);
     VBOX->addLayout(hbox);
     VBOX->addWidget(send_button);
+}
+
+client_main_window::~client_main_window()
+{
+    delete central_widget;
+    delete hbox;
+    delete wid;
+    delete line;
 }
 
 void client_main_window::connection()
@@ -91,11 +97,11 @@ void client_main_window::send_message()
 
     _client->send_text(message);
 
-    client_chat_window *wid = new client_chat_window();
+    wid = new client_chat_window();
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
+    line = new QListWidgetItem();
     line->setSizeHint(QSize(0, 65));
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
 
@@ -119,11 +125,11 @@ void client_main_window::send_file()
 
 void client_main_window::text_message_received(QString message)
 {
-    client_chat_window *wid = new client_chat_window();
+    wid = new client_chat_window();
     wid->set_message(message);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
+    line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightgray));
     line->setSizeHint(QSize(0, 65));
 

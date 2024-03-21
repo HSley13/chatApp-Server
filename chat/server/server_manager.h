@@ -28,13 +28,14 @@ public:
 
     QString name() const;
 
+    QList<QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
+
 private:
     QWidget *central_widget;
 
     QTcpServer *_server;
     chat_protocol *_protocol;
 
-    QList<QTcpSocket *> _clients;
     QTcpSocket *_socket;
 
     QString _file_name;

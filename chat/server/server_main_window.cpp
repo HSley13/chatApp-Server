@@ -1,6 +1,5 @@
 #include "server_main_window.h"
 #include <QHBoxLayout>
-#include <QVBoxLayout>
 
 server_main_window::server_main_window(QWidget *parent)
     : QMainWindow(parent)
@@ -27,9 +26,19 @@ server_main_window::server_main_window(QWidget *parent)
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::new_client_disconnected);
 
-    QHBoxLayout *Hbox = new QHBoxLayout(central_widget);
-    Hbox->addWidget(tabs, 3);
-    Hbox->addLayout(vbox);
+    QHBoxLayout *HBOX = new QHBoxLayout(central_widget);
+    HBOX->addWidget(tabs, 3);
+    HBOX->addLayout(vbox);
+}
+
+server_main_window::~server_main_window()
+{
+    delete central_widget;
+    delete vbox;
+    delete wid;
+
+    for (QTcpSocket *client : _server->_clients)
+        delete client;
 }
 
 void server_main_window::new_client_connected(QTcpSocket *client)
@@ -54,7 +63,7 @@ void server_main_window::new_client_disconnected(QTcpSocket *client)
 
 void server_main_window::set_client_name(QString name)
 {
-    QWidget *wid = qobject_cast<QWidget *>(sender());
+    wid = qobject_cast<QWidget *>(sender());
     int index = tabs->indexOf(wid);
 
     tabs->setTabText(index, name);

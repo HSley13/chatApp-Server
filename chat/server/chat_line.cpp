@@ -15,7 +15,7 @@ void chat_line::set_message(QString message, bool is_mine)
     QLabel *msg_label = new QLabel(message, this);
     QLabel *time_label = new QLabel(QTime::currentTime().toString(), this);
 
-    QVBoxLayout *message_layout = new QVBoxLayout();
+    message_layout = new QVBoxLayout();
 
     if (is_mine)
     {
@@ -35,4 +35,10 @@ void chat_line::set_message(QString message, bool is_mine)
     }
 
     VBOX->addLayout(message_layout);
+}
+
+chat_line::~chat_line()
+{
+    delete central_widget;
+    delete message_layout;
 }
