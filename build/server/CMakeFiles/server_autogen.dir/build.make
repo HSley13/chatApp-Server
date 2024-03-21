@@ -72,7 +72,7 @@ server/server_autogen/timestamp: /opt/homebrew/share/qt/libexec/moc
 server/server_autogen/timestamp: /opt/homebrew/share/qt/libexec/uic
 server/server_autogen/timestamp: server/CMakeFiles/server_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target server"
-	cd /Users/test/Documents/server---clients/build/server && /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E cmake_autogen /Users/test/Documents/server---clients/build/server/CMakeFiles/server_autogen.dir/AutogenInfo.json Debug
+	cd /Users/test/Documents/server---clients/build/server && /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E cmake_autogen /Users/test/Documents/server---clients/build/server/CMakeFiles/server_autogen.dir/AutogenInfo.json RelWithDebInfo
 	cd /Users/test/Documents/server---clients/build/server && /opt/homebrew/Cellar/cmake/3.28.3/bin/cmake -E touch /Users/test/Documents/server---clients/build/server/server_autogen/timestamp
 
 server_autogen: server/CMakeFiles/server_autogen

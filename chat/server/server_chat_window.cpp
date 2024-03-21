@@ -84,9 +84,14 @@ void server_chat_window::send_message()
 
 void server_chat_window::send_file()
 {
-    static QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
+    QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
 
-    _client->send_init_sending_file(file_name);
+    if (!file_name.isEmpty())
+    {
+        _client->send_init_sending_file(file_name);
+
+        file_name.clear();
+    }
 }
 
 void server_chat_window::text_message_received(QString message)

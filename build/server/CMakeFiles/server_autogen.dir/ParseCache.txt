@@ -2077,6 +2077,8 @@
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
+/Users/test/Documents/server---clients/chat/server/server_chat_window.cpp
+/Users/test/Documents/server---clients/chat/server/server_main_window.cpp
 /Users/test/Documents/server---clients/chat/server/chat_protocol.h
  mmc:Q_OBJECT
  mdp:/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h
@@ -3081,8 +3083,6 @@
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
-/Users/test/Documents/server---clients/chat/server/server_chat_window.cpp
-/Users/test/Documents/server---clients/chat/server/server_main_window.cpp
 /Users/test/Documents/server---clients/chat/server/server_manager.h
  mmc:Q_OBJECT
  mdp:/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h

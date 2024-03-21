@@ -72,6 +72,7 @@ void server_manager::send_is_typing()
 void server_manager::send_init_sending_file(QString filename)
 {
     _file_name = filename;
+
     _socket->write(_protocol->set_init_sending_file_message(filename));
 }
 

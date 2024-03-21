@@ -11,7 +11,7 @@
 						1,
 						2
 					],
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-RelWithDebInfo-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -21,7 +21,7 @@
 				},
 				{
 					"build" : "clients",
-					"jsonFile" : "directory-clients-Debug-46b304558f4603ef8475.json",
+					"jsonFile" : "directory-clients-RelWithDebInfo-46b304558f4603ef8475.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -38,7 +38,7 @@
 				},
 				{
 					"build" : "server",
-					"jsonFile" : "directory-server-Debug-244843e92778ba082abc.json",
+					"jsonFile" : "directory-server-RelWithDebInfo-244843e92778ba082abc.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -54,7 +54,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "RelWithDebInfo",
 			"projects" : 
 			[
 				{
@@ -81,42 +81,42 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "client::@d1ac15f0ebbc02957c76",
-					"jsonFile" : "target-client-Debug-77c0c70c5bc9ac6e13dd.json",
+					"jsonFile" : "target-client-RelWithDebInfo-d870faaa874ccb41375e.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "client_autogen::@d1ac15f0ebbc02957c76",
-					"jsonFile" : "target-client_autogen-Debug-53ef7b1e70d3c46ab084.json",
+					"jsonFile" : "target-client_autogen-RelWithDebInfo-53ef7b1e70d3c46ab084.json",
 					"name" : "client_autogen",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "client_autogen_timestamp_deps::@d1ac15f0ebbc02957c76",
-					"jsonFile" : "target-client_autogen_timestamp_deps-Debug-5d812606ac1d996a3bbe.json",
+					"jsonFile" : "target-client_autogen_timestamp_deps-RelWithDebInfo-5d812606ac1d996a3bbe.json",
 					"name" : "client_autogen_timestamp_deps",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "server::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server-Debug-71ac8bc0649a46b6c633.json",
+					"jsonFile" : "target-server-RelWithDebInfo-bee5dbaede91b08d340f.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "server_autogen::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server_autogen-Debug-3628f51f6513f3c6774c.json",
+					"jsonFile" : "target-server_autogen-RelWithDebInfo-3628f51f6513f3c6774c.json",
 					"name" : "server_autogen",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "server_autogen_timestamp_deps::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server_autogen_timestamp_deps-Debug-b522589d02833fa28fd2.json",
+					"jsonFile" : "target-server_autogen_timestamp_deps-RelWithDebInfo-b522589d02833fa28fd2.json",
 					"name" : "server_autogen_timestamp_deps",
 					"projectIndex" : 0
 				}

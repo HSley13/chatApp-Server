@@ -107,9 +107,14 @@ void client_main_window::send_message()
 
 void client_main_window::send_file()
 {
-    static QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
+    QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
 
-    _client->send_init_sending_file(file_name);
+    if (!file_name.isEmpty())
+    {
+        _client->send_init_sending_file(file_name);
+
+        file_name.clear();
+    }
 }
 
 void client_main_window::text_message_received(QString message)
@@ -140,7 +145,7 @@ void client_main_window::is_typing_received()
 
 void client_main_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)
 {
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(client_name, file_name).arg(file_size);
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
 
     static QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
