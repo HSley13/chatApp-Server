@@ -147,7 +147,7 @@ void client_main_window::init_receiving_file(QString client_name, QString file_n
 {
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
 
-    static QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
     if (result == QMessageBox::Yes)
         _client->send_accept_file();
