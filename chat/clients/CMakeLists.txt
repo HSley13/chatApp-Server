@@ -4,6 +4,7 @@ add_executable(client
                     client_manager.cpp
                     client_chat_window.cpp
                     chat_protocol.cpp
+                    chat_line.cpp
                 )
 
 

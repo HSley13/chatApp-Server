@@ -158,6 +158,30 @@ client_autogen/fast:
 	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen.dir/build.make clients/CMakeFiles/client_autogen.dir/build
 .PHONY : client_autogen/fast
 
+chat_line.o: chat_line.cpp.o
+.PHONY : chat_line.o
+
+# target to build an object file
+chat_line.cpp.o:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_line.cpp.o
+.PHONY : chat_line.cpp.o
+
+chat_line.i: chat_line.cpp.i
+.PHONY : chat_line.i
+
+# target to preprocess a source file
+chat_line.cpp.i:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_line.cpp.i
+.PHONY : chat_line.cpp.i
+
+chat_line.s: chat_line.cpp.s
+.PHONY : chat_line.s
+
+# target to generate assembly for a file
+chat_line.cpp.s:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/chat_line.cpp.s
+.PHONY : chat_line.cpp.s
+
 chat_protocol.o: chat_protocol.cpp.o
 .PHONY : chat_protocol.o
 
@@ -313,6 +337,9 @@ help:
 	@echo "... client_autogen"
 	@echo "... client_autogen_timestamp_deps"
 	@echo "... client"
+	@echo "... chat_line.o"
+	@echo "... chat_line.i"
+	@echo "... chat_line.s"
 	@echo "... chat_protocol.o"
 	@echo "... chat_protocol.i"
 	@echo "... chat_protocol.s"

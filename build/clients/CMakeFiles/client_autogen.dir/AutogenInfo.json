@@ -11,6 +11,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/test/Documents/server---clients/chat/clients/chat_line.h",
+			"MU",
+			"EWIEGA46WW/moc_chat_line.cpp",
+			null
+		],
+		[
 			"/Users/test/Documents/server---clients/chat/clients/chat_protocol.h",
 			"MU",
 			"EWIEGA46WW/moc_chat_protocol.cpp",
@@ -102,6 +108,11 @@
 	"SETTINGS_FILE" : "/Users/test/Documents/server---clients/build/clients/CMakeFiles/client_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Users/test/Documents/server---clients/chat/clients/chat_line.cpp",
+			"MU",
+			null
+		],
 		[
 			"/Users/test/Documents/server---clients/chat/clients/chat_protocol.cpp",
 			"MU",

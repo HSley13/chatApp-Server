@@ -36,6 +36,12 @@
   "output": "clients/CMakeFiles/client.dir/chat_protocol.cpp.o"
 },
 {
+  "directory": "/Users/test/Documents/server---clients/build/clients",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/build/clients/client_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/client.dir/chat_line.cpp.o -c /Users/test/Documents/server---clients/chat/clients/chat_line.cpp",
+  "file": "/Users/test/Documents/server---clients/chat/clients/chat_line.cpp",
+  "output": "clients/CMakeFiles/client.dir/chat_line.cpp.o"
+},
+{
   "directory": "/Users/test/Documents/server---clients/build/server",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -isystem /Users/test/Documents/server---clients/build/server/server_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o -c /Users/test/Documents/server---clients/build/server/server_autogen/mocs_compilation.cpp",
   "file": "/Users/test/Documents/server---clients/build/server/server_autogen/mocs_compilation.cpp",

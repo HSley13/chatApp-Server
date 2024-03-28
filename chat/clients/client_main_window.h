@@ -12,6 +12,7 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QTabWidget>
 
 class client_main_window : public QMainWindow
 {
@@ -28,33 +29,11 @@ private:
     QMenuBar *menu_bar;
     QMenu *menu;
 
-    client_manager *_client;
-    client_chat_window *wid;
+    QTabWidget *tabs;
 
-    QListWidget *list;
-    QListWidgetItem *line;
-
-    QLineEdit *insert_message;
-    QLineEdit *insert_name;
-
-    QPushButton *send_button;
-
-    QHBoxLayout *hbox;
     QVBoxLayout *VBOX;
+    client_manager *_client;
 
 private slots:
     void connection();
-
-    void send_message();
-    void send_name();
-    void send_file();
-
-    void text_message_received(QString message);
-    void is_typing_received();
-
-    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
-    void reject_receiving_file();
-
-    void file_saved(QString path);
-    void folder();
 };

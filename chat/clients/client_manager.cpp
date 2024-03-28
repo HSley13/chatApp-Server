@@ -6,6 +6,7 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
     _socket = new QTcpSocket(this);
+    _socket->connectToHost(_ip, _port);
     connect(_socket, &QTcpSocket::connected, this, &client_manager::connected);
     connect(_socket, &QTcpSocket::disconnected, this, &client_manager::disconnected);
     connect(_socket, &QTcpSocket::readyRead, this, &client_manager::ready_read);
@@ -13,9 +14,9 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     _protocol = new chat_protocol(this);
 }
 
-void client_manager::connect_to_server()
+client_manager::client_manager(QTcpSocket *_destinator, QWidget *parent)
+    : QMainWindow(parent)
 {
-    _socket->connectToHost(_ip, _port);
 }
 
 void client_manager::send_text(QString text)

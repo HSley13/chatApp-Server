@@ -1,7 +1,7 @@
 clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /Users/test/Documents/server---clients/build/clients/client_autogen/mocs_compilation.cpp \
-  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp \
-  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/chat_protocol.h \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/chat_line.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
@@ -1071,17 +1071,17 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtCore/qiodevice.h \
   /opt/homebrew/include/QtGui/qtextdocument.h \
   /opt/homebrew/include/QtCore/qurl.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
-  /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/include/QtGui/qtextcursor.h \
   /opt/homebrew/include/QtGui/qtextformat.h \
   /opt/homebrew/include/QtGui/qpen.h \
   /opt/homebrew/include/QtGui/qtextoption.h \
   /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/chat_protocol.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_chat_window.h \
-  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp \
-  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_main_window.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_manager.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
@@ -1123,4 +1123,8 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp \
+  /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_main_window.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp

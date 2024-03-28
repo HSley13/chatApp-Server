@@ -11,8 +11,7 @@ class client_manager : public QMainWindow
     Q_OBJECT
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
-
-    void connect_to_server();
+    client_manager(QTcpSocket *_destinator, QWidget *parent = nullptr);
 
     void send_text(QString text);
     void send_name(QString name);

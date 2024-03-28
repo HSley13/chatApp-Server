@@ -841,6 +841,7 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_time.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
+  /Users/test/Documents/server---clients/chat/clients/chat_line.h \
   /Users/test/Documents/server---clients/chat/clients/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
@@ -1012,6 +1013,7 @@
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QMenuBar \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QStatusBar \
+  /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QTabWidget \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h \
