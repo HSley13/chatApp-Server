@@ -1086,6 +1086,8 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/include/QtCore/qfile.h \
@@ -1117,4 +1119,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qlocale.h \
   /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QDateTime \
-  /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h
+  /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h

@@ -1108,4 +1108,6 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: \
   /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
-  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h
+  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h

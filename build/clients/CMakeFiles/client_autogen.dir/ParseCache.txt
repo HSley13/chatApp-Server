@@ -851,6 +851,7 @@
  mdp:/Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  mdp:/Users/test/Documents/server---clients/chat/clients/client_manager.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QList
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20memory.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h
@@ -1866,6 +1867,7 @@
  mdp:/Users/test/Documents/server---clients/chat/clients/client_chat_window.h
  mdp:/Users/test/Documents/server---clients/chat/clients/client_manager.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QList
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20memory.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h
@@ -2913,6 +2915,7 @@
  mdp:/Users/test/Documents/server---clients/build/clients/client_autogen/moc_predefs.h
  mdp:/Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QList
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20memory.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h
@@ -3921,6 +3924,8 @@
  mdp:/Users/test/Documents/server---clients/chat/clients/client_main_window.h
  mdp:/Users/test/Documents/server---clients/chat/clients/client_manager.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QList
+ mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QMap
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20memory.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h

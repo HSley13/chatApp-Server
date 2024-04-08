@@ -1074,6 +1074,8 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: \
   /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
   /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
@@ -1122,6 +1124,8 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/include/QtCore/qcoreapplication.h \

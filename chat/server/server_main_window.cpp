@@ -1,5 +1,6 @@
 #include "server_main_window.h"
 #include <QHBoxLayout>
+#include <QStringList>
 
 server_main_window::server_main_window(QWidget *parent)
     : QMainWindow(parent)
@@ -10,6 +11,8 @@ server_main_window::server_main_window(QWidget *parent)
     resize(800, 400);
 
     tabs = new QTabWidget(this);
+    tabs->setTabsClosable(true);
+    connect(tabs, &QTabWidget::tabCloseRequested, this, &server_main_window::close_tabs);
 
     status_bar = new QStatusBar(this);
     setStatusBar(status_bar);
@@ -52,6 +55,8 @@ void server_main_window::new_client_connected(QTcpSocket *client)
 
     connect(wid, &server_chat_window::client_name_changed, this, &server_main_window::set_client_name);
     connect(wid, &server_chat_window::is_typing, this, &server_main_window::is_typing_received);
+
+    connect(wid, &server_chat_window::text_for_other_client, _server, &server_manager::on_text_for_other_clients);
 }
 
 void server_main_window::new_client_disconnected(QTcpSocket *client)
@@ -61,12 +66,14 @@ void server_main_window::new_client_disconnected(QTcpSocket *client)
     list->addItem(QString("Client %1 disconnected").arg(id));
 }
 
-void server_main_window::set_client_name(QString name)
+void server_main_window::set_client_name(QString old_name, QString client_name)
 {
     wid = qobject_cast<QWidget *>(sender());
     int index = tabs->indexOf(wid);
 
-    tabs->setTabText(index, name);
+    tabs->setTabText(index, client_name);
+
+    _server->notify_other_clients(old_name, client_name);
 }
 
 void server_main_window::disconnect_all_clients()
@@ -77,4 +84,12 @@ void server_main_window::disconnect_all_clients()
 void server_main_window::is_typing_received(QString name)
 {
     status_bar->showMessage(QString("%1 is typing...").arg(name), 1000);
+}
+
+void server_main_window::close_tabs(int index)
+{
+    server_chat_window *wid = qobject_cast<server_chat_window *>(tabs->widget(index));
+    wid->disconnect();
+
+    tabs->removeTab(index);
 }

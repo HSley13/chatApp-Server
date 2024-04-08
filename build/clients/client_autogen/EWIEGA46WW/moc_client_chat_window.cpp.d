@@ -845,6 +845,7 @@
   /Users/test/Documents/server---clients/chat/clients/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QByteArray \
+  /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/QList \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /opt/homebrew/Cellar/qt/6.6.2_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \

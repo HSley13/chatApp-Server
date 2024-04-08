@@ -1072,6 +1072,8 @@ clients/CMakeFiles/client.dir/chat_protocol.cpp.o: \
   /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QTime \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h \
   /opt/homebrew/include/QtCore/qcalendar.h \
@@ -1108,4 +1110,6 @@ clients/CMakeFiles/client.dir/chat_protocol.cpp.o: \
   /opt/homebrew/include/QtCore/qdatetime.h \
   /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
-  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h
+  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h

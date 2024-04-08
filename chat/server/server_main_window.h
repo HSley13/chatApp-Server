@@ -41,7 +41,9 @@ private slots:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    void set_client_name(QString name);
+    void set_client_name(QString old_name, QString name);
 
     void is_typing_received(QString name);
+
+    void close_tabs(int index);
 };

@@ -1096,6 +1096,8 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
   /opt/homebrew/include/QtWidgets/qlistview.h \

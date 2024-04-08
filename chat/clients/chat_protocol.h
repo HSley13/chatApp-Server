@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QByteArray>
+#include <QList>
 
 class chat_protocol : public QMainWindow
 {
@@ -20,10 +21,14 @@ public:
         init_sending_file,
         accept_sending_file,
         reject_sending_file,
-        send_file
+        send_file,
+        new_client,
+        connection_ACK,
+        client_new_name,
+        client_disconnected
     };
 
-    QByteArray set_text_message(QString message);
+    QByteArray set_text_message(QString sender, QString receiver, QString message);
     QByteArray set_is_typing_message();
     QByteArray set_name_message(QString name);
 
@@ -41,6 +46,15 @@ public:
     const qint64 &file_size() const;
     const QByteArray &file_data() const;
 
+    const QString &client_name() const;
+
+    const QString &receiver() const;
+    const QString &sender() const;
+
+    const QString &old_name() const;
+    const QString &my_name() const;
+    const QStringList &clients_name() const;
+
 private:
     QWidget *central_widget;
     QByteArray get_data(message_type type, QString data);
@@ -53,4 +67,12 @@ private:
     QString _file_name;
     qint64 _file_size;
     QByteArray _file_data;
+
+    QString _client_name;
+    QString _receiver;
+    QString _sender;
+
+    QString _old_name;
+    QString _my_name;
+    QStringList _clients_name;
 };

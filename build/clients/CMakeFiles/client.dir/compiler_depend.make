@@ -2172,6 +2172,8 @@ clients/CMakeFiles/client.dir/chat_protocol.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
   /opt/homebrew/lib/QtCore.framework/Headers/QFileInfo \
   /opt/homebrew/lib/QtCore.framework/Headers/QIODevice \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/QTime \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h \
@@ -2179,6 +2181,8 @@ clients/CMakeFiles/client.dir/chat_protocol.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfileinfo.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
@@ -3289,7 +3293,11 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
@@ -4450,8 +4458,12 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QAction \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
@@ -5592,7 +5604,11 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
@@ -6756,8 +6772,14 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QAction \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
@@ -7898,8 +7920,12 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
@@ -7956,6 +7982,8 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit:
 
+/opt/homebrew/lib/QtCore.framework/Headers/QMap:
+
 /opt/homebrew/include/QtWidgets/qstyleoption.h:
 
 /opt/homebrew/include/QtWidgets/qstyle.h:
@@ -7988,11 +8016,17 @@ clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp:
 
 clients/client_autogen/mocs_compilation.cpp:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QStringList:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QList:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QIODevice:
 
@@ -8115,6 +8149,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /opt/homebrew/include/QtCore/qstringlist.h:
 
 /opt/homebrew/include/QtCore/qstringfwd.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qlist.h:
 
 /opt/homebrew/include/QtCore/qstringbuilder.h:
 
@@ -9017,6 +9053,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ostreambuf_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qmap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_sentinel.h:
 

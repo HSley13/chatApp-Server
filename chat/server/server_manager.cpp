@@ -1,6 +1,7 @@
 #include "server_manager.h"
 #include <QDir>
 #include <QDateTime>
+#include <QStringList>
 
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
@@ -26,21 +27,39 @@ void server_manager::new_connection()
 {
     QTcpSocket *client = _server->nextPendingConnection();
 
-    _clients << client;
-
-    int id = _clients.length();
-
+    int id = _clients.count() + 1;
     client->setProperty("id", id);
-    connect(client, &QTcpSocket::disconnected, this, &server_manager::client_disconnected);
 
+    QString client_name = QString("client %1").arg(id);
+
+    client->setProperty("client_name", client_name);
+
+    connect(client, &QTcpSocket::disconnected, this, &server_manager::client_disconnected);
     emit new_client_connected(client);
+
+    if (id > 1)
+    {
+        QByteArray message = _protocol->set_connection_ACK_message(client_name, _clients.keys());
+        client->write(message);
+
+        QByteArray new_client_message = _protocol->set_new_client_message(client_name);
+        for (QTcpSocket *cl : _clients)
+            cl->write(new_client_message);
+    }
+
+    _clients[client_name] = client;
 }
 
 void server_manager::client_disconnected()
 {
     QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
 
-    _clients.removeOne(client);
+    QString client_name = client->property("client_name").toString();
+    _clients.remove(client_name);
+
+    QByteArray message = _protocol->set_client_disconnected_message(client_name);
+    for (QTcpSocket *cl : _clients)
+        cl->write(message);
 
     emit new_client_disconnected(client);
 }
@@ -53,7 +72,9 @@ void server_manager::disconnect_all_clients()
 
 void server_manager::send_text(QString text)
 {
-    _socket->write(_protocol->set_text_message(text));
+    _socket->write(_protocol->set_text_message("Server", name(), text));
+
+    qDebug() << "server_manager-->send_text()";
 }
 
 void server_manager::send_name(QString name)
@@ -124,14 +145,19 @@ void server_manager::ready_read()
     switch (_protocol->type())
     {
     case chat_protocol::text:
-        emit text_message_received(_protocol->message());
+        emit text_message_received(_protocol->sender(), _protocol->receiver(), _protocol->message());
 
         break;
 
     case chat_protocol::set_name:
-        emit name_changed(name());
+    {
+        QString old_name = _socket->property("client_name").toString();
+        _socket->setProperty("client_name", name());
+
+        emit name_changed(old_name, name());
 
         break;
+    }
 
     case chat_protocol::is_typing:
         emit is_typing_received();
@@ -160,5 +186,37 @@ void server_manager::ready_read()
 
     default:
         break;
+    }
+}
+
+void server_manager::disconnect_from_host()
+{
+    _socket->disconnectFromHost();
+}
+
+void server_manager::notify_other_clients(QString old_name, QString new_name)
+{
+    QByteArray message = _protocol->set_client_name_message(old_name, new_name);
+    for (QTcpSocket *cl : _clients)
+    {
+        QString client_name = cl->property("client_name").toString();
+
+        if (client_name.compare(new_name))
+            cl->write(message);
+    }
+}
+
+void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
+{
+    QByteArray msg = _protocol->set_text_message(sender, receiver, message);
+    for (QTcpSocket *cl : _clients)
+    {
+        QString client_name = cl->property("client_name").toString();
+
+        if (client_name.compare(receiver))
+        {
+            cl->write(msg);
+            return;
+        }
     }
 }

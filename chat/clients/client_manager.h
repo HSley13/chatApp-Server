@@ -11,9 +11,9 @@ class client_manager : public QMainWindow
     Q_OBJECT
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
-    client_manager(QTcpSocket *_destinator, QWidget *parent = nullptr);
+    client_manager(QString destinator, QWidget *parent = nullptr);
 
-    void send_text(QString text);
+    void send_text(QString sender, QString receiver, QString text);
     void send_name(QString name);
     void send_is_typing();
 
@@ -39,13 +39,18 @@ signals:
     void connected();
     void disconnected();
 
-    void text_message_received(QString message);
+    void text_message_received(QString sender, QString message);
     void is_typing_received();
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();
 
     void file_saved(QString path);
+
+    void client_connected(QString client_name);
+    void connection_ACK(QString my_name, QStringList other_clients);
+    void client_name_changed(QString old_name, QString client_name);
+    void client_disconnected(QString client_name);
 
 private slots:
     void ready_read();

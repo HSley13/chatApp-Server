@@ -1,6 +1,7 @@
 #include "client_manager.h"
 #include <QFileDialog>
 #include <QFile>
+#include <QStringList>
 
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
@@ -14,14 +15,14 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     _protocol = new chat_protocol(this);
 }
 
-client_manager::client_manager(QTcpSocket *_destinator, QWidget *parent)
+client_manager::client_manager(QString destinator, QWidget *parent)
     : QMainWindow(parent)
 {
 }
 
-void client_manager::send_text(QString text)
+void client_manager::send_text(QString sender, QString receiver, QString text)
 {
-    _socket->write(_protocol->set_text_message(text));
+    _socket->write(_protocol->set_text_message(sender, receiver, text));
 }
 
 void client_manager::send_name(QString name)
@@ -82,7 +83,8 @@ void client_manager::ready_read()
     switch (_protocol->type())
     {
     case chat_protocol::text:
-        emit text_message_received(_protocol->message());
+        emit text_message_received(_protocol->sender(), _protocol->message());
+        qDebug() << "client_manager-->emitting text_message_received()";
 
         break;
 
@@ -108,6 +110,29 @@ void client_manager::ready_read()
 
     case chat_protocol::send_file:
         save_file();
+
+        break;
+
+    case chat_protocol::new_client:
+        emit client_connected(_protocol->client_name());
+        qDebug() << "client_manager-->emitting client_connected()";
+
+        break;
+
+    case chat_protocol::connection_ACK:
+        emit connection_ACK(_protocol->my_name(), _protocol->clients_name());
+
+        break;
+
+    case chat_protocol::client_new_name:
+        emit client_name_changed(_protocol->old_name(), _protocol->client_name());
+
+        break;
+
+    case chat_protocol::client_disconnected:
+        emit client_disconnected(_protocol->client_name());
+
+        break;
 
     default:
         break;

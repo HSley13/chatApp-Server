@@ -21,6 +21,8 @@ public:
     server_chat_window(QTcpSocket *client, QWidget *parent = nullptr);
     ~server_chat_window();
 
+    void disconnect();
+
 private:
     QWidget *central_widget;
 
@@ -39,14 +41,16 @@ private:
     QDir dir;
 
 signals:
-    void client_name_changed(QString name);
+    void client_name_changed(QString old_name, QString name);
     void is_typing(QString name);
+
+    void text_for_other_client(QString sender, QString receiver, QString message);
 
 private slots:
     void send_message();
     void disconnection();
 
-    void text_message_received(QString message);
+    void text_message_received(QString sender, QString receiver, QString message);
     void is_typing_received();
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
@@ -55,5 +59,5 @@ private slots:
     void folder();
     void send_file();
 
-    void on_client_name_changed(QString);
+    void on_client_name_changed(QString old_name, QString client_name);
 };

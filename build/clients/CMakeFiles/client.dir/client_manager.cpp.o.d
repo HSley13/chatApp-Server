@@ -1073,6 +1073,8 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
   /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
@@ -1115,4 +1117,6 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qtimezone.h \
   /opt/homebrew/include/QtWidgets/qdialog.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
-  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h
+  /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h

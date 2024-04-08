@@ -20,10 +20,14 @@ public:
         init_sending_file,
         accept_sending_file,
         reject_sending_file,
-        send_file
+        send_file,
+        new_client,
+        connection_ACK,
+        client_new_name,
+        client_disconnected
     };
 
-    QByteArray set_text_message(QString message);
+    QByteArray set_text_message(QString sender, QString receiver, QString message);
     QByteArray set_is_typing_message();
     QByteArray set_name_message(QString name);
 
@@ -31,6 +35,11 @@ public:
     QByteArray set_accept_file_message();
     QByteArray set_reject_file_message();
     QByteArray set_file_message(QString filename);
+
+    QByteArray set_new_client_message(QString client_name);
+    QByteArray set_connection_ACK_message(QString client_name, QStringList other_clients);
+    QByteArray set_client_name_message(QString old_name, QString client_name);
+    QByteArray set_client_disconnected_message(QString client_name);
 
     void load_data(QByteArray data);
 
@@ -40,6 +49,12 @@ public:
     const QString &file_name() const;
     const qint64 &file_size() const;
     const QByteArray &file_data() const;
+
+    const QString &client_name() const;
+    const QStringList &other_clients() const;
+
+    const QString &receiver() const;
+    const QString &sender() const;
 
 private:
     QWidget *central_widget;
@@ -53,4 +68,9 @@ private:
     QString _file_name;
     qint64 _file_size;
     QByteArray _file_data;
+
+    QString _client_name;
+    QString _receiver;
+    QString _sender;
+    QStringList _other_clients;
 };

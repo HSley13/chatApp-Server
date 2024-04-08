@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QList>
 #include <QHostAddress>
+#include <QMap>
 
 class server_manager : public QMainWindow
 {
@@ -17,6 +18,7 @@ public:
     void disconnect_all_clients();
 
     void connect_to_server();
+    void disconnect_from_host();
 
     void send_text(QString text);
     void send_name(QString name);
@@ -28,7 +30,9 @@ public:
 
     QString name() const;
 
-    QList<QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
+    void notify_other_clients(QString old_name, QString client_name);
+
+    QMap<QString, QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
 
 private:
     QWidget *central_widget;
@@ -52,8 +56,8 @@ signals:
 
     void disconnected();
 
-    void text_message_received(QString message);
-    void name_changed(QString name);
+    void text_message_received(QString sender, QString receiver, QString message);
+    void name_changed(QString old_name, QString name);
     void is_typing_received();
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
@@ -66,4 +70,7 @@ private slots:
     void client_disconnected();
 
     void ready_read();
+
+public slots:
+    void on_text_for_other_clients(QString sender, QString receiver, QString message);
 };

@@ -2172,6 +2172,7 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
   /opt/homebrew/lib/QtCore.framework/Headers/QFileInfo \
   /opt/homebrew/lib/QtCore.framework/Headers/QIODevice \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/QTime \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h \
@@ -2179,6 +2180,7 @@ server/CMakeFiles/server.dir/chat_protocol.cpp.o: /Users/test/Documents/server--
   /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfileinfo.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
@@ -3317,9 +3319,11 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
@@ -4479,9 +4483,13 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
   /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
@@ -5645,9 +5653,11 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
@@ -6799,9 +6809,13 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
@@ -7929,10 +7943,14 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/lib/QtCore.framework/Headers/QDateTime \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpServer \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
@@ -7989,6 +8007,8 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /opt/homebrew/lib/QtCore.framework/Headers/qdir.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/QMap:
+
 /opt/homebrew/lib/QtCore.framework/Headers/QList:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QDir:
@@ -8025,11 +8045,15 @@ server/server_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 server/server_autogen/mocs_compilation.cpp:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QStringList:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QIODevice:
 
@@ -9050,6 +9074,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ostreambuf_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qmap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_sentinel.h:
 

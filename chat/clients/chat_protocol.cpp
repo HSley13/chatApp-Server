@@ -4,6 +4,7 @@
 #include <QDataStream>
 #include <QFileInfo>
 #include <QFile>
+#include <QStringList>
 
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent)
@@ -22,9 +23,16 @@ QByteArray chat_protocol::get_data(message_type type, QString data)
     return byte;
 }
 
-QByteArray chat_protocol::set_text_message(QString message)
+QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QString message)
 {
-    return get_data(text, message);
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << text << sender << receiver << message;
+
+    return byte;
 }
 
 QByteArray chat_protocol::set_is_typing_message()
@@ -91,7 +99,8 @@ void chat_protocol::load_data(QByteArray data)
     switch (_type)
     {
     case text:
-        in >> _message;
+        in >> _sender >> _receiver >> _message;
+        qDebug() << "chat_protocol-->Message received()";
 
         break;
 
@@ -112,6 +121,27 @@ void chat_protocol::load_data(QByteArray data)
 
     case send_file:
         in >> _file_name >> _file_size >> _file_data;
+
+        break;
+
+    case new_client:
+        in >> _client_name;
+        qDebug() << "chat_protocol-->new_client";
+
+        break;
+
+    case client_disconnected:
+        in >> _client_name;
+
+        break;
+
+    case connection_ACK:
+        in >> _my_name >> _clients_name;
+
+        break;
+
+    case client_new_name:
+        in >> _old_name >> _client_name;
 
         break;
 
@@ -148,4 +178,33 @@ const qint64 &chat_protocol::file_size() const
 const QByteArray &chat_protocol::file_data() const
 {
     return _file_data;
+}
+
+const QString &chat_protocol::client_name() const
+{
+    return _client_name;
+}
+
+const QString &chat_protocol::receiver() const
+{
+    return _receiver;
+}
+
+const QString &chat_protocol::sender() const
+{
+    return _sender;
+}
+
+const QString &chat_protocol::old_name() const
+{
+    return _old_name;
+}
+
+const QString &chat_protocol::my_name() const
+{
+    return _my_name;
+}
+const QStringList &chat_protocol::clients_name() const
+{
+    return _clients_name;
 }

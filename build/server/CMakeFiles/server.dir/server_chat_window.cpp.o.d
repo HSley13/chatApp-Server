@@ -1087,6 +1087,8 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
@@ -1165,4 +1167,6 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: \
   /opt/homebrew/include/QtGui/qguiapplication_platform.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
-  /opt/homebrew/include/QtCore/qdir.h
+  /opt/homebrew/include/QtCore/qdir.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h

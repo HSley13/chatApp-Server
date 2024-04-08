@@ -5,6 +5,7 @@
 #include <QDesktopServices>
 #include <QApplication>
 #include <QFileDialog>
+#include <QStringList>
 
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent)
@@ -71,6 +72,7 @@ void server_chat_window::send_message()
     QString message = insert_message->text();
 
     _client->send_text(message);
+    qDebug() << "server_chat_window-->send_message()";
 
     wid = new chat_line();
     wid->set_message(message, true);
@@ -98,18 +100,23 @@ void server_chat_window::send_file()
     }
 }
 
-void server_chat_window::text_message_received(QString message)
+void server_chat_window::text_message_received(QString sender, QString receiver, QString message)
 {
-    wid = new chat_line();
-    wid->set_message(message);
-    wid->setStyleSheet("color: black;");
+    if (!receiver.compare("Server"))
+    {
+        wid = new chat_line();
+        wid->set_message(message);
+        wid->setStyleSheet("color: black;");
 
-    line = new QListWidgetItem();
-    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-    line->setSizeHint(QSize(0, 65));
+        line = new QListWidgetItem();
+        line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+        line->setSizeHint(QSize(0, 65));
 
-    list->addItem(line);
-    list->setItemWidget(line, wid);
+        list->addItem(line);
+        list->setItemWidget(line, wid);
+    }
+    else
+        emit text_for_other_client(_client->name(), receiver, message);
 }
 
 void server_chat_window::is_typing_received()
@@ -148,9 +155,14 @@ void server_chat_window::folder()
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
-void server_chat_window::on_client_name_changed(QString name)
+void server_chat_window::on_client_name_changed(QString old_name, QString name)
 {
     QFile::rename(dir.canonicalPath(), name);
 
-    emit client_name_changed(name);
+    emit client_name_changed(old_name, name);
+}
+
+void server_chat_window::disconnect()
+{
+    _client->disconnect_from_host();
 }

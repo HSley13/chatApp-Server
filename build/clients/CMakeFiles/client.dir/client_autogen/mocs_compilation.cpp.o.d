@@ -1080,6 +1080,8 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/chat_protocol.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_manager.h \
@@ -1127,4 +1129,6 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_main_window.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp

@@ -2,6 +2,7 @@
 
 #include "client_manager.h"
 #include "client_chat_window.h"
+#include "client_manager.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QStatusBar>
@@ -13,6 +14,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTabWidget>
+#include <QMap>
 
 class client_main_window : public QMainWindow
 {
@@ -34,6 +36,14 @@ private:
     QVBoxLayout *VBOX;
     client_manager *_client;
 
+    QMap<QString, QWidget *> window_map;
+
 private slots:
     void connection();
+
+    void on_connection_ACK(QString my_name, QStringList other_clients);
+    void on_client_connected(QString client_name);
+    void on_client_name_changed(QString old_name, QString client_name);
+    void on_client_disconnected(QString client_name);
+    void text_message_received(QString sender, QString message);
 };

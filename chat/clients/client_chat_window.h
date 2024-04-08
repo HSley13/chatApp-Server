@@ -2,6 +2,7 @@
 
 #include "client_manager.h"
 #include "chat_line.h"
+#include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QStatusBar>
@@ -18,7 +19,17 @@ class client_chat_window : public QMainWindow
     Q_OBJECT
 public:
     client_chat_window(QWidget *parent = nullptr);
+
+    client_chat_window(QString destinator, QWidget *parent = nullptr);
+
     ~client_chat_window();
+
+    void set_up_window();
+
+    const QString &destinator() const;
+    QString my_name();
+
+    void message_received(QString message);
 
 private:
     QWidget *central_widget;
@@ -42,12 +53,25 @@ private:
     QHBoxLayout *hbox;
     QVBoxLayout *VBOX;
 
+    QString _destinator;
+    QString _my_name;
+
+    chat_protocol *_protocol;
+
+signals:
+    void connection_ACK(QString my_name, QStringList other_clients);
+    void client_connected(QString client_name);
+    void client_name_changed(QString old_name, QString client_name);
+    void client_disconnected(QString client_name);
+
+    void text_message_received(QString sender, QString message);
+
 private slots:
     void send_message();
+    void send_message_client();
     void send_name();
     void send_file();
 
-    void text_message_received(QString message);
     void is_typing_received();
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
@@ -55,4 +79,11 @@ private slots:
 
     void file_saved(QString path);
     void folder();
+
+    void on_connection_ACK(QString my_name, QStringList other_clients);
+    void on_client_connected(QString client_name);
+    void on_client_name_changed(QString old_name, QString client_name);
+    void on_client_disconnected(QString client_name);
+
+    void on_text_message_received(QString sender, QString message);
 };

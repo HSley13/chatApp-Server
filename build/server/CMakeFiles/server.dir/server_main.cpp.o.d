@@ -1088,6 +1088,8 @@ server/CMakeFiles/server.dir/server_main.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \

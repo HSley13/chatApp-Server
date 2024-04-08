@@ -1074,6 +1074,8 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: \
   /opt/homebrew/include/QtCore/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QTcpSocket \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qtcpsocket.h \
   /opt/homebrew/include/QtNetwork/qtnetworkglobal.h \
@@ -1168,4 +1170,6 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: \
   /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices \
   /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QUrl \
-  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h
+  /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h
