@@ -19,7 +19,6 @@ class client_chat_window : public QMainWindow
     Q_OBJECT
 public:
     client_chat_window(QWidget *parent = nullptr);
-
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
     ~client_chat_window();
@@ -31,6 +30,8 @@ public:
 
     void message_received(QString message);
 
+    void disconnect_client(QString client_name);
+
 private:
     QWidget *central_widget;
 
@@ -39,7 +40,7 @@ private:
     QMenuBar *menu_bar;
     QMenu *menu;
 
-    client_manager *_client;
+    static client_manager *_client;
     chat_line *wid;
 
     QListWidget *list;
@@ -62,9 +63,11 @@ signals:
     void connection_ACK(QString my_name, QStringList other_clients);
     void client_connected(QString client_name);
     void client_name_changed(QString old_name, QString client_name);
-    void client_disconnected(QString client_name);
+    void client_disconnected(QString client_name, QString my_name);
 
     void text_message_received(QString sender, QString message);
+
+    void disconnect_from(QString client_name);
 
 private slots:
     void send_message();
@@ -72,7 +75,7 @@ private slots:
     void send_name();
     void send_file();
 
-    void is_typing_received();
+    void is_typing_received(QString sender);
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();
@@ -86,4 +89,7 @@ private slots:
     void on_client_disconnected(QString client_name);
 
     void on_text_message_received(QString sender, QString message);
+
+    void send_is_typing(QString receiver);
+    void send_is_typing_client(QString receiver);
 };

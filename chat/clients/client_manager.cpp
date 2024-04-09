@@ -3,21 +3,22 @@
 #include <QFile>
 #include <QStringList>
 
+QTcpSocket *client_manager::_socket = nullptr;
+
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
-    _socket = new QTcpSocket(this);
-    _socket->connectToHost(_ip, _port);
-    connect(_socket, &QTcpSocket::connected, this, &client_manager::connected);
-    connect(_socket, &QTcpSocket::disconnected, this, &client_manager::disconnected);
-    connect(_socket, &QTcpSocket::readyRead, this, &client_manager::ready_read);
+    if (!_socket)
+    {
+        _socket = new QTcpSocket(this);
+        _socket->connectToHost(_ip, _port);
 
-    _protocol = new chat_protocol(this);
-}
+        connect(_socket, &QTcpSocket::connected, this, &client_manager::connected);
+        connect(_socket, &QTcpSocket::disconnected, this, &client_manager::disconnected);
+        connect(_socket, &QTcpSocket::readyRead, this, &client_manager::ready_read);
 
-client_manager::client_manager(QString destinator, QWidget *parent)
-    : QMainWindow(parent)
-{
+        _protocol = new chat_protocol(this);
+    }
 }
 
 void client_manager::send_text(QString sender, QString receiver, QString text)
@@ -30,9 +31,9 @@ void client_manager::send_name(QString name)
     _socket->write(_protocol->set_name_message(name));
 }
 
-void client_manager::send_is_typing()
+void client_manager::send_is_typing(QString sender, QString receiver)
 {
-    _socket->write(_protocol->set_is_typing_message());
+    _socket->write(_protocol->set_is_typing_message(sender, receiver));
 }
 
 void client_manager::send_init_sending_file(QString filename)
@@ -54,6 +55,11 @@ void client_manager::send_reject_file()
 void client_manager::send_file()
 {
     _socket->write(_protocol->set_file_message(_file_name));
+}
+
+void client_manager::send_disconnect_client_message(QString sender, QString receiver)
+{
+    _socket->write(_protocol->set_disconnected_from_message(sender, receiver));
 }
 
 void client_manager::save_file()
@@ -84,12 +90,11 @@ void client_manager::ready_read()
     {
     case chat_protocol::text:
         emit text_message_received(_protocol->sender(), _protocol->message());
-        qDebug() << "client_manager-->emitting text_message_received()";
 
         break;
 
     case chat_protocol::is_typing:
-        emit is_typing_received();
+        emit is_typing_received(_protocol->sender());
 
         break;
 
@@ -115,7 +120,6 @@ void client_manager::ready_read()
 
     case chat_protocol::new_client:
         emit client_connected(_protocol->client_name());
-        qDebug() << "client_manager-->emitting client_connected()";
 
         break;
 
@@ -131,6 +135,11 @@ void client_manager::ready_read()
 
     case chat_protocol::client_disconnected:
         emit client_disconnected(_protocol->client_name());
+
+        break;
+
+    case chat_protocol::disconnected_from:
+        emit disconnected_from(_protocol->sender());
 
         break;
 

@@ -17,12 +17,14 @@ public:
     server_manager(QTcpSocket *client, QWidget *parent = nullptr);
     void disconnect_all_clients();
 
+    void is_typing_for_other_clients(QString sender, QString receiver);
+
     void connect_to_server();
     void disconnect_from_host();
 
     void send_text(QString text);
     void send_name(QString name);
-    void send_is_typing();
+    void send_is_typing(QString sender);
 
     void send_init_sending_file(QString filename);
     void send_accept_file();
@@ -31,6 +33,8 @@ public:
     QString name() const;
 
     void notify_other_clients(QString old_name, QString client_name);
+
+    void disconnect_from(QString sender, QString receiver);
 
     QMap<QString, QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
 
@@ -58,7 +62,7 @@ signals:
 
     void text_message_received(QString sender, QString receiver, QString message);
     void name_changed(QString old_name, QString name);
-    void is_typing_received();
+    void is_typing_received(QString sender, QString receiver);
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();

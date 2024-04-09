@@ -1,4 +1,5 @@
 server/CMakeFiles/server.dir/server_main.cpp.o: \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt \
   /Users/test/Documents/server---clients/chat/server/server_main.cpp \
   /Users/test/Documents/server---clients/chat/server/server_main_window.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \

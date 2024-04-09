@@ -35,9 +35,16 @@ QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QSt
     return byte;
 }
 
-QByteArray chat_protocol::set_is_typing_message()
+QByteArray chat_protocol::set_is_typing_message(QString sender, QString receiver)
 {
-    return get_data(is_typing, "");
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << is_typing << sender << receiver;
+
+    return byte;
 }
 
 QByteArray chat_protocol::set_name_message(QString name)
@@ -89,6 +96,18 @@ QByteArray chat_protocol::set_file_message(QString filename)
     return byte;
 }
 
+QByteArray chat_protocol::set_disconnected_from_message(QString sender, QString receiver)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << disconnected_from << sender << receiver;
+
+    return byte;
+}
+
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -100,7 +119,6 @@ void chat_protocol::load_data(QByteArray data)
     {
     case text:
         in >> _sender >> _receiver >> _message;
-        qDebug() << "chat_protocol-->Message received()";
 
         break;
 
@@ -110,7 +128,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case is_typing:
-        in >> _is_typing;
+        in >> _is_typing >> _sender >> _receiver;
 
         break;
 
@@ -126,7 +144,6 @@ void chat_protocol::load_data(QByteArray data)
 
     case new_client:
         in >> _client_name;
-        qDebug() << "chat_protocol-->new_client";
 
         break;
 
@@ -144,6 +161,9 @@ void chat_protocol::load_data(QByteArray data)
         in >> _old_name >> _client_name;
 
         break;
+
+    case disconnected_from:
+        in >> _sender >> _receiver;
 
     default:
         break;
@@ -204,6 +224,7 @@ const QString &chat_protocol::my_name() const
 {
     return _my_name;
 }
+
 const QStringList &chat_protocol::clients_name() const
 {
     return _clients_name;

@@ -25,17 +25,20 @@ public:
         new_client,
         connection_ACK,
         client_new_name,
-        client_disconnected
+        client_disconnected,
+        disconnected_from
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
-    QByteArray set_is_typing_message();
+    QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
 
     QByteArray set_init_sending_file_message(QString filename);
     QByteArray set_accept_file_message();
     QByteArray set_reject_file_message();
     QByteArray set_file_message(QString filename);
+
+    QByteArray set_disconnected_from_message(QString sender, QString receiver);
 
     void load_data(QByteArray data);
 

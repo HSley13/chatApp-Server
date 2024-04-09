@@ -1,6 +1,3 @@
-file(REMOVE_RECURSE
-  "CMakeFiles/client_autogen_timestamp_deps"
-)
 
 # Per-language clean rules from dependency scanning.
 foreach(lang )

@@ -3,9 +3,10 @@
 	"CMAKE_BINARY_DIR" : "/Users/test/Documents/server---clients/build",
 	"CMAKE_CURRENT_BINARY_DIR" : "/Users/test/Documents/server---clients/build/clients",
 	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat/clients",
-	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.28.3/bin/cmake",
+	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.29.1/bin/cmake",
 	"CMAKE_LIST_FILES" : [ "/Users/test/Documents/server---clients/chat/clients/CMakeLists.txt" ],
 	"CMAKE_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat",
+	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "/Users/test/Documents/server---clients/build/clients/client_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "client_autogen/timestamp",
 	"HEADERS" : 
@@ -93,7 +94,7 @@
 		"-dM",
 		"-E",
 		"-c",
-		"/opt/homebrew/Cellar/cmake/3.28.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+		"/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
 	],
 	"MOC_PREDEFS_FILE" : "/Users/test/Documents/server---clients/build/clients/client_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
@@ -143,5 +144,6 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : [],
 	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : false,
 	"VERBOSITY" : 0
 }

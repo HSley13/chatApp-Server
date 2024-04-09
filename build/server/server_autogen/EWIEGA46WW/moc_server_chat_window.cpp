@@ -45,9 +45,9 @@ constexpr auto qt_meta_stringdata_CLASSserver_chat_windowENDCLASS = QtMocHelpers
     "old_name",
     "name",
     "is_typing",
-    "text_for_other_client",
     "sender",
     "receiver",
+    "text_for_other_client",
     "message",
     "send_message",
     "disconnection",
@@ -72,9 +72,9 @@ struct qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t {
     char stringdata3[9];
     char stringdata4[5];
     char stringdata5[10];
-    char stringdata6[22];
-    char stringdata7[7];
-    char stringdata8[9];
+    char stringdata6[7];
+    char stringdata7[9];
+    char stringdata8[22];
     char stringdata9[8];
     char stringdata10[13];
     char stringdata11[14];
@@ -100,9 +100,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t qt
         QT_MOC_LITERAL(40, 8),  // "old_name"
         QT_MOC_LITERAL(49, 4),  // "name"
         QT_MOC_LITERAL(54, 9),  // "is_typing"
-        QT_MOC_LITERAL(64, 21),  // "text_for_other_client"
-        QT_MOC_LITERAL(86, 6),  // "sender"
-        QT_MOC_LITERAL(93, 8),  // "receiver"
+        QT_MOC_LITERAL(64, 6),  // "sender"
+        QT_MOC_LITERAL(71, 8),  // "receiver"
+        QT_MOC_LITERAL(80, 21),  // "text_for_other_client"
         QT_MOC_LITERAL(102, 7),  // "message"
         QT_MOC_LITERAL(110, 12),  // "send_message"
         QT_MOC_LITERAL(123, 13),  // "disconnection"
@@ -124,9 +124,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t qt
     "old_name",
     "name",
     "is_typing",
-    "text_for_other_client",
     "sender",
     "receiver",
+    "text_for_other_client",
     "message",
     "send_message",
     "disconnection",
@@ -161,30 +161,30 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_chat_windowENDCLASS[] = {
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    2,   86,    2, 0x06,    1 /* Public */,
-       5,    1,   91,    2, 0x06,    4 /* Public */,
-       6,    3,   94,    2, 0x06,    6 /* Public */,
+       5,    2,   91,    2, 0x06,    4 /* Public */,
+       8,    3,   96,    2, 0x06,    7 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      10,    0,  101,    2, 0x08,   10 /* Private */,
-      11,    0,  102,    2, 0x08,   11 /* Private */,
-      12,    3,  103,    2, 0x08,   12 /* Private */,
-      13,    0,  110,    2, 0x08,   16 /* Private */,
-      14,    3,  111,    2, 0x08,   17 /* Private */,
-      18,    1,  118,    2, 0x08,   21 /* Private */,
-      20,    0,  121,    2, 0x08,   23 /* Private */,
-      21,    0,  122,    2, 0x08,   24 /* Private */,
-      22,    2,  123,    2, 0x08,   25 /* Private */,
+      10,    0,  103,    2, 0x08,   11 /* Private */,
+      11,    0,  104,    2, 0x08,   12 /* Private */,
+      12,    3,  105,    2, 0x08,   13 /* Private */,
+      13,    2,  112,    2, 0x08,   17 /* Private */,
+      14,    3,  117,    2, 0x08,   20 /* Private */,
+      18,    1,  124,    2, 0x08,   24 /* Private */,
+      20,    0,  127,    2, 0x08,   26 /* Private */,
+      21,    0,  128,    2, 0x08,   27 /* Private */,
+      22,    2,  129,    2, 0x08,   28 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
-    QMetaType::Void, QMetaType::QString,    4,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    7,    8,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    6,    7,    9,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    7,    8,    9,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    6,    7,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   15,   16,   17,
     QMetaType::Void, QMetaType::QString,   19,
     QMetaType::Void,
@@ -210,6 +210,7 @@ Q_CONSTINIT const QMetaObject server_chat_window::staticMetaObject = { {
         // method 'is_typing'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'text_for_other_client'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -226,6 +227,8 @@ Q_CONSTINIT const QMetaObject server_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'is_typing_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'init_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -253,12 +256,12 @@ void server_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         (void)_t;
         switch (_id) {
         case 0: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 1: _t->is_typing((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->is_typing((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 2: _t->text_for_other_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 3: _t->send_message(); break;
         case 4: _t->disconnection(); break;
         case 5: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
-        case 6: _t->is_typing_received(); break;
+        case 6: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 7: _t->init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
         case 8: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->folder(); break;
@@ -276,7 +279,7 @@ void server_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             }
         }
         {
-            using _t = void (server_chat_window::*)(QString );
+            using _t = void (server_chat_window::*)(QString , QString );
             if (_t _q_method = &server_chat_window::is_typing; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
@@ -330,9 +333,9 @@ void server_chat_window::client_name_changed(QString _t1, QString _t2)
 }
 
 // SIGNAL 1
-void server_chat_window::is_typing(QString _t1)
+void server_chat_window::is_typing(QString _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 

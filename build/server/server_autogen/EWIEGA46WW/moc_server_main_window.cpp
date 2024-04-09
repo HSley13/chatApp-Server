@@ -50,12 +50,14 @@ constexpr auto qt_meta_stringdata_CLASSserver_main_windowENDCLASS = QtMocHelpers
     "old_name",
     "name",
     "is_typing_received",
+    "sender",
+    "receiver",
     "close_tabs",
     "index"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[30];
     char stringdata0[19];
     char stringdata1[23];
     char stringdata2[1];
@@ -67,8 +69,10 @@ struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {
     char stringdata8[9];
     char stringdata9[5];
     char stringdata10[19];
-    char stringdata11[11];
-    char stringdata12[6];
+    char stringdata11[7];
+    char stringdata12[9];
+    char stringdata13[11];
+    char stringdata14[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -85,8 +89,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(123, 8),  // "old_name"
         QT_MOC_LITERAL(132, 4),  // "name"
         QT_MOC_LITERAL(137, 18),  // "is_typing_received"
-        QT_MOC_LITERAL(156, 10),  // "close_tabs"
-        QT_MOC_LITERAL(167, 5)   // "index"
+        QT_MOC_LITERAL(156, 6),  // "sender"
+        QT_MOC_LITERAL(163, 8),  // "receiver"
+        QT_MOC_LITERAL(172, 10),  // "close_tabs"
+        QT_MOC_LITERAL(183, 5)   // "index"
     },
     "server_main_window",
     "disconnect_all_clients",
@@ -99,6 +105,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t qt
     "old_name",
     "name",
     "is_typing_received",
+    "sender",
+    "receiver",
     "close_tabs",
     "index"
 };
@@ -124,16 +132,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_main_windowENDCLASS[] = {
        3,    1,   51,    2, 0x08,    2 /* Private */,
        6,    1,   54,    2, 0x08,    4 /* Private */,
        7,    2,   57,    2, 0x08,    6 /* Private */,
-      10,    1,   62,    2, 0x08,    9 /* Private */,
-      11,    1,   65,    2, 0x08,   11 /* Private */,
+      10,    2,   62,    2, 0x08,    9 /* Private */,
+      13,    1,   67,    2, 0x08,   12 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    8,    9,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::Int,   12,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,   12,
+    QMetaType::Void, QMetaType::Int,   14,
 
        0        // eod
 };
@@ -162,6 +170,7 @@ Q_CONSTINIT const QMetaObject server_main_window::staticMetaObject = { {
         // method 'is_typing_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'close_tabs'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
@@ -179,7 +188,7 @@ void server_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 1: _t->new_client_connected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
         case 2: _t->new_client_disconnected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
         case 3: _t->set_client_name((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 4: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 5: _t->close_tabs((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }

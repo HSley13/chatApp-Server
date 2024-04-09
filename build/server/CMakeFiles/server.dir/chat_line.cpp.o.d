@@ -1,4 +1,5 @@
 server/CMakeFiles/server.dir/chat_line.cpp.o: \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt \
   /Users/test/Documents/server---clients/chat/server/chat_line.cpp \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \

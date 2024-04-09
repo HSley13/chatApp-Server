@@ -177,16 +177,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_managerENDCLASS[] = {
        6,    0,   98,    2, 0x06,    5 /* Public */,
        7,    3,   99,    2, 0x06,    6 /* Public */,
       11,    2,  106,    2, 0x06,   10 /* Public */,
-      14,    0,  111,    2, 0x06,   13 /* Public */,
-      15,    3,  112,    2, 0x06,   14 /* Public */,
-      19,    0,  119,    2, 0x06,   18 /* Public */,
-      20,    1,  120,    2, 0x06,   19 /* Public */,
+      14,    2,  111,    2, 0x06,   13 /* Public */,
+      15,    3,  116,    2, 0x06,   16 /* Public */,
+      19,    0,  123,    2, 0x06,   20 /* Public */,
+      20,    1,  124,    2, 0x06,   21 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      22,    0,  123,    2, 0x08,   21 /* Private */,
-      23,    0,  124,    2, 0x08,   22 /* Private */,
-      24,    0,  125,    2, 0x08,   23 /* Private */,
-      25,    3,  126,    2, 0x0a,   24 /* Public */,
+      22,    0,  127,    2, 0x08,   23 /* Private */,
+      23,    0,  128,    2, 0x08,   24 /* Private */,
+      24,    0,  129,    2, 0x08,   25 /* Private */,
+      25,    3,  130,    2, 0x0a,   26 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -194,7 +194,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_managerENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    8,    9,   10,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    8,    9,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   16,   17,   18,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   21,
@@ -236,6 +236,8 @@ Q_CONSTINIT const QMetaObject server_manager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'is_typing_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'init_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -272,7 +274,7 @@ void server_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 2: _t->disconnected(); break;
         case 3: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 4: _t->name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 5: _t->is_typing_received(); break;
+        case 5: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 6: _t->init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
         case 7: _t->reject_receiving_file(); break;
         case 8: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -338,7 +340,7 @@ void server_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            using _t = void (server_manager::*)();
+            using _t = void (server_manager::*)(QString , QString );
             if (_t _q_method = &server_manager::is_typing_received; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 5;
                 return;
@@ -433,9 +435,10 @@ void server_manager::name_changed(QString _t1, QString _t2)
 }
 
 // SIGNAL 5
-void server_manager::is_typing_received()
+void server_manager::is_typing_received(QString _t1, QString _t2)
 {
-    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6

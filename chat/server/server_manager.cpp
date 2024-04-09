@@ -33,6 +33,7 @@ void server_manager::new_connection()
     QString client_name = QString("client %1").arg(id);
 
     client->setProperty("client_name", client_name);
+    _clients[client_name] = client;
 
     connect(client, &QTcpSocket::disconnected, this, &server_manager::client_disconnected);
     emit new_client_connected(client);
@@ -46,8 +47,6 @@ void server_manager::new_connection()
         for (QTcpSocket *cl : _clients)
             cl->write(new_client_message);
     }
-
-    _clients[client_name] = client;
 }
 
 void server_manager::client_disconnected()
@@ -55,11 +54,12 @@ void server_manager::client_disconnected()
     QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
 
     QString client_name = client->property("client_name").toString();
-    _clients.remove(client_name);
 
     QByteArray message = _protocol->set_client_disconnected_message(client_name);
     for (QTcpSocket *cl : _clients)
         cl->write(message);
+
+    _clients.remove(client_name);
 
     emit new_client_disconnected(client);
 }
@@ -73,8 +73,6 @@ void server_manager::disconnect_all_clients()
 void server_manager::send_text(QString text)
 {
     _socket->write(_protocol->set_text_message("Server", name(), text));
-
-    qDebug() << "server_manager-->send_text()";
 }
 
 void server_manager::send_name(QString name)
@@ -82,9 +80,10 @@ void server_manager::send_name(QString name)
     _socket->write(_protocol->set_name_message(name));
 }
 
-void server_manager::send_is_typing()
+void server_manager::send_is_typing(QString sender)
 {
-    _socket->write(_protocol->set_is_typing_message());
+    sender = "Server";
+    _socket->write(_protocol->set_is_typing_message("", sender));
 }
 
 void server_manager::send_init_sending_file(QString filename)
@@ -160,7 +159,7 @@ void server_manager::ready_read()
     }
 
     case chat_protocol::is_typing:
-        emit is_typing_received();
+        emit is_typing_received(_protocol->sender(), _protocol->receiver());
 
         break;
 
@@ -181,6 +180,11 @@ void server_manager::ready_read()
 
     case chat_protocol::send_file:
         save_file();
+
+        break;
+
+    case chat_protocol::disconnected_from:
+        disconnect_from(_protocol->sender(), _protocol->receiver());
 
         break;
 
@@ -208,15 +212,32 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
 
 void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
 {
-    QByteArray msg = _protocol->set_text_message(sender, receiver, message);
-    for (QTcpSocket *cl : _clients)
-    {
-        QString client_name = cl->property("client_name").toString();
+    QTcpSocket *client = _clients[receiver];
+    if (client)
+        client->write(_protocol->set_text_message(sender, receiver, message));
 
-        if (client_name.compare(receiver))
-        {
-            cl->write(msg);
-            return;
-        }
-    }
+    else
+        qDebug() << "server_manager -->  on_text_for_other_clients() -->receiver not FOUND";
+}
+
+void server_manager::is_typing_for_other_clients(QString sender, QString receiver)
+{
+    QTcpSocket *client = _clients[receiver];
+
+    if (client)
+        client->write(_protocol->set_is_typing_message(sender, receiver));
+
+    else
+        qDebug() << "server_manager --> is_typing_for_other_clients() -->receiver not FOUND";
+}
+
+void server_manager::disconnect_from(QString sender, QString receiver)
+{
+    QTcpSocket *client = _clients[receiver];
+
+    if (client)
+        client->write(_protocol->set_disconnected_from_message(sender, receiver));
+
+    else
+        qDebug() << "server_manager --> disconnect_from() -->receiver not FOUND";
 }

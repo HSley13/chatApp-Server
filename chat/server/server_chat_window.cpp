@@ -72,7 +72,6 @@ void server_chat_window::send_message()
     QString message = insert_message->text();
 
     _client->send_text(message);
-    qDebug() << "server_chat_window-->send_message()";
 
     wid = new chat_line();
     wid->set_message(message, true);
@@ -102,6 +101,8 @@ void server_chat_window::send_file()
 
 void server_chat_window::text_message_received(QString sender, QString receiver, QString message)
 {
+    sender = nullptr;
+
     if (!receiver.compare("Server"))
     {
         wid = new chat_line();
@@ -119,9 +120,9 @@ void server_chat_window::text_message_received(QString sender, QString receiver,
         emit text_for_other_client(_client->name(), receiver, message);
 }
 
-void server_chat_window::is_typing_received()
+void server_chat_window::is_typing_received(QString sender, QString receiver)
 {
-    emit is_typing(_client->name());
+    emit is_typing(sender, receiver);
 }
 
 void server_chat_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)

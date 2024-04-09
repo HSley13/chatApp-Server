@@ -81,9 +81,13 @@ void server_main_window::disconnect_all_clients()
     _server->disconnect_all_clients();
 }
 
-void server_main_window::is_typing_received(QString name)
+void server_main_window::is_typing_received(QString sender, QString receiver)
 {
-    status_bar->showMessage(QString("%1 is typing...").arg(name), 1000);
+    if (!receiver.compare("Server"))
+        status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
+
+    else
+        _server->is_typing_for_other_clients(sender, receiver);
 }
 
 void server_main_window::close_tabs(int index)

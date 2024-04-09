@@ -1057,4 +1057,4 @@ client_autogen/timestamp: \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h \
-	/opt/homebrew/Cellar/cmake/3.28.3/bin/cmake
+	/opt/homebrew/Cellar/cmake/3.29.1/bin/cmake

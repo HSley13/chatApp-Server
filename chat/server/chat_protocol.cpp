@@ -6,6 +6,11 @@
 #include <QFile>
 #include <QStringList>
 
+chat_protocol::chat_protocol(QWidget *parent)
+    : QMainWindow(parent)
+{
+}
+
 QByteArray chat_protocol::get_data(message_type type, QString data)
 {
     QByteArray byte;
@@ -18,11 +23,6 @@ QByteArray chat_protocol::get_data(message_type type, QString data)
     return byte;
 }
 
-chat_protocol::chat_protocol(QWidget *parent)
-    : QMainWindow(parent)
-{
-}
-
 QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QString message)
 {
     QByteArray byte;
@@ -32,14 +32,19 @@ QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QSt
 
     out << text << sender << receiver << message;
 
-    qDebug() << "chat_protocol-->set_text_message()";
-
     return byte;
 }
 
-QByteArray chat_protocol::set_is_typing_message()
+QByteArray chat_protocol::set_is_typing_message(QString sender, QString receiver)
 {
-    return get_data(is_typing, "");
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << is_typing << sender << receiver;
+
+    return byte;
 }
 
 QByteArray chat_protocol::set_name_message(QString name)
@@ -93,7 +98,6 @@ QByteArray chat_protocol::set_file_message(QString filename)
 
 QByteArray chat_protocol::set_new_client_message(QString client_name)
 {
-    qDebug() << "chat_protocol-->set_new_client_message()";
     return get_data(new_client, client_name);
 }
 
@@ -126,6 +130,18 @@ QByteArray chat_protocol::set_client_disconnected_message(QString client_name)
     return get_data(client_disconnected, client_name);
 }
 
+QByteArray chat_protocol::set_disconnected_from_message(QString sender, QString receiver)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << disconnected_from << sender << receiver;
+
+    return byte;
+}
+
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -146,7 +162,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case is_typing:
-        in >> _is_typing;
+        in >> _is_typing >> _sender >> _receiver;
 
     case init_sending_file:
         in >> _file_name >> _file_size;
@@ -155,6 +171,11 @@ void chat_protocol::load_data(QByteArray data)
 
     case send_file:
         in >> _file_name >> _file_size >> _file_data;
+
+        break;
+
+    case disconnected_from:
+        in >> _sender >> _receiver;
 
         break;
 

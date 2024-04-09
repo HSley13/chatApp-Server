@@ -27,7 +27,7 @@
 			"/opt/homebrew/lib/cmake/Qt6/Qt6Config.cmake",
 			"CMakeLists.txt",
 			"/opt/homebrew/Cellar/qt/6.6.2_1/lib/cmake/Qt6/FindWrapOpenGL.cmake",
-			"/opt/homebrew/Cellar/cmake/3.28.3/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+			"/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
 			"/opt/homebrew/Cellar/qt/6.6.2_1/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
@@ -50,7 +50,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 11,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
@@ -218,7 +218,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk"
+					"fragment" : " -fsanitize=address -fno-omit-frame-pointer -Wall -Wextra -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk"
 				}
 			],
 			"defines" : 
@@ -343,7 +343,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-O2 -g -DNDEBUG",
+				"fragment" : "-fsanitize=address -fno-omit-frame-pointer -Wall -Wextra -O2 -g -DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -366,6 +366,11 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "/opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-fsanitize=address",
 				"role" : "libraries"
 			},
 			{

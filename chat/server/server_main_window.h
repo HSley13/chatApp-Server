@@ -43,7 +43,7 @@ private slots:
 
     void set_client_name(QString old_name, QString name);
 
-    void is_typing_received(QString name);
+    void is_typing_received(QString sender, QString receiver);
 
     void close_tabs(int index);
 };

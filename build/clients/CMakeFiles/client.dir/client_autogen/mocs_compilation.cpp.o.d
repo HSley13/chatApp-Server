@@ -1,4 +1,5 @@
 clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt \
   /Users/test/Documents/server---clients/build/clients/client_autogen/mocs_compilation.cpp \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/chat_line.h \

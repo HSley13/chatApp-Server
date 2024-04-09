@@ -42,7 +42,7 @@ private:
 
 signals:
     void client_name_changed(QString old_name, QString name);
-    void is_typing(QString name);
+    void is_typing(QString sender, QString receiver);
 
     void text_for_other_client(QString sender, QString receiver, QString message);
 
@@ -51,7 +51,7 @@ private slots:
     void disconnection();
 
     void text_message_received(QString sender, QString receiver, QString message);
-    void is_typing_received();
+    void is_typing_received(QString sender, QString receiver);
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void file_saved(QString path);

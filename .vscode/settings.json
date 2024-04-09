@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "/Users/test/Documents/server---clients/chat"
+    "cmake.sourceDirectory": "/Users/test/Documents/server---clients/chat",
+    "files.associations": {
+        "new": "cpp",
+        "qvboxlayout": "cpp",
+        "qwidget": "cpp"
+    }
 }

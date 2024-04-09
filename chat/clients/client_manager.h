@@ -11,11 +11,10 @@ class client_manager : public QMainWindow
     Q_OBJECT
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
-    client_manager(QString destinator, QWidget *parent = nullptr);
 
     void send_text(QString sender, QString receiver, QString text);
     void send_name(QString name);
-    void send_is_typing();
+    void send_is_typing(QString sender, QString receiver);
 
     void send_init_sending_file(QString filename);
     void send_accept_file();
@@ -24,10 +23,12 @@ public:
     void send_file();
     void save_file();
 
+    void send_disconnect_client_message(QString sender, QString receiver);
+
 private:
     QWidget *_central_widget;
 
-    QTcpSocket *_socket;
+    static QTcpSocket *_socket;
     QHostAddress _ip;
     int _port;
 
@@ -40,7 +41,7 @@ signals:
     void disconnected();
 
     void text_message_received(QString sender, QString message);
-    void is_typing_received();
+    void is_typing_received(QString sender);
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();
@@ -51,6 +52,8 @@ signals:
     void connection_ACK(QString my_name, QStringList other_clients);
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
+
+    void disconnected_from(QString client_name);
 
 private slots:
     void ready_read();
