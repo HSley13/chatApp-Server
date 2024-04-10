@@ -15,7 +15,6 @@ class server_main_window : public QMainWindow
     Q_OBJECT
 public:
     server_main_window(QWidget *parent = nullptr);
-    ~server_main_window();
 
 private:
     QWidget *central_widget;

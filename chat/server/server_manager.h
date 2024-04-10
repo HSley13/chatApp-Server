@@ -23,7 +23,6 @@ public:
     void disconnect_from_host();
 
     void send_text(QString text);
-    void send_name(QString name);
     void send_is_typing(QString sender);
 
     void send_init_sending_file(QString filename);

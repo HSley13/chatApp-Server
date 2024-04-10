@@ -21,7 +21,7 @@ client_chat_window::client_chat_window(QWidget *parent)
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
 
-    // connect(_client, &client_manager::disconnected_from, this, &client_chat_window::on_client_disconnected);
+    connect(_client, &client_manager::disconnected_from, this, &client_chat_window::on_client_disconnected);
 }
 
 client_chat_window::client_chat_window(QString destinator, QWidget *parent)
@@ -32,14 +32,6 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message_client);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
-}
-
-client_chat_window::~client_chat_window()
-{
-    delete central_widget;
-    delete hbox;
-    delete wid;
-    delete line;
 }
 
 void client_chat_window::send_message()
@@ -115,9 +107,9 @@ void client_chat_window::send_name()
     _client->send_name(name);
 }
 
-void client_chat_window::is_typing_received(QString sender)
+void client_chat_window::on_is_typing_received(QString sender)
 {
-    status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
+    emit is_typing_received(sender);
 }
 
 void client_chat_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)
@@ -187,9 +179,6 @@ void client_chat_window::set_up_window()
     central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    status_bar = new QStatusBar(this);
-    setStatusBar(status_bar);
-
     insert_name = new QLineEdit(this);
     insert_name->setPlaceholderText("Insert your name here");
     connect(insert_name, &QLineEdit::editingFinished, this, &client_chat_window::send_name);
@@ -223,7 +212,7 @@ void client_chat_window::set_up_window()
     {
         _client = new client_manager();
         connect(_client, &client_manager::text_message_received, this, &client_chat_window::on_text_message_received);
-        connect(_client, &client_manager::is_typing_received, this, &client_chat_window::is_typing_received);
+        connect(_client, &client_manager::is_typing_received, this, &client_chat_window::on_is_typing_received);
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::init_receiving_file);
         connect(_client, &client_manager::reject_receiving_file, this, &client_chat_window::reject_receiving_file);
         connect(_client, &client_manager::file_saved, this, &client_chat_window::file_saved);
@@ -252,8 +241,8 @@ void client_chat_window::on_text_message_received(QString sender, QString messag
 
 void client_chat_window::send_is_typing(QString receiver)
 {
-    receiver = nullptr;
-    _client->send_is_typing(my_name(), "Server");
+    receiver = "Server";
+    _client->send_is_typing(my_name(), receiver);
 }
 
 void client_chat_window::send_is_typing_client(QString receiver)
@@ -262,7 +251,12 @@ void client_chat_window::send_is_typing_client(QString receiver)
     _client->send_is_typing(my_name(), destinator());
 }
 
-void client_chat_window::disconnect_client(QString client_name)
+void client_chat_window::disconnect_client()
 {
-    _client->send_disconnect_client_message(my_name(), client_name);
+    _client->send_disconnect_client_message(my_name(), destinator());
 }
+
+// void client_chat_window::change_destinator_name(QString client_name)
+// {
+//     _destinator = client_name;
+// }

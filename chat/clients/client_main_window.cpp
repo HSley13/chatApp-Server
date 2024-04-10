@@ -39,11 +39,6 @@ client_main_window::client_main_window(QWidget *parent)
     VBOX->addWidget(tabs);
 }
 
-client_main_window::~client_main_window()
-{
-    delete central_widget;
-}
-
 void client_main_window::connection()
 {
     client_chat_window *wid = new client_chat_window(this);
@@ -52,6 +47,7 @@ void client_main_window::connection()
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
+    connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
 
     tabs->addTab(wid, "Server");
 
@@ -102,7 +98,7 @@ void client_main_window::on_client_disconnected(QString client_name, QString my_
         window_map.remove(client_name);
     }
     else
-        qDebug() << "client_name to Disconnect not FOUND: " << client_name;
+        qDebug() << "client_main_window ---> on_client_disconnected() --> client_name to Disconnect not FOUND: " << client_name;
 }
 
 void client_main_window::on_text_message_received(QString sender, QString message)
@@ -120,7 +116,7 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         }
     }
     else
-        qDebug() << "Message Sender Window not FOUND";
+        qDebug() << "client_main_window ---> on_text_message_received() ---> Message Sender Window not FOUND";
 }
 
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
@@ -133,6 +129,9 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 
         window_map.insert(client_name, win);
         window_map.remove(old_name);
+
+        // client_chat_window *wid = qobject_cast<client_chat_window *>(win);
+        // wid->change_destinator_name(client_name);
     }
     else
         qDebug() << "client_name to change not FOUND";
@@ -144,9 +143,14 @@ void client_main_window::close_tabs(int index)
 
     client_chat_window *wid = qobject_cast<client_chat_window *>(tabs->widget(index));
     if (wid)
-        wid->disconnect_client(client_name);
+        wid->disconnect_client();
     else
-        qDebug() << "client_main_window---> close_tabs() --->  Failed to cast the index into a client_chat_window";
+        qDebug() << "client_main_window ---> close_tabs() --->  Failed to cast the index into a client_chat_window";
 
     tabs->removeTab(index);
+}
+
+void client_main_window::on_is_typing_received(QString sender)
+{
+    status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
 }

@@ -34,16 +34,6 @@ server_main_window::server_main_window(QWidget *parent)
     HBOX->addLayout(vbox);
 }
 
-server_main_window::~server_main_window()
-{
-    delete central_widget;
-    delete vbox;
-    delete wid;
-
-    for (QTcpSocket *client : _server->_clients)
-        delete client;
-}
-
 void server_main_window::new_client_connected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();

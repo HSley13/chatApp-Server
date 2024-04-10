@@ -53,14 +53,6 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     VBOX->addWidget(send_button);
 }
 
-server_chat_window::~server_chat_window()
-{
-    delete central_widget;
-    delete hbox;
-    delete wid;
-    delete line;
-}
-
 void server_chat_window::disconnection()
 {
     send_button->setEnabled(false);

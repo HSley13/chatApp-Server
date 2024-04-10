@@ -65,7 +65,6 @@ private:
     message_type _type;
     QString _message;
     QString _name;
-    QString _is_typing;
 
     QString _file_name;
     qint64 _file_size;

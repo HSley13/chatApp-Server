@@ -912,7 +912,6 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_line.h
  /opt/homebrew/include/QtCore/q20functional.h
  /opt/homebrew/include/QtCore/q20memory.h
@@ -2011,7 +2010,6 @@ clients/CMakeFiles/client.dir/chat_protocol.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /opt/homebrew/include/QtCore/q20functional.h
  /opt/homebrew/include/QtCore/q20memory.h
@@ -3107,7 +3105,6 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_line.h
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /Users/test/Documents/server---clients/chat/clients/client_chat_window.h
@@ -4264,7 +4261,6 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_line.h
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /Users/test/Documents/server---clients/chat/clients/client_chat_window.h
@@ -5420,7 +5416,6 @@ clients/CMakeFiles/client.dir/client_main.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_line.h
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /Users/test/Documents/server---clients/chat/clients/client_chat_window.h
@@ -6581,7 +6576,6 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_line.h
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /Users/test/Documents/server---clients/chat/clients/client_chat_window.h
@@ -7763,7 +7757,6 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h
- /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt
  /Users/test/Documents/server---clients/chat/clients/chat_protocol.h
  /Users/test/Documents/server---clients/chat/clients/client_manager.h
  /opt/homebrew/include/QtCore/q20functional.h

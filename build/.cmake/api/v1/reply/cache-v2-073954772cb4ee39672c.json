@@ -158,7 +158,7 @@
 					"value" : "CXX compiler"
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/Library/Developer/CommandLineTools/usr/bin/c++"
 		},
 		{
@@ -254,7 +254,7 @@
 					"value" : "C compiler"
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/Library/Developer/CommandLineTools/usr/bin/cc"
 		},
 		{
@@ -363,7 +363,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.28.3/bin/ccmake"
+			"value" : "/opt/homebrew/Cellar/cmake/3.29.1/bin/ccmake"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -1499,7 +1499,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Include for OpenGL on OS X"
+					"value" : "Include for OpenGL"
 				}
 			],
 			"type" : "PATH",
@@ -1515,7 +1515,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "OpenGL library for OS X"
+					"value" : "OpenGL GL library"
 				}
 			],
 			"type" : "FILEPATH",
@@ -1531,7 +1531,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "GLU library for OS X (usually same as OpenGL library)"
+					"value" : "OpenGL GLU library"
 				}
 			],
 			"type" : "FILEPATH",

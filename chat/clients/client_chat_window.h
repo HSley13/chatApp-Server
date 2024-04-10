@@ -21,16 +21,16 @@ public:
     client_chat_window(QWidget *parent = nullptr);
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
-    ~client_chat_window();
-
     void set_up_window();
 
     const QString &destinator() const;
+    // void change_destinator_name(QString client_name);
+
     QString my_name();
 
     void message_received(QString message);
 
-    void disconnect_client(QString client_name);
+    void disconnect_client();
 
 private:
     QWidget *central_widget;
@@ -54,8 +54,8 @@ private:
     QHBoxLayout *hbox;
     QVBoxLayout *VBOX;
 
-    QString _destinator;
     QString _my_name;
+    QString _destinator;
 
     chat_protocol *_protocol;
 
@@ -69,13 +69,15 @@ signals:
 
     void disconnect_from(QString client_name);
 
+    void is_typing_received(QString sender);
+
 private slots:
     void send_message();
     void send_message_client();
     void send_name();
     void send_file();
 
-    void is_typing_received(QString sender);
+    void on_is_typing_received(QString sender);
 
     void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void reject_receiving_file();

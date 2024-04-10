@@ -1,5 +1,4 @@
 server/CMakeFiles/server.dir/server_manager.cpp.o: \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt \
   /Users/test/Documents/server---clients/chat/server/server_manager.cpp \
   /Users/test/Documents/server---clients/chat/server/server_manager.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \

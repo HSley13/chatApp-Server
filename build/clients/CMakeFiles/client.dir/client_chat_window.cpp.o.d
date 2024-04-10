@@ -1,5 +1,4 @@
 clients/CMakeFiles/client.dir/client_chat_window.cpp.o: \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/share/asan_ignorelist.txt \
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp \
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \

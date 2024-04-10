@@ -162,7 +162,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case is_typing:
-        in >> _is_typing >> _sender >> _receiver;
+        in >> _sender >> _receiver;
 
     case init_sending_file:
         in >> _file_name >> _file_size;

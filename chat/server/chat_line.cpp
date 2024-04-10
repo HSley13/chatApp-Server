@@ -36,9 +36,3 @@ void chat_line::set_message(QString message, bool is_mine)
 
     VBOX->addLayout(message_layout);
 }
-
-chat_line::~chat_line()
-{
-    delete central_widget;
-    delete message_layout;
-}
