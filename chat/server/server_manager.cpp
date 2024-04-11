@@ -232,7 +232,7 @@ void server_manager::on_text_for_other_clients(QString sender, QString receiver,
         client->write(_protocol->set_text_message(sender, receiver, message));
 
     else
-        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND:" << receiver;
+        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(QString sender, QString receiver)
@@ -243,7 +243,7 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
         client->write(_protocol->set_is_typing_message(sender, ""));
 
     else
-        qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND:" << receiver;
+        qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::disconnect_from(QString sender, QString receiver)
@@ -254,7 +254,7 @@ void server_manager::disconnect_from(QString sender, QString receiver)
         client->write(_protocol->set_disconnected_from_message(sender, ""));
 
     else
-        qDebug() << "server_manager --> disconnect_from() --> receiver not FOUND:" << receiver;
+        qDebug() << "server_manager --> disconnect_from() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::update_name(QTcpSocket *client, QString old_name, QString new_name)

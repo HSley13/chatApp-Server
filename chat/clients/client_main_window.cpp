@@ -30,12 +30,18 @@ client_main_window::client_main_window(QWidget *parent)
     menu->addAction(connection);
     menu_bar->addMenu(menu);
 
+    name = new QLineEdit(this);
+    name->setPlaceholderText("INSERT YOUR NAME HERE");
+    name->setDisabled(true);
+    connect(name, &QLineEdit::textChanged, this, &client_main_window::on_name_changed);
+
     tabs = new QTabWidget(this);
-    tabs->setEnabled(false);
+    tabs->setDisabled(true);
     tabs->setTabsClosable(true);
     connect(tabs, &QTabWidget::tabCloseRequested, this, &client_main_window::close_tabs);
 
     VBOX = new QVBoxLayout(central_widget);
+    VBOX->addWidget(name);
     VBOX->addWidget(tabs);
 }
 
@@ -53,6 +59,7 @@ void client_main_window::connection()
 
     window_map.insert("Server", wid);
 
+    name->setEnabled(true);
     tabs->setEnabled(true);
 
     status_bar->showMessage("Connected to the Server", 1000);
@@ -152,4 +159,13 @@ void client_main_window::close_tabs(int index)
 void client_main_window::on_is_typing_received(QString sender)
 {
     status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
+}
+
+void client_main_window::on_name_changed(QString name)
+{
+    for (QWidget *win : window_map)
+    {
+        client_chat_window *wid = qobject_cast<client_chat_window *>(win);
+        wid->set_name(name);
+    }
 }

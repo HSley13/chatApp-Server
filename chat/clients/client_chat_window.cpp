@@ -17,7 +17,6 @@ client_chat_window::client_chat_window(QWidget *parent)
 {
     set_up_window();
 
-    connect(insert_name, &QLineEdit::editingFinished, this, &client_chat_window::send_name);
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
@@ -101,13 +100,6 @@ void client_chat_window::message_received(QString message)
     list->setItemWidget(line, wid);
 }
 
-void client_chat_window::send_name()
-{
-    QString name = insert_name->text();
-
-    _client->send_name(name);
-}
-
 void client_chat_window::on_is_typing_received(QString sender)
 {
     emit is_typing_received(sender);
@@ -180,9 +172,6 @@ void client_chat_window::set_up_window()
     central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    insert_name = new QLineEdit(this);
-    insert_name->setPlaceholderText("Insert your name here before doing anything");
-
     list = new QListWidget(this);
 
     QLabel *message = new QLabel("Insert Message", this);
@@ -203,7 +192,6 @@ void client_chat_window::set_up_window()
     send_button = new QPushButton("Send", this);
 
     VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(insert_name);
     VBOX->addWidget(list);
     VBOX->addLayout(hbox);
     VBOX->addWidget(send_button);
@@ -229,7 +217,7 @@ void client_chat_window::set_up_window()
 QString client_chat_window::my_name()
 {
     _protocol = new chat_protocol(this);
-    QString name = insert_name->text().length() > 0 ? insert_name->text() : _protocol->my_name();
+    QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
 
     return name;
 }
@@ -237,7 +225,7 @@ QString client_chat_window::my_name()
 QString client_chat_window::name_inserted()
 {
     _protocol = new chat_protocol(this);
-    QString name = insert_name->text().length() > 0 ? insert_name->text() : _protocol->my_name();
+    QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
 
     return name;
 }
@@ -262,4 +250,11 @@ void client_chat_window::send_is_typing_client(QString receiver)
 void client_chat_window::disconnect_client()
 {
     _client->send_disconnect_client_message(my_name(), destinator());
+}
+
+void client_chat_window::set_name(QString insert_name)
+{
+    _insert_name = insert_name;
+
+    _client->send_name(insert_name);
 }

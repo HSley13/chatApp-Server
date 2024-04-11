@@ -15,6 +15,7 @@
 #include <QPushButton>
 #include <QTabWidget>
 #include <QMap>
+#include <QLineEdit>
 
 class client_main_window : public QMainWindow
 {
@@ -37,6 +38,8 @@ private:
 
     QMap<QString, QWidget *> window_map;
 
+    QLineEdit *name;
+
 private slots:
     void connection();
 
@@ -49,4 +52,6 @@ private slots:
     void on_is_typing_received(QString sender);
 
     void close_tabs(int index);
+
+    void on_name_changed(QString name);
 };

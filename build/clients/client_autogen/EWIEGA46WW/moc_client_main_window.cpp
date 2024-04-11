@@ -55,11 +55,13 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "message",
     "on_is_typing_received",
     "close_tabs",
-    "index"
+    "index",
+    "on_name_changed",
+    "name"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
-    uint offsetsAndSizes[34];
+    uint offsetsAndSizes[38];
     char stringdata0[19];
     char stringdata1[11];
     char stringdata2[1];
@@ -77,6 +79,8 @@ struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
     char stringdata14[22];
     char stringdata15[11];
     char stringdata16[6];
+    char stringdata17[16];
+    char stringdata18[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -98,7 +102,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(190, 7),  // "message"
         QT_MOC_LITERAL(198, 21),  // "on_is_typing_received"
         QT_MOC_LITERAL(220, 10),  // "close_tabs"
-        QT_MOC_LITERAL(231, 5)   // "index"
+        QT_MOC_LITERAL(231, 5),  // "index"
+        QT_MOC_LITERAL(237, 15),  // "on_name_changed"
+        QT_MOC_LITERAL(253, 4)   // "name"
     },
     "client_main_window",
     "connection",
@@ -116,7 +122,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
     "message",
     "on_is_typing_received",
     "close_tabs",
-    "index"
+    "index",
+    "on_name_changed",
+    "name"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -128,7 +136,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -136,14 +144,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   62,    2, 0x08,    1 /* Private */,
-       3,    2,   63,    2, 0x08,    2 /* Private */,
-       6,    1,   68,    2, 0x08,    5 /* Private */,
-       8,    2,   71,    2, 0x08,    7 /* Private */,
-      10,    2,   76,    2, 0x08,   10 /* Private */,
-      11,    2,   81,    2, 0x08,   13 /* Private */,
-      14,    1,   86,    2, 0x08,   16 /* Private */,
-      15,    1,   89,    2, 0x08,   18 /* Private */,
+       1,    0,   68,    2, 0x08,    1 /* Private */,
+       3,    2,   69,    2, 0x08,    2 /* Private */,
+       6,    1,   74,    2, 0x08,    5 /* Private */,
+       8,    2,   77,    2, 0x08,    7 /* Private */,
+      10,    2,   82,    2, 0x08,   10 /* Private */,
+      11,    2,   87,    2, 0x08,   13 /* Private */,
+      14,    1,   92,    2, 0x08,   16 /* Private */,
+      15,    1,   95,    2, 0x08,   18 /* Private */,
+      17,    1,   98,    2, 0x08,   20 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -154,6 +163,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::Int,   16,
+    QMetaType::Void, QMetaType::QString,   18,
 
        0        // eod
 };
@@ -193,7 +203,10 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'close_tabs'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_name_changed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -212,6 +225,7 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 5: _t->on_text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 6: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->close_tabs((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 8: _t->on_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -236,13 +250,13 @@ int client_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

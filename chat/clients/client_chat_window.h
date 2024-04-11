@@ -24,8 +24,9 @@ public:
     void set_up_window();
 
     const QString &destinator() const;
-
     QString my_name();
+
+    void set_name(QString insert_name = nullptr);
     QString name_inserted();
 
     void message_received(QString message);
@@ -47,7 +48,7 @@ private:
     QListWidgetItem *line;
 
     QLineEdit *insert_message;
-    QLineEdit *insert_name;
+    QString _insert_name;
 
     QPushButton *send_button;
 
@@ -58,8 +59,6 @@ private:
     QString _destinator;
 
     chat_protocol *_protocol;
-
-    QString _primordial_name;
 
 signals:
     void connection_ACK(QString my_name, QStringList other_clients);
@@ -76,7 +75,6 @@ signals:
 private slots:
     void send_message();
     void send_message_client();
-    void send_name();
     void send_file();
 
     void on_is_typing_received(QString sender);
