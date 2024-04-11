@@ -25,7 +25,7 @@ client_main_window::client_main_window(QWidget *parent)
     menu = new QMenu("OPTIONS", this);
 
     QAction *connection = new QAction("Connect", this);
-    connect(connection, &QAction::triggered, this, &client_main_window::connection);
+    connect(connection, &QAction::triggered, this, &client_main_window::connected);
 
     menu->addAction(connection);
     menu_bar->addMenu(menu);
@@ -45,15 +45,17 @@ client_main_window::client_main_window(QWidget *parent)
     VBOX->addWidget(tabs);
 }
 
-void client_main_window::connection()
+/*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+void client_main_window::connected()
 {
     client_chat_window *wid = new client_chat_window(this);
     connect(wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
-    connect(wid, &client_chat_window::connection_ACK, this, &client_main_window::on_connection_ACK);
+    connect(wid, &client_chat_window::clients_list, this, &client_main_window::on_clients_list);
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
+    connect(wid, &client_chat_window::socket_disconnected, this, &client_main_window::on_socket_disconnected);
 
     tabs->addTab(wid, "Server");
 
@@ -65,6 +67,38 @@ void client_main_window::connection()
     status_bar->showMessage("Connected to the Server", 1000);
 }
 
+void client_main_window::close_tabs(int index)
+{
+    client_chat_window *wid = qobject_cast<client_chat_window *>(tabs->widget(index));
+    if (wid)
+        wid->disconnect_client();
+    else
+        qDebug() << "client_main_window ---> close_tabs() --->  Failed to cast the index into a client_chat_window";
+
+    tabs->removeTab(index);
+}
+
+void client_main_window::on_is_typing_received(QString sender)
+{
+    status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
+}
+
+void client_main_window::on_name_changed(QString name)
+{
+    for (QWidget *win : window_map)
+    {
+        client_chat_window *wid = qobject_cast<client_chat_window *>(win);
+        wid->set_name(name);
+    }
+}
+
+void client_main_window::on_socket_disconnected()
+{
+    central_widget->setDisabled(true);
+
+    status_bar->showMessage("The SERVER DISCONNECTED YOU", 999999);
+}
+
 void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
@@ -74,7 +108,7 @@ void client_main_window::on_client_connected(QString client_name)
     window_map.insert(client_name, wid);
 }
 
-void client_main_window::on_connection_ACK(QString my_name, QStringList other_clients)
+void client_main_window::on_clients_list(QString my_name, QStringList other_clients)
 {
     for (QString client_name : other_clients)
     {
@@ -145,27 +179,4 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         qDebug() << "client_name to change not FOUND";
 }
 
-void client_main_window::close_tabs(int index)
-{
-    client_chat_window *wid = qobject_cast<client_chat_window *>(tabs->widget(index));
-    if (wid)
-        wid->disconnect_client();
-    else
-        qDebug() << "client_main_window ---> close_tabs() --->  Failed to cast the index into a client_chat_window";
-
-    tabs->removeTab(index);
-}
-
-void client_main_window::on_is_typing_received(QString sender)
-{
-    status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
-}
-
-void client_main_window::on_name_changed(QString name)
-{
-    for (QWidget *win : window_map)
-    {
-        client_chat_window *wid = qobject_cast<client_chat_window *>(win);
-        wid->set_name(name);
-    }
-}
+/*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/

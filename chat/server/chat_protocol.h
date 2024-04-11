@@ -22,7 +22,7 @@ public:
         reject_sending_file,
         send_file,
         new_client,
-        connection_ACK,
+        clients_list,
         client_new_name,
         client_disconnected,
         disconnected_from
@@ -38,7 +38,7 @@ public:
     QByteArray set_file_message(QString filename);
 
     QByteArray set_new_client_message(QString client_name);
-    QByteArray set_connection_ACK_message(QString client_name, QStringList other_clients);
+    QByteArray set_clients_list_message(QString client_name, QStringList other_clients);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 

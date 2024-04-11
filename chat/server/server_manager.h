@@ -15,12 +15,12 @@ class server_manager : public QMainWindow
 public:
     server_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
     server_manager(QTcpSocket *client, QWidget *parent = nullptr);
-    void disconnect_all_clients();
-
-    void is_typing_for_other_clients(QString sender, QString receiver);
 
     void connect_to_server();
     void disconnect_from_host();
+    void disconnect_all_clients();
+
+    void is_typing_for_other_clients(QString sender, QString receiver);
 
     void send_text(QString text);
     void send_is_typing(QString sender);
@@ -71,10 +71,10 @@ signals:
     void file_saved(QString path);
 
 private slots:
-    void new_connection();
-    void client_disconnected();
+    void on_new_connection();
+    void on_client_disconnected();
 
-    void ready_read();
+    void on_ready_read();
 
 public slots:
     void on_text_for_other_clients(QString sender, QString receiver, QString message);

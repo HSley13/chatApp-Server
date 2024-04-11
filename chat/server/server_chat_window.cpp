@@ -35,12 +35,12 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     send_button = new QPushButton("Send", this);
     connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
 
-    connect(_client, &server_manager::disconnected, this, &server_chat_window::disconnection);
-    connect(_client, &server_manager::text_message_received, this, &server_chat_window::text_message_received);
+    connect(_client, &server_manager::disconnected, this, &server_chat_window::on_disconnected);
+    connect(_client, &server_manager::text_message_received, this, &server_chat_window::on_text_message_received);
     connect(_client, &server_manager::name_changed, this, &server_chat_window::on_client_name_changed);
-    connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::init_receiving_file);
-    connect(_client, &server_manager::file_saved, this, &server_chat_window::file_saved);
-    connect(_client, &server_manager::is_typing_received, this, &server_chat_window::is_typing_received);
+    connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
+    connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
+    connect(_client, &server_manager::is_typing_received, this, &server_chat_window::on_is_typing_received);
 
     connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
@@ -53,10 +53,10 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     VBOX->addWidget(send_button);
 }
 
-void server_chat_window::disconnection()
+/*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+void server_chat_window::on_disconnected()
 {
-    send_button->setEnabled(false);
-    insert_message->setEnabled(false);
+    central_widget->setDisabled(true);
 }
 
 void server_chat_window::send_message()
@@ -91,7 +91,7 @@ void server_chat_window::send_file()
     }
 }
 
-void server_chat_window::text_message_received(QString sender, QString receiver, QString message)
+void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
 {
     sender = nullptr;
 
@@ -112,12 +112,12 @@ void server_chat_window::text_message_received(QString sender, QString receiver,
         emit text_for_other_client(_client->name(), receiver, message);
 }
 
-void server_chat_window::is_typing_received(QString sender, QString receiver)
+void server_chat_window::on_is_typing_received(QString sender, QString receiver)
 {
-    emit is_typing(sender, receiver);
+    emit is_typing_received(sender, receiver);
 }
 
-void server_chat_window::init_receiving_file(QString client_name, QString file_name, qint64 file_size)
+void server_chat_window::on_init_receiving_file(QString client_name, QString file_name, qint64 file_size)
 {
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(client_name, file_name).arg(file_size);
 
@@ -129,7 +129,7 @@ void server_chat_window::init_receiving_file(QString client_name, QString file_n
         _client->send_reject_file();
 }
 
-void server_chat_window::file_saved(QString path)
+void server_chat_window::on_file_saved(QString path)
 {
     QString message = QString("File save at: %1").arg(path);
 
@@ -155,6 +155,7 @@ void server_chat_window::on_client_name_changed(QString old_name, QString name)
     emit client_name_changed(old_name, name);
 }
 
+/*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void server_chat_window::disconnect()
 {
     _client->disconnect_from_host();

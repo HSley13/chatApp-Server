@@ -101,14 +101,14 @@ QByteArray chat_protocol::set_new_client_message(QString client_name)
     return get_data(new_client, client_name);
 }
 
-QByteArray chat_protocol::set_connection_ACK_message(QString client_name, QStringList other_clients)
+QByteArray chat_protocol::set_clients_list_message(QString client_name, QStringList other_clients)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << connection_ACK << client_name << other_clients;
+    out << clients_list << client_name << other_clients;
 
     return byte;
 }

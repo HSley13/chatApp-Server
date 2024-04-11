@@ -61,9 +61,9 @@ constexpr auto qt_meta_stringdata_CLASSserver_managerENDCLASS = QtMocHelpers::st
     "reject_receiving_file",
     "file_saved",
     "path",
-    "new_connection",
-    "client_disconnected",
-    "ready_read",
+    "on_new_connection",
+    "on_client_disconnected",
+    "on_ready_read",
     "on_text_for_other_clients"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
@@ -91,9 +91,9 @@ struct qt_meta_stringdata_CLASSserver_managerENDCLASS_t {
     char stringdata19[22];
     char stringdata20[11];
     char stringdata21[5];
-    char stringdata22[15];
-    char stringdata23[20];
-    char stringdata24[11];
+    char stringdata22[18];
+    char stringdata23[23];
+    char stringdata24[14];
     char stringdata25[26];
 };
 #define QT_MOC_LITERAL(ofs, len) \
@@ -122,10 +122,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_managerENDCLASS_t qt_met
         QT_MOC_LITERAL(237, 21),  // "reject_receiving_file"
         QT_MOC_LITERAL(259, 10),  // "file_saved"
         QT_MOC_LITERAL(270, 4),  // "path"
-        QT_MOC_LITERAL(275, 14),  // "new_connection"
-        QT_MOC_LITERAL(290, 19),  // "client_disconnected"
-        QT_MOC_LITERAL(310, 10),  // "ready_read"
-        QT_MOC_LITERAL(321, 25)   // "on_text_for_other_clients"
+        QT_MOC_LITERAL(275, 17),  // "on_new_connection"
+        QT_MOC_LITERAL(293, 22),  // "on_client_disconnected"
+        QT_MOC_LITERAL(316, 13),  // "on_ready_read"
+        QT_MOC_LITERAL(330, 25)   // "on_text_for_other_clients"
     },
     "server_manager",
     "new_client_connected",
@@ -149,9 +149,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_managerENDCLASS_t qt_met
     "reject_receiving_file",
     "file_saved",
     "path",
-    "new_connection",
-    "client_disconnected",
-    "ready_read",
+    "on_new_connection",
+    "on_client_disconnected",
+    "on_ready_read",
     "on_text_for_other_clients"
 };
 #undef QT_MOC_LITERAL
@@ -248,11 +248,11 @@ Q_CONSTINIT const QMetaObject server_manager::staticMetaObject = { {
         // method 'file_saved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        // method 'new_connection'
+        // method 'on_new_connection'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'client_disconnected'
+        // method 'on_client_disconnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'ready_read'
+        // method 'on_ready_read'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_text_for_other_clients'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -278,9 +278,9 @@ void server_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 6: _t->init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
         case 7: _t->reject_receiving_file(); break;
         case 8: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->new_connection(); break;
-        case 10: _t->client_disconnected(); break;
-        case 11: _t->ready_read(); break;
+        case 9: _t->on_new_connection(); break;
+        case 10: _t->on_client_disconnected(); break;
+        case 11: _t->on_ready_read(); break;
         case 12: _t->on_text_for_other_clients((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         default: ;
         }

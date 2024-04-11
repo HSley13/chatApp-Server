@@ -33,16 +33,14 @@ private:
 
     QVBoxLayout *vbox;
 
-signals:
-
 private slots:
     void disconnect_all_clients();
-    void new_client_connected(QTcpSocket *client);
-    void new_client_disconnected(QTcpSocket *client);
+    void on_new_client_connected(QTcpSocket *client);
+    void on_new_client_disconnected(QTcpSocket *client);
 
-    void set_client_name(QString old_name, QString name);
+    void on_client_name_changed(QString old_name, QString name);
 
-    void is_typing_received(QString sender, QString receiver);
+    void on_is_typing_received(QString sender, QString receiver);
 
     void close_tabs(int index);
 };

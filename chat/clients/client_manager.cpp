@@ -13,13 +13,87 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
         _socket = new QTcpSocket(this);
         _socket->connectToHost(_ip, _port);
 
-        connect(_socket, &QTcpSocket::connected, this, &client_manager::connected);
-        connect(_socket, &QTcpSocket::disconnected, this, &client_manager::disconnected);
-        connect(_socket, &QTcpSocket::readyRead, this, &client_manager::ready_read);
+        connect(_socket, &QTcpSocket::disconnected, this, &client_manager::on_disconnected);
+        connect(_socket, &QTcpSocket::readyRead, this, &client_manager::on_ready_read);
 
         _protocol = new chat_protocol(this);
     }
 }
+
+/*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+void client_manager::on_ready_read()
+{
+    QByteArray data = _socket->readAll();
+    _protocol->load_data(data);
+
+    switch (_protocol->type())
+    {
+    case chat_protocol::text:
+        emit text_message_received(_protocol->sender(), _protocol->message());
+
+        break;
+
+    case chat_protocol::is_typing:
+        emit is_typing_received(_protocol->sender());
+
+        break;
+
+    case chat_protocol::init_sending_file:
+        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
+
+        break;
+
+    case chat_protocol::accept_sending_file:
+        send_file();
+
+        break;
+
+    case chat_protocol::reject_sending_file:
+        emit reject_receiving_file();
+
+        break;
+
+    case chat_protocol::send_file:
+        save_file();
+
+        break;
+
+    case chat_protocol::new_client:
+        emit client_connected(_protocol->client_name());
+
+        break;
+
+    case chat_protocol::clients_list:
+        emit clients_list(_protocol->my_name(), _protocol->clients_name());
+
+        break;
+
+    case chat_protocol::client_new_name:
+        emit client_name_changed(_protocol->old_name(), _protocol->client_name());
+
+        break;
+
+    case chat_protocol::client_disconnected:
+        emit client_disconnected(_protocol->client_name());
+
+        break;
+
+    case chat_protocol::disconnected_from:
+        emit disconnected_from(_protocol->sender());
+
+        break;
+
+    default:
+        break;
+    }
+}
+
+void client_manager::on_disconnected()
+{
+    emit socket_disconnected();
+}
+
+/*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void client_manager::send_text(QString sender, QString receiver, QString text)
 {
@@ -78,72 +152,5 @@ void client_manager::save_file()
         file.close();
 
         emit file_saved(path);
-    }
-}
-
-void client_manager::ready_read()
-{
-    QByteArray data = _socket->readAll();
-    _protocol->load_data(data);
-
-    switch (_protocol->type())
-    {
-    case chat_protocol::text:
-        emit text_message_received(_protocol->sender(), _protocol->message());
-
-        break;
-
-    case chat_protocol::is_typing:
-        emit is_typing_received(_protocol->sender());
-
-        break;
-
-    case chat_protocol::init_sending_file:
-        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
-
-        break;
-
-    case chat_protocol::accept_sending_file:
-        send_file();
-
-        break;
-
-    case chat_protocol::reject_sending_file:
-        emit reject_receiving_file();
-
-        break;
-
-    case chat_protocol::send_file:
-        save_file();
-
-        break;
-
-    case chat_protocol::new_client:
-        emit client_connected(_protocol->client_name());
-
-        break;
-
-    case chat_protocol::connection_ACK:
-        emit connection_ACK(_protocol->my_name(), _protocol->clients_name());
-
-        break;
-
-    case chat_protocol::client_new_name:
-        emit client_name_changed(_protocol->old_name(), _protocol->client_name());
-
-        break;
-
-    case chat_protocol::client_disconnected:
-        emit client_disconnected(_protocol->client_name());
-
-        break;
-
-    case chat_protocol::disconnected_from:
-        emit disconnected_from(_protocol->sender());
-
-        break;
-
-    default:
-        break;
     }
 }

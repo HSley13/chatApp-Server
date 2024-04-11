@@ -42,14 +42,14 @@ constexpr auto qt_meta_stringdata_CLASSserver_main_windowENDCLASS = QtMocHelpers
     "server_main_window",
     "disconnect_all_clients",
     "",
-    "new_client_connected",
+    "on_new_client_connected",
     "QTcpSocket*",
     "client",
-    "new_client_disconnected",
-    "set_client_name",
+    "on_new_client_disconnected",
+    "on_client_name_changed",
     "old_name",
     "name",
-    "is_typing_received",
+    "on_is_typing_received",
     "sender",
     "receiver",
     "close_tabs",
@@ -61,14 +61,14 @@ struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {
     char stringdata0[19];
     char stringdata1[23];
     char stringdata2[1];
-    char stringdata3[21];
+    char stringdata3[24];
     char stringdata4[12];
     char stringdata5[7];
-    char stringdata6[24];
-    char stringdata7[16];
+    char stringdata6[27];
+    char stringdata7[23];
     char stringdata8[9];
     char stringdata9[5];
-    char stringdata10[19];
+    char stringdata10[22];
     char stringdata11[7];
     char stringdata12[9];
     char stringdata13[11];
@@ -81,30 +81,30 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(0, 18),  // "server_main_window"
         QT_MOC_LITERAL(19, 22),  // "disconnect_all_clients"
         QT_MOC_LITERAL(42, 0),  // ""
-        QT_MOC_LITERAL(43, 20),  // "new_client_connected"
-        QT_MOC_LITERAL(64, 11),  // "QTcpSocket*"
-        QT_MOC_LITERAL(76, 6),  // "client"
-        QT_MOC_LITERAL(83, 23),  // "new_client_disconnected"
-        QT_MOC_LITERAL(107, 15),  // "set_client_name"
-        QT_MOC_LITERAL(123, 8),  // "old_name"
-        QT_MOC_LITERAL(132, 4),  // "name"
-        QT_MOC_LITERAL(137, 18),  // "is_typing_received"
-        QT_MOC_LITERAL(156, 6),  // "sender"
-        QT_MOC_LITERAL(163, 8),  // "receiver"
-        QT_MOC_LITERAL(172, 10),  // "close_tabs"
-        QT_MOC_LITERAL(183, 5)   // "index"
+        QT_MOC_LITERAL(43, 23),  // "on_new_client_connected"
+        QT_MOC_LITERAL(67, 11),  // "QTcpSocket*"
+        QT_MOC_LITERAL(79, 6),  // "client"
+        QT_MOC_LITERAL(86, 26),  // "on_new_client_disconnected"
+        QT_MOC_LITERAL(113, 22),  // "on_client_name_changed"
+        QT_MOC_LITERAL(136, 8),  // "old_name"
+        QT_MOC_LITERAL(145, 4),  // "name"
+        QT_MOC_LITERAL(150, 21),  // "on_is_typing_received"
+        QT_MOC_LITERAL(172, 6),  // "sender"
+        QT_MOC_LITERAL(179, 8),  // "receiver"
+        QT_MOC_LITERAL(188, 10),  // "close_tabs"
+        QT_MOC_LITERAL(199, 5)   // "index"
     },
     "server_main_window",
     "disconnect_all_clients",
     "",
-    "new_client_connected",
+    "on_new_client_connected",
     "QTcpSocket*",
     "client",
-    "new_client_disconnected",
-    "set_client_name",
+    "on_new_client_disconnected",
+    "on_client_name_changed",
     "old_name",
     "name",
-    "is_typing_received",
+    "on_is_typing_received",
     "sender",
     "receiver",
     "close_tabs",
@@ -157,17 +157,17 @@ Q_CONSTINIT const QMetaObject server_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<server_main_window, std::true_type>,
         // method 'disconnect_all_clients'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'new_client_connected'
+        // method 'on_new_client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QTcpSocket *, std::false_type>,
-        // method 'new_client_disconnected'
+        // method 'on_new_client_disconnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QTcpSocket *, std::false_type>,
-        // method 'set_client_name'
+        // method 'on_client_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        // method 'is_typing_received'
+        // method 'on_is_typing_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -185,10 +185,10 @@ void server_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         (void)_t;
         switch (_id) {
         case 0: _t->disconnect_all_clients(); break;
-        case 1: _t->new_client_connected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
-        case 2: _t->new_client_disconnected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
-        case 3: _t->set_client_name((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 4: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 1: _t->on_new_client_connected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
+        case 2: _t->on_new_client_disconnected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
+        case 3: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 4: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 5: _t->close_tabs((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }

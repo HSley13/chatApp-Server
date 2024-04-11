@@ -23,7 +23,7 @@ public:
         reject_sending_file,
         send_file,
         new_client,
-        connection_ACK,
+        clients_list,
         client_new_name,
         client_disconnected,
         disconnected_from

@@ -152,7 +152,7 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case connection_ACK:
+    case clients_list:
         in >> _my_name >> _clients_name;
 
         break;

@@ -26,15 +26,16 @@ server_main_window::server_main_window(QWidget *parent)
     vbox->addWidget(disconnect_all);
 
     _server = new server_manager();
-    connect(_server, &server_manager::new_client_connected, this, &server_main_window::new_client_connected);
-    connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::new_client_disconnected);
+    connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
+    connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
     QHBoxLayout *HBOX = new QHBoxLayout(central_widget);
     HBOX->addWidget(tabs, 3);
     HBOX->addLayout(vbox);
 }
 
-void server_main_window::new_client_connected(QTcpSocket *client)
+/*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+void server_main_window::on_new_client_connected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();
 
@@ -43,20 +44,25 @@ void server_main_window::new_client_connected(QTcpSocket *client)
 
     list->addItem(QString("Client %1 Connected").arg(id));
 
-    connect(wid, &server_chat_window::client_name_changed, this, &server_main_window::set_client_name);
-    connect(wid, &server_chat_window::is_typing, this, &server_main_window::is_typing_received);
+    connect(wid, &server_chat_window::client_name_changed, this, &server_main_window::on_client_name_changed);
+    connect(wid, &server_chat_window::is_typing_received, this, &server_main_window::on_is_typing_received);
 
     connect(wid, &server_chat_window::text_for_other_client, _server, &server_manager::on_text_for_other_clients);
 }
 
-void server_main_window::new_client_disconnected(QTcpSocket *client)
+void server_main_window::on_new_client_disconnected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();
 
     list->addItem(QString("Client %1 disconnected").arg(id));
 }
 
-void server_main_window::set_client_name(QString old_name, QString client_name)
+void server_main_window::disconnect_all_clients()
+{
+    _server->disconnect_all_clients();
+}
+
+void server_main_window::on_client_name_changed(QString old_name, QString client_name)
 {
     wid = qobject_cast<QWidget *>(sender());
     int index = tabs->indexOf(wid);
@@ -69,12 +75,7 @@ void server_main_window::set_client_name(QString old_name, QString client_name)
     // _server->update_name(client, old_name, client_name);
 }
 
-void server_main_window::disconnect_all_clients()
-{
-    _server->disconnect_all_clients();
-}
-
-void server_main_window::is_typing_received(QString sender, QString receiver)
+void server_main_window::on_is_typing_received(QString sender, QString receiver)
 {
     if (!receiver.compare("Server"))
         status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
