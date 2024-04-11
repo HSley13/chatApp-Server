@@ -64,6 +64,9 @@ void server_main_window::set_client_name(QString old_name, QString client_name)
     tabs->setTabText(index, client_name);
 
     _server->notify_other_clients(old_name, client_name);
+
+    // QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
+    // _server->update_name(client, old_name, client_name);
 }
 
 void server_main_window::disconnect_all_clients()

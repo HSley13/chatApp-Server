@@ -31,6 +31,8 @@ public:
 
     QString name() const;
 
+    void update_name(QTcpSocket *client, QString old_name, QString new_name);
+
     void notify_other_clients(QString old_name, QString client_name);
 
     void disconnect_from(QString sender, QString receiver);

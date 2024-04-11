@@ -61,6 +61,7 @@ void client_main_window::connection()
 void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
+
     tabs->addTab(wid, client_name);
 
     window_map.insert(client_name, wid);
@@ -116,7 +117,7 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         }
     }
     else
-        qDebug() << "client_main_window ---> on_text_message_received() ---> Message Sender Window not FOUND";
+        qDebug() << "client_main_window ---> on_text_message_received() ---> Message Sender Window not FOUND:" << sender;
 }
 
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
@@ -139,8 +140,6 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 
 void client_main_window::close_tabs(int index)
 {
-    QString client_name = tabs->tabText(index);
-
     client_chat_window *wid = qobject_cast<client_chat_window *>(tabs->widget(index));
     if (wid)
         wid->disconnect_client();

@@ -17,6 +17,7 @@ client_chat_window::client_chat_window(QWidget *parent)
 {
     set_up_window();
 
+    connect(insert_name, &QLineEdit::editingFinished, this, &client_chat_window::send_name);
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
@@ -116,7 +117,7 @@ void client_chat_window::init_receiving_file(QString client_name, QString file_n
 {
     client_name = nullptr;
 
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(destinator(), file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
@@ -180,15 +181,14 @@ void client_chat_window::set_up_window()
     setCentralWidget(central_widget);
 
     insert_name = new QLineEdit(this);
-    insert_name->setPlaceholderText("Insert your name here");
-    connect(insert_name, &QLineEdit::editingFinished, this, &client_chat_window::send_name);
+    insert_name->setPlaceholderText("Insert your name here before doing anything");
 
     list = new QListWidget(this);
 
-    QLabel *message = new QLabel("Send Message-->Server", this);
+    QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
 
-    QPushButton *file = new QPushButton("Open Server Directory", this);
+    QPushButton *file = new QPushButton(QString("Open %1 Directory").arg(destinator()), this);
     connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
 
     QPushButton *send_file = new QPushButton("...", this);
@@ -234,6 +234,14 @@ QString client_chat_window::my_name()
     return name;
 }
 
+QString client_chat_window::name_inserted()
+{
+    _protocol = new chat_protocol(this);
+    QString name = insert_name->text().length() > 0 ? insert_name->text() : _protocol->my_name();
+
+    return name;
+}
+
 void client_chat_window::on_text_message_received(QString sender, QString message)
 {
     emit text_message_received(sender, message);
@@ -248,15 +256,10 @@ void client_chat_window::send_is_typing(QString receiver)
 void client_chat_window::send_is_typing_client(QString receiver)
 {
     receiver = nullptr;
-    _client->send_is_typing(my_name(), destinator());
+    _client->send_is_typing(name_inserted(), destinator());
 }
 
 void client_chat_window::disconnect_client()
 {
     _client->send_disconnect_client_message(my_name(), destinator());
 }
-
-// void client_chat_window::change_destinator_name(QString client_name)
-// {
-//     _destinator = client_name;
-// }

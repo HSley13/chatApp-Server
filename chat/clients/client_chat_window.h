@@ -24,9 +24,9 @@ public:
     void set_up_window();
 
     const QString &destinator() const;
-    // void change_destinator_name(QString client_name);
 
     QString my_name();
+    QString name_inserted();
 
     void message_received(QString message);
 
@@ -58,6 +58,8 @@ private:
     QString _destinator;
 
     chat_protocol *_protocol;
+
+    QString _primordial_name;
 
 signals:
     void connection_ACK(QString my_name, QStringList other_clients);

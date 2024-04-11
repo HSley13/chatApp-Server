@@ -55,8 +55,6 @@ void server_manager::client_disconnected()
 
     QString client_name = client->property("client_name").toString();
 
-    _clients.remove(client_name);
-
     QByteArray message = _protocol->set_client_disconnected_message(client_name);
 
     if (!_clients.isEmpty())
@@ -66,6 +64,8 @@ void server_manager::client_disconnected()
     }
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
+
+    _clients.remove(client_name);
 
     emit new_client_disconnected(client);
 }
@@ -161,15 +161,7 @@ void server_manager::ready_read()
 
         emit name_changed(old_name, name());
 
-        // QTcpSocket *tmp = _clients.value(old_name);
-        // if (tmp)
-        // {
-        //     _clients.insert(name(), tmp);
-
-        //     _clients.remove(old_name);
-        // }
-        // else
-        //     qDebug() << "server_manager--> ready_read()--> can't find a socket for the old_name in _clients";
+        update_name(_socket, old_name, name());
 
         break;
     }
@@ -240,7 +232,7 @@ void server_manager::on_text_for_other_clients(QString sender, QString receiver,
         client->write(_protocol->set_text_message(sender, receiver, message));
 
     else
-        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
+        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND:" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(QString sender, QString receiver)
@@ -251,7 +243,7 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
         client->write(_protocol->set_is_typing_message(sender, ""));
 
     else
-        qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
+        qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND:" << receiver;
 }
 
 void server_manager::disconnect_from(QString sender, QString receiver)
@@ -262,5 +254,17 @@ void server_manager::disconnect_from(QString sender, QString receiver)
         client->write(_protocol->set_disconnected_from_message(sender, ""));
 
     else
-        qDebug() << "server_manager --> disconnect_from() --> receiver not FOUND" << receiver;
+        qDebug() << "server_manager --> disconnect_from() --> receiver not FOUND:" << receiver;
+}
+
+void server_manager::update_name(QTcpSocket *client, QString old_name, QString new_name)
+{
+    if (client)
+    {
+        _clients.insert(new_name, client);
+
+        _clients.remove(old_name);
+    }
+    else
+        qDebug() << "server_manager--> update_name()--> client that was cast in server_main_window --> set_name() is null";
 }
