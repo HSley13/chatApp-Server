@@ -55,7 +55,7 @@ set(__QT_DEPLOY_QT_DEBUG_POSTFIX "")
 
 # Define the CMake commands to be made available during deployment.
 set(__qt_deploy_support_files
-    "/opt/homebrew/Cellar/qt/6.6.2_1/lib/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
+    "/opt/homebrew/Cellar/qt/6.6.2_2/lib/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
 )
 foreach(__qt_deploy_support_file IN LISTS __qt_deploy_support_files)
     include("${__qt_deploy_support_file}")

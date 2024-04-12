@@ -3,7 +3,7 @@
 	"CMAKE_BINARY_DIR" : "/Users/test/Documents/server---clients/build",
 	"CMAKE_CURRENT_BINARY_DIR" : "/Users/test/Documents/server---clients/build/clients",
 	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat/clients",
-	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.29.1/bin/cmake",
+	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.29.2/bin/cmake",
 	"CMAKE_LIST_FILES" : [ "/Users/test/Documents/server---clients/chat/clients/CMakeLists.txt" ],
 	"CMAKE_SOURCE_DIR" : "/Users/test/Documents/server---clients/chat",
 	"CROSS_CONFIG" : false,
@@ -94,7 +94,7 @@
 		"-dM",
 		"-E",
 		"-c",
-		"/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+		"/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
 	],
 	"MOC_PREDEFS_FILE" : "/Users/test/Documents/server---clients/build/clients/client_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,

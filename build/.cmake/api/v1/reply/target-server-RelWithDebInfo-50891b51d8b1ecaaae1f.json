@@ -26,9 +26,9 @@
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
 			"/opt/homebrew/lib/cmake/Qt6/Qt6Config.cmake",
 			"CMakeLists.txt",
-			"/opt/homebrew/Cellar/qt/6.6.2_1/lib/cmake/Qt6/FindWrapOpenGL.cmake",
-			"/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
-			"/opt/homebrew/Cellar/qt/6.6.2_1/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+			"/opt/homebrew/Cellar/qt/6.6.2_2/lib/cmake/Qt6/FindWrapOpenGL.cmake",
+			"/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+			"/opt/homebrew/Cellar/qt/6.6.2_2/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
@@ -50,7 +50,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 18,
+				"line" : 12,
 				"parent" : 0
 			},
 			{

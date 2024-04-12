@@ -48,8 +48,6 @@ signals:
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
 
-    void disconnected_from(QString client_name);
-
     void socket_disconnected();
 
 private slots:

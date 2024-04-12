@@ -135,11 +135,6 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case client_disconnected:
-        in >> _client_name;
-
-        break;
-
     case clients_list:
         in >> _my_name >> _clients_name;
 

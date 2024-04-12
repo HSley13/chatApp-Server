@@ -24,8 +24,6 @@ client_chat_window::client_chat_window(QWidget *parent)
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
-
-    connect(_client, &client_manager::disconnected_from, this, &client_chat_window::on_client_disconnected);
 }
 
 client_chat_window::client_chat_window(QString destinator, QWidget *parent)

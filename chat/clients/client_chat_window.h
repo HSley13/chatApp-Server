@@ -66,8 +66,6 @@ signals:
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
 
-    void disconnect_from(QString client_name);
-
     void socket_disconnected();
 
 private slots:

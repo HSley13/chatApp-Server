@@ -24,8 +24,7 @@ public:
         send_file,
         new_client,
         clients_list,
-        client_new_name,
-        client_disconnected
+        client_new_name
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
