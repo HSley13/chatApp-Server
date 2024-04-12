@@ -71,8 +71,8 @@ void server_main_window::on_client_name_changed(QString old_name, QString client
 
     _server->notify_other_clients(old_name, client_name);
 
-    // QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
-    // _server->update_name(client, old_name, client_name);
+    _server->_names.remove(old_name);
+    _server->_names.insert(old_name, client_name);
 }
 
 void server_main_window::on_is_typing_received(QString sender, QString receiver)

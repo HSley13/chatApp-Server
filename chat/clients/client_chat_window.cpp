@@ -10,7 +10,11 @@
 #include <QUrl>
 #include <QStringList>
 
+QString client_chat_window::_my_name = nullptr;
+QString client_chat_window::_insert_name = nullptr;
+
 client_manager *client_chat_window::_client = nullptr;
+chat_protocol *client_chat_window::_protocol = nullptr;
 
 client_chat_window::client_chat_window(QWidget *parent)
     : QMainWindow(parent)
@@ -71,10 +75,10 @@ void client_chat_window::on_client_connected(QString client_name)
 
 void client_chat_window::on_client_disconnected(QString client_name)
 {
-    emit client_disconnected(client_name, my_name());
+    emit client_disconnected(client_name);
 }
 
-void client_chat_window::on_clients_list(QString my_name, QStringList other_clients)
+void client_chat_window::on_clients_list(QString my_name, QMap<QString, QString> other_clients)
 {
     emit clients_list(my_name, other_clients);
 }
@@ -153,7 +157,7 @@ void client_chat_window::send_is_typing(QString receiver)
 void client_chat_window::send_is_typing_client(QString receiver)
 {
     receiver = nullptr;
-    _client->send_is_typing(name_inserted(), destinator());
+    _client->send_is_typing(my_name(), destinator());
 }
 
 void client_chat_window::send_file()
@@ -180,7 +184,7 @@ void client_chat_window::folder()
     QString executable_directory = QApplication::applicationDirPath();
     QString full_client_directory = QDir(executable_directory).filePath("Server");
 
-    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
+    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
 
     if (!selected_file_path.isEmpty())
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
@@ -196,7 +200,7 @@ void client_chat_window::set_up_window()
     QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
 
-    QPushButton *file = new QPushButton(QString("Open %1 Directory").arg(destinator()), this);
+    QPushButton *file = new QPushButton("Open Directory", this);
     connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
 
     QPushButton *send_file = new QPushButton("...", this);
@@ -238,15 +242,6 @@ void client_chat_window::set_up_window()
 
 QString client_chat_window::my_name()
 {
-    _protocol = new chat_protocol(this);
-    QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
-
-    return name;
-}
-
-QString client_chat_window::name_inserted()
-{
-    _protocol = new chat_protocol(this);
     QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
 
     return name;

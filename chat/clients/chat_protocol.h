@@ -56,7 +56,7 @@ public:
 
     const QString &old_name() const;
     const QString &my_name() const;
-    const QStringList &clients_name() const;
+    const QMap<QString, QString> &clients_name() const;
 
 private:
     QWidget *central_widget;
@@ -76,5 +76,5 @@ private:
 
     QString _old_name;
     QString _my_name;
-    QStringList _clients_name;
+    QMap<QString, QString> _clients_name;
 };

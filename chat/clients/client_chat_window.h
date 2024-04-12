@@ -25,7 +25,6 @@ public:
     QString my_name();
 
     void set_name(QString insert_name = nullptr);
-    QString name_inserted();
 
     void set_up_window();
 
@@ -48,23 +47,23 @@ private:
     QListWidgetItem *line;
 
     QLineEdit *insert_message;
-    QString _insert_name;
 
     QPushButton *send_button;
 
     QHBoxLayout *hbox;
     QVBoxLayout *VBOX;
 
-    QString _my_name;
+    static QString _my_name;
+    static QString _insert_name;
     QString _destinator;
 
-    chat_protocol *_protocol;
+    static chat_protocol *_protocol;
 
 signals:
-    void clients_list(QString my_name, QStringList other_clients);
+    void clients_list(QString my_name, QMap<QString, QString> other_clients);
     void client_connected(QString client_name);
     void client_name_changed(QString old_name, QString client_name);
-    void client_disconnected(QString client_name, QString my_name);
+    void client_disconnected(QString client_name);
 
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
@@ -92,7 +91,7 @@ private slots:
     void on_init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void on_reject_receiving_file();
 
-    void on_clients_list(QString my_name, QStringList other_clients);
+    void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
     void on_client_connected(QString client_name);
     void on_client_name_changed(QString old_name, QString client_name);
     void on_client_disconnected(QString client_name);

@@ -44,14 +44,14 @@ private slots:
     void connected();
     void close_tabs(int index);
 
-    void on_clients_list(QString my_name, QStringList other_clients);
+    void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
     void on_client_connected(QString client_name);
     void on_client_name_changed(QString old_name, QString client_name);
-    void on_client_disconnected(QString client_name, QString my_name);
+    void on_client_disconnected(QString client_name);
 
     void on_text_message_received(QString sender, QString message);
     void on_is_typing_received(QString sender);
-    void on_name_changed(QString name);
+    void on_name_changed();
 
     void on_socket_disconnected();
 };

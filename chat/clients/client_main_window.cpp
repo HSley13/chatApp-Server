@@ -31,9 +31,9 @@ client_main_window::client_main_window(QWidget *parent)
     menu_bar->addMenu(menu);
 
     name = new QLineEdit(this);
-    name->setPlaceholderText("INSERT YOUR NAME HERE");
+    name->setPlaceholderText("INSERT YOUR NAME HERE THEN PRESS ENTER");
     name->setDisabled(true);
-    connect(name, &QLineEdit::textChanged, this, &client_main_window::on_name_changed);
+    connect(name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
 
     tabs = new QTabWidget(this);
     tabs->setDisabled(true);
@@ -62,7 +62,6 @@ void client_main_window::connected()
     window_map.insert("Server", wid);
 
     name->setEnabled(true);
-    tabs->setEnabled(true);
 
     status_bar->showMessage("Connected to the Server", 1000);
 }
@@ -83,12 +82,17 @@ void client_main_window::on_is_typing_received(QString sender)
     status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
 }
 
-void client_main_window::on_name_changed(QString name)
+void client_main_window::on_name_changed()
 {
-    for (QWidget *win : window_map)
+    if (!name->text().isEmpty())
     {
-        client_chat_window *wid = qobject_cast<client_chat_window *>(win);
-        wid->set_name(name);
+        tabs->setEnabled(true);
+
+        for (QWidget *win : window_map)
+        {
+            client_chat_window *wid = qobject_cast<client_chat_window *>(win);
+            wid->set_name(name->text());
+        }
     }
 }
 
@@ -108,13 +112,13 @@ void client_main_window::on_client_connected(QString client_name)
     window_map.insert(client_name, wid);
 }
 
-void client_main_window::on_clients_list(QString my_name, QStringList other_clients)
+void client_main_window::on_clients_list(QString my_name, QMap<QString, QString> other_clients)
 {
     for (QString client_name : other_clients)
     {
         if (client_name.compare(my_name))
         {
-            client_chat_window *wid = new client_chat_window(client_name, this);
+            client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
             tabs->addTab(wid, client_name);
 
             window_map.insert(client_name, wid);
@@ -122,15 +126,8 @@ void client_main_window::on_clients_list(QString my_name, QStringList other_clie
     }
 }
 
-void client_main_window::on_client_disconnected(QString client_name, QString my_name)
+void client_main_window::on_client_disconnected(QString client_name)
 {
-    if (!client_name.compare(my_name))
-    {
-        tabs->setDisabled(true);
-
-        return;
-    }
-
     QWidget *win = window_map.value(client_name);
 
     if (win)
@@ -171,9 +168,6 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 
         window_map.insert(client_name, win);
         window_map.remove(old_name);
-
-        // client_chat_window *wid = qobject_cast<client_chat_window *>(win);
-        // wid->change_destinator_name(client_name);
     }
     else
         qDebug() << "client_name to change not FOUND";

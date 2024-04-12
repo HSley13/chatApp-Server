@@ -55,6 +55,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "client_connected",
     "clients_list",
     "my_name",
+    "QMap<QString,QString>",
     "other_clients",
     "client_name_changed",
     "old_name",
@@ -66,7 +67,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
-    uint offsetsAndSizes[48];
+    uint offsetsAndSizes[50];
     char stringdata0[15];
     char stringdata1[22];
     char stringdata2[1];
@@ -83,14 +84,15 @@ struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
     char stringdata13[17];
     char stringdata14[13];
     char stringdata15[8];
-    char stringdata16[14];
-    char stringdata17[20];
-    char stringdata18[9];
-    char stringdata19[20];
-    char stringdata20[18];
-    char stringdata21[20];
-    char stringdata22[16];
-    char stringdata23[14];
+    char stringdata16[22];
+    char stringdata17[14];
+    char stringdata18[20];
+    char stringdata19[9];
+    char stringdata20[20];
+    char stringdata21[18];
+    char stringdata22[20];
+    char stringdata23[16];
+    char stringdata24[14];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_managerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -112,14 +114,15 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
         QT_MOC_LITERAL(162, 16),  // "client_connected"
         QT_MOC_LITERAL(179, 12),  // "clients_list"
         QT_MOC_LITERAL(192, 7),  // "my_name"
-        QT_MOC_LITERAL(200, 13),  // "other_clients"
-        QT_MOC_LITERAL(214, 19),  // "client_name_changed"
-        QT_MOC_LITERAL(234, 8),  // "old_name"
-        QT_MOC_LITERAL(243, 19),  // "client_disconnected"
-        QT_MOC_LITERAL(263, 17),  // "disconnected_from"
-        QT_MOC_LITERAL(281, 19),  // "socket_disconnected"
-        QT_MOC_LITERAL(301, 15),  // "on_disconnected"
-        QT_MOC_LITERAL(317, 13)   // "on_ready_read"
+        QT_MOC_LITERAL(200, 21),  // "QMap<QString,QString>"
+        QT_MOC_LITERAL(222, 13),  // "other_clients"
+        QT_MOC_LITERAL(236, 19),  // "client_name_changed"
+        QT_MOC_LITERAL(256, 8),  // "old_name"
+        QT_MOC_LITERAL(265, 19),  // "client_disconnected"
+        QT_MOC_LITERAL(285, 17),  // "disconnected_from"
+        QT_MOC_LITERAL(303, 19),  // "socket_disconnected"
+        QT_MOC_LITERAL(323, 15),  // "on_disconnected"
+        QT_MOC_LITERAL(339, 13)   // "on_ready_read"
     },
     "client_manager",
     "text_message_received",
@@ -137,6 +140,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
     "client_connected",
     "clients_list",
     "my_name",
+    "QMap<QString,QString>",
     "other_clients",
     "client_name_changed",
     "old_name",
@@ -171,14 +175,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {
       11,    1,  108,    2, 0x06,   11 /* Public */,
       13,    1,  111,    2, 0x06,   13 /* Public */,
       14,    2,  114,    2, 0x06,   15 /* Public */,
-      17,    2,  119,    2, 0x06,   18 /* Public */,
-      19,    1,  124,    2, 0x06,   21 /* Public */,
-      20,    1,  127,    2, 0x06,   23 /* Public */,
-      21,    0,  130,    2, 0x06,   25 /* Public */,
+      18,    2,  119,    2, 0x06,   18 /* Public */,
+      20,    1,  124,    2, 0x06,   21 /* Public */,
+      21,    1,  127,    2, 0x06,   23 /* Public */,
+      22,    0,  130,    2, 0x06,   25 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      22,    0,  131,    2, 0x08,   26 /* Private */,
-      23,    0,  132,    2, 0x08,   27 /* Private */,
+      23,    0,  131,    2, 0x08,   26 /* Private */,
+      24,    0,  132,    2, 0x08,   27 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
@@ -187,8 +191,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString, QMetaType::QStringList,   15,   16,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   18,    7,
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 16,   15,   17,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,    7,
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
@@ -232,7 +236,7 @@ Q_CONSTINIT const QMetaObject client_manager::staticMetaObject = { {
         // method 'clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
         // method 'client_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -265,7 +269,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 3: _t->reject_receiving_file(); break;
         case 4: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 5: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 6: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
         case 7: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 8: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->disconnected_from((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -319,7 +323,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            using _t = void (client_manager::*)(QString , QStringList );
+            using _t = void (client_manager::*)(QString , QMap<QString,QString> );
             if (_t _q_method = &client_manager::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 6;
                 return;
@@ -428,7 +432,7 @@ void client_manager::client_connected(QString _t1)
 }
 
 // SIGNAL 6
-void client_manager::clients_list(QString _t1, QStringList _t2)
+void client_manager::clients_list(QString _t1, QMap<QString,QString> _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);

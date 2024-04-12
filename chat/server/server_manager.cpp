@@ -3,11 +3,14 @@
 #include <QDateTime>
 #include <QStringList>
 
+QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
+
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
-    : QMainWindow(parent), _ip(ip), _port(port)
+    : QMainWindow(parent),
+      _ip(ip), _port(port)
 {
     _server = new QTcpServer(this);
-    connect(_server, &QTcpServer::newConnection, this, &server_manager::on_new_connection);
+    connect(_server, &QTcpServer::newConnection, this, &server_manager::new_connection);
 
     _server->listen(_ip, _port);
 
@@ -23,7 +26,7 @@ server_manager::server_manager(QTcpSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-void server_manager::on_new_connection()
+void server_manager::new_connection()
 {
     QTcpSocket *client = _server->nextPendingConnection();
 
@@ -35,12 +38,14 @@ void server_manager::on_new_connection()
     client->setProperty("client_name", client_name);
     _clients.insert(client_name, client);
 
+    _names.insert(client_name, client_name);
+
     connect(client, &QTcpSocket::disconnected, this, &server_manager::on_client_disconnected);
     emit new_client_connected(client);
 
     if (id > 1)
     {
-        QByteArray message = _protocol->set_clients_list_message(client_name, _clients.keys());
+        QByteArray message = _protocol->set_clients_list_message(client_name, _names);
         client->write(message);
 
         QByteArray new_client_message = _protocol->set_new_client_message(client_name);
@@ -67,9 +72,7 @@ void server_manager::on_ready_read()
         QString old_name = _socket->property("client_name").toString();
         _socket->setProperty("client_name", name());
 
-        emit name_changed(old_name, name());
-
-        // update_name(_socket, old_name, name());
+        emit client_name_changed(old_name, name());
 
         break;
     }
@@ -128,6 +131,7 @@ void server_manager::on_client_disconnected()
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
 
     _clients.remove(client_name);
+    _names.remove(client_name);
 
     emit new_client_disconnected(client);
 }

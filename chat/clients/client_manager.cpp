@@ -4,6 +4,7 @@
 #include <QStringList>
 
 QTcpSocket *client_manager::_socket = nullptr;
+chat_protocol *client_manager::_protocol = nullptr;
 
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)

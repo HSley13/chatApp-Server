@@ -101,7 +101,7 @@ QByteArray chat_protocol::set_new_client_message(QString client_name)
     return get_data(new_client, client_name);
 }
 
-QByteArray chat_protocol::set_clients_list_message(QString client_name, QStringList other_clients)
+QByteArray chat_protocol::set_clients_list_message(QString client_name, QMap<QString, QString> other_clients)
 {
     QByteArray byte;
 
@@ -219,7 +219,7 @@ const QString &chat_protocol::client_name() const
     return _client_name;
 }
 
-const QStringList &chat_protocol::other_clients() const
+const QMap<QString, QString> &chat_protocol::other_clients() const
 {
     return _other_clients;
 }

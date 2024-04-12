@@ -225,7 +225,7 @@ const QString &chat_protocol::my_name() const
     return _my_name;
 }
 
-const QStringList &chat_protocol::clients_name() const
+const QMap<QString, QString> &chat_protocol::clients_name() const
 {
     return _clients_name;
 }

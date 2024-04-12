@@ -43,6 +43,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "clients_list",
     "",
     "my_name",
+    "QMap<QString,QString>",
     "other_clients",
     "client_connected",
     "client_name",
@@ -78,43 +79,44 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t {
-    uint offsetsAndSizes[72];
+    uint offsetsAndSizes[74];
     char stringdata0[19];
     char stringdata1[13];
     char stringdata2[1];
     char stringdata3[8];
-    char stringdata4[14];
-    char stringdata5[17];
-    char stringdata6[12];
-    char stringdata7[20];
-    char stringdata8[9];
-    char stringdata9[20];
-    char stringdata10[22];
-    char stringdata11[7];
-    char stringdata12[8];
-    char stringdata13[19];
-    char stringdata14[16];
-    char stringdata15[20];
-    char stringdata16[13];
-    char stringdata17[20];
-    char stringdata18[15];
-    char stringdata19[9];
-    char stringdata20[22];
-    char stringdata21[10];
-    char stringdata22[11];
-    char stringdata23[5];
-    char stringdata24[7];
-    char stringdata25[25];
-    char stringdata26[22];
-    char stringdata27[23];
-    char stringdata28[10];
+    char stringdata4[22];
+    char stringdata5[14];
+    char stringdata6[17];
+    char stringdata7[12];
+    char stringdata8[20];
+    char stringdata9[9];
+    char stringdata10[20];
+    char stringdata11[22];
+    char stringdata12[7];
+    char stringdata13[8];
+    char stringdata14[19];
+    char stringdata15[16];
+    char stringdata16[20];
+    char stringdata17[13];
+    char stringdata18[20];
+    char stringdata19[15];
+    char stringdata20[9];
+    char stringdata21[22];
+    char stringdata22[10];
+    char stringdata23[11];
+    char stringdata24[5];
+    char stringdata25[7];
+    char stringdata26[25];
+    char stringdata27[22];
+    char stringdata28[23];
     char stringdata29[10];
-    char stringdata30[25];
-    char stringdata31[16];
-    char stringdata32[20];
-    char stringdata33[23];
+    char stringdata30[10];
+    char stringdata31[25];
+    char stringdata32[16];
+    char stringdata33[20];
     char stringdata34[23];
     char stringdata35[23];
+    char stringdata36[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -124,43 +126,45 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t qt
         QT_MOC_LITERAL(19, 12),  // "clients_list"
         QT_MOC_LITERAL(32, 0),  // ""
         QT_MOC_LITERAL(33, 7),  // "my_name"
-        QT_MOC_LITERAL(41, 13),  // "other_clients"
-        QT_MOC_LITERAL(55, 16),  // "client_connected"
-        QT_MOC_LITERAL(72, 11),  // "client_name"
-        QT_MOC_LITERAL(84, 19),  // "client_name_changed"
-        QT_MOC_LITERAL(104, 8),  // "old_name"
-        QT_MOC_LITERAL(113, 19),  // "client_disconnected"
-        QT_MOC_LITERAL(133, 21),  // "text_message_received"
-        QT_MOC_LITERAL(155, 6),  // "sender"
-        QT_MOC_LITERAL(162, 7),  // "message"
-        QT_MOC_LITERAL(170, 18),  // "is_typing_received"
-        QT_MOC_LITERAL(189, 15),  // "disconnect_from"
-        QT_MOC_LITERAL(205, 19),  // "socket_disconnected"
-        QT_MOC_LITERAL(225, 12),  // "send_message"
-        QT_MOC_LITERAL(238, 19),  // "send_message_client"
-        QT_MOC_LITERAL(258, 14),  // "send_is_typing"
-        QT_MOC_LITERAL(273, 8),  // "receiver"
-        QT_MOC_LITERAL(282, 21),  // "send_is_typing_client"
-        QT_MOC_LITERAL(304, 9),  // "send_file"
-        QT_MOC_LITERAL(314, 10),  // "file_saved"
-        QT_MOC_LITERAL(325, 4),  // "path"
-        QT_MOC_LITERAL(330, 6),  // "folder"
-        QT_MOC_LITERAL(337, 24),  // "on_text_message_received"
-        QT_MOC_LITERAL(362, 21),  // "on_is_typing_received"
-        QT_MOC_LITERAL(384, 22),  // "on_init_receiving_file"
-        QT_MOC_LITERAL(407, 9),  // "file_name"
-        QT_MOC_LITERAL(417, 9),  // "file_size"
-        QT_MOC_LITERAL(427, 24),  // "on_reject_receiving_file"
-        QT_MOC_LITERAL(452, 15),  // "on_clients_list"
-        QT_MOC_LITERAL(468, 19),  // "on_client_connected"
-        QT_MOC_LITERAL(488, 22),  // "on_client_name_changed"
-        QT_MOC_LITERAL(511, 22),  // "on_client_disconnected"
-        QT_MOC_LITERAL(534, 22)   // "on_socket_disconnected"
+        QT_MOC_LITERAL(41, 21),  // "QMap<QString,QString>"
+        QT_MOC_LITERAL(63, 13),  // "other_clients"
+        QT_MOC_LITERAL(77, 16),  // "client_connected"
+        QT_MOC_LITERAL(94, 11),  // "client_name"
+        QT_MOC_LITERAL(106, 19),  // "client_name_changed"
+        QT_MOC_LITERAL(126, 8),  // "old_name"
+        QT_MOC_LITERAL(135, 19),  // "client_disconnected"
+        QT_MOC_LITERAL(155, 21),  // "text_message_received"
+        QT_MOC_LITERAL(177, 6),  // "sender"
+        QT_MOC_LITERAL(184, 7),  // "message"
+        QT_MOC_LITERAL(192, 18),  // "is_typing_received"
+        QT_MOC_LITERAL(211, 15),  // "disconnect_from"
+        QT_MOC_LITERAL(227, 19),  // "socket_disconnected"
+        QT_MOC_LITERAL(247, 12),  // "send_message"
+        QT_MOC_LITERAL(260, 19),  // "send_message_client"
+        QT_MOC_LITERAL(280, 14),  // "send_is_typing"
+        QT_MOC_LITERAL(295, 8),  // "receiver"
+        QT_MOC_LITERAL(304, 21),  // "send_is_typing_client"
+        QT_MOC_LITERAL(326, 9),  // "send_file"
+        QT_MOC_LITERAL(336, 10),  // "file_saved"
+        QT_MOC_LITERAL(347, 4),  // "path"
+        QT_MOC_LITERAL(352, 6),  // "folder"
+        QT_MOC_LITERAL(359, 24),  // "on_text_message_received"
+        QT_MOC_LITERAL(384, 21),  // "on_is_typing_received"
+        QT_MOC_LITERAL(406, 22),  // "on_init_receiving_file"
+        QT_MOC_LITERAL(429, 9),  // "file_name"
+        QT_MOC_LITERAL(439, 9),  // "file_size"
+        QT_MOC_LITERAL(449, 24),  // "on_reject_receiving_file"
+        QT_MOC_LITERAL(474, 15),  // "on_clients_list"
+        QT_MOC_LITERAL(490, 19),  // "on_client_connected"
+        QT_MOC_LITERAL(510, 22),  // "on_client_name_changed"
+        QT_MOC_LITERAL(533, 22),  // "on_client_disconnected"
+        QT_MOC_LITERAL(556, 22)   // "on_socket_disconnected"
     },
     "client_chat_window",
     "clients_list",
     "",
     "my_name",
+    "QMap<QString,QString>",
     "other_clients",
     "client_connected",
     "client_name",
@@ -213,58 +217,58 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    2,  158,    2, 0x06,    1 /* Public */,
-       5,    1,  163,    2, 0x06,    4 /* Public */,
-       7,    2,  166,    2, 0x06,    6 /* Public */,
-       9,    2,  171,    2, 0x06,    9 /* Public */,
-      10,    2,  176,    2, 0x06,   12 /* Public */,
-      13,    1,  181,    2, 0x06,   15 /* Public */,
-      14,    1,  184,    2, 0x06,   17 /* Public */,
-      15,    0,  187,    2, 0x06,   19 /* Public */,
+       6,    1,  163,    2, 0x06,    4 /* Public */,
+       8,    2,  166,    2, 0x06,    6 /* Public */,
+      10,    1,  171,    2, 0x06,    9 /* Public */,
+      11,    2,  174,    2, 0x06,   11 /* Public */,
+      14,    1,  179,    2, 0x06,   14 /* Public */,
+      15,    1,  182,    2, 0x06,   16 /* Public */,
+      16,    0,  185,    2, 0x06,   18 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      16,    0,  188,    2, 0x08,   20 /* Private */,
-      17,    0,  189,    2, 0x08,   21 /* Private */,
-      18,    1,  190,    2, 0x08,   22 /* Private */,
-      20,    1,  193,    2, 0x08,   24 /* Private */,
-      21,    0,  196,    2, 0x08,   26 /* Private */,
-      22,    1,  197,    2, 0x08,   27 /* Private */,
-      24,    0,  200,    2, 0x08,   29 /* Private */,
-      25,    2,  201,    2, 0x08,   30 /* Private */,
-      26,    1,  206,    2, 0x08,   33 /* Private */,
-      27,    3,  209,    2, 0x08,   35 /* Private */,
-      30,    0,  216,    2, 0x08,   39 /* Private */,
-      31,    2,  217,    2, 0x08,   40 /* Private */,
-      32,    1,  222,    2, 0x08,   43 /* Private */,
-      33,    2,  225,    2, 0x08,   45 /* Private */,
-      34,    1,  230,    2, 0x08,   48 /* Private */,
-      35,    0,  233,    2, 0x08,   50 /* Private */,
+      17,    0,  186,    2, 0x08,   19 /* Private */,
+      18,    0,  187,    2, 0x08,   20 /* Private */,
+      19,    1,  188,    2, 0x08,   21 /* Private */,
+      21,    1,  191,    2, 0x08,   23 /* Private */,
+      22,    0,  194,    2, 0x08,   25 /* Private */,
+      23,    1,  195,    2, 0x08,   26 /* Private */,
+      25,    0,  198,    2, 0x08,   28 /* Private */,
+      26,    2,  199,    2, 0x08,   29 /* Private */,
+      27,    1,  204,    2, 0x08,   32 /* Private */,
+      28,    3,  207,    2, 0x08,   34 /* Private */,
+      31,    0,  214,    2, 0x08,   38 /* Private */,
+      32,    2,  215,    2, 0x08,   39 /* Private */,
+      33,    1,  220,    2, 0x08,   42 /* Private */,
+      34,    2,  223,    2, 0x08,   44 /* Private */,
+      35,    1,  228,    2, 0x08,   47 /* Private */,
+      36,    0,  231,    2, 0x08,   49 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::QStringList,    3,    4,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    8,    6,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,   12,
-    QMetaType::Void, QMetaType::QString,   11,
-    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    9,    7,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
+    QMetaType::Void, QMetaType::QString,   12,
+    QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   19,
-    QMetaType::Void, QMetaType::QString,   19,
+    QMetaType::Void, QMetaType::QString,   20,
+    QMetaType::Void, QMetaType::QString,   20,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, QMetaType::QString,   24,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,   12,
-    QMetaType::Void, QMetaType::QString,   11,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    6,   28,   29,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
+    QMetaType::Void, QMetaType::QString,   12,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    7,   29,   30,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QStringList,    3,    4,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    8,    6,
-    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    9,    7,
+    QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
 
        0        // eod
@@ -282,7 +286,7 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         // method 'clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
         // method 'client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -292,7 +296,6 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'client_disconnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'text_message_received'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -340,7 +343,7 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         // method 'on_clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
         // method 'on_client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -363,10 +366,10 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<client_chat_window *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 0: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
         case 1: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 3: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 3: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 5: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 6: _t->disconnect_from((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -382,7 +385,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 16: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 17: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
         case 18: _t->on_reject_receiving_file(); break;
-        case 19: _t->on_clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 19: _t->on_clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
         case 20: _t->on_client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 21: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 22: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -392,7 +395,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (client_chat_window::*)(QString , QStringList );
+            using _t = void (client_chat_window::*)(QString , QMap<QString,QString> );
             if (_t _q_method = &client_chat_window::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -413,7 +416,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             }
         }
         {
-            using _t = void (client_chat_window::*)(QString , QString );
+            using _t = void (client_chat_window::*)(QString );
             if (_t _q_method = &client_chat_window::client_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 3;
                 return;
@@ -481,7 +484,7 @@ int client_chat_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void client_chat_window::clients_list(QString _t1, QStringList _t2)
+void client_chat_window::clients_list(QString _t1, QMap<QString,QString> _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
@@ -502,9 +505,9 @@ void client_chat_window::client_name_changed(QString _t1, QString _t2)
 }
 
 // SIGNAL 3
-void client_chat_window::client_disconnected(QString _t1, QString _t2)
+void client_chat_window::client_disconnected(QString _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 

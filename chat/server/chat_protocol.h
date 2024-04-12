@@ -38,7 +38,7 @@ public:
     QByteArray set_file_message(QString filename);
 
     QByteArray set_new_client_message(QString client_name);
-    QByteArray set_clients_list_message(QString client_name, QStringList other_clients);
+    QByteArray set_clients_list_message(QString client_name, QMap<QString, QString> other_clients);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
@@ -54,7 +54,7 @@ public:
     const QByteArray &file_data() const;
 
     const QString &client_name() const;
-    const QStringList &other_clients() const;
+    const QMap<QString, QString> &other_clients() const;
 
     const QString &receiver() const;
     const QString &sender() const;
@@ -75,5 +75,5 @@ private:
     QString _client_name;
     QString _receiver;
     QString _sender;
-    QStringList _other_clients;
+    QMap<QString, QString> _other_clients;
 };

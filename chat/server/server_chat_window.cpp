@@ -37,7 +37,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
     connect(_client, &server_manager::disconnected, this, &server_chat_window::on_disconnected);
     connect(_client, &server_manager::text_message_received, this, &server_chat_window::on_text_message_received);
-    connect(_client, &server_manager::name_changed, this, &server_chat_window::on_client_name_changed);
+    connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
     connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
     connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
     connect(_client, &server_manager::is_typing_received, this, &server_chat_window::on_is_typing_received);
@@ -93,8 +93,6 @@ void server_chat_window::send_file()
 
 void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
 {
-    sender = nullptr;
-
     if (!receiver.compare("Server"))
     {
         wid = new chat_line();
@@ -109,7 +107,7 @@ void server_chat_window::on_text_message_received(QString sender, QString receiv
         list->setItemWidget(line, wid);
     }
     else
-        emit text_for_other_client(_client->name(), receiver, message);
+        emit text_for_other_client(sender, receiver, message);
 }
 
 void server_chat_window::on_is_typing_received(QString sender, QString receiver)
