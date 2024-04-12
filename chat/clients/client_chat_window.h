@@ -30,8 +30,6 @@ public:
 
     void message_received(QString message);
 
-    void disconnect_client();
-
 private:
     QWidget *central_widget;
 

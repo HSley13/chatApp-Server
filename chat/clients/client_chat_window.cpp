@@ -252,11 +252,6 @@ const QString &client_chat_window::destinator() const
     return _destinator;
 }
 
-void client_chat_window::disconnect_client()
-{
-    _client->send_disconnect_client_message(my_name(), destinator());
-}
-
 void client_chat_window::set_name(QString insert_name)
 {
     _insert_name = insert_name;

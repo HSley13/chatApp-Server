@@ -79,11 +79,6 @@ void client_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::disconnected_from:
-        emit disconnected_from(_protocol->sender());
-
-        break;
-
     default:
         break;
     }
@@ -130,11 +125,6 @@ void client_manager::send_reject_file()
 void client_manager::send_file()
 {
     _socket->write(_protocol->set_file_message(_file_name));
-}
-
-void client_manager::send_disconnect_client_message(QString sender, QString receiver)
-{
-    _socket->write(_protocol->set_disconnected_from_message(sender, receiver));
 }
 
 void client_manager::save_file()

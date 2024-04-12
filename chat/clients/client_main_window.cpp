@@ -9,6 +9,9 @@
 #include <QUrl>
 #include <QStringList>
 
+QMap<QString, QWidget *> client_main_window::window_map = QMap<QString, QWidget *>();
+QMap<QString, QString> client_main_window::name_list = QMap<QString, QString>();
+
 client_main_window::client_main_window(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -68,11 +71,9 @@ void client_main_window::connected()
 
 void client_main_window::close_tabs(int index)
 {
-    client_chat_window *wid = qobject_cast<client_chat_window *>(tabs->widget(index));
-    if (wid)
-        wid->disconnect_client();
-    else
-        qDebug() << "client_main_window ---> close_tabs() --->  Failed to cast the index into a client_chat_window";
+    QMap<QString, QWidget *>::iterator it = window_map.find(tabs->tabText(index));
+    if (it != window_map.end())
+        window_map.erase(it);
 
     tabs->removeTab(index);
 }
@@ -109,6 +110,8 @@ void client_main_window::on_client_connected(QString client_name)
 
     tabs->addTab(wid, client_name);
 
+    name_list.insert(client_name, client_name);
+
     window_map.insert(client_name, wid);
 }
 
@@ -120,6 +123,8 @@ void client_main_window::on_clients_list(QString my_name, QMap<QString, QString>
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
             tabs->addTab(wid, client_name);
+
+            name_list.insert(other_clients.key(client_name), client_name);
 
             window_map.insert(client_name, wid);
         }
@@ -134,7 +139,11 @@ void client_main_window::on_client_disconnected(QString client_name)
     {
         tabs->widget(tabs->indexOf(win))->setDisabled(true);
 
-        window_map.remove(client_name);
+        QMap<QString, QWidget *>::iterator it = window_map.find(client_name);
+        if (it != window_map.end())
+            window_map.erase(it);
+
+        name_list.remove(client_name);
     }
     else
         qDebug() << "client_main_window ---> on_client_disconnected() --> client_name to Disconnect not FOUND: " << client_name;
@@ -148,14 +157,24 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         client_chat_window *wid = qobject_cast<client_chat_window *>(win);
 
         if (wid)
+            wid->message_received(message);
+
+        else
+            qDebug() << "client_main_window ---> on_text_message_received --> ERROR CASTING THE WIDGET:";
+    }
+    else
+    {
+        client_chat_window *wid = new client_chat_window(name_list.key(sender), this);
+
+        if (wid)
         {
             wid->message_received(message);
 
-            return;
+            tabs->addTab(wid, sender);
+
+            window_map.insert(sender, wid);
         }
     }
-    else
-        qDebug() << "client_main_window ---> on_text_message_received() ---> Message Sender Window not FOUND:" << sender;
 }
 
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
@@ -168,6 +187,8 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 
         window_map.insert(client_name, win);
         window_map.remove(old_name);
+
+        name_list.insert(old_name, client_name);
     }
     else
         qDebug() << "client_name to change not FOUND";

@@ -36,7 +36,9 @@ private:
     QVBoxLayout *VBOX;
     client_manager *_client;
 
-    QMap<QString, QWidget *> window_map;
+    static QMap<QString, QWidget *> window_map;
+
+    static QMap<QString, QString> name_list;
 
     QLineEdit *name;
 

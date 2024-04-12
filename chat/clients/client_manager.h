@@ -23,8 +23,6 @@ public:
     void send_file();
     void save_file();
 
-    void send_disconnect_client_message(QString sender, QString receiver);
-
 private:
     QWidget *_central_widget;
 

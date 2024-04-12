@@ -25,8 +25,7 @@ public:
         new_client,
         clients_list,
         client_new_name,
-        client_disconnected,
-        disconnected_from
+        client_disconnected
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -37,8 +36,6 @@ public:
     QByteArray set_accept_file_message();
     QByteArray set_reject_file_message();
     QByteArray set_file_message(QString filename);
-
-    QByteArray set_disconnected_from_message(QString sender, QString receiver);
 
     void load_data(QByteArray data);
 
