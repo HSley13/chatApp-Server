@@ -69,13 +69,13 @@ void server_main_window::on_client_name_changed(QString old_name, QString client
 
     tabs->setTabText(index, client_name);
 
+    _server->notify_other_clients(old_name, client_name);
+
     QMap<QString, QString>::iterator it = _server->_names.find(old_name);
     if (it != _server->_names.end())
         _server->_names.erase(it);
 
     _server->_names.insert(old_name, client_name);
-
-    _server->notify_other_clients(old_name, client_name);
 }
 
 void server_main_window::on_is_typing_received(QString sender, QString receiver)

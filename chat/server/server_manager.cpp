@@ -82,8 +82,6 @@ void server_manager::on_ready_read()
 
         emit client_name_changed(old_name, name());
 
-        _names.insert(old_name, name());
-
         break;
     }
 
