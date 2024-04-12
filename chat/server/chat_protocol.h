@@ -24,8 +24,7 @@ public:
         new_client,
         clients_list,
         client_new_name,
-        client_disconnected,
-        disconnected_from
+        client_disconnected
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -41,8 +40,6 @@ public:
     QByteArray set_clients_list_message(QString client_name, QMap<QString, QString> other_clients);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
-
-    QByteArray set_disconnected_from_message(QString sender, QString receiver);
 
     void load_data(QByteArray data);
 

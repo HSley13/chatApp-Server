@@ -130,18 +130,6 @@ QByteArray chat_protocol::set_client_disconnected_message(QString client_name)
     return get_data(client_disconnected, client_name);
 }
 
-QByteArray chat_protocol::set_disconnected_from_message(QString sender, QString receiver)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-
-    out << disconnected_from << sender << receiver;
-
-    return byte;
-}
-
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -171,11 +159,6 @@ void chat_protocol::load_data(QByteArray data)
 
     case send_file:
         in >> _file_name >> _file_size >> _file_data;
-
-        break;
-
-    case disconnected_from:
-        in >> _sender >> _receiver;
 
         break;
 

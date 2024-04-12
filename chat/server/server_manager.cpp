@@ -102,11 +102,6 @@ void server_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::disconnected_from:
-        disconnect_from(_protocol->sender(), _protocol->receiver());
-
-        break;
-
     default:
         break;
     }
@@ -250,17 +245,6 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
 
     else
         qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
-}
-
-void server_manager::disconnect_from(QString sender, QString receiver)
-{
-    QTcpSocket *client = _clients.value(receiver);
-
-    if (client)
-        client->write(_protocol->set_disconnected_from_message(sender, ""));
-
-    else
-        qDebug() << "server_manager --> disconnect_from() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::update_name(QTcpSocket *client, QString old_name, QString new_name)

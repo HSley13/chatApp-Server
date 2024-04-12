@@ -35,8 +35,6 @@ public:
 
     void notify_other_clients(QString old_name, QString client_name);
 
-    void disconnect_from(QString sender, QString receiver);
-
     QMap<QString, QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
 
     static QMap<QString, QString> _names;

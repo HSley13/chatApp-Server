@@ -74,6 +74,11 @@ void client_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::client_disconnected:
+        emit client_disconnected(_protocol->client_name());
+
+        break;
+
     default:
         break;
     }
