@@ -246,15 +246,3 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
     else
         qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
 }
-
-void server_manager::update_name(QTcpSocket *client, QString old_name, QString new_name)
-{
-    if (client)
-    {
-        _clients.insert(new_name, client);
-
-        _clients.remove(old_name);
-    }
-    else
-        qDebug() << "server_manager--> update_name()--> client that was cast in server_main_window --> set_name() is null";
-}

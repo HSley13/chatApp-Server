@@ -31,8 +31,6 @@ public:
 
     QString name() const;
 
-    void update_name(QTcpSocket *client, QString old_name, QString new_name);
-
     void notify_other_clients(QString old_name, QString client_name);
 
     QMap<QString, QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
