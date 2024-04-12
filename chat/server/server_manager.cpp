@@ -45,7 +45,15 @@ void server_manager::new_connection()
 
     if (id > 1)
     {
-        QByteArray message = _protocol->set_clients_list_message(client_name, _names);
+        QMap<QString, QString> checked_names;
+
+        for (QMap<QString, QTcpSocket *>::iterator it = _clients.begin(); it != _clients.end(); it++)
+        {
+            if (_names.contains(it.key()))
+                checked_names.insert(it.key(), _names.value(it.key()));
+        }
+
+        QByteArray message = _protocol->set_clients_list_message(client_name, checked_names);
         client->write(message);
 
         QByteArray new_client_message = _protocol->set_new_client_message(client_name);
@@ -73,6 +81,8 @@ void server_manager::on_ready_read()
         _socket->setProperty("client_name", name());
 
         emit client_name_changed(old_name, name());
+
+        _names.insert(old_name, name());
 
         break;
     }
