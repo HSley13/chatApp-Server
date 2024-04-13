@@ -20,15 +20,13 @@ class server_chat_window : public QMainWindow
 public:
     server_chat_window(QTcpSocket *client, QWidget *parent = nullptr);
 
-    void disconnect();
+    void disconnect_from_host();
 
 private:
     QWidget *central_widget;
 
     QListWidget *list;
     QListWidgetItem *line;
-
-    QHBoxLayout *hbox;
 
     QLineEdit *insert_message;
     QPushButton *send_button;
@@ -53,8 +51,6 @@ private slots:
 
     void on_text_message_received(QString sender, QString receiver, QString message);
     void on_is_typing_received(QString sender, QString receiver);
-
-    void on_disconnected();
 
     void on_init_receiving_file(QString client_name, QString file_name, qint64 file_size);
     void on_file_saved(QString path);

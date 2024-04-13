@@ -16,7 +16,6 @@ public:
     server_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
     server_manager(QTcpSocket *client, QWidget *parent = nullptr);
 
-    void connect_to_server();
     void disconnect_from_host();
     void disconnect_all_clients();
 
@@ -29,11 +28,11 @@ public:
     void send_accept_file();
     void send_reject_file();
 
-    QString name() const;
-
     void notify_other_clients(QString old_name, QString client_name);
 
-    QMap<QString, QTcpSocket *> _clients; // I made it public cause I nedd an object within the server_main_window's destructor to access it and call delete on all clients'pointer
+    QString name() const;
+
+    QMap<QString, QTcpSocket *> _clients;
 
     static QMap<QString, QString> _names;
 
@@ -56,8 +55,6 @@ private:
 signals:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
-
-    void disconnected();
 
     void text_message_received(QString sender, QString receiver, QString message);
     void client_name_changed(QString old_name, QString name);

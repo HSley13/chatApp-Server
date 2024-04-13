@@ -51,7 +51,6 @@ private:
 
 private slots:
     void connected();
-    // void close_tabs(int index);
 
     void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
     void on_client_connected(QString client_name);

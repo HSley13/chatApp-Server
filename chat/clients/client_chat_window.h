@@ -19,12 +19,10 @@ public:
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
     const QString &destinator() const;
+    void window_name(QString name);
 
     QString my_name();
-
     void set_name(QString insert_name);
-
-    void window_name(QString name);
 
     void set_up_window();
 

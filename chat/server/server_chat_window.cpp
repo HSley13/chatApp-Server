@@ -18,47 +18,43 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     _protocol = new chat_protocol(this);
     _client = new server_manager(client);
 
+    insert_message = new QLineEdit(this);
+    insert_message->setPlaceholderText("Insert New Message");
+    connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
+
+    send_button = new QPushButton("Send", this);
+    connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
+
+    QHBoxLayout *hbox_1 = new QHBoxLayout();
+    hbox_1->addWidget(insert_message, 7);
+    hbox_1->addWidget(send_button, 3);
+
     QPushButton *file = new QPushButton("Open Client Directory", this);
     connect(file, &QPushButton::clicked, this, &server_chat_window::folder);
 
     QPushButton *send_file = new QPushButton("...", this);
     connect(send_file, &QPushButton::clicked, this, &server_chat_window::send_file);
 
-    QLabel *message = new QLabel("Insert Message", this);
-    insert_message = new QLineEdit(this);
-    hbox = new QHBoxLayout();
-    hbox->addWidget(message);
-    hbox->addWidget(insert_message);
-    hbox->addWidget(file);
-    hbox->addWidget(send_file);
+    QHBoxLayout *hbox_2 = new QHBoxLayout();
+    hbox_2->addWidget(insert_message, 7);
+    hbox_2->addWidget(send_button, 3);
 
-    send_button = new QPushButton("Send", this);
-    connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
+    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
+    VBOX->addWidget(list);
+    VBOX->addLayout(hbox_1);
+    VBOX->addLayout(hbox_2);
 
-    connect(_client, &server_manager::disconnected, this, &server_chat_window::on_disconnected);
+    dir.mkdir(_client->name());
+    dir.setPath("./" + _client->name());
+
     connect(_client, &server_manager::text_message_received, this, &server_chat_window::on_text_message_received);
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
     connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
     connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
     connect(_client, &server_manager::is_typing_received, this, &server_chat_window::on_is_typing_received);
-
-    connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
-
-    dir.mkdir(_client->name());
-    dir.setPath("./" + _client->name());
-
-    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(list);
-    VBOX->addLayout(hbox);
-    VBOX->addWidget(send_button);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-void server_chat_window::on_disconnected()
-{
-    central_widget->setDisabled(true);
-}
-
 void server_chat_window::send_message()
 {
     QString message = insert_message->text();
@@ -154,7 +150,7 @@ void server_chat_window::on_client_name_changed(QString old_name, QString name)
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
-void server_chat_window::disconnect()
+void server_chat_window::disconnect_from_host()
 {
     _client->disconnect_from_host();
 }

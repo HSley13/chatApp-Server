@@ -111,16 +111,6 @@ void client_main_window::on_item_clicked(QListWidgetItem *item)
         qDebug() << "client_main_window--> on_item_clicked()--> window to forward not FOUND: " << client_name;
 }
 
-// void client_main_window::close_tabs(int index)
-// {
-
-//     // QMap<QString, QWidget *>::iterator it = window_map.find(tabs->tabText(index));
-//     // // if (it != window_map.end())
-//     // //     window_map.erase(it);
-
-//     // // tabs->removeTab(index);
-// }
-
 void client_main_window::on_is_typing_received(QString sender)
 {
     status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
@@ -144,7 +134,7 @@ void client_main_window::on_socket_disconnected()
 {
     stack->setDisabled(true);
 
-    status_bar->showMessage("The SERVER DISCONNECTED YOU", 999999);
+    status_bar->showMessage("SERVER DISCONNECTED YOU", 999999);
 }
 
 void client_main_window::on_client_connected(QString client_name)

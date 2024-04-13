@@ -90,7 +90,7 @@ void server_main_window::on_is_typing_received(QString sender, QString receiver)
 void server_main_window::close_tabs(int index)
 {
     server_chat_window *wid = qobject_cast<server_chat_window *>(tabs->widget(index));
-    wid->disconnect();
+    wid->disconnect_from_host();
 
     tabs->removeTab(index);
 }
