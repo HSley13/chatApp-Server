@@ -48,6 +48,7 @@ void server_main_window::on_new_client_connected(QTcpSocket *client)
     connect(wid, &server_chat_window::is_typing_received, this, &server_main_window::on_is_typing_received);
 
     connect(wid, &server_chat_window::text_for_other_client, _server, &server_manager::on_text_for_other_clients);
+    connect(wid, &server_chat_window::file_for_other_client, _server, &server_manager::on_file_for_other_clients);
 }
 
 void server_main_window::on_new_client_disconnected(QTcpSocket *client)

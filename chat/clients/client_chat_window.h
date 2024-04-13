@@ -44,6 +44,7 @@ private:
     QLineEdit *insert_message;
 
     QPushButton *send_button;
+    QPushButton *send_file_button;
 
     static QString _my_name;
     static QString _insert_name;
@@ -75,6 +76,7 @@ private slots:
     void send_is_typing_client(QString receiver);
 
     void send_file();
+    void send_file_client();
 
     void file_saved(QString path);
     void folder();
@@ -82,7 +84,7 @@ private slots:
     void on_text_message_received(QString sender, QString message);
     void on_is_typing_received(QString sender);
 
-    void on_init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void on_init_receiving_file(QString sender, QString file_name, qint64 file_size);
     void on_reject_receiving_file();
 
     void on_clients_list(QString my_name, QMap<QString, QString> other_clients);

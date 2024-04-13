@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QTcpSocket>
 #include <QHostAddress>
+#include <QTcpServer>
 
 class client_manager : public QMainWindow
 {
@@ -16,12 +17,12 @@ public:
     void send_name(QString name);
     void send_is_typing(QString sender, QString receiver);
 
-    void send_init_sending_file(QString filename);
-    void send_accept_file();
-    void send_reject_file();
+    void send_init_sending_file(QString sender, QString receiver, QString filename);
+    void send_accept_file(QString receiver, int port);
+    void send_reject_file(QString sender, QString receiver);
 
-    void send_file();
-    void save_file();
+    void send_file(int port);
+    void save_file(QString sender);
 
 private:
     QWidget *_central_widget;
@@ -32,13 +33,15 @@ private:
 
     static chat_protocol *_protocol;
 
+    QTcpServer *ser;
+
     QString _file_name;
 
 signals:
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
 
-    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
+    void init_receiving_file(QString sender, QString file_name, qint64 file_size);
     void reject_receiving_file();
 
     void file_saved(QString path);
@@ -54,4 +57,6 @@ private slots:
     void on_disconnected();
 
     void on_ready_read();
+
+    void file_connect();
 };

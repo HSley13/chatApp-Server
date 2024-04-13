@@ -73,8 +73,8 @@ private:
 
     static port_pool *_pool;
 
-    void send_file();
-    void save_file();
+    void send_file(QString receiver, int port);
+    void save_file(QString sender);
 
 signals:
     void new_client_connected(QTcpSocket *client);
@@ -84,10 +84,11 @@ signals:
     void client_name_changed(QString old_name, QString name);
     void is_typing_received(QString sender, QString receiver);
 
-    void init_receiving_file(QString client_name, QString file_name, qint64 file_size);
-    void reject_receiving_file();
+    void init_receiving_file(QString sender, QString receiver, QString file_name, qint64 file_size);
 
     void file_saved(QString path);
+
+    void reject_receiving_file(QString sender, QString receiver);
 
 private slots:
     void new_connection();
@@ -97,4 +98,8 @@ private slots:
 
 public slots:
     void on_text_for_other_clients(QString sender, QString receiver, QString message);
+
+    void on_file_for_other_clients(QString sender, QString receiver, QString file_name);
+
+    void on_reject_receiving_file_for_other_clients(QString sender, QString receiver);
 };

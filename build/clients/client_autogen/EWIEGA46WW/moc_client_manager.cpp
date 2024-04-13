@@ -46,13 +46,13 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "message",
     "is_typing_received",
     "init_receiving_file",
-    "client_name",
     "file_name",
     "file_size",
     "reject_receiving_file",
     "file_saved",
     "path",
     "client_connected",
+    "client_name",
     "clients_list",
     "my_name",
     "QMap<QString,QString>",
@@ -62,11 +62,12 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "client_disconnected",
     "socket_disconnected",
     "on_disconnected",
-    "on_ready_read"
+    "on_ready_read",
+    "file_connect"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
-    uint offsetsAndSizes[48];
+    uint offsetsAndSizes[50];
     char stringdata0[15];
     char stringdata1[22];
     char stringdata2[1];
@@ -74,13 +75,13 @@ struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
     char stringdata4[8];
     char stringdata5[19];
     char stringdata6[20];
-    char stringdata7[12];
+    char stringdata7[10];
     char stringdata8[10];
-    char stringdata9[10];
-    char stringdata10[22];
-    char stringdata11[11];
-    char stringdata12[5];
-    char stringdata13[17];
+    char stringdata9[22];
+    char stringdata10[11];
+    char stringdata11[5];
+    char stringdata12[17];
+    char stringdata13[12];
     char stringdata14[13];
     char stringdata15[8];
     char stringdata16[22];
@@ -91,6 +92,7 @@ struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
     char stringdata21[20];
     char stringdata22[16];
     char stringdata23[14];
+    char stringdata24[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_managerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -103,13 +105,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
         QT_MOC_LITERAL(45, 7),  // "message"
         QT_MOC_LITERAL(53, 18),  // "is_typing_received"
         QT_MOC_LITERAL(72, 19),  // "init_receiving_file"
-        QT_MOC_LITERAL(92, 11),  // "client_name"
-        QT_MOC_LITERAL(104, 9),  // "file_name"
-        QT_MOC_LITERAL(114, 9),  // "file_size"
-        QT_MOC_LITERAL(124, 21),  // "reject_receiving_file"
-        QT_MOC_LITERAL(146, 10),  // "file_saved"
-        QT_MOC_LITERAL(157, 4),  // "path"
-        QT_MOC_LITERAL(162, 16),  // "client_connected"
+        QT_MOC_LITERAL(92, 9),  // "file_name"
+        QT_MOC_LITERAL(102, 9),  // "file_size"
+        QT_MOC_LITERAL(112, 21),  // "reject_receiving_file"
+        QT_MOC_LITERAL(134, 10),  // "file_saved"
+        QT_MOC_LITERAL(145, 4),  // "path"
+        QT_MOC_LITERAL(150, 16),  // "client_connected"
+        QT_MOC_LITERAL(167, 11),  // "client_name"
         QT_MOC_LITERAL(179, 12),  // "clients_list"
         QT_MOC_LITERAL(192, 7),  // "my_name"
         QT_MOC_LITERAL(200, 21),  // "QMap<QString,QString>"
@@ -119,7 +121,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
         QT_MOC_LITERAL(265, 19),  // "client_disconnected"
         QT_MOC_LITERAL(285, 19),  // "socket_disconnected"
         QT_MOC_LITERAL(305, 15),  // "on_disconnected"
-        QT_MOC_LITERAL(321, 13)   // "on_ready_read"
+        QT_MOC_LITERAL(321, 13),  // "on_ready_read"
+        QT_MOC_LITERAL(335, 12)   // "file_connect"
     },
     "client_manager",
     "text_message_received",
@@ -128,13 +131,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
     "message",
     "is_typing_received",
     "init_receiving_file",
-    "client_name",
     "file_name",
     "file_size",
     "reject_receiving_file",
     "file_saved",
     "path",
     "client_connected",
+    "client_name",
     "clients_list",
     "my_name",
     "QMap<QString,QString>",
@@ -144,7 +147,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
     "client_disconnected",
     "socket_disconnected",
     "on_disconnected",
-    "on_ready_read"
+    "on_ready_read",
+    "file_connect"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -156,7 +160,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -164,34 +168,36 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {
       10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   86,    2, 0x06,    1 /* Public */,
-       5,    1,   91,    2, 0x06,    4 /* Public */,
-       6,    3,   94,    2, 0x06,    6 /* Public */,
-      10,    0,  101,    2, 0x06,   10 /* Public */,
-      11,    1,  102,    2, 0x06,   11 /* Public */,
-      13,    1,  105,    2, 0x06,   13 /* Public */,
-      14,    2,  108,    2, 0x06,   15 /* Public */,
-      18,    2,  113,    2, 0x06,   18 /* Public */,
-      20,    1,  118,    2, 0x06,   21 /* Public */,
-      21,    0,  121,    2, 0x06,   23 /* Public */,
+       1,    2,   92,    2, 0x06,    1 /* Public */,
+       5,    1,   97,    2, 0x06,    4 /* Public */,
+       6,    3,  100,    2, 0x06,    6 /* Public */,
+       9,    0,  107,    2, 0x06,   10 /* Public */,
+      10,    1,  108,    2, 0x06,   11 /* Public */,
+      12,    1,  111,    2, 0x06,   13 /* Public */,
+      14,    2,  114,    2, 0x06,   15 /* Public */,
+      18,    2,  119,    2, 0x06,   18 /* Public */,
+      20,    1,  124,    2, 0x06,   21 /* Public */,
+      21,    0,  127,    2, 0x06,   23 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      22,    0,  122,    2, 0x08,   24 /* Private */,
-      23,    0,  123,    2, 0x08,   25 /* Private */,
+      22,    0,  128,    2, 0x08,   24 /* Private */,
+      23,    0,  129,    2, 0x08,   25 /* Private */,
+      24,    0,  130,    2, 0x08,   26 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
     QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    7,    8,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    3,    7,    8,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   12,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::QString, 0x80000000 | 16,   15,   17,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,    7,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,   13,
+    QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -243,6 +249,8 @@ Q_CONSTINIT const QMetaObject client_manager::staticMetaObject = { {
         // method 'on_disconnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_ready_read'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'file_connect'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -266,6 +274,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 9: _t->socket_disconnected(); break;
         case 10: _t->on_disconnected(); break;
         case 11: _t->on_ready_read(); break;
+        case 12: _t->file_connect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -362,13 +371,13 @@ int client_manager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

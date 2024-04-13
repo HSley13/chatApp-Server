@@ -2,6 +2,7 @@
 #include <QDir>
 #include <QDateTime>
 #include <QStringList>
+#include <QMessageBox>
 
 port_pool::port_pool(int start, int end)
 {
@@ -135,22 +136,22 @@ void server_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file:
-        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
+        emit init_receiving_file(_protocol->sender(), _protocol->receiver(), _protocol->file_name(), _protocol->file_size());
 
         break;
 
     case chat_protocol::accept_sending_file:
-        send_file();
+        send_file(_protocol->receiver(), _protocol->port());
 
         break;
 
     case chat_protocol::reject_sending_file:
-        emit reject_receiving_file();
+        emit reject_receiving_file(_protocol->sender(), _protocol->receiver());
 
         break;
 
     case chat_protocol::send_file:
-        save_file();
+        save_file(_protocol->sender());
 
         break;
 
@@ -219,30 +220,42 @@ void server_manager::send_init_sending_file(QString filename)
 {
     _file_name = filename;
 
-    _socket->write(_protocol->set_init_sending_file_message(filename));
+    _socket->write(_protocol->set_init_sending_file_message("Server", name(), filename));
 }
 
 void server_manager::send_accept_file()
 {
-    _socket->write(_protocol->set_accept_file_message());
+    _socket->write(_protocol->set_accept_file_message(12345));
 }
 
 void server_manager::send_reject_file()
 {
-    _socket->write(_protocol->set_reject_file_message());
+    _socket->write(_protocol->set_reject_file_message("Server", name()));
 }
 
-void server_manager::send_file()
+void server_manager::send_file(QString receiver, int port)
 {
-    _socket->write(_protocol->set_file_message(_file_name));
+    if (!receiver.compare("Server"))
+        _socket->write(_protocol->set_file_message(_file_name));
+
+    else
+    {
+        QTcpSocket *client = _clients.value(receiver);
+
+        if (client)
+            client->write(_protocol->set_accept_file_message(port));
+
+        else
+            qDebug() << "server_manager -->  send_file() --> receiver not FOUND" << receiver;
+    }
 }
 
-void server_manager::save_file()
+void server_manager::save_file(QString sender)
 {
     QDir *dir = new QDir();
-    dir->mkdir(name());
+    dir->mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
     QFile *file = new QFile(path);
 
@@ -291,6 +304,28 @@ void server_manager::on_text_for_other_clients(QString sender, QString receiver,
 
     else
         qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
+}
+
+void server_manager::on_file_for_other_clients(QString sender, QString receiver, QString file_name)
+{
+    QTcpSocket *client = _clients.value(receiver);
+
+    if (client)
+        client->write(_protocol->set_init_sending_file_message(sender, receiver, file_name));
+
+    else
+        qDebug() << "server_manager -->  on_file_for_other_clients() --> receiver not FOUND" << receiver;
+}
+
+void server_manager::on_reject_receiving_file_for_other_clients(QString sender, QString receiver)
+{
+    QTcpSocket *client = _clients.value(receiver);
+
+    if (client)
+        client->write(_protocol->set_reject_file_message(sender, receiver));
+
+    else
+        qDebug() << "server_manager --> on_reject_receiving_file_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(QString sender, QString receiver)

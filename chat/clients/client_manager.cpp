@@ -2,6 +2,7 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QStringList>
+#include <QTcpServer>
 
 QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;
@@ -40,12 +41,12 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file:
-        emit init_receiving_file(_protocol->name(), _protocol->file_name(), _protocol->file_size());
+        emit init_receiving_file(_protocol->sender(), _protocol->file_name(), _protocol->file_size());
 
         break;
 
     case chat_protocol::accept_sending_file:
-        send_file();
+        send_file(_protocol->port());
 
         break;
 
@@ -55,7 +56,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::send_file:
-        save_file();
+        save_file(_protocol->sender());
 
         break;
 
@@ -106,34 +107,53 @@ void client_manager::send_is_typing(QString sender, QString receiver)
     _socket->write(_protocol->set_is_typing_message(sender, receiver));
 }
 
-void client_manager::send_init_sending_file(QString filename)
+void client_manager::send_init_sending_file(QString sender, QString receiver, QString file_name)
 {
-    _file_name = filename;
-    _socket->write(_protocol->set_init_sending_file_message(filename));
+    _file_name = file_name;
+    _socket->write(_protocol->set_init_sending_file_message(sender, receiver, file_name));
 }
 
-void client_manager::send_accept_file()
+void client_manager::send_accept_file(QString receiver, int port)
 {
-    _socket->write(_protocol->set_accept_file_message());
+    _socket->write(_protocol->set_accept_file_message(receiver, port));
+
+    ser = new QTcpServer(this);
+    ser->listen(QHostAddress::LocalHost, _protocol->port());
+    connect(ser, &QTcpServer::newConnection, this, &client_manager::file_connect);
 }
 
-void client_manager::send_reject_file()
+void client_manager::file_connect()
 {
-    _socket->write(_protocol->set_reject_file_message());
+    QTcpSocket *client = ser->nextPendingConnection();
+
+    QByteArray data = client->readAll();
+
+    _protocol->load_data(data);
+    save_file(_protocol->sender());
 }
 
-void client_manager::send_file()
+void client_manager::send_reject_file(QString sender, QString receiver)
 {
-    _socket->write(_protocol->set_file_message(_file_name));
+    _socket->write(_protocol->set_reject_file_message(sender, receiver));
 }
 
-void client_manager::save_file()
+void client_manager::send_file(int port)
+{
+    QTcpSocket *temp = new QTcpSocket(this);
+    temp->connectToHost(QHostAddress::LocalHost, port);
+
+    temp->write(_protocol->set_file_message(_file_name, _protocol->my_name()));
+
+    // _socket->write(_protocol->set_file_message(_file_name));
+}
+
+void client_manager::save_file(QString sender)
 {
     QDir dir;
-    dir.mkdir("Server");
+    dir.mkdir(sender);
     dir.setPath("./");
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
     QFile file(path);
 

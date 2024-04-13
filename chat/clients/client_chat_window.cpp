@@ -23,6 +23,8 @@ client_chat_window::client_chat_window(QWidget *parent)
 
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
+    connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
+
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
 }
 
@@ -32,6 +34,8 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
     set_up_window();
 
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message_client);
+
+    connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
 }
@@ -47,18 +51,16 @@ void client_chat_window::on_is_typing_received(QString sender)
     emit is_typing_received(sender);
 }
 
-void client_chat_window::on_init_receiving_file(QString client_name, QString file_name, qint64 file_size)
+void client_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)
 {
-    client_name = nullptr;
-
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(destinator(), file_name).arg(file_size);
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
     if (result == QMessageBox::Yes)
-        _client->send_accept_file();
+        _client->send_accept_file(sender, _protocol->port());
     else
-        _client->send_reject_file();
+        _client->send_reject_file(my_name(), sender);
 }
 
 void client_chat_window::on_reject_receiving_file()
@@ -164,7 +166,19 @@ void client_chat_window::send_file()
 
     if (!file_name.isEmpty())
     {
-        _client->send_init_sending_file(file_name);
+        _client->send_init_sending_file(my_name(), "Server", file_name);
+
+        file_name.clear();
+    }
+}
+
+void client_chat_window::send_file_client()
+{
+    QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
+
+    if (!file_name.isEmpty())
+    {
+        _client->send_init_sending_file(my_name(), destinator(), file_name);
 
         file_name.clear();
     }
@@ -207,12 +221,11 @@ void client_chat_window::set_up_window()
     QPushButton *file = new QPushButton("Open Directory", this);
     connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
 
-    QPushButton *send_file = new QPushButton("...", this);
-    connect(send_file, &QPushButton::clicked, this, &client_chat_window::send_file);
+    send_file_button = new QPushButton("...", this);
 
     QHBoxLayout *hbox_2 = new QHBoxLayout();
     hbox_2->addWidget(file, 7);
-    hbox_2->addWidget(send_file, 3);
+    hbox_2->addWidget(send_file_button, 3);
 
     list = new QListWidget(this);
 

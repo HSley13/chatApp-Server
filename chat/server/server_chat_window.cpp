@@ -52,6 +52,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
     connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
     connect(_client, &server_manager::is_typing_received, this, &server_chat_window::on_is_typing_received);
+    connect(_client, &server_manager::reject_receiving_file, this, &server_chat_window::on_reject_receiving_file);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -111,16 +112,21 @@ void server_chat_window::on_is_typing_received(QString sender, QString receiver)
     emit is_typing_received(sender, receiver);
 }
 
-void server_chat_window::on_init_receiving_file(QString client_name, QString file_name, qint64 file_size)
+void server_chat_window::on_init_receiving_file(QString sender, QString receiver, QString file_name, qint64 file_size)
 {
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(client_name, file_name).arg(file_size);
+    if (!receiver.compare("Server"))
+    {
+        QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
 
-    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+        QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
-    if (result == QMessageBox::Yes)
-        _client->send_accept_file();
+        if (result == QMessageBox::Yes)
+            _client->send_accept_file();
+        else
+            _client->send_reject_file();
+    }
     else
-        _client->send_reject_file();
+        emit file_for_other_client(sender, receiver, file_name);
 }
 
 void server_chat_window::on_file_saved(QString path)
@@ -149,6 +155,13 @@ void server_chat_window::on_client_name_changed(QString old_name, QString name)
     emit client_name_changed(old_name, name);
 }
 
+void server_chat_window::on_reject_receiving_file(QString sender, QString receiver)
+{
+    if (!receiver.compare("Server"))
+        QMessageBox::information(this, "Rejection", QString("%1 has Rejected Your request to send a file").arg(sender));
+    else
+        emit reject_receiving_file_for_other_clients(sender, receiver);
+}
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void server_chat_window::disconnect_from_host()
 {

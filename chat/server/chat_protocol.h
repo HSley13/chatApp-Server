@@ -31,9 +31,9 @@ public:
     QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
 
-    QByteArray set_init_sending_file_message(QString filename);
-    QByteArray set_accept_file_message();
-    QByteArray set_reject_file_message();
+    QByteArray set_init_sending_file_message(QString sender, QString receiver, QString filename);
+    QByteArray set_accept_file_message(int port);
+    QByteArray set_reject_file_message(QString sender, QString receiver);
     QByteArray set_file_message(QString filename);
 
     QByteArray set_new_client_message(QString client_name);
@@ -56,6 +56,8 @@ public:
     const QString &receiver() const;
     const QString &sender() const;
 
+    const int &port() const;
+
 private:
     QWidget *central_widget;
     QByteArray get_data(message_type type, QString data);
@@ -64,6 +66,8 @@ private:
     QString _message;
     QString _name;
     QString _is_typing;
+
+    int _port;
 
     QString _file_name;
     qint64 _file_size;

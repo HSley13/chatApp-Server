@@ -999,9 +999,11 @@
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtGui.framework/Versions/A/Headers/qvalidator.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/QHostAddress \
+  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/QTcpServer \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/QTcpSocket \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qabstractsocket.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qhostaddress.h \
+  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qtcpserver.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qtcpsocket.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qtnetwork-config.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkexports.h \

@@ -52,7 +52,7 @@ QByteArray chat_protocol::set_name_message(QString name)
     return get_data(set_name, name);
 }
 
-QByteArray chat_protocol::set_init_sending_file_message(QString filename)
+QByteArray chat_protocol::set_init_sending_file_message(QString sender, QString receiver, QString filename)
 {
     QByteArray byte;
 
@@ -61,19 +61,32 @@ QByteArray chat_protocol::set_init_sending_file_message(QString filename)
 
     QFileInfo info(filename);
 
-    out << init_sending_file << info.fileName() << info.size();
+    out << init_sending_file << sender << receiver << info.fileName() << info.size();
+
+    return byte;
+}
+QByteArray chat_protocol::set_accept_file_message(int port)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << accept_sending_file << port;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_accept_file_message()
+QByteArray chat_protocol::set_reject_file_message(QString sender, QString receiver)
 {
-    return get_data(accept_sending_file, "");
-}
+    QByteArray byte;
 
-QByteArray chat_protocol::set_reject_file_message()
-{
-    return get_data(reject_sending_file, "");
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << reject_sending_file << sender << receiver;
+
+    return byte;
 }
 
 QByteArray chat_protocol::set_file_message(QString filename)
@@ -88,7 +101,7 @@ QByteArray chat_protocol::set_file_message(QString filename)
 
         QFileInfo info(filename);
 
-        out << send_file << info.fileName() << info.size() << file.readAll();
+        out << send_file << info.fileName() << info.size() << file.readAll() << "Server";
 
         file.close();
     }
@@ -153,14 +166,20 @@ void chat_protocol::load_data(QByteArray data)
         in >> _sender >> _receiver;
 
     case init_sending_file:
-        in >> _file_name >> _file_size;
+        in >> _sender >> _receiver >> _file_name >> _file_size;
 
         break;
 
     case send_file:
-        in >> _file_name >> _file_size >> _file_data;
+        in >> _file_name >> _file_size >> _file_data >> _sender;
 
         break;
+
+    case accept_sending_file:
+        in >> _receiver >> _port;
+
+    case reject_sending_file:
+        in >> _sender >> _receiver;
 
     default:
         break;
@@ -215,4 +234,9 @@ const QString &chat_protocol::receiver() const
 const QString &chat_protocol::sender() const
 {
     return _sender;
+}
+
+const int &chat_protocol::port() const
+{
+    return _port;
 }
