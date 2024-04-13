@@ -5,9 +5,6 @@
 #include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
-#include <QStatusBar>
-#include <QMenuBar>
-#include <QMenu>
 #include <QListWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -22,21 +19,23 @@ public:
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
     const QString &destinator() const;
+
     QString my_name();
 
-    void set_name(QString insert_name = nullptr);
+    void set_name(QString insert_name);
+
+    void window_name(QString name);
 
     void set_up_window();
 
     void message_received(QString message);
 
+    QLabel *label;
+
 private:
     QWidget *central_widget;
 
     QStatusBar *status_bar;
-
-    QMenuBar *menu_bar;
-    QMenu *menu;
 
     static client_manager *_client;
     chat_line *wid;
@@ -48,12 +47,11 @@ private:
 
     QPushButton *send_button;
 
-    QHBoxLayout *hbox;
-    QVBoxLayout *VBOX;
-
     static QString _my_name;
     static QString _insert_name;
     QString _destinator;
+
+    QString _window_name;
 
     static chat_protocol *_protocol;
 
@@ -67,6 +65,8 @@ signals:
     void is_typing_received(QString sender);
 
     void socket_disconnected();
+
+    void update_label(QLabel *label);
 
 private slots:
     void
@@ -93,4 +93,6 @@ private slots:
     void on_client_disconnected(QString client_name);
 
     void on_socket_disconnected();
+
+    void on_update_label(QLabel *label);
 };

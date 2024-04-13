@@ -1009,10 +1009,7 @@
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QMenu \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QMenuBar \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QStatusBar \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h \
@@ -1031,13 +1028,10 @@
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qlistview.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qlistwidget.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qmenu.h \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qmenubar.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qpushbutton.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qrubberband.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qslider.h \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qstatusbar.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qstyle.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qstyleoption.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtabbar.h \

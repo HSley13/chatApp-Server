@@ -193,10 +193,16 @@ void client_chat_window::set_up_window()
     central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    list = new QListWidget(this);
+    resize(400, 800);
 
-    QLabel *message = new QLabel("Insert Message", this);
     insert_message = new QLineEdit(this);
+    insert_message->setPlaceholderText("Insert New Message");
+
+    send_button = new QPushButton("Send", this);
+
+    QHBoxLayout *hbox_1 = new QHBoxLayout();
+    hbox_1->addWidget(insert_message, 7);
+    hbox_1->addWidget(send_button, 3);
 
     QPushButton *file = new QPushButton("Open Directory", this);
     connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
@@ -204,18 +210,21 @@ void client_chat_window::set_up_window()
     QPushButton *send_file = new QPushButton("...", this);
     connect(send_file, &QPushButton::clicked, this, &client_chat_window::send_file);
 
-    hbox = new QHBoxLayout();
-    hbox->addWidget(message);
-    hbox->addWidget(insert_message);
-    hbox->addWidget(file);
-    hbox->addWidget(send_file);
+    QHBoxLayout *hbox_2 = new QHBoxLayout();
+    hbox_2->addWidget(file, 7);
+    hbox_2->addWidget(send_file, 3);
 
-    send_button = new QPushButton("Send", this);
+    list = new QListWidget(this);
 
-    VBOX = new QVBoxLayout(central_widget);
+    label = new QLabel("Server's Conversation", this);
+
+    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
+    VBOX->addWidget(label);
     VBOX->addWidget(list);
-    VBOX->addLayout(hbox);
-    VBOX->addWidget(send_button);
+    VBOX->addLayout(hbox_1);
+    VBOX->addLayout(hbox_2);
+
+    connect(this, &client_chat_window::update_label, this, &client_chat_window::on_update_label);
 
     if (!_client)
     {
@@ -255,4 +264,16 @@ void client_chat_window::set_name(QString insert_name)
     _insert_name = insert_name;
 
     _client->send_name(insert_name);
+}
+
+void client_chat_window::window_name(QString name)
+{
+    _window_name = name;
+
+    emit update_label(label);
+}
+
+void client_chat_window::on_update_label(QLabel *label)
+{
+    label->setText(QString("%1's Conversation").arg(_window_name));
 }

@@ -12,12 +12,15 @@
 QMap<QString, QWidget *> client_main_window::window_map = QMap<QString, QWidget *>();
 QMap<QString, QString> client_main_window::name_list = QMap<QString, QString>();
 
+QStackedWidget *client_main_window::stack = nullptr;
+
 client_main_window::client_main_window(QWidget *parent)
     : QMainWindow(parent)
 {
     central_widget = new QWidget(this);
     setCentralWidget(central_widget);
-    resize(600, 400);
+
+    resize(400, 800);
 
     status_bar = new QStatusBar(this);
     setStatusBar(status_bar);
@@ -33,19 +36,42 @@ client_main_window::client_main_window(QWidget *parent)
     menu->addAction(connection);
     menu_bar->addMenu(menu);
 
+    back_button = new QPushButton("←", this);
+    back_button->setFixedSize(30, 30);
+    back_button->setStyleSheet(" font-size: 20px; ");
+    connect(back_button, &QPushButton::clicked, this, [=]()
+            { stack->setCurrentIndex(0); });
+
     name = new QLineEdit(this);
     name->setPlaceholderText("INSERT YOUR NAME HERE THEN PRESS ENTER");
     name->setDisabled(true);
     connect(name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
 
-    tabs = new QTabWidget(this);
-    tabs->setDisabled(true);
-    tabs->setTabsClosable(true);
-    connect(tabs, &QTabWidget::tabCloseRequested, this, &client_main_window::close_tabs);
+    QLabel *my_name = new QLabel("My Name: ", this);
+
+    QHBoxLayout *hbox = new QHBoxLayout();
+    hbox->addWidget(my_name);
+    hbox->addWidget(name);
+
+    list = new QListWidget(this);
+    list->setSelectionMode(QAbstractItemView::SingleSelection);
+    list->setMinimumWidth(200);
+    list->setFont(QFont("Arial", 20));
+    connect(list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
+    list->setDisabled(true);
+
+    stack = new QStackedWidget(this);
+    stack->addWidget(list);
+
+    QHBoxLayout *back_button_layout = new QHBoxLayout();
+    back_button_layout->addWidget(back_button);
+
+    back_button_layout->addStretch();
 
     VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(name);
-    VBOX->addWidget(tabs);
+    VBOX->addLayout(back_button_layout);
+    VBOX->addLayout(hbox);
+    VBOX->addWidget(stack);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -60,7 +86,10 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
     connect(wid, &client_chat_window::socket_disconnected, this, &client_main_window::on_socket_disconnected);
 
-    tabs->addTab(wid, "Server");
+    list->addItem("Server");
+
+    wid->setObjectName("Server");
+    stack->addWidget(wid);
 
     window_map.insert("Server", wid);
 
@@ -69,14 +98,28 @@ void client_main_window::connected()
     status_bar->showMessage("Connected to the Server", 1000);
 }
 
-void client_main_window::close_tabs(int index)
+void client_main_window::on_item_clicked(QListWidgetItem *item)
 {
-    QMap<QString, QWidget *>::iterator it = window_map.find(tabs->tabText(index));
-    if (it != window_map.end())
-        window_map.erase(it);
+    QString client_name = item->text();
 
-    tabs->removeTab(index);
+    QWidget *wid = stack->findChild<QWidget *>(client_name);
+
+    if (wid)
+        stack->setCurrentIndex(stack->indexOf(wid));
+
+    else
+        qDebug() << "client_main_window--> on_item_clicked()--> window to forward not FOUND: " << client_name;
 }
+
+// void client_main_window::close_tabs(int index)
+// {
+
+//     // QMap<QString, QWidget *>::iterator it = window_map.find(tabs->tabText(index));
+//     // // if (it != window_map.end())
+//     // //     window_map.erase(it);
+
+//     // // tabs->removeTab(index);
+// }
 
 void client_main_window::on_is_typing_received(QString sender)
 {
@@ -87,7 +130,7 @@ void client_main_window::on_name_changed()
 {
     if (!name->text().isEmpty())
     {
-        tabs->setEnabled(true);
+        list->setEnabled(true);
 
         for (QWidget *win : window_map)
         {
@@ -99,7 +142,7 @@ void client_main_window::on_name_changed()
 
 void client_main_window::on_socket_disconnected()
 {
-    central_widget->setDisabled(true);
+    stack->setDisabled(true);
 
     status_bar->showMessage("The SERVER DISCONNECTED YOU", 999999);
 }
@@ -107,8 +150,12 @@ void client_main_window::on_socket_disconnected()
 void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
+    wid->window_name(client_name);
 
-    tabs->addTab(wid, client_name);
+    list->addItem(client_name);
+
+    wid->setObjectName(client_name);
+    stack->addWidget(wid);
 
     name_list.insert(client_name, client_name);
 
@@ -122,7 +169,12 @@ void client_main_window::on_clients_list(QString my_name, QMap<QString, QString>
         if (client_name.compare(my_name))
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
-            tabs->addTab(wid, client_name);
+            wid->window_name(client_name);
+
+            list->addItem(client_name);
+
+            wid->setObjectName(client_name);
+            stack->addWidget(wid);
 
             name_list.insert(other_clients.key(client_name), client_name);
 
@@ -137,7 +189,14 @@ void client_main_window::on_client_disconnected(QString client_name)
 
     if (win)
     {
-        tabs->widget(tabs->indexOf(win))->setDisabled(true);
+        QList<QListWidgetItem *> items = list->findItems(client_name, Qt::MatchExactly);
+        if (!items.isEmpty())
+        {
+            QListWidgetItem *item_to_remove = items.first();
+            list->takeItem(list->row(item_to_remove));
+
+            delete item_to_remove;
+        }
 
         QMap<QString, QWidget *>::iterator it = window_map.find(client_name);
         if (it != window_map.end())
@@ -170,7 +229,10 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         {
             wid->message_received(message);
 
-            tabs->addTab(wid, sender);
+            list->addItem(sender);
+
+            wid->setObjectName(sender);
+            stack->addWidget(wid);
 
             window_map.insert(sender, wid);
         }
@@ -180,13 +242,29 @@ void client_main_window::on_text_message_received(QString sender, QString messag
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
 {
     QWidget *win = window_map.value(old_name);
-
     if (win)
     {
-        tabs->setTabText(tabs->indexOf(win), client_name);
+        QWidget *wid = stack->findChild<QWidget *>(old_name);
+        wid->setObjectName(client_name);
+
+        QList<QListWidgetItem *> items = list->findItems(old_name, Qt::MatchExactly);
+        if (!items.isEmpty())
+        {
+            QListWidgetItem *item_to_replace = items.first();
+            int row = list->row(item_to_replace);
+
+            item_to_replace->setText(client_name);
+        }
+
+        QMap<QString, QWidget *>::iterator it = window_map.find(old_name);
+        if (it != window_map.end())
+            window_map.erase(it);
 
         window_map.insert(client_name, win);
-        window_map.remove(old_name);
+
+        client_chat_window *wind = qobject_cast<client_chat_window *>(win);
+        if (wind)
+            wind->window_name(client_name);
 
         name_list.insert(old_name, client_name);
     }

@@ -1094,13 +1094,6 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtNetwork/qhostaddress.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/QHostAddress \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h \
-  /opt/homebrew/include/QtWidgets/qmenu.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenu \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h \
   /opt/homebrew/include/QtWidgets/qlistview.h \
@@ -1127,8 +1120,17 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/../../../../chat/clients/client_main_window.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h \
+  /opt/homebrew/include/QtWidgets/qmenu.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenu \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h \
   /Users/test/Documents/server---clients/build/clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp

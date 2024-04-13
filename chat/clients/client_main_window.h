@@ -16,6 +16,8 @@
 #include <QTabWidget>
 #include <QMap>
 #include <QLineEdit>
+#include <QStackedWidget>
+#include <QListWidget>
 
 class client_main_window : public QMainWindow
 {
@@ -42,9 +44,14 @@ private:
 
     QLineEdit *name;
 
+    static QStackedWidget *stack;
+    QListWidget *list;
+
+    QPushButton *back_button;
+
 private slots:
     void connected();
-    void close_tabs(int index);
+    // void close_tabs(int index);
 
     void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
     void on_client_connected(QString client_name);
@@ -56,4 +63,6 @@ private slots:
     void on_name_changed();
 
     void on_socket_disconnected();
+
+    void on_item_clicked(QListWidgetItem *item);
 };

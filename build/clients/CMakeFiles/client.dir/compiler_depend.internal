@@ -3313,6 +3313,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenu
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton
+ /opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout
@@ -3325,6 +3326,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h
+ /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
@@ -4449,7 +4451,6 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o
  /opt/homebrew/include/QtWidgets/qlayout.h
  /opt/homebrew/include/QtWidgets/qlayoutitem.h
  /opt/homebrew/include/QtWidgets/qlistview.h
- /opt/homebrew/include/QtWidgets/qmenu.h
  /opt/homebrew/include/QtWidgets/qrubberband.h
  /opt/homebrew/include/QtWidgets/qsizepolicy.h
  /opt/homebrew/include/QtWidgets/qslider.h
@@ -4484,11 +4485,8 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/QLineEdit
  /opt/homebrew/lib/QtWidgets.framework/Headers/QListWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow
- /opt/homebrew/lib/QtWidgets.framework/Headers/QMenu
- /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox
  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton
- /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout
  /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h
@@ -4498,11 +4496,8 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qlistwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h
- /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h
- /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h
- /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
 
 clients/CMakeFiles/client.dir/client_main.cpp.o
@@ -5627,6 +5622,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenu
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton
+ /opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout
@@ -5640,6 +5636,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h
+ /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
@@ -6806,6 +6803,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox
  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton
+ /opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar
  /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget
  /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout
@@ -6821,6 +6819,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h
+ /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h
  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
