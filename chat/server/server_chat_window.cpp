@@ -36,8 +36,8 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     connect(send_file, &QPushButton::clicked, this, &server_chat_window::send_file);
 
     QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(insert_message, 7);
-    hbox_2->addWidget(send_button, 3);
+    hbox_2->addWidget(file, 7);
+    hbox_2->addWidget(send_file, 3);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(list);

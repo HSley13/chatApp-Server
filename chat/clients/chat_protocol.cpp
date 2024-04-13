@@ -141,7 +141,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case clients_list:
-        in >> _my_name >> _clients_name;
+        in >> _my_name >> _clients_name >> _port;
 
         break;
 
@@ -213,4 +213,9 @@ const QString &chat_protocol::my_name() const
 const QMap<QString, QString> &chat_protocol::clients_name() const
 {
     return _clients_name;
+}
+
+const int &chat_protocol::port() const
+{
+    return _port;
 }

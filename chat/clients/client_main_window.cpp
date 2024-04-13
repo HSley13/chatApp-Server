@@ -9,6 +9,32 @@
 #include <QUrl>
 #include <QStringList>
 
+#include <QListWidget>
+#include <QStyledItemDelegate>
+#include <QPainter>
+
+class separator_delegate : public QStyledItemDelegate
+{
+private:
+    QListWidget *m_parent;
+
+public:
+    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        QStyledItemDelegate::paint(painter, option, index);
+
+        if (index.row() != m_parent->count() - 1)
+        {
+            painter->save();
+            painter->setPen(Qt::white);
+            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
+            painter->restore();
+        }
+    }
+};
+
 QMap<QString, QWidget *> client_main_window::window_map = QMap<QString, QWidget *>();
 QMap<QString, QString> client_main_window::name_list = QMap<QString, QString>();
 
@@ -20,7 +46,7 @@ client_main_window::client_main_window(QWidget *parent)
     central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
-    resize(400, 800);
+    resize(400, 600);
 
     status_bar = new QStatusBar(this);
     setStatusBar(status_bar);
@@ -59,6 +85,9 @@ client_main_window::client_main_window(QWidget *parent)
     list->setFont(QFont("Arial", 20));
     connect(list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
     list->setDisabled(true);
+
+    separator_delegate *delegate = new separator_delegate(list);
+    list->setItemDelegate(delegate);
 
     stack = new QStackedWidget(this);
     stack->addWidget(list);

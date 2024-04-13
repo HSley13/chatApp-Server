@@ -37,7 +37,7 @@ public:
     QByteArray set_file_message(QString filename);
 
     QByteArray set_new_client_message(QString client_name);
-    QByteArray set_clients_list_message(QString client_name, QMap<QString, QString> other_clients);
+    QByteArray set_clients_list_message(QString client_name, QMap<QString, QString> other_clients, int port);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 

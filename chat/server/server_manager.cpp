@@ -3,6 +3,40 @@
 #include <QDateTime>
 #include <QStringList>
 
+port_pool::port_pool(int start, int end)
+{
+    for (int i = start; i <= end; i++)
+        ports.push_back(i);
+}
+
+int port_pool::allocate_port()
+{
+    std::lock_guard<std::mutex> guard(mtx);
+    if (!ports.empty())
+    {
+        int port = ports.back();
+        ports.pop_back();
+
+        return port;
+    }
+
+    return 0;
+}
+
+void port_pool::deallocate_port(int port)
+{
+    std::lock_guard<std::mutex> guard(mtx);
+    ports.push_back(port);
+}
+
+void port_pool::deallocate_all()
+{
+    std::lock_guard<std::mutex> guard(mtx);
+    ports.clear();
+}
+
+port_pool *server_manager::_pool = nullptr;
+
 QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
 
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
@@ -15,6 +49,8 @@ server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     _server->listen(_ip, _port);
 
     _socket = new QTcpSocket(this);
+
+    _pool = new port_pool(12347, 99999);
 }
 
 server_manager::server_manager(QTcpSocket *client, QWidget *parent)
@@ -53,8 +89,16 @@ void server_manager::new_connection()
                 checked_names.insert(it.key(), _names.value(it.key()));
         }
 
-        QByteArray message = _protocol->set_clients_list_message(client_name, checked_names);
-        client->write(message);
+        int port = _pool->allocate_port();
+        if (port)
+        {
+            client->setProperty("port", port);
+
+            QByteArray message = _protocol->set_clients_list_message(client_name, checked_names, port);
+            client->write(message);
+        }
+        else
+            qDebug() << "server_manager--> new_connection()--> _pool vector variable empty";
 
         QByteArray new_client_message = _protocol->set_new_client_message(client_name);
         for (QTcpSocket *cl : _clients)
@@ -123,6 +167,9 @@ void server_manager::on_client_disconnected()
 
     QString client_name = client->property("client_name").toString();
 
+    int port = client->property("port").toInt();
+    _pool->deallocate_port(port);
+
     QByteArray message = _protocol->set_client_disconnected_message(client_name);
 
     if (!_clients.isEmpty())
@@ -145,6 +192,8 @@ void server_manager::disconnect_all_clients()
     {
         for (QTcpSocket *client : _clients)
             client->disconnectFromHost();
+
+        _pool->deallocate_all();
     }
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't disconnect any clients";

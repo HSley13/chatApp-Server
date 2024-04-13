@@ -9,6 +9,26 @@
 #include <QHostAddress>
 #include <QMap>
 
+#include <iostream>
+#include <vector>
+#include <mutex>
+
+class port_pool
+{
+private:
+    std::vector<int> ports;
+    std::mutex mtx;
+
+public:
+    port_pool(int start, int end);
+
+    int allocate_port();
+
+    void deallocate_port(int port);
+
+    void deallocate_all();
+};
+
 class server_manager : public QMainWindow
 {
     Q_OBJECT
@@ -36,6 +56,8 @@ public:
 
     static QMap<QString, QString> _names;
 
+    friend class port_pool;
+
 private:
     QWidget *central_widget;
 
@@ -48,6 +70,8 @@ private:
 
     QHostAddress _ip;
     int _port;
+
+    static port_pool *_pool;
 
     void send_file();
     void save_file();

@@ -51,6 +51,8 @@ public:
     const QString &receiver() const;
     const QString &sender() const;
 
+    const int &port() const;
+
     const QString &old_name() const;
     const QString &my_name() const;
     const QMap<QString, QString> &clients_name() const;
@@ -62,6 +64,7 @@ private:
     message_type _type;
     QString _message;
     QString _name;
+    int _port;
 
     QString _file_name;
     qint64 _file_size;
