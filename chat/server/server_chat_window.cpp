@@ -146,11 +146,11 @@ void server_chat_window::folder()
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
-void server_chat_window::on_client_name_changed(QString old_name, QString name)
+void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
 {
     QFile::rename(dir.canonicalPath(), name);
 
-    emit client_name_changed(old_name, name);
+    emit client_name_changed(original_name, old_name, name);
 }
 
 void server_chat_window::on_reject_receiving_file(QString sender)

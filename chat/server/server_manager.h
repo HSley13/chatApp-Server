@@ -87,7 +87,7 @@ signals:
     void new_client_disconnected(QTcpSocket *client);
 
     void text_message_received(QString sender, QString receiver, QString message);
-    void client_name_changed(QString old_name, QString name);
+    void client_name_changed(QString original_name, QString old_name, QString name);
     void is_typing_received(QString sender, QString receiver);
 
     void init_receiving_file(QString sender, QString file_name, qint64 file_size);

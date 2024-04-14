@@ -2,6 +2,8 @@
 #include <QHBoxLayout>
 #include <QStringList>
 
+QMap<QString, QWidget *> server_main_window::window_map = QMap<QString, QWidget *>();
+
 server_main_window::server_main_window(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -38,9 +40,12 @@ server_main_window::server_main_window(QWidget *parent)
 void server_main_window::on_new_client_connected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();
+    QString client_name = client->property("client_name").toString();
 
     server_chat_window *wid = new server_chat_window(client);
     tabs->addTab(wid, QString("Client %1").arg(id));
+
+    window_map.insert(client_name, wid);
 
     list->addItem(QString("Client %1 Connected").arg(id));
 
@@ -54,6 +59,10 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();
 
+    QString client_name = client->property("client_name").toString();
+
+    tabs->removeTab(tabs->indexOf(window_map.value(client_name)));
+
     list->addItem(QString("Client %1 disconnected").arg(id));
 }
 
@@ -62,7 +71,7 @@ void server_main_window::disconnect_all_clients()
     _server->disconnect_all_clients();
 }
 
-void server_main_window::on_client_name_changed(QString old_name, QString client_name)
+void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
 {
     wid = qobject_cast<QWidget *>(sender());
     int index = tabs->indexOf(wid);
@@ -71,11 +80,17 @@ void server_main_window::on_client_name_changed(QString old_name, QString client
 
     _server->notify_other_clients(old_name, client_name);
 
-    QMap<QString, QString>::iterator it = _server->_names.find(old_name);
-    if (it != _server->_names.end())
-        _server->_names.erase(it);
+    QMap<QString, QString>::iterator its = _server->_names.find(original_name);
+    if (its != _server->_names.end())
+        _server->_names.erase(its);
 
-    _server->_names.insert(old_name, client_name);
+    QMap<QString, QWidget *>::iterator it = window_map.find(old_name);
+    if (it != window_map.end())
+        window_map.erase(it);
+
+    window_map.insert(client_name, wid);
+
+    _server->_names.insert(original_name, client_name);
 }
 
 void server_main_window::on_is_typing_received(QString sender, QString receiver)

@@ -38,7 +38,7 @@ private:
     QDir dir;
 
 signals:
-    void client_name_changed(QString old_name, QString name);
+    void client_name_changed(QString original_name, QString old_name, QString name);
     void is_typing_received(QString sender, QString receiver);
 
     void text_for_other_client(QString sender, QString receiver, QString message);
@@ -60,7 +60,7 @@ private slots:
 
     void on_file_saved(QString path);
 
-    void on_client_name_changed(QString old_name, QString client_name);
+    void on_client_name_changed(QString original_name, QString old_name, QString name);
 
     void on_reject_receiving_file(QString sender);
 };

@@ -240,8 +240,6 @@ void client_chat_window::set_up_window()
     central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    resize(400, 600);
-
     insert_message = new QLineEdit(this);
     insert_message->setPlaceholderText("Insert New Message");
 

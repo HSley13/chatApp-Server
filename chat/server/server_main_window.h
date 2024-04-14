@@ -30,6 +30,7 @@ private:
     server_manager *_clients;
 
     QStatusBar *status_bar;
+    static QMap<QString, QWidget *> window_map;
 
     QVBoxLayout *vbox;
 
@@ -38,7 +39,7 @@ private slots:
     void on_new_client_connected(QTcpSocket *client);
     void on_new_client_disconnected(QTcpSocket *client);
 
-    void on_client_name_changed(QString old_name, QString name);
+    void on_client_name_changed(QString original_name, QString old_name, QString name);
 
     void on_is_typing_received(QString sender, QString receiver);
 

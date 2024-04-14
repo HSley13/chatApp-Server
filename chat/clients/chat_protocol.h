@@ -34,12 +34,14 @@ public:
         new_client,
         clients_list,
         client_new_name,
-        client_disconnected
+        client_disconnected,
+
+        first_client,
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
     QByteArray set_is_typing_message(QString sender, QString receiver);
-    QByteArray set_name_message(QString name);
+    QByteArray set_name_message(QString my_name, QString name);
 
     QByteArray set_init_sending_file_message(QString filename);
     QByteArray set_accept_file_message();

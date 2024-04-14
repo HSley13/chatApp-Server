@@ -46,7 +46,7 @@ client_main_window::client_main_window(QWidget *parent)
     central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
-    resize(400, 600);
+    resize(400, 500);
 
     status_bar = new QStatusBar(this);
     setStatusBar(status_bar);
@@ -183,7 +183,7 @@ void client_main_window::on_client_connected(QString client_name)
 
 void client_main_window::on_clients_list(QString my_name, QMap<QString, QString> other_clients)
 {
-    for (QString client_name : other_clients)
+    for (QString client_name : other_clients.values())
     {
         if (client_name.compare(my_name))
         {

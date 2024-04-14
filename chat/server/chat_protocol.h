@@ -33,8 +33,11 @@ public:
         new_client,
         clients_list,
         client_new_name,
-        client_disconnected
+        client_disconnected,
+
+        first_client
     };
+
     QByteArray set_text_message(QString sender, QString receiver, QString message);
     QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
@@ -56,11 +59,14 @@ public:
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
+    QByteArray set_first_client_message(QString name, int port_transfer);
+
     void load_data(QByteArray data);
 
     message_type type() const;
     const QString &message() const;
     const QString &name() const;
+    const QString &original_name() const;
     const QString &file_name() const;
     const qint64 &file_size() const;
     const QByteArray &file_data() const;
@@ -96,5 +102,6 @@ private:
     QString _sender;
     QString _receiver_typing;
     QString _sender_typing;
+    QString _original_name;
     QMap<QString, QString> _other_clients;
 };

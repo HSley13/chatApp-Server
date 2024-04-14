@@ -180,6 +180,18 @@ QByteArray chat_protocol::set_client_disconnected_message(QString client_name)
     return get_data(client_disconnected, client_name);
 }
 
+QByteArray chat_protocol::set_first_client_message(QString name, int port_transfer)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << first_client << name << port_transfer;
+
+    return byte;
+}
+
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -195,7 +207,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case set_name:
-        in >> _name;
+        in >> _original_name >> _name;
 
         break;
 
@@ -248,6 +260,11 @@ const QString &chat_protocol::message() const
 const QString &chat_protocol::name() const
 {
     return _name;
+}
+
+const QString &chat_protocol::original_name() const
+{
+    return _original_name;
 }
 
 const QString &chat_protocol::file_name() const

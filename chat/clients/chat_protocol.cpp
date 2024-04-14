@@ -47,9 +47,16 @@ QByteArray chat_protocol::set_is_typing_message(QString sender, QString receiver
     return byte;
 }
 
-QByteArray chat_protocol::set_name_message(QString name)
+QByteArray chat_protocol::set_name_message(QString my_name, QString name)
 {
-    return get_data(set_name, name);
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << set_name << my_name << name;
+
+    return byte;
 }
 
 QByteArray chat_protocol::set_init_sending_file_message(QString filename)
@@ -228,6 +235,9 @@ void chat_protocol::load_data(QByteArray data)
         in >> _sender;
 
         break;
+
+    case first_client:
+        in >> _my_name >> _port_transfer;
 
     default:
         break;

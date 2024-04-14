@@ -119,7 +119,7 @@ void client_manager::send_text(QString sender, QString receiver, QString text)
 
 void client_manager::send_name(QString name)
 {
-    _socket->write(_protocol->set_name_message(name));
+    _socket->write(_protocol->set_name_message(_protocol->my_name(), name));
 }
 
 void client_manager::send_is_typing(QString sender, QString receiver)
