@@ -38,6 +38,7 @@ void port_pool::deallocate_all()
 
 port_pool *server_manager::_pool = nullptr;
 
+QMap<QString, QTcpSocket *> server_manager::_clients = QMap<QString, QTcpSocket *>();
 QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
 
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
@@ -266,10 +267,10 @@ void server_manager::send_accept_file_client(QString receiver, int port)
 
 void server_manager::save_file()
 {
-    QDir *dir = new QDir();
-    dir->mkdir(name());
+    QDir dir;
+    dir.mkdir(name());
 
-    QString path = QString("%1/%2/%3_%4").arg(dir->canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
     QFile *file = new QFile(path);
 

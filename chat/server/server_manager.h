@@ -55,8 +55,7 @@ public:
 
     QString name() const;
 
-    QMap<QString, QTcpSocket *> _clients;
-
+    static QMap<QString, QTcpSocket *> _clients;
     static QMap<QString, QString> _names;
 
     friend class port_pool;

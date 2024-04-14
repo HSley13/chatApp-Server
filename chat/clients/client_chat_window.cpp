@@ -26,6 +26,8 @@ client_chat_window::client_chat_window(QWidget *parent)
     connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
+
+    connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
 }
 
 client_chat_window::client_chat_window(QString destinator, QWidget *parent)
@@ -38,6 +40,11 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
     connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
     connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
+
+    connect(file, &QPushButton::clicked, this, &client_chat_window::folder_client);
+
+    dir.mkdir(_destinator);
+    dir.setPath("./" + _destinator);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -217,6 +224,17 @@ void client_chat_window::folder()
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
+void client_chat_window::folder_client()
+{
+    QString executable_directory = QApplication::applicationDirPath();
+    QString full_client_directory = QDir(executable_directory).filePath(destinator());
+
+    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
+
+    if (!selected_file_path.isEmpty())
+        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
+}
+
 void client_chat_window::set_up_window()
 {
     central_widget = new QWidget();
@@ -233,8 +251,7 @@ void client_chat_window::set_up_window()
     hbox_1->addWidget(insert_message, 7);
     hbox_1->addWidget(send_button, 3);
 
-    QPushButton *file = new QPushButton("Open Directory", this);
-    connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
+    file = new QPushButton("Open Directory", this);
 
     send_file_button = new QPushButton("...", this);
 
@@ -302,6 +319,8 @@ void client_chat_window::window_name(QString name)
     _window_name = name;
 
     emit update_label(label);
+
+    QFile::rename(dir.canonicalPath(), name);
 }
 
 void client_chat_window::on_update_label(QLabel *label)

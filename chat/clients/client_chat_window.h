@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QDir>
 
 class client_chat_window : public QMainWindow
 {
@@ -46,6 +47,9 @@ private:
     QPushButton *send_button;
     QPushButton *send_file_button;
 
+    QPushButton *file;
+    QDir dir;
+
     static QString _my_name;
     static QString _insert_name;
     QString _destinator;
@@ -79,7 +83,9 @@ private slots:
     void send_file_client();
 
     void file_saved(QString path);
+
     void folder();
+    void folder_client();
 
     void on_text_message_received(QString sender, QString message);
     void on_is_typing_received(QString sender);

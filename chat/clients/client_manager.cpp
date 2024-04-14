@@ -190,7 +190,6 @@ void client_manager::save_file()
 {
     QDir dir;
     dir.mkdir("Server");
-    dir.setPath("./");
 
     QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
@@ -209,7 +208,6 @@ void client_manager::save_file_client(QString sender)
 {
     QDir dir;
     dir.mkdir(sender);
-    dir.setPath("./");
 
     QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
