@@ -135,6 +135,8 @@ void client_chat_window::send_message()
 
     _client->send_text(my_name(), "Server", message);
 
+    emit text_message_sent("Server");
+
     wid = new chat_line();
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
@@ -154,6 +156,8 @@ void client_chat_window::send_message_client()
     QString message = insert_message->text();
 
     _client->send_text(my_name(), destinator(), message);
+
+    emit text_message_sent(_window_name);
 
     wid = new chat_line();
     wid->set_message(message, true);

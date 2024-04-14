@@ -25,6 +25,8 @@ class client_main_window : public QMainWindow
 public:
     client_main_window(QWidget *parent = nullptr);
 
+    void add_on_top(const QString &client_name);
+
 private:
     QWidget *central_widget;
 
@@ -64,4 +66,6 @@ private slots:
     void on_socket_disconnected();
 
     void on_item_clicked(QListWidgetItem *item);
+
+    void on_text_message_sent(QString client_name);
 };

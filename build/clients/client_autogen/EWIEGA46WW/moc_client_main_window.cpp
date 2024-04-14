@@ -59,11 +59,12 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "on_socket_disconnected",
     "on_item_clicked",
     "QListWidgetItem*",
-    "item"
+    "item",
+    "on_text_message_sent"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
-    uint offsetsAndSizes[42];
+    uint offsetsAndSizes[44];
     char stringdata0[19];
     char stringdata1[10];
     char stringdata2[1];
@@ -85,6 +86,7 @@ struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
     char stringdata18[16];
     char stringdata19[17];
     char stringdata20[5];
+    char stringdata21[21];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -110,7 +112,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(255, 22),  // "on_socket_disconnected"
         QT_MOC_LITERAL(278, 15),  // "on_item_clicked"
         QT_MOC_LITERAL(294, 16),  // "QListWidgetItem*"
-        QT_MOC_LITERAL(311, 4)   // "item"
+        QT_MOC_LITERAL(311, 4),  // "item"
+        QT_MOC_LITERAL(316, 20)   // "on_text_message_sent"
     },
     "client_main_window",
     "connected",
@@ -132,7 +135,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
     "on_socket_disconnected",
     "on_item_clicked",
     "QListWidgetItem*",
-    "item"
+    "item",
+    "on_text_message_sent"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -144,7 +148,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -152,16 +156,17 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   74,    2, 0x08,    1 /* Private */,
-       3,    2,   75,    2, 0x08,    2 /* Private */,
-       7,    1,   80,    2, 0x08,    5 /* Private */,
-       9,    2,   83,    2, 0x08,    7 /* Private */,
-      11,    1,   88,    2, 0x08,   10 /* Private */,
-      12,    2,   91,    2, 0x08,   12 /* Private */,
-      15,    1,   96,    2, 0x08,   15 /* Private */,
-      16,    0,   99,    2, 0x08,   17 /* Private */,
-      17,    0,  100,    2, 0x08,   18 /* Private */,
-      18,    1,  101,    2, 0x08,   19 /* Private */,
+       1,    0,   80,    2, 0x08,    1 /* Private */,
+       3,    2,   81,    2, 0x08,    2 /* Private */,
+       7,    1,   86,    2, 0x08,    5 /* Private */,
+       9,    2,   89,    2, 0x08,    7 /* Private */,
+      11,    1,   94,    2, 0x08,   10 /* Private */,
+      12,    2,   97,    2, 0x08,   12 /* Private */,
+      15,    1,  102,    2, 0x08,   15 /* Private */,
+      16,    0,  105,    2, 0x08,   17 /* Private */,
+      17,    0,  106,    2, 0x08,   18 /* Private */,
+      18,    1,  107,    2, 0x08,   19 /* Private */,
+      21,    1,  110,    2, 0x08,   21 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -174,6 +179,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 19,   20,
+    QMetaType::Void, QMetaType::QString,    8,
 
        0        // eod
 };
@@ -216,7 +222,10 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_item_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QListWidgetItem *, std::false_type>
+        QtPrivate::TypeAndForceComplete<QListWidgetItem *, std::false_type>,
+        // method 'on_text_message_sent'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -237,6 +246,7 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 7: _t->on_name_changed(); break;
         case 8: _t->on_socket_disconnected(); break;
         case 9: _t->on_item_clicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 10: _t->on_text_message_sent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -261,13 +271,13 @@ int client_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

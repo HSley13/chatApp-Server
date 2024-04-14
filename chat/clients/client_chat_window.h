@@ -71,6 +71,8 @@ signals:
 
     void update_label(QLabel *label);
 
+    void text_message_sent(QString client_name);
+
 private slots:
     void
     send_message();

@@ -114,6 +114,7 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
     connect(wid, &client_chat_window::socket_disconnected, this, &client_main_window::on_socket_disconnected);
+    connect(wid, &client_chat_window::text_message_sent, this, &client_main_window::on_text_message_sent);
 
     list->addItem("Server");
 
@@ -212,7 +213,6 @@ void client_main_window::on_client_disconnected(QString client_name)
         if (!items.isEmpty())
         {
             QListWidgetItem *item_to_remove = items.first();
-            list->takeItem(list->row(item_to_remove));
 
             delete item_to_remove;
         }
@@ -235,7 +235,10 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         client_chat_window *wid = qobject_cast<client_chat_window *>(win);
 
         if (wid)
+        {
             wid->message_received(message);
+            add_on_top(sender);
+        }
 
         else
             qDebug() << "client_main_window ---> on_text_message_received --> ERROR CASTING THE WIDGET:";
@@ -247,6 +250,7 @@ void client_main_window::on_text_message_received(QString sender, QString messag
         if (wid)
         {
             wid->message_received(message);
+            add_on_top(sender);
 
             list->addItem(sender);
 
@@ -256,6 +260,13 @@ void client_main_window::on_text_message_received(QString sender, QString messag
             window_map.insert(sender, wid);
         }
     }
+}
+
+void client_main_window::on_text_message_sent(QString client_name)
+{
+    qDebug() << "client_main_window ---> on_text_message_sent() --> client_name to add to top not FOUND: " << client_name;
+
+    add_on_top(client_name);
 }
 
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
@@ -269,10 +280,9 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         QList<QListWidgetItem *> items = list->findItems(old_name, Qt::MatchExactly);
         if (!items.isEmpty())
         {
-            QListWidgetItem *item_to_replace = items.first();
-            int row = list->row(item_to_replace);
+            QListWidgetItem *item_to_change = items.first();
 
-            item_to_replace->setText(client_name);
+            item_to_change->setText(client_name);
         }
 
         QMap<QString, QWidget *>::iterator it = window_map.find(old_name);
@@ -292,3 +302,18 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
+void client_main_window::add_on_top(const QString &client_name)
+{
+    QList<QListWidgetItem *> items = list->findItems(client_name, Qt::MatchExactly);
+    if (!items.empty())
+    {
+        QListWidgetItem *item_to_replace = list->findItems(client_name, Qt::MatchExactly).first();
+        list->takeItem(list->row(item_to_replace));
+        list->insertItem(0, item_to_replace);
+    }
+    else
+    {
+        list->insertItem(0, client_name);
+        qDebug() << "client_main_window--> add_on_top()--> client_name not FOUND: " << client_name;
+    }
+}
