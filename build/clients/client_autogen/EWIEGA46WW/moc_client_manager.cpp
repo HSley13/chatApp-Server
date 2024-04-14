@@ -49,6 +49,8 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "file_name",
     "file_size",
     "reject_receiving_file",
+    "init_receiving_file_client",
+    "reject_receiving_file_client",
     "file_saved",
     "path",
     "client_connected",
@@ -67,7 +69,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
-    uint offsetsAndSizes[50];
+    uint offsetsAndSizes[54];
     char stringdata0[15];
     char stringdata1[22];
     char stringdata2[1];
@@ -78,21 +80,23 @@ struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
     char stringdata7[10];
     char stringdata8[10];
     char stringdata9[22];
-    char stringdata10[11];
-    char stringdata11[5];
-    char stringdata12[17];
-    char stringdata13[12];
-    char stringdata14[13];
-    char stringdata15[8];
-    char stringdata16[22];
-    char stringdata17[14];
-    char stringdata18[20];
-    char stringdata19[9];
+    char stringdata10[27];
+    char stringdata11[29];
+    char stringdata12[11];
+    char stringdata13[5];
+    char stringdata14[17];
+    char stringdata15[12];
+    char stringdata16[13];
+    char stringdata17[8];
+    char stringdata18[22];
+    char stringdata19[14];
     char stringdata20[20];
-    char stringdata21[20];
-    char stringdata22[16];
-    char stringdata23[14];
-    char stringdata24[13];
+    char stringdata21[9];
+    char stringdata22[20];
+    char stringdata23[20];
+    char stringdata24[16];
+    char stringdata25[14];
+    char stringdata26[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_managerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -108,21 +112,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
         QT_MOC_LITERAL(92, 9),  // "file_name"
         QT_MOC_LITERAL(102, 9),  // "file_size"
         QT_MOC_LITERAL(112, 21),  // "reject_receiving_file"
-        QT_MOC_LITERAL(134, 10),  // "file_saved"
-        QT_MOC_LITERAL(145, 4),  // "path"
-        QT_MOC_LITERAL(150, 16),  // "client_connected"
-        QT_MOC_LITERAL(167, 11),  // "client_name"
-        QT_MOC_LITERAL(179, 12),  // "clients_list"
-        QT_MOC_LITERAL(192, 7),  // "my_name"
-        QT_MOC_LITERAL(200, 21),  // "QMap<QString,QString>"
-        QT_MOC_LITERAL(222, 13),  // "other_clients"
-        QT_MOC_LITERAL(236, 19),  // "client_name_changed"
-        QT_MOC_LITERAL(256, 8),  // "old_name"
-        QT_MOC_LITERAL(265, 19),  // "client_disconnected"
-        QT_MOC_LITERAL(285, 19),  // "socket_disconnected"
-        QT_MOC_LITERAL(305, 15),  // "on_disconnected"
-        QT_MOC_LITERAL(321, 13),  // "on_ready_read"
-        QT_MOC_LITERAL(335, 12)   // "file_connect"
+        QT_MOC_LITERAL(134, 26),  // "init_receiving_file_client"
+        QT_MOC_LITERAL(161, 28),  // "reject_receiving_file_client"
+        QT_MOC_LITERAL(190, 10),  // "file_saved"
+        QT_MOC_LITERAL(201, 4),  // "path"
+        QT_MOC_LITERAL(206, 16),  // "client_connected"
+        QT_MOC_LITERAL(223, 11),  // "client_name"
+        QT_MOC_LITERAL(235, 12),  // "clients_list"
+        QT_MOC_LITERAL(248, 7),  // "my_name"
+        QT_MOC_LITERAL(256, 21),  // "QMap<QString,QString>"
+        QT_MOC_LITERAL(278, 13),  // "other_clients"
+        QT_MOC_LITERAL(292, 19),  // "client_name_changed"
+        QT_MOC_LITERAL(312, 8),  // "old_name"
+        QT_MOC_LITERAL(321, 19),  // "client_disconnected"
+        QT_MOC_LITERAL(341, 19),  // "socket_disconnected"
+        QT_MOC_LITERAL(361, 15),  // "on_disconnected"
+        QT_MOC_LITERAL(377, 13),  // "on_ready_read"
+        QT_MOC_LITERAL(391, 12)   // "file_connect"
     },
     "client_manager",
     "text_message_received",
@@ -134,6 +140,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_met
     "file_name",
     "file_size",
     "reject_receiving_file",
+    "init_receiving_file_client",
+    "reject_receiving_file_client",
     "file_saved",
     "path",
     "client_connected",
@@ -160,40 +168,44 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      10,       // signalCount
+      12,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   92,    2, 0x06,    1 /* Public */,
-       5,    1,   97,    2, 0x06,    4 /* Public */,
-       6,    3,  100,    2, 0x06,    6 /* Public */,
-       9,    0,  107,    2, 0x06,   10 /* Public */,
-      10,    1,  108,    2, 0x06,   11 /* Public */,
-      12,    1,  111,    2, 0x06,   13 /* Public */,
-      14,    2,  114,    2, 0x06,   15 /* Public */,
-      18,    2,  119,    2, 0x06,   18 /* Public */,
-      20,    1,  124,    2, 0x06,   21 /* Public */,
-      21,    0,  127,    2, 0x06,   23 /* Public */,
+       1,    2,  104,    2, 0x06,    1 /* Public */,
+       5,    1,  109,    2, 0x06,    4 /* Public */,
+       6,    2,  112,    2, 0x06,    6 /* Public */,
+       9,    0,  117,    2, 0x06,    9 /* Public */,
+      10,    3,  118,    2, 0x06,   10 /* Public */,
+      11,    1,  125,    2, 0x06,   14 /* Public */,
+      12,    1,  128,    2, 0x06,   16 /* Public */,
+      14,    1,  131,    2, 0x06,   18 /* Public */,
+      16,    2,  134,    2, 0x06,   20 /* Public */,
+      20,    2,  139,    2, 0x06,   23 /* Public */,
+      22,    1,  144,    2, 0x06,   26 /* Public */,
+      23,    0,  147,    2, 0x06,   28 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      22,    0,  128,    2, 0x08,   24 /* Private */,
-      23,    0,  129,    2, 0x08,   25 /* Private */,
-      24,    0,  130,    2, 0x08,   26 /* Private */,
+      24,    0,  148,    2, 0x08,   29 /* Private */,
+      25,    0,  149,    2, 0x08,   30 /* Private */,
+      26,    0,  150,    2, 0x08,   31 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
     QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    3,    7,    8,
+    QMetaType::Void, QMetaType::QString, QMetaType::LongLong,    7,    8,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    3,    7,    8,
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,   13,
-    QMetaType::Void, QMetaType::QString, 0x80000000 | 16,   15,   17,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,   13,
-    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 18,   17,   19,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   21,   15,
+    QMetaType::Void, QMetaType::QString,   15,
     QMetaType::Void,
 
  // slots: parameters
@@ -223,10 +235,17 @@ Q_CONSTINIT const QMetaObject client_manager::staticMetaObject = { {
         // method 'init_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
         // method 'reject_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'init_receiving_file_client'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
+        // method 'reject_receiving_file_client'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'file_saved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -264,17 +283,19 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
+        case 2: _t->init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[2]))); break;
         case 3: _t->reject_receiving_file(); break;
-        case 4: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 5: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
-        case 7: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 8: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->socket_disconnected(); break;
-        case 10: _t->on_disconnected(); break;
-        case 11: _t->on_ready_read(); break;
-        case 12: _t->file_connect(); break;
+        case 4: _t->init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
+        case 5: _t->reject_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
+        case 9: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 10: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->socket_disconnected(); break;
+        case 12: _t->on_disconnected(); break;
+        case 13: _t->on_ready_read(); break;
+        case 14: _t->file_connect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -294,7 +315,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            using _t = void (client_manager::*)(QString , QString , qint64 );
+            using _t = void (client_manager::*)(QString , qint64 );
             if (_t _q_method = &client_manager::init_receiving_file; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
@@ -308,44 +329,58 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            using _t = void (client_manager::*)(QString );
-            if (_t _q_method = &client_manager::file_saved; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (client_manager::*)(QString , QString , qint64 );
+            if (_t _q_method = &client_manager::init_receiving_file_client; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 4;
                 return;
             }
         }
         {
             using _t = void (client_manager::*)(QString );
-            if (_t _q_method = &client_manager::client_connected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &client_manager::reject_receiving_file_client; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (client_manager::*)(QString );
+            if (_t _q_method = &client_manager::file_saved; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (client_manager::*)(QString );
+            if (_t _q_method = &client_manager::client_connected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 7;
                 return;
             }
         }
         {
             using _t = void (client_manager::*)(QString , QMap<QString,QString> );
             if (_t _q_method = &client_manager::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 6;
+                *result = 8;
                 return;
             }
         }
         {
             using _t = void (client_manager::*)(QString , QString );
             if (_t _q_method = &client_manager::client_name_changed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 7;
+                *result = 9;
                 return;
             }
         }
         {
             using _t = void (client_manager::*)(QString );
             if (_t _q_method = &client_manager::client_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 8;
+                *result = 10;
                 return;
             }
         }
         {
             using _t = void (client_manager::*)();
             if (_t _q_method = &client_manager::socket_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 9;
+                *result = 11;
                 return;
             }
         }
@@ -371,13 +406,13 @@ int client_manager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 15;
     }
     return _id;
 }
@@ -397,9 +432,9 @@ void client_manager::is_typing_received(QString _t1)
 }
 
 // SIGNAL 2
-void client_manager::init_receiving_file(QString _t1, QString _t2, qint64 _t3)
+void client_manager::init_receiving_file(QString _t1, qint64 _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
@@ -410,43 +445,57 @@ void client_manager::reject_receiving_file()
 }
 
 // SIGNAL 4
-void client_manager::file_saved(QString _t1)
+void client_manager::init_receiving_file_client(QString _t1, QString _t2, qint64 _t3)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void client_manager::client_connected(QString _t1)
+void client_manager::reject_receiving_file_client(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void client_manager::clients_list(QString _t1, QMap<QString,QString> _t2)
+void client_manager::file_saved(QString _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void client_manager::client_name_changed(QString _t1, QString _t2)
+void client_manager::client_connected(QString _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void client_manager::client_disconnected(QString _t1)
+void client_manager::clients_list(QString _t1, QMap<QString,QString> _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
+void client_manager::client_name_changed(QString _t1, QString _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void client_manager::client_disconnected(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
 void client_manager::socket_disconnected()
 {
-    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
 }
 QT_WARNING_POP

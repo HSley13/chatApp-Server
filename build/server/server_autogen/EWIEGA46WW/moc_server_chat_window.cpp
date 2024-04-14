@@ -180,10 +180,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_chat_windowENDCLASS[] = {
       15,    0,  129,    2, 0x08,   20 /* Private */,
       16,    3,  130,    2, 0x08,   21 /* Private */,
       17,    2,  137,    2, 0x08,   25 /* Private */,
-      18,    4,  142,    2, 0x08,   28 /* Private */,
-      20,    1,  151,    2, 0x08,   33 /* Private */,
-      22,    2,  154,    2, 0x08,   35 /* Private */,
-      24,    2,  159,    2, 0x08,   38 /* Private */,
+      18,    3,  142,    2, 0x08,   28 /* Private */,
+      20,    1,  149,    2, 0x08,   32 /* Private */,
+      22,    2,  152,    2, 0x08,   34 /* Private */,
+      24,    1,  157,    2, 0x08,   37 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
@@ -198,10 +198,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_chat_windowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    6,    7,    9,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    6,    7,   11,   19,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    6,   11,   19,
     QMetaType::Void, QMetaType::QString,   21,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,   23,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
+    QMetaType::Void, QMetaType::QString,    6,
 
        0        // eod
 };
@@ -256,7 +256,6 @@ Q_CONSTINIT const QMetaObject server_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
         // method 'on_file_saved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -267,7 +266,6 @@ Q_CONSTINIT const QMetaObject server_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_reject_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
@@ -289,10 +287,10 @@ void server_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 7: _t->send_file(); break;
         case 8: _t->on_text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 9: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 10: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[4]))); break;
+        case 10: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
         case 11: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 12: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 13: _t->on_reject_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 13: _t->on_reject_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

@@ -41,12 +41,22 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file:
-        emit init_receiving_file(_protocol->sender(), _protocol->file_name(), _protocol->file_size());
+        emit init_receiving_file(_protocol->file_name(), _protocol->file_size());
+
+        break;
+
+    case chat_protocol::init_sending_file_client:
+        emit init_receiving_file_client(_protocol->sender(), _protocol->file_name(), _protocol->file_size());
 
         break;
 
     case chat_protocol::accept_sending_file:
-        send_file(_protocol->port());
+        send_file();
+
+        break;
+
+    case chat_protocol::accept_sending_file_client:
+        send_file_client(_protocol->port_transfer());
 
         break;
 
@@ -55,8 +65,18 @@ void client_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::reject_sending_file_client:
+        emit reject_receiving_file_client(_protocol->sender());
+
+        break;
+
     case chat_protocol::send_file:
-        save_file(_protocol->sender());
+        save_file();
+
+        break;
+
+    case chat_protocol::send_file_client:
+        save_file_client(_protocol->sender());
 
         break;
 
@@ -107,15 +127,26 @@ void client_manager::send_is_typing(QString sender, QString receiver)
     _socket->write(_protocol->set_is_typing_message(sender, receiver));
 }
 
-void client_manager::send_init_sending_file(QString sender, QString receiver, QString file_name)
+void client_manager::send_init_sending_file(QString file_name)
 {
     _file_name = file_name;
-    _socket->write(_protocol->set_init_sending_file_message(sender, receiver, file_name));
+    _socket->write(_protocol->set_init_sending_file_message(file_name));
 }
 
-void client_manager::send_accept_file(QString receiver, int port)
+void client_manager::send_init_sending_file_client(QString sender, QString receiver, QString file_name)
 {
-    _socket->write(_protocol->set_accept_file_message(receiver, port));
+    _file_name = file_name;
+    _socket->write(_protocol->set_init_sending_file_message_client(sender, receiver, file_name));
+}
+
+void client_manager::send_accept_file()
+{
+    _socket->write(_protocol->set_accept_file_message());
+}
+
+void client_manager::send_accept_file_client(QString receiver, int port)
+{
+    _socket->write(_protocol->set_accept_file_message_client(receiver, port));
 
     ser = new QTcpServer(this);
     ser->listen(QHostAddress::LocalHost, _protocol->port());
@@ -129,23 +160,52 @@ void client_manager::file_connect()
     QByteArray data = client->readAll();
 
     _protocol->load_data(data);
-    save_file(_protocol->sender());
+    save_file_client(_protocol->sender());
 }
 
-void client_manager::send_reject_file(QString sender, QString receiver)
+void client_manager::send_reject_file()
 {
-    _socket->write(_protocol->set_reject_file_message(sender, receiver));
+    _socket->write(_protocol->set_reject_file_message());
 }
 
-void client_manager::send_file(int port)
+void client_manager::send_reject_file_client(QString sender, QString receiver)
+{
+    _socket->write(_protocol->set_reject_file_message_client(sender, receiver));
+}
+
+void client_manager::send_file()
+{
+    _socket->write(_protocol->set_file_message(_file_name));
+}
+
+void client_manager::send_file_client(int port)
 {
     QTcpSocket *temp = new QTcpSocket(this);
     temp->connectToHost(QHostAddress::LocalHost, port);
 
-    temp->write(_protocol->set_file_message(_file_name, _protocol->my_name()));
+    temp->write(_protocol->set_file_message_client(_file_name, _protocol->my_name()));
 }
 
-void client_manager::save_file(QString sender)
+void client_manager::save_file()
+{
+    QDir dir;
+    dir.mkdir("Server");
+    dir.setPath("./");
+
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+
+    QFile file(path);
+
+    if (file.open(QIODevice::WriteOnly))
+    {
+        file.write(_protocol->file_data());
+        file.close();
+
+        emit file_saved(path);
+    }
+}
+
+void client_manager::save_file_client(QString sender)
 {
     QDir dir;
     dir.mkdir(sender);

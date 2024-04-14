@@ -51,21 +51,38 @@ void client_chat_window::on_is_typing_received(QString sender)
     emit is_typing_received(sender);
 }
 
-void client_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)
+void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_size)
+{
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
+
+    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+
+    if (result == QMessageBox::Yes)
+        _client->send_accept_file();
+    else
+        _client->send_reject_file();
+}
+
+void client_chat_window::on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size)
 {
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
     if (result == QMessageBox::Yes)
-        _client->send_accept_file(sender, _protocol->port());
+        _client->send_accept_file_client(sender, _protocol->port());
     else
-        _client->send_reject_file(my_name(), sender);
+        _client->send_reject_file_client(my_name(), sender);
 }
 
 void client_chat_window::on_reject_receiving_file()
 {
-    QMessageBox::critical(this, "File Rejected", "Sending File Rejected");
+    QMessageBox::critical(this, "File Rejected", "Server Rejected Your request to send the file");
+}
+
+void client_chat_window::on_reject_receiving_file_client(QString sender)
+{
+    QMessageBox::critical(this, "File Rejected", QString("%1 Rejected Your request to send the file").arg(sender));
 }
 
 void client_chat_window::on_client_connected(QString client_name)
@@ -148,15 +165,13 @@ void client_chat_window::message_received(QString message)
     list->setItemWidget(line, wid);
 }
 
-void client_chat_window::send_is_typing(QString receiver)
+void client_chat_window::send_is_typing()
 {
-    receiver = "Server";
-    _client->send_is_typing(my_name(), receiver);
+    _client->send_is_typing(my_name(), "Server");
 }
 
-void client_chat_window::send_is_typing_client(QString receiver)
+void client_chat_window::send_is_typing_client()
 {
-    receiver = nullptr;
     _client->send_is_typing(my_name(), destinator());
 }
 
@@ -166,7 +181,7 @@ void client_chat_window::send_file()
 
     if (!file_name.isEmpty())
     {
-        _client->send_init_sending_file(my_name(), "Server", file_name);
+        _client->send_init_sending_file(file_name);
 
         file_name.clear();
     }
@@ -178,7 +193,7 @@ void client_chat_window::send_file_client()
 
     if (!file_name.isEmpty())
     {
-        _client->send_init_sending_file(my_name(), destinator(), file_name);
+        _client->send_init_sending_file_client(my_name(), destinator(), file_name);
 
         file_name.clear();
     }
@@ -244,7 +259,10 @@ void client_chat_window::set_up_window()
         _client = new client_manager();
         connect(_client, &client_manager::text_message_received, this, &client_chat_window::on_text_message_received);
         connect(_client, &client_manager::is_typing_received, this, &client_chat_window::on_is_typing_received);
+
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
+        connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);
+
         connect(_client, &client_manager::reject_receiving_file, this, &client_chat_window::on_reject_receiving_file);
 
         connect(_client, &client_manager::file_saved, this, &client_chat_window::file_saved);

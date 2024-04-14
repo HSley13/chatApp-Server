@@ -52,7 +52,7 @@ QByteArray chat_protocol::set_name_message(QString name)
     return get_data(set_name, name);
 }
 
-QByteArray chat_protocol::set_init_sending_file_message(QString sender, QString receiver, QString filename)
+QByteArray chat_protocol::set_init_sending_file_message(QString filename)
 {
     QByteArray byte;
 
@@ -61,30 +61,55 @@ QByteArray chat_protocol::set_init_sending_file_message(QString sender, QString 
 
     QFileInfo info(filename);
 
-    out << init_sending_file << sender << receiver << info.fileName() << info.size();
+    out << init_sending_file << info.fileName() << info.size();
 
     return byte;
 }
-QByteArray chat_protocol::set_accept_file_message(int port)
+
+QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString filename)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << accept_sending_file << port;
+    QFileInfo info(filename);
+
+    out << init_sending_file_client << sender << info.fileName() << info.size();
 
     return byte;
 }
 
-QByteArray chat_protocol::set_reject_file_message(QString sender, QString receiver)
+QByteArray chat_protocol::set_accept_file_message()
+{
+    return get_data(accept_sending_file, "");
+}
+
+QByteArray chat_protocol::set_accept_file_message_client(int port)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << reject_sending_file << sender << receiver;
+    out << accept_sending_file_client << port;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_reject_file_message()
+{
+    return get_data(reject_sending_file, "");
+}
+
+QByteArray chat_protocol::set_reject_file_message_client(QString sender, QString receiver)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << reject_sending_file_client << sender << receiver;
 
     return byte;
 }
@@ -101,10 +126,22 @@ QByteArray chat_protocol::set_file_message(QString filename)
 
         QFileInfo info(filename);
 
-        out << send_file << info.fileName() << info.size() << file.readAll() << "Server";
+        out << send_file << info.fileName() << info.size() << file.readAll();
 
         file.close();
     }
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_file_message_client(int port)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << send_file_client << port;
 
     return byte;
 }
@@ -163,22 +200,34 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case is_typing:
-        in >> _sender >> _receiver;
+        in >> _sender_typing >> _receiver_typing;
 
     case init_sending_file:
-        in >> _sender >> _receiver >> _file_name >> _file_size;
+        in >> _file_name >> _file_size;
 
         break;
 
     case send_file:
-        in >> _file_name >> _file_size >> _file_data >> _sender;
+        in >> _file_name >> _file_size >> _file_data;
 
         break;
 
-    case accept_sending_file:
+    case init_sending_file_client:
+        in >> _sender >> _receiver >> _file_name >> _file_size;
+
+        break;
+
+    case send_file_client:
+        in >> _file_name >> _file_size >> _file_data;
+
+        break;
+
+    case accept_sending_file_client:
         in >> _receiver >> _port;
 
-    case reject_sending_file:
+        break;
+
+    case reject_sending_file_client:
         in >> _sender >> _receiver;
 
     default:
@@ -234,6 +283,15 @@ const QString &chat_protocol::receiver() const
 const QString &chat_protocol::sender() const
 {
     return _sender;
+}
+const QString &chat_protocol::receiver_typing() const
+{
+    return _receiver_typing;
+}
+
+const QString &chat_protocol::sender_typing() const
+{
+    return _sender_typing;
 }
 
 const int &chat_protocol::port() const

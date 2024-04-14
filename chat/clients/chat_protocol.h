@@ -18,10 +18,19 @@ public:
         text,
         is_typing,
         set_name,
+
         init_sending_file,
+        init_sending_file_client,
+
         accept_sending_file,
+        accept_sending_file_client,
+
         reject_sending_file,
+        reject_sending_file_client,
+
         send_file,
+        send_file_client,
+
         new_client,
         clients_list,
         client_new_name,
@@ -32,10 +41,16 @@ public:
     QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
 
-    QByteArray set_init_sending_file_message(QString sender, QString receive, QString filename);
-    QByteArray set_accept_file_message(QString receiver, int port);
-    QByteArray set_reject_file_message(QString sender, QString receiver);
-    QByteArray set_file_message(QString filename, QString sender);
+    QByteArray set_init_sending_file_message(QString filename);
+    QByteArray set_accept_file_message();
+    QByteArray set_reject_file_message();
+
+    QByteArray set_init_sending_file_message_client(QString sender, QString receive, QString filename);
+    QByteArray set_accept_file_message_client(QString receiver, int port);
+    QByteArray set_reject_file_message_client(QString sender, QString receiver);
+
+    QByteArray set_file_message(QString filename);
+    QByteArray set_file_message_client(QString filename, QString sender);
 
     void load_data(QByteArray data);
 

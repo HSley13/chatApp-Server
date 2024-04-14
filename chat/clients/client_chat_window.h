@@ -72,8 +72,8 @@ private slots:
     send_message();
     void send_message_client();
 
-    void send_is_typing(QString receiver);
-    void send_is_typing_client(QString receiver);
+    void send_is_typing();
+    void send_is_typing_client();
 
     void send_file();
     void send_file_client();
@@ -84,8 +84,11 @@ private slots:
     void on_text_message_received(QString sender, QString message);
     void on_is_typing_received(QString sender);
 
-    void on_init_receiving_file(QString sender, QString file_name, qint64 file_size);
+    void on_init_receiving_file(QString file_name, qint64 file_size);
+    void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
+
     void on_reject_receiving_file();
+    void on_reject_receiving_file_client(QString sender);
 
     void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
     void on_client_connected(QString client_name);
