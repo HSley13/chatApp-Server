@@ -143,8 +143,6 @@ void client_manager::send_file(int port)
     temp->connectToHost(QHostAddress::LocalHost, port);
 
     temp->write(_protocol->set_file_message(_file_name, _protocol->my_name()));
-
-    // _socket->write(_protocol->set_file_message(_file_name));
 }
 
 void client_manager::save_file(QString sender)

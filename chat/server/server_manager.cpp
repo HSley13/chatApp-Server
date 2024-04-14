@@ -97,6 +97,8 @@ void server_manager::new_connection()
 
             QByteArray message = _protocol->set_clients_list_message(client_name, checked_names, port);
             client->write(message);
+
+            qDebug() << "server_manager--> new_connection()--> port:" << port << "allocated to client:" << client_name;
         }
         else
             qDebug() << "server_manager--> new_connection()--> _pool vector variable empty";
@@ -123,9 +125,9 @@ void server_manager::on_ready_read()
     case chat_protocol::set_name:
     {
         QString old_name = _socket->property("client_name").toString();
-        _socket->setProperty("client_name", name());
+        _socket->setProperty("client_name", _protocol->name());
 
-        emit client_name_changed(old_name, name());
+        emit client_name_changed(old_name, _protocol->name());
 
         break;
     }
