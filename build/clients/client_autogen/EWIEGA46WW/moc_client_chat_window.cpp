@@ -81,11 +81,12 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "on_client_name_changed",
     "on_client_disconnected",
     "on_socket_disconnected",
-    "on_update_label"
+    "on_update_label",
+    "on_file_saved"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t {
-    uint offsetsAndSizes[86];
+    uint offsetsAndSizes[88];
     char stringdata0[19];
     char stringdata1[13];
     char stringdata2[1];
@@ -129,6 +130,7 @@ struct qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t {
     char stringdata40[23];
     char stringdata41[23];
     char stringdata42[16];
+    char stringdata43[14];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -176,7 +178,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t qt
         QT_MOC_LITERAL(605, 22),  // "on_client_name_changed"
         QT_MOC_LITERAL(628, 22),  // "on_client_disconnected"
         QT_MOC_LITERAL(651, 22),  // "on_socket_disconnected"
-        QT_MOC_LITERAL(674, 15)   // "on_update_label"
+        QT_MOC_LITERAL(674, 15),  // "on_update_label"
+        QT_MOC_LITERAL(690, 13)   // "on_file_saved"
     },
     "client_chat_window",
     "clients_list",
@@ -220,7 +223,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t qt
     "on_client_name_changed",
     "on_client_disconnected",
     "on_socket_disconnected",
-    "on_update_label"
+    "on_update_label",
+    "on_file_saved"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -232,7 +236,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      29,   14, // methods
+      30,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -240,37 +244,38 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
        8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,  188,    2, 0x06,    1 /* Public */,
-       6,    1,  193,    2, 0x06,    4 /* Public */,
-       8,    2,  196,    2, 0x06,    6 /* Public */,
-      10,    1,  201,    2, 0x06,    9 /* Public */,
-      11,    2,  204,    2, 0x06,   11 /* Public */,
-      14,    1,  209,    2, 0x06,   14 /* Public */,
-      15,    0,  212,    2, 0x06,   16 /* Public */,
-      16,    1,  213,    2, 0x06,   17 /* Public */,
+       1,    2,  194,    2, 0x06,    1 /* Public */,
+       6,    1,  199,    2, 0x06,    4 /* Public */,
+       8,    2,  202,    2, 0x06,    6 /* Public */,
+      10,    1,  207,    2, 0x06,    9 /* Public */,
+      11,    2,  210,    2, 0x06,   11 /* Public */,
+      14,    1,  215,    2, 0x06,   14 /* Public */,
+      15,    0,  218,    2, 0x06,   16 /* Public */,
+      16,    1,  219,    2, 0x06,   17 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      19,    0,  216,    2, 0x08,   19 /* Private */,
-      20,    0,  217,    2, 0x08,   20 /* Private */,
-      21,    0,  218,    2, 0x08,   21 /* Private */,
-      22,    0,  219,    2, 0x08,   22 /* Private */,
-      23,    0,  220,    2, 0x08,   23 /* Private */,
-      24,    0,  221,    2, 0x08,   24 /* Private */,
-      25,    1,  222,    2, 0x08,   25 /* Private */,
-      27,    0,  225,    2, 0x08,   27 /* Private */,
-      28,    0,  226,    2, 0x08,   28 /* Private */,
-      29,    2,  227,    2, 0x08,   29 /* Private */,
-      30,    1,  232,    2, 0x08,   32 /* Private */,
-      31,    2,  235,    2, 0x08,   34 /* Private */,
-      34,    3,  240,    2, 0x08,   37 /* Private */,
-      35,    0,  247,    2, 0x08,   41 /* Private */,
-      36,    1,  248,    2, 0x08,   42 /* Private */,
-      37,    2,  251,    2, 0x08,   44 /* Private */,
-      38,    1,  256,    2, 0x08,   47 /* Private */,
-      39,    2,  259,    2, 0x08,   49 /* Private */,
-      40,    1,  264,    2, 0x08,   52 /* Private */,
-      41,    0,  267,    2, 0x08,   54 /* Private */,
-      42,    1,  268,    2, 0x08,   55 /* Private */,
+      19,    0,  222,    2, 0x08,   19 /* Private */,
+      20,    0,  223,    2, 0x08,   20 /* Private */,
+      21,    0,  224,    2, 0x08,   21 /* Private */,
+      22,    0,  225,    2, 0x08,   22 /* Private */,
+      23,    0,  226,    2, 0x08,   23 /* Private */,
+      24,    0,  227,    2, 0x08,   24 /* Private */,
+      25,    1,  228,    2, 0x08,   25 /* Private */,
+      27,    0,  231,    2, 0x08,   27 /* Private */,
+      28,    0,  232,    2, 0x08,   28 /* Private */,
+      29,    2,  233,    2, 0x08,   29 /* Private */,
+      30,    1,  238,    2, 0x08,   32 /* Private */,
+      31,    2,  241,    2, 0x08,   34 /* Private */,
+      34,    3,  246,    2, 0x08,   37 /* Private */,
+      35,    0,  253,    2, 0x08,   41 /* Private */,
+      36,    1,  254,    2, 0x08,   42 /* Private */,
+      37,    2,  257,    2, 0x08,   44 /* Private */,
+      38,    1,  262,    2, 0x08,   47 /* Private */,
+      39,    2,  265,    2, 0x08,   49 /* Private */,
+      40,    1,  270,    2, 0x08,   52 /* Private */,
+      41,    0,  273,    2, 0x08,   54 /* Private */,
+      42,    1,  274,    2, 0x08,   55 /* Private */,
+      43,    1,  277,    2, 0x08,   57 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
@@ -304,6 +309,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void, QMetaType::QString,   26,
 
        0        // eod
 };
@@ -401,7 +407,10 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_update_label'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QLabel *, std::false_type>
+        QtPrivate::TypeAndForceComplete<QLabel *, std::false_type>,
+        // method 'on_file_saved'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -441,6 +450,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 26: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 27: _t->on_socket_disconnected(); break;
         case 28: _t->on_update_label((*reinterpret_cast< std::add_pointer_t<QLabel*>>(_a[1]))); break;
+        case 29: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -541,13 +551,13 @@ int client_chat_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 29)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 29)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 30;
     }
     return _id;
 }

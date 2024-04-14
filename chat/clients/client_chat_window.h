@@ -104,4 +104,6 @@ private slots:
     void on_socket_disconnected();
 
     void on_update_label(QLabel *label);
+
+    void on_file_saved(QString path);
 };

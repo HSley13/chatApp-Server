@@ -117,6 +117,17 @@ void client_chat_window::on_socket_disconnected()
     emit socket_disconnected();
 }
 
+void client_chat_window::on_update_label(QLabel *label)
+{
+    label->setText(QString("%1's Conversation").arg(_window_name));
+}
+
+void client_chat_window::on_file_saved(QString path)
+{
+    QString message = QString("File save at: %1").arg(path);
+
+    QMessageBox::information(this, "File Saved", message);
+}
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void client_chat_window::send_message()
 {
@@ -289,6 +300,8 @@ void client_chat_window::set_up_window()
 
         connect(_client, &client_manager::socket_disconnected, this, &client_chat_window::on_socket_disconnected);
 
+        connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
+
         _protocol = new chat_protocol(this);
     }
 }
@@ -319,9 +332,4 @@ void client_chat_window::window_name(QString name)
     emit update_label(label);
 
     QFile::rename(dir.canonicalPath(), name);
-}
-
-void client_chat_window::on_update_label(QLabel *label)
-{
-    label->setText(QString("%1's Conversation").arg(_window_name));
 }
