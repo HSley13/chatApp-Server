@@ -30,20 +30,17 @@ public:
     void save_file_client(QString sender);
 
 private:
-    QWidget *_central_widget;
-
     static QTcpSocket *_socket;
     QHostAddress _ip;
     int _port;
 
     static chat_protocol *_protocol;
 
-    QTcpServer *ser;
+    QTcpServer *_file_server;
+    QTcpSocket *_file_socket;
 
     QString _file_name;
     QString _file_name_client;
-
-    QTcpSocket *client_for_file;
 
 signals:
     void

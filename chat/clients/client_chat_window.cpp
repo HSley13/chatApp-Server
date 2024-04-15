@@ -21,13 +21,13 @@ client_chat_window::client_chat_window(QWidget *parent)
 {
     set_up_window();
 
-    connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
+    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
-    connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
+    connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
-    connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
+    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
 
-    connect(file, &QPushButton::clicked, this, &client_chat_window::folder);
+    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder);
 }
 
 client_chat_window::client_chat_window(QString destinator, QWidget *parent)
@@ -35,13 +35,13 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 {
     set_up_window();
 
-    connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message_client);
+    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message_client);
 
-    connect(send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
+    connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
-    connect(insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
+    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
 
-    connect(file, &QPushButton::clicked, this, &client_chat_window::folder_client);
+    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder_client);
 
     dir.mkdir(_destinator);
     dir.setPath("./" + _destinator);
@@ -73,60 +73,60 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void client_chat_window::send_message()
 {
-    QString message = insert_message->text();
+    QString message = _insert_message->text();
 
     _client->send_text(my_name(), "Server", message);
 
-    wid = new chat_line();
+    chat_line *wid = new chat_line(this);
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    line = new QListWidgetItem();
+    QListWidgetItem *line = new QListWidgetItem();
     line->setSizeHint(QSize(0, 65));
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
 
-    list->addItem(line);
-    list->setItemWidget(line, wid);
+    _list->addItem(line);
+    _list->setItemWidget(line, wid);
 
-    insert_message->clear();
+    _insert_message->clear();
 
     emit text_message_sent("Server");
 }
 
 void client_chat_window::send_message_client()
 {
-    QString message = insert_message->text();
+    QString message = _insert_message->text();
 
     _client->send_text(my_name(), destinator(), message);
 
-    wid = new chat_line();
+    chat_line *wid = new chat_line(this);
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    line = new QListWidgetItem();
+    QListWidgetItem *line = new QListWidgetItem();
     line->setSizeHint(QSize(0, 65));
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
 
-    list->addItem(line);
-    list->setItemWidget(line, wid);
+    _list->addItem(line);
+    _list->setItemWidget(line, wid);
 
-    insert_message->clear();
+    _insert_message->clear();
 
     emit text_message_sent(_window_name);
 }
 
 void client_chat_window::message_received(QString message)
 {
-    wid = new chat_line();
+    chat_line *wid = new chat_line(this);
     wid->set_message(message);
     wid->setStyleSheet("color: black;");
 
-    line = new QListWidgetItem();
+    QListWidgetItem *line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightgray));
     line->setSizeHint(QSize(0, 65));
 
-    list->addItem(line);
-    list->setItemWidget(line, wid);
+    _list->addItem(line);
+    _list->setItemWidget(line, wid);
 }
 
 void client_chat_window::send_is_typing()
@@ -183,38 +183,38 @@ void client_chat_window::folder_client()
 
 void client_chat_window::set_up_window()
 {
-    central_widget = new QWidget();
+    QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    insert_message = new QLineEdit(this);
-    insert_message->setPlaceholderText("Insert New Message");
+    _insert_message = new QLineEdit(this);
+    _insert_message->setPlaceholderText("Insert New Message");
 
-    send_button = new QPushButton("Send", this);
+    _send_button = new QPushButton("Send", this);
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();
-    hbox_1->addWidget(insert_message, 7);
-    hbox_1->addWidget(send_button, 3);
+    hbox_1->addWidget(_insert_message, 7);
+    hbox_1->addWidget(_send_button, 3);
 
-    file = new QPushButton("Open Directory", this);
+    _file = new QPushButton("Open Directory", this);
 
-    send_file_button = new QPushButton("...", this);
+    _send_file_button = new QPushButton("...", this);
 
     QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(file, 7);
-    hbox_2->addWidget(send_file_button, 3);
+    hbox_2->addWidget(_file, 7);
+    hbox_2->addWidget(_send_file_button, 3);
 
-    list = new QListWidget(this);
+    _list = new QListWidget(this);
 
-    label = new QLabel("Server's Conversation", this);
+    _label = new QLabel("Server's Conversation", this);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(label);
-    VBOX->addWidget(list);
+    VBOX->addWidget(_label);
+    VBOX->addWidget(_list);
     VBOX->addLayout(hbox_1);
     VBOX->addLayout(hbox_2);
 
     connect(this, &client_chat_window::update_label, this, [=]()
-            { label->setText(QString("%1's Conversation").arg(_window_name)); });
+            { _label->setText(QString("%1's Conversation").arg(_window_name)); });
 
     if (!_client)
     {
@@ -279,7 +279,7 @@ void client_chat_window::window_name(QString name)
 {
     _window_name = name;
 
-    emit update_label(label);
+    emit update_label(_label);
 
     QFile::rename(dir.canonicalPath(), name);
 }

@@ -10,24 +10,24 @@
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent)
 {
-    central_widget = new QWidget();
+    QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    list = new QListWidget(this);
+    _list = new QListWidget(this);
 
     _protocol = new chat_protocol(this);
-    _client = new server_manager(client);
+    _client = new server_manager(client, this);
 
-    insert_message = new QLineEdit(this);
-    insert_message->setPlaceholderText("Insert New Message");
-    connect(insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
+    _insert_message = new QLineEdit(this);
+    _insert_message->setPlaceholderText("Insert New Message");
+    connect(_insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
-    send_button = new QPushButton("Send", this);
-    connect(send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
+    _send_button = new QPushButton("Send", this);
+    connect(_send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();
-    hbox_1->addWidget(insert_message, 7);
-    hbox_1->addWidget(send_button, 3);
+    hbox_1->addWidget(_insert_message, 7);
+    hbox_1->addWidget(_send_button, 3);
 
     QPushButton *file = new QPushButton("Open Client Directory", this);
     connect(file, &QPushButton::clicked, this, &server_chat_window::folder);
@@ -40,7 +40,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     hbox_2->addWidget(send_file, 3);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(list);
+    VBOX->addWidget(_list);
     VBOX->addLayout(hbox_1);
     VBOX->addLayout(hbox_2);
 
@@ -66,16 +66,16 @@ void server_chat_window::on_text_message_received(QString sender, QString receiv
 {
     if (!receiver.compare("Server"))
     {
-        wid = new chat_line();
+        chat_line *wid = new chat_line();
         wid->set_message(message);
         wid->setStyleSheet("color: black;");
 
-        line = new QListWidgetItem();
+        QListWidgetItem *line = new QListWidgetItem();
         line->setBackground(QBrush(QColorConstants::Svg::lightgray));
         line->setSizeHint(QSize(0, 65));
 
-        list->addItem(line);
-        list->setItemWidget(line, wid);
+        _list->addItem(line);
+        _list->setItemWidget(line, wid);
     }
     else
         emit text_for_other_client(sender, receiver, message);
@@ -108,22 +108,22 @@ void server_chat_window::on_file_saved(QString path)
 
 void server_chat_window::send_message()
 {
-    QString message = insert_message->text();
+    QString message = _insert_message->text();
 
     _client->send_text(message);
 
-    wid = new chat_line();
+    chat_line *wid = new chat_line();
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    line = new QListWidgetItem();
+    QListWidgetItem *line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
     line->setSizeHint(QSize(0, 65));
 
-    list->addItem(line);
-    list->setItemWidget(line, wid);
+    _list->addItem(line);
+    _list->setItemWidget(line, wid);
 
-    insert_message->clear();
+    _insert_message->clear();
 }
 
 void server_chat_window::send_file()

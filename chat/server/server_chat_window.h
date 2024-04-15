@@ -22,17 +22,13 @@ public:
     void disconnect_from_host();
 
 private:
-    QWidget *central_widget;
+    QListWidget *_list;
 
-    QListWidget *list;
-    QListWidgetItem *line;
-
-    QLineEdit *insert_message;
-    QPushButton *send_button;
+    QLineEdit *_insert_message;
+    QPushButton *_send_button;
 
     server_manager *_client;
     chat_protocol *_protocol;
-    chat_line *wid;
 
     QDir dir;
 

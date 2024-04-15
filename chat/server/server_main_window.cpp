@@ -2,39 +2,45 @@
 #include <QHBoxLayout>
 #include <QStringList>
 
-QMap<QString, QWidget *> server_main_window::window_map = QMap<QString, QWidget *>();
+QMap<QString, QWidget *> server_main_window::_window_map = QMap<QString, QWidget *>();
 
 server_main_window::server_main_window(QWidget *parent)
     : QMainWindow(parent)
 {
-    central_widget = new QWidget();
+    QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
 
     resize(800, 400);
 
-    tabs = new QTabWidget(this);
-    tabs->setTabsClosable(true);
-    connect(tabs, &QTabWidget::tabCloseRequested, this, &server_main_window::close_tabs);
+    _tabs = new QTabWidget(this);
+    _tabs->setTabsClosable(true);
+    connect(_tabs, &QTabWidget::tabCloseRequested, this, &server_main_window::close_tabs);
 
-    status_bar = new QStatusBar(this);
-    setStatusBar(status_bar);
+    _status_bar = new QStatusBar(this);
+    setStatusBar(_status_bar);
 
-    list = new QListWidget(this);
-    disconnect_all = new QPushButton("Disconnect ALL CLIENTS", this);
-    connect(disconnect_all, &QPushButton::clicked, this, [=]()
+    _list = new QListWidget(this);
+    _disconnect_all = new QPushButton("Disconnect ALL CLIENTS", this);
+    connect(_disconnect_all, &QPushButton::clicked, this, [=]()
             { _server->disconnect_all_clients(); });
 
     QVBoxLayout *vbox = new QVBoxLayout();
-    vbox->addWidget(list);
-    vbox->addWidget(disconnect_all);
+    vbox->addWidget(_list);
+    vbox->addWidget(_disconnect_all);
 
     _server = new server_manager();
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
     QHBoxLayout *HBOX = new QHBoxLayout(central_widget);
-    HBOX->addWidget(tabs, 3);
+    HBOX->addWidget(_tabs, 3);
     HBOX->addLayout(vbox);
+}
+
+server_main_window::~server_main_window()
+{
+    delete _server;
+    _window_map = QMap<QString, QWidget *>();
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -43,12 +49,12 @@ void server_main_window::on_new_client_connected(QTcpSocket *client)
     int id = client->property("id").toInt();
     QString client_name = client->property("client_name").toString();
 
-    server_chat_window *wid = new server_chat_window(client);
-    tabs->addTab(wid, QString("Client %1").arg(id));
+    server_chat_window *wid = new server_chat_window(client, this);
+    _tabs->addTab(wid, QString("Client %1").arg(id));
 
-    window_map.insert(client_name, wid);
+    _window_map.insert(client_name, wid);
 
-    list->addItem(QString("Client %1 Connected").arg(id));
+    _list->addItem(QString("Client %1 Connected").arg(id));
 
     connect(wid, &server_chat_window::client_name_changed, this, &server_main_window::on_client_name_changed);
     connect(wid, &server_chat_window::is_typing_received, this, &server_main_window::on_is_typing_received);
@@ -62,22 +68,22 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
 
     QString client_name = client->property("client_name").toString();
 
-    tabs->removeTab(tabs->indexOf(window_map.value(client_name)));
+    _tabs->removeTab(_tabs->indexOf(_window_map.value(client_name)));
 
-    list->addItem(QString("Client %1 disconnected").arg(id));
+    _list->addItem(QString("Client %1 disconnected").arg(id));
 }
 
 void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
 {
-    wid = qobject_cast<QWidget *>(sender());
-    int index = tabs->indexOf(wid);
+    QWidget *wid = qobject_cast<QWidget *>(sender());
+    int index = _tabs->indexOf(wid);
 
-    tabs->setTabText(index, client_name);
+    _tabs->setTabText(index, client_name);
 
     _server->notify_other_clients(old_name, client_name);
 
-    window_map.remove(old_name);
-    window_map.insert(client_name, wid);
+    _window_map.remove(old_name);
+    _window_map.insert(client_name, wid);
 
     _server->_names.remove(original_name);
     _server->_names.insert(original_name, client_name);
@@ -86,15 +92,15 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
 void server_main_window::on_is_typing_received(QString sender, QString receiver)
 {
     if (!receiver.compare("Server"))
-        status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
+        _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
     else
         _server->is_typing_for_other_clients(sender, receiver);
 }
 
 void server_main_window::close_tabs(int index)
 {
-    server_chat_window *wid = qobject_cast<server_chat_window *>(tabs->widget(index));
+    server_chat_window *wid = qobject_cast<server_chat_window *>(_tabs->widget(index));
     wid->disconnect_from_host();
 
-    tabs->removeTab(index);
+    _tabs->removeTab(index);
 }

@@ -28,27 +28,21 @@ public:
     void add_on_top(const QString &client_name);
 
 private:
-    QWidget *central_widget;
+    QStatusBar *_status_bar;
 
-    QStatusBar *status_bar;
+    QTabWidget *_tabs;
 
-    QMenuBar *menu_bar;
-    QMenu *menu;
-
-    QTabWidget *tabs;
-
-    QVBoxLayout *VBOX;
     client_manager *_client;
 
-    static QMap<QString, QWidget *> window_map;
-    static QMap<QString, QString> name_list;
+    static QMap<QString, QWidget *> _window_map;
+    static QMap<QString, QString> _name_list;
 
-    QLineEdit *name;
+    QLineEdit *_name;
 
-    static QStackedWidget *stack;
-    QListWidget *list;
+    static QStackedWidget *_stack;
+    QListWidget *_list;
 
-    QPushButton *back_button;
+    QPushButton *_back_button;
 
 private slots:
     void connected();

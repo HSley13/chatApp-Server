@@ -191,7 +191,6 @@ void server_manager::on_ready_read()
 void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
 {
     QTcpSocket *client = _clients.value(receiver);
-
     if (client)
         client->write(_protocol->set_text_message(sender, "", message));
     else
@@ -269,11 +268,11 @@ void server_manager::save_file()
 
     QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
-    QFile *file = new QFile(path);
-    if (file->open(QIODevice::WriteOnly))
+    QFile file(path);
+    if (file.open(QIODevice::WriteOnly))
     {
-        file->write(_protocol->file_data());
-        file->close();
+        file.write(_protocol->file_data());
+        file.close();
 
         emit file_saved(path);
     }

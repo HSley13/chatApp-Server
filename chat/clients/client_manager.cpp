@@ -147,22 +147,22 @@ void client_manager::send_accept_file_client(QString receiver)
 {
     _socket->write(_protocol->set_accept_file_message_client(receiver, _protocol->port()));
 
-    ser = new QTcpServer(this);
-    ser->listen(QHostAddress::LocalHost, _protocol->port());
-    connect(ser, &QTcpServer::newConnection, this, &client_manager::on_new_connection);
+    _file_server = new QTcpServer(this);
+    _file_server->listen(QHostAddress::LocalHost, _protocol->port());
+    connect(_file_server, &QTcpServer::newConnection, this, &client_manager::on_new_connection);
 }
 
 void client_manager::on_new_connection()
 {
-    client_for_file = ser->nextPendingConnection();
-    connect(client_for_file, &QTcpSocket::readyRead, this, &client_manager::file_connect);
+    _file_socket = _file_server->nextPendingConnection();
+    connect(_file_socket, &QTcpSocket::readyRead, this, &client_manager::file_connect);
 }
 
 void client_manager::file_connect()
 {
     QByteArray data;
 
-    data = client_for_file->readAll();
+    data = _file_socket->readAll();
     _protocol->load_data(data);
 
     save_file_client(_protocol->sender());

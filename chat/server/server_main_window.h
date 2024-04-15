@@ -15,24 +15,18 @@ class server_main_window : public QMainWindow
     Q_OBJECT
 public:
     server_main_window(QWidget *parent = nullptr);
+    ~server_main_window();
 
 private:
-    QWidget *central_widget;
-    QWidget *wid;
+    QListWidget *_list;
+    QTabWidget *_tabs;
 
-    QListWidget *list;
-    QTabWidget *tabs;
-
-    QPushButton *disconnect_all;
+    QPushButton *_disconnect_all;
 
     server_manager *_server;
-    server_chat_window *_chat;
-    server_manager *_clients;
 
-    QStatusBar *status_bar;
-    static QMap<QString, QWidget *> window_map;
-
-    QVBoxLayout *vbox;
+    QStatusBar *_status_bar;
+    static QMap<QString, QWidget *> _window_map;
 
 private slots:
     void on_new_client_connected(QTcpSocket *client);

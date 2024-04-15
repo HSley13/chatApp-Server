@@ -29,25 +29,21 @@ public:
 
     void message_received(QString message);
 
-    QLabel *label;
-
 private:
-    QWidget *central_widget;
-
-    QStatusBar *status_bar;
+    QStatusBar *_status_bar;
 
     static client_manager *_client;
-    chat_line *wid;
+    static chat_protocol *_protocol;
 
-    QListWidget *list;
-    QListWidgetItem *line;
+    QLabel *_label;
+    QListWidget *_list;
 
-    QLineEdit *insert_message;
+    QLineEdit *_insert_message;
 
-    QPushButton *send_button;
-    QPushButton *send_file_button;
+    QPushButton *_send_button;
+    QPushButton *_send_file_button;
 
-    QPushButton *file;
+    QPushButton *_file;
     QDir dir;
 
     static QString _my_name;
@@ -55,8 +51,6 @@ private:
     QString _destinator;
 
     QString _window_name;
-
-    static chat_protocol *_protocol;
 
 signals:
     void clients_list(QString my_name, QMap<QString, QString> other_clients);
