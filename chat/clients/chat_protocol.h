@@ -63,10 +63,15 @@ public:
     const qint64 &file_size() const;
     const QByteArray &file_data() const;
 
+    const QString &file_name_client() const;
+    const qint64 &file_size_client() const;
+    const QByteArray &file_data_client() const;
+
     const QString &client_name() const;
 
     const QString &receiver() const;
     const QString &sender() const;
+    const QString &sender_file() const;
 
     const int &port() const;
     const int &port_transfer() const;
@@ -90,9 +95,14 @@ private:
     qint64 _file_size;
     QByteArray _file_data;
 
+    QString _file_name_client;
+    qint64 _file_size_client;
+    QByteArray _file_data_client;
+
     QString _client_name;
     QString _receiver;
     QString _sender;
+    QString _sender_file;
 
     QString _old_name;
     QString _my_name;

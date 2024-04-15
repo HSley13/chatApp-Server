@@ -52,30 +52,28 @@ QByteArray chat_protocol::set_name_message(QString name)
     return get_data(set_name, name);
 }
 
-QByteArray chat_protocol::set_init_sending_file_message(QString filename)
+QByteArray chat_protocol::set_init_sending_file_message(QString file_name)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    QFileInfo info(filename);
+    QFileInfo info(file_name);
 
     out << init_sending_file << info.fileName() << info.size();
 
     return byte;
 }
 
-QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString filename)
+QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString file_name, qint64 file_size)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    QFileInfo info(filename);
-
-    out << init_sending_file_client << sender << info.fileName() << info.size();
+    out << init_sending_file_client << sender << file_name << file_size;
 
     return byte;
 }
@@ -225,7 +223,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case init_sending_file_client:
-        in >> _sender >> _receiver >> _file_name >> _file_size;
+        in >> _sender >> _receiver >> _file_name_client >> _file_size_client;
 
         break;
 
@@ -267,9 +265,19 @@ const QString &chat_protocol::file_name() const
     return _file_name;
 }
 
+const QString &chat_protocol::file_name_client() const
+{
+    return _file_name_client;
+}
+
 const qint64 &chat_protocol::file_size() const
 {
     return _file_size;
+}
+
+const qint64 &chat_protocol::file_size_client() const
+{
+    return _file_size_client;
 }
 
 const QByteArray &chat_protocol::file_data() const

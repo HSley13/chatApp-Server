@@ -86,7 +86,6 @@ void server_chat_window::on_init_receiving_file(QString sender, QString file_nam
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-
     if (result == QMessageBox::Yes)
         _client->send_accept_file();
     else
@@ -130,7 +129,6 @@ void server_chat_window::send_message()
 void server_chat_window::send_file()
 {
     QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
-
     if (!file_name.isEmpty())
     {
         _client->send_init_sending_file(file_name);
@@ -146,7 +144,6 @@ void server_chat_window::folder()
     QString full_client_directory = QDir(executable_directory).filePath(_client->name());
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
-
     if (!selected_file_path.isEmpty())
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }

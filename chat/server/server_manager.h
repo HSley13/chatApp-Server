@@ -15,14 +15,11 @@ class port_pool
 {
 private:
     std::vector<int> ports;
-    std::mutex mtx;
 
 public:
     port_pool(int start, int end);
 
     int allocate_port();
-
-    void deallocate_port(int port);
 
     void deallocate_all();
 };
@@ -77,7 +74,7 @@ private:
 
     void save_file();
 
-    void file_for_other_clients(QString sender, QString receiver, QString file_name);
+    void file_for_other_clients(QString sender, QString receiver, QString file_name, qint64 file_size);
     void reject_receiving_file_clients(QString sender, QString receiver);
 
 signals:

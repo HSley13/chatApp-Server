@@ -87,7 +87,6 @@ void server_main_window::on_is_typing_received(QString sender, QString receiver)
 {
     if (!receiver.compare("Server"))
         status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
-
     else
         _server->is_typing_for_other_clients(sender, receiver);
 }

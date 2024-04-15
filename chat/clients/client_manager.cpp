@@ -45,7 +45,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file_client:
-        emit init_receiving_file_client(_protocol->sender(), _protocol->file_name(), _protocol->file_size());
+        emit init_receiving_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_size_client());
 
         break;
 
@@ -56,7 +56,6 @@ void client_manager::on_ready_read()
 
     case chat_protocol::accept_sending_file_client:
         send_file_client(_protocol->port_transfer());
-        qDebug() << "Port transfer received: " << _protocol->port_transfer();
 
         break;
 
@@ -76,7 +75,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::send_file_client:
-        save_file_client(_protocol->sender());
+        save_file_client(_protocol->sender_file());
 
         break;
 
@@ -148,21 +147,24 @@ void client_manager::send_accept_file_client(QString receiver)
 {
     _socket->write(_protocol->set_accept_file_message_client(receiver, _protocol->port()));
 
-    qDebug() << "Port Transfer sent: " << _protocol->port();
-
     ser = new QTcpServer(this);
     ser->listen(QHostAddress::LocalHost, _protocol->port());
-    connect(ser, &QTcpServer::newConnection, this, &client_manager::file_connect);
+    connect(ser, &QTcpServer::newConnection, this, &client_manager::on_new_connection);
+}
+
+void client_manager::on_new_connection()
+{
+    client_for_file = ser->nextPendingConnection();
+    connect(client_for_file, &QTcpSocket::readyRead, this, &client_manager::file_connect);
 }
 
 void client_manager::file_connect()
 {
     QByteArray data;
-    QTcpSocket *client = ser->nextPendingConnection();
-    connect(client, &QTcpSocket::readyRead, this, [&]()
-            { data = client->readAll(); });
 
+    data = client_for_file->readAll();
     _protocol->load_data(data);
+
     save_file_client(_protocol->sender());
 }
 
@@ -186,7 +188,7 @@ void client_manager::send_file_client(int port_transfer)
     QTcpSocket *temp = new QTcpSocket(this);
     temp->connectToHost(QHostAddress::LocalHost, port_transfer);
 
-    temp->write(_protocol->set_file_message_client(_file_name, _protocol->my_name()));
+    temp->write(_protocol->set_file_message_client(_file_name_client, _protocol->my_name()));
 }
 
 void client_manager::save_file()
@@ -197,7 +199,6 @@ void client_manager::save_file()
     QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
 
     QFile file(path);
-
     if (file.open(QIODevice::WriteOnly))
     {
         file.write(_protocol->file_data());
@@ -212,13 +213,12 @@ void client_manager::save_file_client(QString sender)
     QDir dir;
     dir.mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name_client());
 
     QFile file(path);
-
     if (file.open(QIODevice::WriteOnly))
     {
-        file.write(_protocol->file_data());
+        file.write(_protocol->file_data_client());
         file.close();
 
         emit file_saved(path);

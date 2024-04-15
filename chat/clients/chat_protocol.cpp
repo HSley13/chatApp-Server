@@ -192,7 +192,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case init_sending_file_client:
-        in >> _sender >> _file_name >> _file_size;
+        in >> _sender >> _file_name_client >> _file_size_client;
 
         break;
 
@@ -202,7 +202,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case send_file_client:
-        in >> _file_name >> _file_size >> _file_data >> _sender;
+        in >> _file_name_client >> _file_size_client >> _file_data_client >> _sender_file;
 
         break;
 
@@ -274,6 +274,21 @@ const QByteArray &chat_protocol::file_data() const
     return _file_data;
 }
 
+const QString &chat_protocol::file_name_client() const
+{
+    return _file_name_client;
+}
+
+const qint64 &chat_protocol::file_size_client() const
+{
+    return _file_size_client;
+}
+
+const QByteArray &chat_protocol::file_data_client() const
+{
+    return _file_data_client;
+}
+
 const QString &chat_protocol::client_name() const
 {
     return _client_name;
@@ -287,6 +302,11 @@ const QString &chat_protocol::receiver() const
 const QString &chat_protocol::sender() const
 {
     return _sender;
+}
+
+const QString &chat_protocol::sender_file() const
+{
+    return _sender_file;
 }
 
 const QString &chat_protocol::old_name() const

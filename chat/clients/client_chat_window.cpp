@@ -53,7 +53,6 @@ void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_s
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-
     if (result == QMessageBox::Yes)
         _client->send_accept_file();
     else
@@ -65,7 +64,6 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-
     if (result == QMessageBox::Yes)
         _client->send_accept_file_client(sender);
     else
@@ -144,7 +142,6 @@ void client_chat_window::send_is_typing_client()
 void client_chat_window::send_file()
 {
     QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
-
     if (!file_name.isEmpty())
     {
         _client->send_init_sending_file(file_name);
@@ -156,7 +153,6 @@ void client_chat_window::send_file()
 void client_chat_window::send_file_client()
 {
     QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
-
     if (!file_name.isEmpty())
     {
         _client->send_init_sending_file_client(my_name(), destinator(), file_name);
@@ -171,7 +167,6 @@ void client_chat_window::folder()
     QString full_client_directory = QDir(executable_directory).filePath("Server");
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
-
     if (!selected_file_path.isEmpty())
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
@@ -182,7 +177,6 @@ void client_chat_window::folder_client()
     QString full_client_directory = QDir(executable_directory).filePath(destinator());
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
-
     if (!selected_file_path.isEmpty())
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }

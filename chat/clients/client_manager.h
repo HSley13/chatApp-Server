@@ -43,8 +43,11 @@ private:
     QString _file_name;
     QString _file_name_client;
 
+    QTcpSocket *client_for_file;
+
 signals:
-    void text_message_received(QString sender, QString message);
+    void
+    text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
 
     void init_receiving_file(QString file_name, qint64 file_size);
@@ -68,4 +71,6 @@ private slots:
     void on_ready_read();
 
     void file_connect();
+
+    void on_new_connection();
 };

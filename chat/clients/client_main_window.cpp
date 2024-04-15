@@ -124,10 +124,8 @@ void client_main_window::on_item_clicked(QListWidgetItem *item)
     QString client_name = item->text();
 
     QWidget *wid = stack->findChild<QWidget *>(client_name);
-
     if (wid)
         stack->setCurrentIndex(stack->indexOf(wid));
-
     else
         qDebug() << "client_main_window--> on_item_clicked()--> window to forward not FOUND: " << client_name;
 }
@@ -162,7 +160,6 @@ void client_main_window::on_client_connected(QString client_name)
     stack->addWidget(wid);
 
     name_list.insert(client_name, client_name);
-
     window_map.insert(client_name, wid);
 }
 
@@ -181,7 +178,6 @@ void client_main_window::on_clients_list(QString my_name, QMap<QString, QString>
             stack->addWidget(wid);
 
             name_list.insert(other_clients.key(client_name), client_name);
-
             window_map.insert(client_name, wid);
         }
     }
@@ -190,7 +186,6 @@ void client_main_window::on_clients_list(QString my_name, QMap<QString, QString>
 void client_main_window::on_client_disconnected(QString client_name)
 {
     QWidget *win = window_map.value(client_name);
-
     if (win)
     {
         QList<QListWidgetItem *> items = list->findItems(client_name, Qt::MatchExactly);
@@ -201,10 +196,7 @@ void client_main_window::on_client_disconnected(QString client_name)
             delete item_to_remove;
         }
 
-        QMap<QString, QWidget *>::iterator it = window_map.find(client_name);
-        if (it != window_map.end())
-            window_map.erase(it);
-
+        window_map.remove(client_name);
         name_list.remove(client_name);
     }
     else
@@ -262,16 +254,14 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
             item_to_change->setText(client_name);
         }
 
-        QMap<QString, QWidget *>::iterator it = window_map.find(old_name);
-        if (it != window_map.end())
-            window_map.erase(it);
-
+        window_map.remove(old_name);
         window_map.insert(client_name, win);
 
         client_chat_window *wind = qobject_cast<client_chat_window *>(win);
         if (wind)
             wind->window_name(client_name);
 
+        name_list.remove(old_name);
         name_list.insert(old_name, client_name);
     }
     else
@@ -289,8 +279,5 @@ void client_main_window::add_on_top(const QString &client_name)
         list->insertItem(0, item_to_replace);
     }
     else
-    {
         list->insertItem(0, client_name);
-        qDebug() << "client_main_window--> add_on_top()--> client_name not FOUND: " << client_name;
-    }
 }

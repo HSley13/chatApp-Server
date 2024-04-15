@@ -43,7 +43,7 @@ public:
     QByteArray set_name_message(QString name);
 
     QByteArray set_init_sending_file_message(QString filename);
-    QByteArray set_init_sending_file_message_client(QString sender, QString filename);
+    QByteArray set_init_sending_file_message_client(QString sender, QString filename, qint64 file_size);
 
     QByteArray set_accept_file_message();
     QByteArray set_accept_file_message_client(int port);
@@ -68,7 +68,9 @@ public:
     const QString &name() const;
     const QString &original_name() const;
     const QString &file_name() const;
+    const QString &file_name_client() const;
     const qint64 &file_size() const;
+    const qint64 &file_size_client() const;
     const QByteArray &file_data() const;
 
     const QString &client_name() const;
@@ -94,7 +96,9 @@ private:
     int _port;
 
     QString _file_name;
+    QString _file_name_client;
     qint64 _file_size;
+    qint64 _file_size_client;
     QByteArray _file_data;
 
     QString _client_name;
