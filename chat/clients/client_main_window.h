@@ -41,7 +41,6 @@ private:
     client_manager *_client;
 
     static QMap<QString, QWidget *> window_map;
-
     static QMap<QString, QString> name_list;
 
     QLineEdit *name;
@@ -63,9 +62,5 @@ private slots:
     void on_is_typing_received(QString sender);
     void on_name_changed();
 
-    void on_socket_disconnected();
-
     void on_item_clicked(QListWidgetItem *item);
-
-    void on_text_message_sent(QString client_name);
 };

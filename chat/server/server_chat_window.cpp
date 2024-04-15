@@ -48,17 +48,65 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     dir.setPath("./" + _client->name());
 
     connect(_client, &server_manager::text_message_received, this, &server_chat_window::on_text_message_received);
+
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
 
     connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
-
     connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
-    connect(_client, &server_manager::is_typing_received, this, &server_chat_window::on_is_typing_received);
 
-    connect(_client, &server_manager::reject_receiving_file, this, &server_chat_window::on_reject_receiving_file);
+    connect(_client, &server_manager::is_typing_received, this, [=](QString sender, QString receiver)
+            { emit is_typing_received(sender, receiver); });
+
+    connect(_client, &server_manager::reject_receiving_file, this, [=](QString sender)
+            { QMessageBox::critical(this, "Rejection", QString("%1 has Rejected Your request to send a file").arg(sender)); });
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
+{
+    if (!receiver.compare("Server"))
+    {
+        wid = new chat_line();
+        wid->set_message(message);
+        wid->setStyleSheet("color: black;");
+
+        line = new QListWidgetItem();
+        line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+        line->setSizeHint(QSize(0, 65));
+
+        list->addItem(line);
+        list->setItemWidget(line, wid);
+    }
+    else
+        emit text_for_other_client(sender, receiver, message);
+}
+
+void server_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)
+{
+    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
+
+    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
+
+    if (result == QMessageBox::Yes)
+        _client->send_accept_file();
+    else
+        _client->send_reject_file();
+}
+
+void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
+{
+    QFile::rename(dir.canonicalPath(), name);
+
+    emit client_name_changed(original_name, old_name, name);
+}
+
+void server_chat_window::on_file_saved(QString path)
+{
+    QString message = QString("File save at: %1").arg(path);
+
+    QMessageBox::information(this, "File Saved", message);
+}
+
 void server_chat_window::send_message()
 {
     QString message = insert_message->text();
@@ -91,49 +139,6 @@ void server_chat_window::send_file()
     }
 }
 
-void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
-{
-    if (!receiver.compare("Server"))
-    {
-        wid = new chat_line();
-        wid->set_message(message);
-        wid->setStyleSheet("color: black;");
-
-        line = new QListWidgetItem();
-        line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-        line->setSizeHint(QSize(0, 65));
-
-        list->addItem(line);
-        list->setItemWidget(line, wid);
-    }
-    else
-        emit text_for_other_client(sender, receiver, message);
-}
-
-void server_chat_window::on_is_typing_received(QString sender, QString receiver)
-{
-    emit is_typing_received(sender, receiver);
-}
-
-void server_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)
-{
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
-
-    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-
-    if (result == QMessageBox::Yes)
-        _client->send_accept_file();
-    else
-        _client->send_reject_file();
-}
-
-void server_chat_window::on_file_saved(QString path)
-{
-    QString message = QString("File save at: %1").arg(path);
-
-    QMessageBox::information(this, "File Saved", message);
-}
-
 void server_chat_window::folder()
 {
     QString executable_directory = QApplication::applicationDirPath();
@@ -144,18 +149,6 @@ void server_chat_window::folder()
 
     if (!selected_file_path.isEmpty())
         QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
-}
-
-void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
-{
-    QFile::rename(dir.canonicalPath(), name);
-
-    emit client_name_changed(original_name, old_name, name);
-}
-
-void server_chat_window::on_reject_receiving_file(QString sender)
-{
-    QMessageBox::information(this, "Rejection", QString("%1 has Rejected Your request to send a file").arg(sender));
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/

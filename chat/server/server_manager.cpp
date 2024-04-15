@@ -6,6 +6,7 @@
 
 port_pool::port_pool(int start, int end)
 {
+    std::lock_guard<std::mutex> guard(mtx);
     for (int i = start; i <= end; i++)
         ports.push_back(i);
 }
@@ -46,13 +47,13 @@ server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
       _ip(ip), _port(port)
 {
     _server = new QTcpServer(this);
-    connect(_server, &QTcpServer::newConnection, this, &server_manager::new_connection);
+    connect(_server, &QTcpServer::newConnection, this, &server_manager::on_new_connection);
 
     _server->listen(_ip, _port);
 
     _socket = new QTcpSocket(this);
 
-    _pool = new port_pool(12347, 99998);
+    _pool = new port_pool(99988, 99998);
 }
 
 server_manager::server_manager(QTcpSocket *client, QWidget *parent)
@@ -64,7 +65,7 @@ server_manager::server_manager(QTcpSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-void server_manager::new_connection()
+void server_manager::on_new_connection()
 {
     QTcpSocket *client = _server->nextPendingConnection();
 
@@ -81,7 +82,7 @@ void server_manager::new_connection()
     connect(client, &QTcpSocket::disconnected, this, &server_manager::on_client_disconnected);
     emit new_client_connected(client);
 
-    if (id > 1)
+    if (id > 1 && _names.count() > 1)
     {
         int port = _pool->allocate_port();
         if (port)
@@ -103,6 +104,33 @@ void server_manager::new_connection()
 
     QTcpSocket *first_client = _clients.value("client 1");
     first_client->write(_protocol->set_first_client_message("client 1", 999999));
+}
+
+void server_manager::on_client_disconnected()
+{
+    QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
+
+    QString client_name = client->property("client_name").toString();
+
+    int port = client->property("port").toInt();
+    _pool->deallocate_port(port);
+
+    qDebug() << client_name << " is disconnected so the port: " << port << " is put back to the pool";
+
+    QByteArray message = _protocol->set_client_disconnected_message(client_name);
+
+    if (!_clients.isEmpty())
+    {
+        for (QTcpSocket *cl : _clients)
+            cl->write(message);
+    }
+    else
+        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
+
+    _names.remove(_names.key(client_name));
+    _clients.remove(_clients.key(client));
+
+    emit new_client_disconnected(client);
 }
 
 void server_manager::on_ready_read()
@@ -173,39 +201,17 @@ void server_manager::on_ready_read()
     }
 }
 
-/*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
-
-void server_manager::on_client_disconnected()
+void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
 {
-    QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
+    QTcpSocket *client = _clients.value(receiver);
 
-    QString client_name = client->property("client_name").toString();
+    if (client)
+        client->write(_protocol->set_text_message(sender, "", message));
 
-    int port = client->property("port").toInt();
-    _pool->deallocate_port(port);
-
-    qDebug() << client_name << " is disconnected so the port: " << port << " is put back to the pool";
-
-    QByteArray message = _protocol->set_client_disconnected_message(client_name);
-
-    if (!_clients.isEmpty())
-    {
-        for (QTcpSocket *cl : _clients)
-            cl->write(message);
-    }
     else
-        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
-
-    QMap<QString, QString>::iterator it = _names.find(client_name);
-    if (it != _names.end())
-        _names.erase(it);
-
-    QMap<QString, QTcpSocket *>::iterator its = _clients.find(client_name);
-    if (its != _clients.end())
-        _clients.erase(its);
-
-    emit new_client_disconnected(client);
+        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
+/*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void server_manager::disconnect_all_clients()
 {
@@ -313,17 +319,6 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
     }
     else
         qDebug() << "server_manager--> notify_other_clients()--> _clients is empty, can't send message to other clients";
-}
-
-void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
-{
-    QTcpSocket *client = _clients.value(receiver);
-
-    if (client)
-        client->write(_protocol->set_text_message(sender, "", message));
-
-    else
-        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::file_for_other_clients(QString sender, QString receiver, QString file_name)

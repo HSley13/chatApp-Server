@@ -35,7 +35,6 @@ private:
     QVBoxLayout *vbox;
 
 private slots:
-    void disconnect_all_clients();
     void on_new_client_connected(QTcpSocket *client);
     void on_new_client_disconnected(QTcpSocket *client);
 

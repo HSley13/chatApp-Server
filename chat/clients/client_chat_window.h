@@ -84,28 +84,9 @@ private slots:
     void send_file();
     void send_file_client();
 
-    void file_saved(QString path);
-
     void folder();
     void folder_client();
 
-    void on_text_message_received(QString sender, QString message);
-    void on_is_typing_received(QString sender);
-
     void on_init_receiving_file(QString file_name, qint64 file_size);
     void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
-
-    void on_reject_receiving_file();
-    void on_reject_receiving_file_client(QString sender);
-
-    void on_clients_list(QString my_name, QMap<QString, QString> other_clients);
-    void on_client_connected(QString client_name);
-    void on_client_name_changed(QString old_name, QString client_name);
-    void on_client_disconnected(QString client_name);
-
-    void on_socket_disconnected();
-
-    void on_update_label(QLabel *label);
-
-    void on_file_saved(QString path);
 };

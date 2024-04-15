@@ -3,10 +3,8 @@
 #include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
-#include <QTcpServer>
-#include <QTcpSocket>
+#include <QtNetwork>
 #include <QList>
-#include <QHostAddress>
 #include <QMap>
 
 #include <iostream>
@@ -98,7 +96,7 @@ signals:
     void reject_receiving_file(QString sender);
 
 private slots:
-    void new_connection();
+    void on_new_connection();
     void on_client_disconnected();
 
     void on_ready_read();

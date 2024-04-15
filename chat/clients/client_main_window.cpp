@@ -2,14 +2,6 @@
 #include <QAction>
 #include <QLabel>
 
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QApplication>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QStringList>
-
-#include <QListWidget>
 #include <QStyledItemDelegate>
 #include <QPainter>
 
@@ -68,14 +60,14 @@ client_main_window::client_main_window(QWidget *parent)
     connect(back_button, &QPushButton::clicked, this, [=]()
             { stack->setCurrentIndex(0); });
 
+    QLabel *my_name = new QLabel("My Name: ", this);
     name = new QLineEdit(this);
-    name->setPlaceholderText("INSERT YOUR NAME HERE THEN PRESS ENTER");
+    name->setPlaceholderText("INSERT YOUR NAME THEN PRESS ENTER");
     name->setDisabled(true);
     connect(name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
 
-    QLabel *my_name = new QLabel("My Name: ", this);
-
     QHBoxLayout *hbox = new QHBoxLayout();
+    hbox->addWidget(back_button);
     hbox->addWidget(my_name);
     hbox->addWidget(name);
 
@@ -92,14 +84,11 @@ client_main_window::client_main_window(QWidget *parent)
     stack = new QStackedWidget(this);
     stack->addWidget(list);
 
-    QHBoxLayout *back_button_layout = new QHBoxLayout();
-    back_button_layout->addWidget(back_button);
-
-    back_button_layout->addStretch();
+    QLabel *chats = new QLabel("CHATS", this);
 
     VBOX = new QVBoxLayout(central_widget);
-    VBOX->addLayout(back_button_layout);
     VBOX->addLayout(hbox);
+    VBOX->addWidget(chats);
     VBOX->addWidget(stack);
 }
 
@@ -113,8 +102,10 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
-    connect(wid, &client_chat_window::socket_disconnected, this, &client_main_window::on_socket_disconnected);
-    connect(wid, &client_chat_window::text_message_sent, this, &client_main_window::on_text_message_sent);
+    connect(wid, &client_chat_window::socket_disconnected, this, [=]()
+            { stack->setDisabled(true); status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
+    connect(wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
+            { add_on_top(client_name); });
 
     list->addItem("Server");
 
@@ -158,13 +149,6 @@ void client_main_window::on_name_changed()
             wid->set_name(name->text());
         }
     }
-}
-
-void client_main_window::on_socket_disconnected()
-{
-    stack->setDisabled(true);
-
-    status_bar->showMessage("SERVER DISCONNECTED YOU", 999999);
 }
 
 void client_main_window::on_client_connected(QString client_name)
@@ -260,13 +244,6 @@ void client_main_window::on_text_message_received(QString sender, QString messag
             window_map.insert(sender, wid);
         }
     }
-}
-
-void client_main_window::on_text_message_sent(QString client_name)
-{
-    qDebug() << "client_main_window ---> on_text_message_sent() --> client_name to add to top not FOUND: " << client_name;
-
-    add_on_top(client_name);
 }
 
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)

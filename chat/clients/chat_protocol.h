@@ -82,8 +82,8 @@ private:
     message_type _type;
     QString _message;
     QString _name;
-    int _port;
 
+    int _port;
     int _port_transfer;
 
     QString _file_name;

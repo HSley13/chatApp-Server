@@ -8,6 +8,8 @@
 
 #include "../../../../chat/server/server_main_window.h"
 #include <QtGui/qtextcursor.h>
+#include <QtNetwork/QSslPreSharedKeyAuthenticator>
+#include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)
@@ -40,9 +42,8 @@ namespace {
 struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSserver_main_windowENDCLASS = QtMocHelpers::stringData(
     "server_main_window",
-    "disconnect_all_clients",
-    "",
     "on_new_client_connected",
+    "",
     "QTcpSocket*",
     "client",
     "on_new_client_disconnected",
@@ -58,49 +59,46 @@ constexpr auto qt_meta_stringdata_CLASSserver_main_windowENDCLASS = QtMocHelpers
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {
-    uint offsetsAndSizes[32];
+    uint offsetsAndSizes[30];
     char stringdata0[19];
-    char stringdata1[23];
+    char stringdata1[24];
     char stringdata2[1];
-    char stringdata3[24];
-    char stringdata4[12];
-    char stringdata5[7];
-    char stringdata6[27];
-    char stringdata7[23];
-    char stringdata8[14];
-    char stringdata9[9];
-    char stringdata10[5];
-    char stringdata11[22];
-    char stringdata12[7];
-    char stringdata13[9];
-    char stringdata14[11];
-    char stringdata15[6];
+    char stringdata3[12];
+    char stringdata4[7];
+    char stringdata5[27];
+    char stringdata6[23];
+    char stringdata7[14];
+    char stringdata8[9];
+    char stringdata9[5];
+    char stringdata10[22];
+    char stringdata11[7];
+    char stringdata12[9];
+    char stringdata13[11];
+    char stringdata14[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t qt_meta_stringdata_CLASSserver_main_windowENDCLASS = {
     {
         QT_MOC_LITERAL(0, 18),  // "server_main_window"
-        QT_MOC_LITERAL(19, 22),  // "disconnect_all_clients"
-        QT_MOC_LITERAL(42, 0),  // ""
-        QT_MOC_LITERAL(43, 23),  // "on_new_client_connected"
-        QT_MOC_LITERAL(67, 11),  // "QTcpSocket*"
-        QT_MOC_LITERAL(79, 6),  // "client"
-        QT_MOC_LITERAL(86, 26),  // "on_new_client_disconnected"
-        QT_MOC_LITERAL(113, 22),  // "on_client_name_changed"
-        QT_MOC_LITERAL(136, 13),  // "original_name"
-        QT_MOC_LITERAL(150, 8),  // "old_name"
-        QT_MOC_LITERAL(159, 4),  // "name"
-        QT_MOC_LITERAL(164, 21),  // "on_is_typing_received"
-        QT_MOC_LITERAL(186, 6),  // "sender"
-        QT_MOC_LITERAL(193, 8),  // "receiver"
-        QT_MOC_LITERAL(202, 10),  // "close_tabs"
-        QT_MOC_LITERAL(213, 5)   // "index"
+        QT_MOC_LITERAL(19, 23),  // "on_new_client_connected"
+        QT_MOC_LITERAL(43, 0),  // ""
+        QT_MOC_LITERAL(44, 11),  // "QTcpSocket*"
+        QT_MOC_LITERAL(56, 6),  // "client"
+        QT_MOC_LITERAL(63, 26),  // "on_new_client_disconnected"
+        QT_MOC_LITERAL(90, 22),  // "on_client_name_changed"
+        QT_MOC_LITERAL(113, 13),  // "original_name"
+        QT_MOC_LITERAL(127, 8),  // "old_name"
+        QT_MOC_LITERAL(136, 4),  // "name"
+        QT_MOC_LITERAL(141, 21),  // "on_is_typing_received"
+        QT_MOC_LITERAL(163, 6),  // "sender"
+        QT_MOC_LITERAL(170, 8),  // "receiver"
+        QT_MOC_LITERAL(179, 10),  // "close_tabs"
+        QT_MOC_LITERAL(190, 5)   // "index"
     },
     "server_main_window",
-    "disconnect_all_clients",
-    "",
     "on_new_client_connected",
+    "",
     "QTcpSocket*",
     "client",
     "on_new_client_disconnected",
@@ -124,7 +122,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -132,20 +130,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_main_windowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    1,   51,    2, 0x08,    2 /* Private */,
-       6,    1,   54,    2, 0x08,    4 /* Private */,
-       7,    3,   57,    2, 0x08,    6 /* Private */,
-      11,    2,   64,    2, 0x08,   10 /* Private */,
-      14,    1,   69,    2, 0x08,   13 /* Private */,
+       1,    1,   44,    2, 0x08,    1 /* Private */,
+       5,    1,   47,    2, 0x08,    3 /* Private */,
+       6,    3,   50,    2, 0x08,    5 /* Private */,
+      10,    2,   57,    2, 0x08,    9 /* Private */,
+      13,    1,   62,    2, 0x08,   12 /* Private */,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
-    QMetaType::Void, 0x80000000 | 4,    5,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    8,    9,   10,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
-    QMetaType::Void, QMetaType::Int,   15,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    7,    8,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,   12,
+    QMetaType::Void, QMetaType::Int,   14,
 
        0        // eod
 };
@@ -159,8 +155,6 @@ Q_CONSTINIT const QMetaObject server_main_window::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<server_main_window, std::true_type>,
-        // method 'disconnect_all_clients'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_new_client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QTcpSocket *, std::false_type>,
@@ -189,25 +183,24 @@ void server_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<server_main_window *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->disconnect_all_clients(); break;
-        case 1: _t->on_new_client_connected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
-        case 2: _t->on_new_client_disconnected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
-        case 3: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
-        case 4: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 5: _t->close_tabs((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 0: _t->on_new_client_connected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
+        case 1: _t->on_new_client_disconnected((*reinterpret_cast< std::add_pointer_t<QTcpSocket*>>(_a[1]))); break;
+        case 2: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 3: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 4: _t->close_tabs((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 1:
+        case 0:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QTcpSocket* >(); break;
             }
             break;
-        case 2:
+        case 1:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -237,13 +230,13 @@ int server_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 5;
     }
     return _id;
 }

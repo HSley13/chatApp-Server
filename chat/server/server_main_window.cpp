@@ -21,7 +21,8 @@ server_main_window::server_main_window(QWidget *parent)
 
     list = new QListWidget(this);
     disconnect_all = new QPushButton("Disconnect ALL CLIENTS", this);
-    connect(disconnect_all, &QPushButton::clicked, this, &server_main_window::disconnect_all_clients);
+    connect(disconnect_all, &QPushButton::clicked, this, [=]()
+            { _server->disconnect_all_clients(); });
 
     QVBoxLayout *vbox = new QVBoxLayout();
     vbox->addWidget(list);
@@ -66,11 +67,6 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
     list->addItem(QString("Client %1 disconnected").arg(id));
 }
 
-void server_main_window::disconnect_all_clients()
-{
-    _server->disconnect_all_clients();
-}
-
 void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
 {
     wid = qobject_cast<QWidget *>(sender());
@@ -80,16 +76,10 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
 
     _server->notify_other_clients(old_name, client_name);
 
-    QMap<QString, QString>::iterator its = _server->_names.find(original_name);
-    if (its != _server->_names.end())
-        _server->_names.erase(its);
-
-    QMap<QString, QWidget *>::iterator it = window_map.find(old_name);
-    if (it != window_map.end())
-        window_map.erase(it);
-
+    window_map.remove(old_name);
     window_map.insert(client_name, wid);
 
+    _server->_names.remove(original_name);
     _server->_names.insert(original_name, client_name);
 }
 

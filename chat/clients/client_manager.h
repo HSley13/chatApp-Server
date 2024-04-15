@@ -3,9 +3,7 @@
 #include "chat_protocol.h"
 #include <QMainWindow>
 #include <QWidget>
-#include <QTcpSocket>
-#include <QHostAddress>
-#include <QTcpServer>
+#include <QtNetwork>
 
 class client_manager : public QMainWindow
 {
@@ -22,11 +20,11 @@ public:
     void send_reject_file();
 
     void send_init_sending_file_client(QString sender, QString receiver, QString filename);
-    void send_accept_file_client(QString receiver, int port);
+    void send_accept_file_client(QString receiver);
     void send_reject_file_client(QString sender, QString receiver);
 
     void send_file();
-    void send_file_client(int port);
+    void send_file_client(int port_transfer);
 
     void save_file();
     void save_file_client(QString sender);
@@ -43,6 +41,7 @@ private:
     QTcpServer *ser;
 
     QString _file_name;
+    QString _file_name_client;
 
 signals:
     void text_message_received(QString sender, QString message);

@@ -229,11 +229,6 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case send_file_client:
-        in >> _file_name >> _file_size >> _file_data;
-
-        break;
-
     case accept_sending_file_client:
         in >> _receiver >> _port;
 

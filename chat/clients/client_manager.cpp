@@ -2,7 +2,6 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QStringList>
-#include <QTcpServer>
 
 QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;
@@ -57,6 +56,7 @@ void client_manager::on_ready_read()
 
     case chat_protocol::accept_sending_file_client:
         send_file_client(_protocol->port_transfer());
+        qDebug() << "Port transfer received: " << _protocol->port_transfer();
 
         break;
 
@@ -135,7 +135,7 @@ void client_manager::send_init_sending_file(QString file_name)
 
 void client_manager::send_init_sending_file_client(QString sender, QString receiver, QString file_name)
 {
-    _file_name = file_name;
+    _file_name_client = file_name;
     _socket->write(_protocol->set_init_sending_file_message_client(sender, receiver, file_name));
 }
 
@@ -144,9 +144,11 @@ void client_manager::send_accept_file()
     _socket->write(_protocol->set_accept_file_message());
 }
 
-void client_manager::send_accept_file_client(QString receiver, int port)
+void client_manager::send_accept_file_client(QString receiver)
 {
-    _socket->write(_protocol->set_accept_file_message_client(receiver, port));
+    _socket->write(_protocol->set_accept_file_message_client(receiver, _protocol->port()));
+
+    qDebug() << "Port Transfer sent: " << _protocol->port();
 
     ser = new QTcpServer(this);
     ser->listen(QHostAddress::LocalHost, _protocol->port());
@@ -155,9 +157,10 @@ void client_manager::send_accept_file_client(QString receiver, int port)
 
 void client_manager::file_connect()
 {
+    QByteArray data;
     QTcpSocket *client = ser->nextPendingConnection();
-
-    QByteArray data = client->readAll();
+    connect(client, &QTcpSocket::readyRead, this, [&]()
+            { data = client->readAll(); });
 
     _protocol->load_data(data);
     save_file_client(_protocol->sender());
@@ -178,10 +181,10 @@ void client_manager::send_file()
     _socket->write(_protocol->set_file_message(_file_name));
 }
 
-void client_manager::send_file_client(int port)
+void client_manager::send_file_client(int port_transfer)
 {
     QTcpSocket *temp = new QTcpSocket(this);
-    temp->connectToHost(QHostAddress::LocalHost, port);
+    temp->connectToHost(QHostAddress::LocalHost, port_transfer);
 
     temp->write(_protocol->set_file_message_client(_file_name, _protocol->my_name()));
 }

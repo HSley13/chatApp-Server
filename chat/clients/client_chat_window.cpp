@@ -48,16 +48,6 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-void client_chat_window::on_text_message_received(QString sender, QString message)
-{
-    emit text_message_received(sender, message);
-}
-
-void client_chat_window::on_is_typing_received(QString sender)
-{
-    emit is_typing_received(sender);
-}
-
 void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_size)
 {
     QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
@@ -77,65 +67,17 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
     if (result == QMessageBox::Yes)
-        _client->send_accept_file_client(sender, _protocol->port());
+        _client->send_accept_file_client(sender);
     else
         _client->send_reject_file_client(my_name(), sender);
 }
 
-void client_chat_window::on_reject_receiving_file()
-{
-    QMessageBox::critical(this, "File Rejected", "Server Rejected Your request to send the file");
-}
-
-void client_chat_window::on_reject_receiving_file_client(QString sender)
-{
-    QMessageBox::critical(this, "File Rejected", QString("%1 Rejected Your request to send the file").arg(sender));
-}
-
-void client_chat_window::on_client_connected(QString client_name)
-{
-    emit client_connected(client_name);
-}
-
-void client_chat_window::on_client_disconnected(QString client_name)
-{
-    emit client_disconnected(client_name);
-}
-
-void client_chat_window::on_clients_list(QString my_name, QMap<QString, QString> other_clients)
-{
-    emit clients_list(my_name, other_clients);
-}
-
-void client_chat_window::on_client_name_changed(QString old_name, QString client_name)
-{
-    emit client_name_changed(old_name, client_name);
-}
-
-void client_chat_window::on_socket_disconnected()
-{
-    emit socket_disconnected();
-}
-
-void client_chat_window::on_update_label(QLabel *label)
-{
-    label->setText(QString("%1's Conversation").arg(_window_name));
-}
-
-void client_chat_window::on_file_saved(QString path)
-{
-    QString message = QString("File save at: %1").arg(path);
-
-    QMessageBox::information(this, "File Saved", message);
-}
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void client_chat_window::send_message()
 {
     QString message = insert_message->text();
 
     _client->send_text(my_name(), "Server", message);
-
-    emit text_message_sent("Server");
 
     wid = new chat_line();
     wid->set_message(message, true);
@@ -149,6 +91,8 @@ void client_chat_window::send_message()
     list->setItemWidget(line, wid);
 
     insert_message->clear();
+
+    emit text_message_sent("Server");
 }
 
 void client_chat_window::send_message_client()
@@ -157,8 +101,6 @@ void client_chat_window::send_message_client()
 
     _client->send_text(my_name(), destinator(), message);
 
-    emit text_message_sent(_window_name);
-
     wid = new chat_line();
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
@@ -171,6 +113,8 @@ void client_chat_window::send_message_client()
     list->setItemWidget(line, wid);
 
     insert_message->clear();
+
+    emit text_message_sent(_window_name);
 }
 
 void client_chat_window::message_received(QString message)
@@ -219,13 +163,6 @@ void client_chat_window::send_file_client()
 
         file_name.clear();
     }
-}
-
-void client_chat_window::file_saved(QString path)
-{
-    QString message = QString("File save at: %1").arg(path);
-
-    QMessageBox::information(this, "File Saved", message);
 }
 
 void client_chat_window::folder()
@@ -282,29 +219,44 @@ void client_chat_window::set_up_window()
     VBOX->addLayout(hbox_1);
     VBOX->addLayout(hbox_2);
 
-    connect(this, &client_chat_window::update_label, this, &client_chat_window::on_update_label);
+    connect(this, &client_chat_window::update_label, this, [=]()
+            { label->setText(QString("%1's Conversation").arg(_window_name)); });
 
     if (!_client)
     {
         _client = new client_manager();
-        connect(_client, &client_manager::text_message_received, this, &client_chat_window::on_text_message_received);
-        connect(_client, &client_manager::is_typing_received, this, &client_chat_window::on_is_typing_received);
+        connect(_client, &client_manager::text_message_received, this, [=](QString sender, QString message)
+                { emit text_message_received(sender, message); });
+
+        connect(_client, &client_manager::is_typing_received, this, [=](QString sender)
+                { emit is_typing_received(sender); });
+
+        connect(_client, &client_manager::reject_receiving_file, this, [=]()
+                { QMessageBox::critical(this, "File Rejected", "Server Rejected Your request to send the file"); });
+
+        connect(_client, &client_manager::reject_receiving_file_client, this, [=](QString sender)
+                { QMessageBox::critical(this, "File Rejected", QString("%1 Rejected Your request to send the file").arg(sender)); });
+
+        connect(_client, &client_manager::client_connected, this, [=](QString client_name)
+                { emit client_connected(client_name); });
+
+        connect(_client, &client_manager::client_disconnected, this, [=](QString client_name)
+                { emit client_disconnected(client_name); });
+
+        connect(_client, &client_manager::clients_list, this, [=](QString my_name, QMap<QString, QString> other_clients)
+                { emit clients_list(my_name, other_clients); });
+
+        connect(_client, &client_manager::client_name_changed, this, [=](QString old_name, QString client_name)
+                { emit client_name_changed(old_name, client_name); });
+
+        connect(_client, &client_manager::socket_disconnected, this, [=]()
+                { emit socket_disconnected(); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);
 
-        connect(_client, &client_manager::reject_receiving_file, this, &client_chat_window::on_reject_receiving_file);
-
-        connect(_client, &client_manager::file_saved, this, &client_chat_window::file_saved);
-
-        connect(_client, &client_manager::client_connected, this, &client_chat_window::on_client_connected);
-        connect(_client, &client_manager::clients_list, this, &client_chat_window::on_clients_list);
-        connect(_client, &client_manager::client_name_changed, this, &client_chat_window::on_client_name_changed);
-        connect(_client, &client_manager::client_disconnected, this, &client_chat_window::on_client_disconnected);
-
-        connect(_client, &client_manager::socket_disconnected, this, &client_chat_window::on_socket_disconnected);
-
-        connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
+        connect(_client, &client_manager::file_saved, this, [=](QString path)
+                { QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path)); });
 
         _protocol = new chat_protocol(this);
     }

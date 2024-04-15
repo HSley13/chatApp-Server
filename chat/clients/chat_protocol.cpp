@@ -237,7 +237,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case first_client:
-        in >> _my_name >> _port_transfer;
+        in >> _my_name >> _port;
 
     default:
         break;
@@ -311,5 +311,5 @@ const int &chat_protocol::port() const
 
 const int &chat_protocol::port_transfer() const
 {
-    return _port;
+    return _port_transfer;
 }
