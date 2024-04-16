@@ -85,7 +85,6 @@ public:
     const int &port() const;
 
 private:
-    QWidget *central_widget;
     QByteArray get_data(message_type type, QString data);
 
     message_type _type;

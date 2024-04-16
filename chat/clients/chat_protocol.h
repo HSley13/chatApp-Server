@@ -81,7 +81,6 @@ public:
     const QMap<QString, QString> &clients_name() const;
 
 private:
-    QWidget *central_widget;
     QByteArray get_data(message_type type, QString data);
 
     message_type _type;
