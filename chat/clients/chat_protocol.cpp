@@ -106,7 +106,6 @@ QByteArray chat_protocol::set_accept_file_message_client(QString receiver, int p
 
 QByteArray chat_protocol::set_reject_file_message()
 {
-
     return get_data(reject_sending_file, "");
 }
 
@@ -238,6 +237,8 @@ void chat_protocol::load_data(QByteArray data)
 
     case first_client:
         in >> _my_name >> _port;
+
+        break;
 
     default:
         break;

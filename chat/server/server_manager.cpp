@@ -4,31 +4,7 @@
 #include <QStringList>
 #include <QMessageBox>
 
-port_pool::port_pool(int start, int end)
-{
-    for (int i = start; i <= end; i++)
-        ports.push_back(i);
-}
-
-int port_pool::allocate_port()
-{
-    if (!ports.empty())
-    {
-        int port = ports.back();
-        ports.pop_back();
-
-        return port;
-    }
-
-    return 0;
-}
-
-void port_pool::deallocate_all()
-{
-    ports.clear();
-}
-
-port_pool *server_manager::_pool = nullptr;
+std::vector<int> server_manager::_ports = std::vector<int>();
 
 QMap<QString, QTcpSocket *> server_manager::_clients = QMap<QString, QTcpSocket *>();
 QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
@@ -44,7 +20,7 @@ server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
 
     _socket = new QTcpSocket(this);
 
-    _pool = new port_pool(99988, 99998);
+    server_manager::range(99988, 99998);
 }
 
 server_manager::server_manager(QTcpSocket *client, QWidget *parent)
@@ -75,7 +51,7 @@ void server_manager::on_new_connection()
 
     if (id > 1 && _names.count() > 1)
     {
-        int port = _pool->allocate_port();
+        int port = server_manager::allocate_port();
         if (port)
         {
             client->setProperty("port", port);
@@ -95,7 +71,7 @@ void server_manager::on_new_connection()
 
     QTcpSocket *first_client = _clients.value("client 1");
     if (first_client)
-        first_client->write(_protocol->set_first_client_message("client 1", 999999));
+        first_client->write(_protocol->set_first_client_message("client 1", 99999));
 }
 
 void server_manager::on_client_disconnected()
@@ -205,7 +181,7 @@ void server_manager::disconnect_all_clients()
         for (QTcpSocket *client : _clients)
             client->disconnectFromHost();
 
-        _pool->deallocate_all();
+        server_manager::deallocate_all();
 
         _names.clear();
         _clients.clear();
@@ -330,4 +306,28 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
         client->write(_protocol->set_is_typing_message(sender, ""));
     else
         qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
+}
+
+void server_manager::range(int start, int end)
+{
+    for (int i = start; i <= end; i++)
+        _ports.push_back(i);
+}
+
+int server_manager::allocate_port()
+{
+    if (!_ports.empty())
+    {
+        int port = _ports.back();
+        _ports.pop_back();
+
+        return port;
+    }
+
+    return 0;
+}
+
+void server_manager::deallocate_all()
+{
+    _ports.clear();
 }

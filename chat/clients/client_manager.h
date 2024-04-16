@@ -36,15 +36,14 @@ private:
 
     static chat_protocol *_protocol;
 
-    QTcpServer *_file_server;
+    static QTcpServer *_file_server;
     QTcpSocket *_file_socket;
 
     QString _file_name;
     QString _file_name_client;
 
 signals:
-    void
-    text_message_received(QString sender, QString message);
+    void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
 
     void init_receiving_file(QString file_name, qint64 file_size);

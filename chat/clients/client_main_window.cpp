@@ -102,8 +102,10 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
+
     connect(wid, &client_chat_window::socket_disconnected, this, [=]()
             { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
+
     connect(wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
 

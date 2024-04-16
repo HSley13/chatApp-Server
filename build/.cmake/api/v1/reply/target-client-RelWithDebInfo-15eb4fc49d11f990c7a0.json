@@ -330,11 +330,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "client_autogen_timestamp_deps::@d1ac15f0ebbc02957c76"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "client_autogen::@d1ac15f0ebbc02957c76"
+		},
+		{
+			"id" : "client_autogen_timestamp_deps::@d1ac15f0ebbc02957c76"
 		}
 	],
 	"id" : "client::@d1ac15f0ebbc02957c76",

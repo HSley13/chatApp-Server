@@ -6,10 +6,12 @@
 QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;
 
+QTcpServer *client_manager::_file_server = nullptr;
+
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
-    if (!_socket)
+    if (!_socket && !_protocol)
     {
         _socket = new QTcpSocket(this);
         _socket->connectToHost(_ip, _port);
@@ -110,7 +112,6 @@ void client_manager::on_disconnected()
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
-
 void client_manager::send_text(QString sender, QString receiver, QString text)
 {
     _socket->write(_protocol->set_text_message(sender, receiver, text));
@@ -147,9 +148,13 @@ void client_manager::send_accept_file_client(QString receiver)
 {
     _socket->write(_protocol->set_accept_file_message_client(receiver, _protocol->port()));
 
-    _file_server = new QTcpServer(this);
-    _file_server->listen(QHostAddress::LocalHost, _protocol->port());
-    connect(_file_server, &QTcpServer::newConnection, this, &client_manager::on_new_connection);
+    if (!_file_server)
+    {
+        _file_server = new QTcpServer(this);
+
+        _file_server->listen(QHostAddress::LocalHost, _protocol->port());
+        connect(_file_server, &QTcpServer::newConnection, this, &client_manager::on_new_connection);
+    }
 }
 
 void client_manager::on_new_connection()

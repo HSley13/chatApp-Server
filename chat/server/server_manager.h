@@ -11,19 +11,6 @@
 #include <vector>
 #include <mutex>
 
-class port_pool
-{
-private:
-    std::vector<int> ports;
-
-public:
-    port_pool(int start, int end);
-
-    int allocate_port();
-
-    void deallocate_all();
-};
-
 class server_manager : public QMainWindow
 {
     Q_OBJECT
@@ -48,12 +35,22 @@ public:
 
     void notify_other_clients(QString old_name, QString client_name);
 
+    void send_file();
+    void save_file();
+
+    void file_for_other_clients(QString sender, QString receiver, QString file_name, qint64 file_size);
+    void reject_receiving_file_clients(QString sender, QString receiver);
+
     QString name() const;
 
     static QMap<QString, QTcpSocket *> _clients;
     static QMap<QString, QString> _names;
 
-    friend class port_pool;
+    static void range(int start, int end);
+
+    static int allocate_port();
+
+    static void deallocate_all();
 
 private:
     QWidget *central_widget;
@@ -68,14 +65,7 @@ private:
     QHostAddress _ip;
     int _port;
 
-    static port_pool *_pool;
-
-    void send_file();
-
-    void save_file();
-
-    void file_for_other_clients(QString sender, QString receiver, QString file_name, qint64 file_size);
-    void reject_receiving_file_clients(QString sender, QString receiver);
+    static std::vector<int> _ports;
 
 signals:
     void new_client_connected(QTcpSocket *client);

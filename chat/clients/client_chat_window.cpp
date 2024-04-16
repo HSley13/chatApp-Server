@@ -50,7 +50,7 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_size)
 {
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg("Server", file_name).arg(file_size);
+    QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), "Server").arg(file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
     if (result == QMessageBox::Yes)
@@ -61,7 +61,7 @@ void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_s
 
 void client_chat_window::on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size)
 {
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
+    QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), sender).arg(file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
     if (result == QMessageBox::Yes)
@@ -174,7 +174,7 @@ void client_chat_window::folder()
 void client_chat_window::folder_client()
 {
     QString executable_directory = QApplication::applicationDirPath();
-    QString full_client_directory = QDir(executable_directory).filePath(destinator());
+    QString full_client_directory = QDir(executable_directory).filePath(_window_name);
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
     if (!selected_file_path.isEmpty())
@@ -216,7 +216,7 @@ void client_chat_window::set_up_window()
     connect(this, &client_chat_window::update_label, this, [=]()
             { _label->setText(QString("%1's Conversation").arg(_window_name)); });
 
-    if (!_client)
+    if (!_client && !_protocol)
     {
         _client = new client_manager();
         connect(_client, &client_manager::text_message_received, this, [=](QString sender, QString message)
@@ -226,10 +226,10 @@ void client_chat_window::set_up_window()
                 { emit is_typing_received(sender); });
 
         connect(_client, &client_manager::reject_receiving_file, this, [=]()
-                { QMessageBox::critical(this, "File Rejected", "Server Rejected Your request to send the file"); });
+                { QMessageBox::critical(this, "File Rejected", QString("-------- %1 --------\n Server Rejected Your request to send the file").arg(my_name())); });
 
         connect(_client, &client_manager::reject_receiving_file_client, this, [=](QString sender)
-                { QMessageBox::critical(this, "File Rejected", QString("%1 Rejected Your request to send the file").arg(sender)); });
+                { QMessageBox::critical(this, "File Rejected", QString("-------- %1 --------\n %2 Rejected Your request to send the file").arg(my_name(), sender)); });
 
         connect(_client, &client_manager::client_connected, this, [=](QString client_name)
                 { emit client_connected(client_name); });
