@@ -235,6 +235,8 @@ void chat_protocol::load_data(QByteArray data)
     case reject_sending_file_client:
         in >> _sender >> _receiver;
 
+        break;
+
     default:
         break;
     }

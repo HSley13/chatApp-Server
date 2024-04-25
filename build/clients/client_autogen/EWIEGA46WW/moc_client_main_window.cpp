@@ -56,7 +56,6 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "on_text_message_received",
     "sender",
     "message",
-    "on_is_typing_received",
     "on_name_changed",
     "on_item_clicked",
     "QListWidgetItem*",
@@ -64,7 +63,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
-    uint offsetsAndSizes[40];
+    uint offsetsAndSizes[38];
     char stringdata0[19];
     char stringdata1[10];
     char stringdata2[1];
@@ -80,11 +79,10 @@ struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
     char stringdata12[25];
     char stringdata13[7];
     char stringdata14[8];
-    char stringdata15[22];
+    char stringdata15[16];
     char stringdata16[16];
-    char stringdata17[16];
-    char stringdata18[17];
-    char stringdata19[5];
+    char stringdata17[17];
+    char stringdata18[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -105,11 +103,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
         QT_MOC_LITERAL(177, 24),  // "on_text_message_received"
         QT_MOC_LITERAL(202, 6),  // "sender"
         QT_MOC_LITERAL(209, 7),  // "message"
-        QT_MOC_LITERAL(217, 21),  // "on_is_typing_received"
-        QT_MOC_LITERAL(239, 15),  // "on_name_changed"
-        QT_MOC_LITERAL(255, 15),  // "on_item_clicked"
-        QT_MOC_LITERAL(271, 16),  // "QListWidgetItem*"
-        QT_MOC_LITERAL(288, 4)   // "item"
+        QT_MOC_LITERAL(217, 15),  // "on_name_changed"
+        QT_MOC_LITERAL(233, 15),  // "on_item_clicked"
+        QT_MOC_LITERAL(249, 16),  // "QListWidgetItem*"
+        QT_MOC_LITERAL(266, 4)   // "item"
     },
     "client_main_window",
     "connected",
@@ -126,7 +123,6 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt
     "on_text_message_received",
     "sender",
     "message",
-    "on_is_typing_received",
     "on_name_changed",
     "on_item_clicked",
     "QListWidgetItem*",
@@ -142,7 +138,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -150,15 +146,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   68,    2, 0x08,    1 /* Private */,
-       3,    2,   69,    2, 0x08,    2 /* Private */,
-       7,    1,   74,    2, 0x08,    5 /* Private */,
-       9,    2,   77,    2, 0x08,    7 /* Private */,
-      11,    1,   82,    2, 0x08,   10 /* Private */,
-      12,    2,   85,    2, 0x08,   12 /* Private */,
-      15,    1,   90,    2, 0x08,   15 /* Private */,
-      16,    0,   93,    2, 0x08,   17 /* Private */,
-      17,    1,   94,    2, 0x08,   18 /* Private */,
+       1,    0,   62,    2, 0x08,    1 /* Private */,
+       3,    2,   63,    2, 0x08,    2 /* Private */,
+       7,    1,   68,    2, 0x08,    5 /* Private */,
+       9,    2,   71,    2, 0x08,    7 /* Private */,
+      11,    1,   76,    2, 0x08,   10 /* Private */,
+      12,    2,   79,    2, 0x08,   12 /* Private */,
+      15,    0,   84,    2, 0x08,   15 /* Private */,
+      16,    1,   85,    2, 0x08,   16 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -167,9 +162,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   10,    8,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   13,   14,
-    QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 18,   19,
+    QMetaType::Void, 0x80000000 | 17,   18,
 
        0        // eod
 };
@@ -203,9 +197,6 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        // method 'on_is_typing_received'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_item_clicked'
@@ -227,9 +218,8 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 3: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 4: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 5: _t->on_text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 6: _t->on_is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 7: _t->on_name_changed(); break;
-        case 8: _t->on_item_clicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 6: _t->on_name_changed(); break;
+        case 7: _t->on_item_clicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -254,13 +244,13 @@ int client_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }

@@ -5891,8 +5891,8 @@
  mdp:/opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
  mdp:/opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
-/Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp
 /Users/test/Documents/server---clients/chat/clients/client_main_window.cpp
+/Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp
 /Users/test/Documents/server---clients/chat/clients/chat_protocol.cpp
 /Users/test/Documents/server---clients/chat/clients/client_main.cpp
 /Users/test/Documents/server---clients/chat/clients/client_manager.cpp

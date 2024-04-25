@@ -53,7 +53,6 @@ private slots:
     void on_client_disconnected(QString client_name);
 
     void on_text_message_received(QString sender, QString message);
-    void on_is_typing_received(QString sender);
     void on_name_changed();
 
     void on_item_clicked(QListWidgetItem *item);

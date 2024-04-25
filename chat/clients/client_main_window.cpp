@@ -75,11 +75,9 @@ client_main_window::client_main_window(QWidget *parent)
     _list->setSelectionMode(QAbstractItemView::SingleSelection);
     _list->setMinimumWidth(200);
     _list->setFont(QFont("Arial", 20));
-    connect(_list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
+    _list->setItemDelegate(new separator_delegate(_list));
     _list->setDisabled(true);
-
-    separator_delegate *delegate = new separator_delegate(_list);
-    _list->setItemDelegate(delegate);
+    connect(_list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
 
     _stack = new QStackedWidget(this);
     _stack->addWidget(_list);
@@ -101,7 +99,9 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
-    connect(wid, &client_chat_window::is_typing_received, this, &client_main_window::on_is_typing_received);
+
+    connect(wid, &client_chat_window::is_typing_received, this, [=](QString sender)
+            { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
 
     connect(wid, &client_chat_window::socket_disconnected, this, [=]()
             { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
@@ -130,11 +130,6 @@ void client_main_window::on_item_clicked(QListWidgetItem *item)
         _stack->setCurrentIndex(_stack->indexOf(wid));
     else
         qDebug() << "client_main_window--> on_item_clicked()--> window to forward not FOUND: " << client_name;
-}
-
-void client_main_window::on_is_typing_received(QString sender)
-{
-    _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
 }
 
 void client_main_window::on_name_changed()
