@@ -188,9 +188,10 @@ clients/client.app/Contents/MacOS/client: clients/CMakeFiles/client.dir/client_c
 clients/client.app/Contents/MacOS/client: clients/CMakeFiles/client.dir/chat_protocol.cpp.o
 clients/client.app/Contents/MacOS/client: clients/CMakeFiles/client.dir/chat_line.cpp.o
 clients/client.app/Contents/MacOS/client: clients/CMakeFiles/client.dir/build.make
+clients/client.app/Contents/MacOS/client: database/libdatabase_library.a
 clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
-clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
 clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
+clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
 clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 clients/client.app/Contents/MacOS/client: clients/CMakeFiles/client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable client.app/Contents/MacOS/client"

@@ -4,8 +4,8 @@
 
 QMap<QString, QWidget *> server_main_window::_window_map = QMap<QString, QWidget *>();
 
-server_main_window::server_main_window(QWidget *parent)
-    : QMainWindow(parent)
+server_main_window::server_main_window(sql::Connection *db_connection, QWidget *parent)
+    : QMainWindow(parent), _db_connection(db_connection)
 {
     QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
@@ -29,6 +29,7 @@ server_main_window::server_main_window(QWidget *parent)
     vbox->addWidget(_disconnect_all);
 
     _server = new server_manager();
+    _server->_db_connection = _db_connection;
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
@@ -50,6 +51,7 @@ void server_main_window::on_new_client_connected(QTcpSocket *client)
     QString client_name = client->property("client_name").toString();
 
     server_chat_window *wid = new server_chat_window(client, this);
+    wid->_db_connection = _db_connection;
     _tabs->addTab(wid, QString("Client %1").arg(id));
 
     _window_map.insert(client_name, wid);

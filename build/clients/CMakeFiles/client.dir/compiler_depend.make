@@ -2980,6 +2980,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -2987,9 +2988,11 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -3009,6 +3012,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -3033,6 +3037,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -3152,6 +3157,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -3161,6 +3167,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -3177,6 +3184,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp \
   clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp \
   clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -3441,6 +3449,7 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -3742,7 +3751,23 @@ clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: clients/cli
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/server---clients/chat/clients/client_chat_window.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -4532,6 +4557,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -4539,9 +4565,11 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -4561,6 +4589,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -4585,6 +4614,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -4704,6 +4734,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -4713,6 +4744,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -4723,6 +4755,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /Users/test/Documents/server---clients/chat/clients/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -4990,6 +5023,7 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -5292,7 +5326,23 @@ clients/CMakeFiles/client.dir/client_chat_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---clients/chat/clients/client_main.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -6082,6 +6132,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -6089,9 +6140,11 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -6111,6 +6164,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -6135,6 +6189,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -6254,6 +6309,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -6263,6 +6319,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -6274,6 +6331,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_main_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -6540,6 +6598,7 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -6843,7 +6902,23 @@ clients/CMakeFiles/client.dir/client_main.cpp.o: /Users/test/Documents/server---
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/server---clients/chat/clients/client_main_window.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -7633,6 +7708,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -7640,9 +7716,11 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -7662,6 +7740,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -7686,6 +7765,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -7805,6 +7885,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -7814,6 +7895,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -7825,6 +7907,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_main_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -8088,6 +8171,7 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -8395,7 +8479,23 @@ clients/CMakeFiles/client.dir/client_main_window.cpp.o: /Users/test/Documents/se
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server---clients/chat/clients/client_manager.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -9185,6 +9285,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -9192,9 +9293,11 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -9214,6 +9317,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -9238,6 +9342,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -9357,6 +9462,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -9366,6 +9472,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -9374,6 +9481,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   /Users/test/Documents/server---clients/chat/clients/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -9619,6 +9727,7 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QFile \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -9905,32 +10014,96 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
   /opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/QStyledItemDelegate:
+/Users/test/Documents/server---clients/chat/clients/client_manager.cpp:
+
+/opt/homebrew/lib/QtGui.framework/Headers/QPainter:
 
 /Users/test/Documents/server---clients/chat/clients/client_main_window.cpp:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h:
+/opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h:
 
 /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
 
+/opt/homebrew/lib/QtNetwork.framework/Headers/qhostinfo.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qlibrary.h:
+
 /opt/homebrew/lib/QtGui.framework/Headers/QAction:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_mutexattr_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h:
 
 /opt/homebrew/include/QtWidgets/qdialog.h:
 
 /opt/homebrew/include/QtGui/qguiapplication_platform.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_array.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/lognormal_distribution.h:
+
 /opt/homebrew/include/QtGui/qguiapplication.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exception_guard.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h:
+
+/opt/homebrew/include/QtGui/qfontinfo.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/q20algorithm.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qvector.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/QMenu:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar:
+
 /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_all_of.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QTabWidget:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_generate_n.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar:
 
@@ -9944,6 +10117,10 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward_like.h:
+
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslkey.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslconfiguration.h:
@@ -9954,15 +10131,27 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qocspresponse.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_reduce.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h:
+
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkreply.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkinterface.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_if_not.h:
+
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkcookie.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdio:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qlocalsocket.h:
 
+/opt/homebrew/include/QtWidgets/qdialogbuttonbox.h:
+
 /opt/homebrew/lib/QtNetwork.framework/Headers/qhttp2configuration.h:
+
+/opt/homebrew/include/QtCore/qfloat16.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qhttp1configuration.h:
 
@@ -9970,7 +10159,17 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qdtls.h:
 
+/opt/homebrew/include/QtCore/qttypetraits.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_volatile.h:
+
 /opt/homebrew/lib/QtNetwork.framework/Headers/qdnslookup.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/clamp_to_integral.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qwineventnotifier.h:
 
@@ -9984,7 +10183,11 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/enable_if.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qurl.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qttypetraits.h:
 
@@ -9992,11 +10195,17 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtranslator.h:
 
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qthread.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_move.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtenvironmentvariables.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qthreadstorage.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_random_bit_generator.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtemporaryfile.h:
 
@@ -10004,7 +10213,13 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtcoreversion.h:
 
+/opt/homebrew/include/QtCore/qrunnable.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qtconfigmacros.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/noexcept_move_assign_container.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtclasshelpermacros.h:
 
@@ -10014,11 +10229,21 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtconfiginclude.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/independent_bits_engine.h:
+
+/opt/homebrew/include/QtCore/qcommandlineoption.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qstringconverter.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstring.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstorageinfo.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_found_result.h:
+
+/opt/homebrew/include/QtWidgets/qtwidgetsglobal.h:
+
+/opt/homebrew/include/QtNetwork/qsslcertificate.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstandardpaths.h:
 
@@ -10030,13 +10255,15 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qsharedmemory.h:
 
+/opt/homebrew/include/QtCore/qtenvironmentvariables.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qshareddata.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qsettings.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qset.h:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/signal.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qsequentialanimationgroup.h:
 
@@ -10060,13 +10287,19 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qpropertyanimation.h:
 
+/opt/homebrew/include/QtCore/qassert.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qpointer.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_negate.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qpoint.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtaggedpointer.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qplugin.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_out_out_result.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qpauseanimation.h:
 
@@ -10086,13 +10319,19 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qlibraryinfo.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qlibrary.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/dangling.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qlatin1stringview.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qstringbuilder.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qlatin1stringmatcher.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qcommandlineparser.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qiterable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/common_iterator.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qiodevicebase.h:
 
@@ -10100,13 +10339,27 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtmetamacros.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_transform.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/merge.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qjsonarray.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qhashfunctions.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qglobalstatic.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qglobal.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_binary_search.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_max_element.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qfuture.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_difference.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_size_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qfiledevice.h:
 
@@ -10115,6 +10368,8 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 /opt/homebrew/lib/QtCore.framework/Headers/qfactoryinterface.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qeventloop.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdint.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qendian.h:
 
@@ -10126,21 +10381,31 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qdeadlinetimer.h:
 
+/opt/homebrew/include/QtCore/qtdeprecationmarkers.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qdarwinhelpers.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcontainerfwd.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qhash.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qitemselectionmodel.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_zero.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qconcatenatetablesproxymodel.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qprocess.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qcommandlineparser.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/align.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/mutex:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcommandlineoption.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcborstreamwriter.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/is_eq.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcborstreamreader.h:
 
@@ -10152,19 +10417,29 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbytearrayalgorithms.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdint.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qparallelanimationgroup.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbindingstorage.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qassociativeiterable.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/types.h:
+
+/opt/homebrew/include/QtCore/qrefcount.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qarraydata.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QTime:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qabstractanimation.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list:
+
 /opt/homebrew/lib/QtCore.framework/Headers/q23functional.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/q20algorithm.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/pair_like.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbuffer.h:
 
@@ -10184,41 +10459,53 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslcipher.h:
 
+/opt/homebrew/include/QtCore/qanimationgroup.h:
+
 /opt/homebrew/include/QtWidgets/qabstractscrollarea.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslcertificateextension.h:
 
 /opt/homebrew/include/QtNetwork/qtnetworkexports.h:
 
-/opt/homebrew/include/QtNetwork/qtnetwork-config.h:
+/opt/homebrew/include/QtCore/qcompare_impl.h:
 
-/opt/homebrew/include/QtNetwork/qsslcertificate.h:
+/opt/homebrew/include/QtNetwork/qtnetwork-config.h:
 
 /opt/homebrew/include/QtNetwork/qssl.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/linear_congruential_engine.h:
+
 /opt/homebrew/include/QtNetwork/qhostaddress.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qbasictimer.h:
 
 /opt/homebrew/include/QtNetwork/qabstractnetworkcache.h:
 
 /opt/homebrew/include/QtNetwork/QtNetworkDepends:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/is_transparent.h:
+
 /opt/homebrew/include/QtNetwork/QSslPreSharedKeyAuthenticator:
 
 /opt/homebrew/include/QtNetwork/QSslConfiguration:
 
-/opt/homebrew/include/QtNetwork/QNetworkAccessManager:
-
 /opt/homebrew/include/QtGui/qvalidator.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/errc.h:
+
 /opt/homebrew/include/QtGui/qtextformat.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_stdio.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qsharedpointer.h:
 
 /opt/homebrew/include/QtCore/qtsan_impl.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qsimd.h:
+
 /opt/homebrew/include/QtCore/qthreadpool.h:
 
-/opt/homebrew/include/QtCore/qrunnable.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_types.h:
 
 /opt/homebrew/include/QtCore/qresultstore.h:
 
@@ -10226,9 +10513,13 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/include/QtCore/qmimetype.h:
 
+/opt/homebrew/include/QtGui/qbitmap.h:
+
 /opt/homebrew/include/QtGui/qtextcursor.h:
 
 /opt/homebrew/include/QtCore/qjsonvalue.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h:
 
 /opt/homebrew/include/QtCore/qfutureinterface.h:
 
@@ -10242,19 +10533,23 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/include/QtCore/qcoreapplication.h:
 
-/opt/homebrew/include/QtCore/qcommandlineoption.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/signal.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_short.h:
 
 /opt/homebrew/include/QtCore/qcborvalue.h:
 
 /opt/homebrew/include/QtCore/qcborstreamwriter.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qscopedpointer.h:
+
 /opt/homebrew/include/QtCore/qcborstreamreader.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/wchar.h:
 
 /opt/homebrew/include/QtCore/qcborcommon.h:
 
 /opt/homebrew/include/QtCore/qbasictimer.h:
-
-/opt/homebrew/include/QtCore/qanimationgroup.h:
 
 /opt/homebrew/include/QtCore/qabstractproxymodel.h:
 
@@ -10264,21 +10559,31 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/include/QtCore/q20algorithm.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar:
+
 /opt/homebrew/include/QtCore/QtCoreDepends:
 
 /opt/homebrew/include/QtCore/QVariant:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qgenericatomic.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month.h:
+
 /opt/homebrew/include/QtCore/QString:
 
 /opt/homebrew/include/QtCore/QSharedDataPointer:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference.h:
+
 /opt/homebrew/include/QtCore/QObject:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qfuturewatcher.h:
 
 /opt/homebrew/include/QtCore/QMetaType:
 
 /opt/homebrew/include/QtCore/QList:
+
+/opt/homebrew/include/QtCore/qcoreevent.h:
 
 /opt/homebrew/include/QtCore/QFlags:
 
@@ -10286,9 +10591,21 @@ clients/CMakeFiles/client.dir/client_manager.cpp.o: /Users/test/Documents/server
 
 /opt/homebrew/include/QtCore/QCryptographicHash:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h:
+
+/opt/homebrew/include/QtNetwork/QNetworkAccessManager:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique_copy.h:
+
+/opt/homebrew/include/QtGui/qpolygon.h:
+
+/Users/test/Documents/server---clients/chat/database/database.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qcryptographichash.h:
 
 clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/algorithm:
 
 /Users/test/Documents/server---clients/chat/clients/client_manager.h:
 
@@ -10296,15 +10613,29 @@ clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/readable_traits.h:
+
+/opt/homebrew/include/QtCore/qprocessordetection.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/extended_grapheme_cluster_table.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstringtokenizer.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/this_thread.h:
 
@@ -10312,19 +10643,31 @@ clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/subtract_with_carry_engine.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_function.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qversiontagging.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/student_t_distribution.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_rwlockattr_t.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/shuffle_order_engine.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/seed_seq.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qvariant.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/poisson_distribution.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/lognormal_distribution.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_sample.h:
+
+/opt/homebrew/include/QtCore/q20type_traits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/knuth_b.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ct_rune_t.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qlineedit.h:
 
@@ -10334,21 +10677,31 @@ clients/client_autogen/EWIEGA46WW/moc_client_chat_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/generate_canonical.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/fisher_f_distribution.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/for_each.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/error_code.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/discard_block_engine.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/default_random_engine.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/clamp_to_integral.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/binomial_distribution.h:
 
 clients/client_autogen/mocs_compilation.cpp:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qtversionchecks.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qiodevice.h:
+
+/opt/homebrew/include/QtCore/qfile.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qdatastream.h:
 
@@ -10356,25 +10709,39 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qbytearray.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/push_heap.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/QStringList:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conditional.h:
+
+/opt/homebrew/include/QtCore/QHash:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QList:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/wait.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/QIODevice:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mbstate_t.h:
 
 /opt/homebrew/include/QtCore/qfiledevice.h:
 
-/opt/homebrew/include/QtCore/qfile.h:
-
 /opt/homebrew/include/QtCore/qdatetime.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/endian.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qtransposeproxymodel.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/ranlux.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/QFileInfo:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h:
 
@@ -10382,13 +10749,21 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ios/fpos.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/assignable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h:
+/opt/homebrew/lib/QtCore.framework/Headers/qmimetype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/time.h:
 
 /opt/homebrew/include/QtCore/qversionnumber.h:
 
@@ -10398,35 +10773,45 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qmetaobject.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h:
+
 /Users/test/Documents/server---clients/chat/clients/chat_protocol.cpp:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/rank.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qdatetime.h:
-
 /opt/homebrew/include/QtWidgets/qwidget.h:
 
 /opt/homebrew/include/QtWidgets/qtwidgets-config.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_equal_range.h:
+
 /opt/homebrew/include/QtWidgets/qlayout.h:
 
-/opt/homebrew/lib/QtNetwork.framework/Headers/qhostinfo.h:
-
 /opt/homebrew/include/QtGui/qtgui-config.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qstringview.h:
 
 /opt/homebrew/include/QtGui/qrgba64.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/quuid.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_symbol_aliasing.h:
+
 /opt/homebrew/include/QtGui/qregion.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstringfwd.h:
 
+/opt/homebrew/include/QtGui/qinputmethod.h:
+
 /opt/homebrew/include/QtGui/qpixmap.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/count.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstringalgorithms.h:
 
@@ -10442,11 +10827,13 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/include/QtGui/qfontmetrics.h:
 
-/opt/homebrew/include/QtGui/qfontinfo.h:
-
 /opt/homebrew/include/QtGui/qfont.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/QStyledItemDelegate:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/boolean_testable.h:
 
 /opt/homebrew/include/QtGui/qcursor.h:
 
@@ -10454,19 +10841,29 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/include/QtGui/qcolor.h:
 
-/opt/homebrew/include/QtGui/qbrush.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy_if.h:
 
-/opt/homebrew/include/QtGui/qbitmap.h:
+/opt/homebrew/include/QtGui/qbrush.h:
 
 /opt/homebrew/include/QtCore/qtypes.h:
 
 /opt/homebrew/include/QtCore/qtypeinfo.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_assignable.h:
+
 /opt/homebrew/include/QtCore/qtversionchecks.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_sort.h:
 
 /opt/homebrew/include/QtCore/qtversion.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qvariantlist.h:
+
 /opt/homebrew/include/QtCore/qtpreprocessorsupport.h:
+
+/opt/homebrew/lib/QtGui.framework/Headers/qpainter.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_clock_t.h:
 
 /opt/homebrew/include/QtCore/qtnoop.h:
 
@@ -10480,17 +10877,23 @@ clients/client_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/include/QtCore/qtextstream.h:
 
-/opt/homebrew/include/QtCore/qtdeprecationmarkers.h:
-
 /opt/homebrew/include/QtCore/qtcoreexports.h:
 
+/opt/homebrew/include/QtCore/qlibrary.h:
+
 /opt/homebrew/include/QtCore/qtconfiginclude.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_max.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qresource.h:
 
 /opt/homebrew/include/QtCore/qtcore-config.h:
 
 /opt/homebrew/include/QtCore/qtaggedpointer.h:
+
+clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types.h:
 
 /opt/homebrew/include/QtCore/qsysinfo.h:
 
@@ -10510,13 +10913,25 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qlist.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_volatile.h:
+
 /opt/homebrew/include/QtCore/qstringbuilder.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list:
 
 /opt/homebrew/lib/QtGui.framework/Headers/qaction.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qsequentialiterable.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_iterator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_set.h:
+
 /opt/homebrew/include/QtCore/qstringalgorithms.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/appleapiopts.h:
 
 /opt/homebrew/include/QtCore/qstring.h:
 
@@ -10524,7 +10939,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qsharedpointer_impl.h:
 
+/Users/test/Documents/server---clients/chat/clients/client_main.cpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_fill.h:
+
 /opt/homebrew/include/QtCore/qthread.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_compound.h:
 
 /opt/homebrew/include/QtCore/qsharedpointer.h:
 
@@ -10536,17 +10957,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qscopeguard.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/includes.h:
+
 /opt/homebrew/include/QtCore/qscopedpointer.h:
-
-/opt/homebrew/include/QtCore/qrefcount.h:
-
-/Users/test/Documents/server---clients/chat/clients/client_main.cpp:
 
 /opt/homebrew/include/QtCore/qrect.h:
 
 /opt/homebrew/include/QtCore/qvarlengtharray.h:
 
-/opt/homebrew/include/QtCore/qprocessordetection.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__debug_utils/strict_weak_ordering_check.h:
 
 /opt/homebrew/include/QtCore/qobjectdefs_impl.h:
 
@@ -10554,13 +10973,23 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qobject_impl.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qcbormap.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/width_estimation_table.h:
+
 /opt/homebrew/include/QtCore/qnumeric.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qarraydataops.h:
 
 /opt/homebrew/include/QtCore/qmetatype.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/ranges_construct_at.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/log2.h:
+
 /opt/homebrew/include/QtCore/qmath.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_assignable.h:
 
 /opt/homebrew/include/QtCore/qmap.h:
 
@@ -10570,11 +10999,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qiterator.h:
 
+/opt/homebrew/include/QtWidgets/qboxlayout.h:
+
 /opt/homebrew/include/QtCore/qiodevicebase.h:
 
 /opt/homebrew/include/QtCore/qhashfunctions.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/memory_resource.h:
+
 /opt/homebrew/include/QtCore/qgenericatomic.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h:
 
 /opt/homebrew/include/QtCore/qfunctionpointer.h:
 
@@ -10582,15 +11017,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qlogging.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/inplace_merge.h:
+
 /opt/homebrew/include/QtCore/qforeach.h:
 
 /opt/homebrew/include/QtCore/qflags.h:
 
+/opt/homebrew/lib/QtNetwork.framework/Headers/qtnetworkversion.h:
+
 /opt/homebrew/include/QtCore/qexceptionhandling.h:
 
 /opt/homebrew/include/QtCore/qdebug.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/linear_congruential_engine.h:
 
 /opt/homebrew/include/QtCore/qdatastream.h:
 
@@ -10598,21 +11035,31 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qcontainerinfo.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/mem_fn.h:
+
 /opt/homebrew/include/QtCore/qcontainerfwd.h:
 
 /opt/homebrew/include/QtCore/qconstructormacros.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/piecewise_constant_distribution.h:
 
+/opt/homebrew/include/QtNetwork/QSslSocket:
+
 /opt/homebrew/include/QtCore/qconfig.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_constructible.h:
+
 /opt/homebrew/include/QtCore/qcompilerdetection.h:
+
+/opt/homebrew/include/QtCore/qttranslation.h:
 
 /opt/homebrew/include/QtCore/qcompare.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qutf8stringview.h:
 
 /opt/homebrew/include/QtCore/qcalendar.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_size.h:
 
 /opt/homebrew/include/QtCore/qbytearrayview.h:
 
@@ -10624,8 +11071,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qatomic.h:
 
-/opt/homebrew/include/QtCore/qassert.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qoperatingsystemversion.h:
 
 /opt/homebrew/include/QtCore/qarraydataops.h:
@@ -10634,17 +11079,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qalgorithms.h:
 
-/opt/homebrew/include/QtCore/q20type_traits.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/q20functional.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
+
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qvector.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/lazy.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h:
 
@@ -10656,25 +11101,35 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h:
 
+/opt/homebrew/lib/QtNetwork.framework/Headers/qssl.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qversionnumber.h:
 
 /opt/homebrew/include/QtWidgets/qsizepolicy.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/wchar.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/types.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qarraydatapointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/syslimits.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/stdio.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_width.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/qos.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/cdefs.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_adjacent_find.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_va_list.h:
 
@@ -10696,7 +11151,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_suseconds_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_size_t.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/map:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_symmetric_difference.h:
 
 /opt/homebrew/include/QtCore/qlocale.h:
 
@@ -10706,9 +11163,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rune_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_null.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_mach_port_t.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_nlink_t.h:
 
@@ -10716,13 +11177,21 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_mbstate_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_mach_port_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_key_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qeasingcurve.h:
 
+/opt/homebrew/include/QtCore/qcryptographichash.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind_front.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_for_each_n.h:
+
+/opt/homebrew/include/QtCore/QIODevice:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_intptr_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/all_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int8_t.h:
 
@@ -10736,6 +11205,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fsblkcnt_t.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_reference_with.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qpluginloader.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qalgorithms.h:
@@ -10746,33 +11217,41 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_copy.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception_ptr.h:
+
 /opt/homebrew/include/QtCore/qpromise.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_clr.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qmimetype.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__availability:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/move.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_32_64_or_128_bit.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_errno_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_dev_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/appleapiopts.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/mutex.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_caddr_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/weibull_distribution.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_reference.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_blksize_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qanimationgroup.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qstringlistmodel.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_blkcnt_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_symbol_aliasing.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_types.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcoreevent.h:
 
@@ -10780,27 +11259,29 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qrefcount.h:
 
-/opt/homebrew/include/QtCore/QUrl:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/destructible.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_rwlockattr_t.h:
+/opt/homebrew/include/QtWidgets/qabstractitemdelegate.h:
+
+/opt/homebrew/include/QtCore/QUrl:
 
 /opt/homebrew/include/QtWidgets/qabstractitemview.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_rwlock_t.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_unique.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_once_t.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qstringview.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_includes.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_mutexattr_t.h:
+/opt/homebrew/lib/QtNetwork.framework/Headers/qhttpmultipart.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_mutex_t.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qvariantlist.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_attr_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ct_rune_t.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cvref.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_posix_availability.h:
 
@@ -10814,9 +11295,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qminmax.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qbytearrayview.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/runetype.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_equality_comparable.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/qos.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/predicate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/pthread_impl.h:
 
@@ -10824,17 +11311,31 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/types.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conjunction.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/signal.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_nl_item.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/default_sentinel.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/mach/arm/_structs.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/set_intersection.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qsystemsemaphore.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/locale.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/istream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp_ref_type.h:
 
@@ -10848,9 +11349,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/typeinfo:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backend.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/adjacent_find.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__debug_utils/strict_weak_ordering_check.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_in_port_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string_view:
 
@@ -10864,47 +11367,55 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/variant:
+
 /opt/homebrew/lib/QtWidgets.framework/Headers/QFileDialog:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/negative_binomial_distribution.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/wrap_iter.h:
 
+/opt/homebrew/include/QtCore/qarraydatapointer.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qmutex.h:
+
 /opt/homebrew/include/QtGui/qtransform.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h:
 
 /opt/homebrew/include/QtWidgets/qslider.h:
 
-/opt/homebrew/include/QtCore/QIODevice:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/utility:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/mach/machine/_structs.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/operations.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslserver.h:
 
 /opt/homebrew/include/QtCore/q23functional.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/math.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned_integer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/_mcontext.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h:
 
+/opt/homebrew/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qtransposeproxymodel.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_move_backward.h:
 
@@ -10912,13 +11423,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sift_down.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstring:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdio:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/three_way_comparable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_identity.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdarg:
 
@@ -10934,17 +11445,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__variant/monostate.h:
 
-/opt/homebrew/include/QtGui/qpolygon.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_reference.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/to_underlying.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/priority_tag.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/piecewise_construct.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward_like.h:
 
 /opt/homebrew/include/QtGui/qimage.h:
 
@@ -10958,17 +11465,19 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/convert_to_integral.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cv.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_none_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/as_const.h:
 
 /opt/homebrew/include/QtCore/qlist.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/default_searcher.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_malloc_type.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/mutex:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/void_t.h:
 
@@ -10980,12 +11489,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_time.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_assignable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_identity.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/qfiledialog.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_reference.h:
@@ -10994,23 +11497,23 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /opt/homebrew/include/QtCore/qutf8stringview.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cvref.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cv.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/endian.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qcompilerdetection.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/QTime:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h:
+
+/opt/homebrew/include/QtCore/QtCore:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/promote.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint8_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/error_category.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/operation_traits.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/voidify.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/nat.h:
 
@@ -11030,11 +11533,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_const.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/variant:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_destructible.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qstringbuilder.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_default_constructible.h:
 
@@ -11042,11 +11541,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_constructible.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
 
 /opt/homebrew/include/QtCore/qcoreapplication_platform.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/exponential_distribution.h:
 
@@ -11056,11 +11553,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_union.h:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_fundamental.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslsocket.h:
 
@@ -11068,21 +11565,25 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy_backward.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_size.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_scalar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_lexicographical_compare.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qcborvalue.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/ios.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/swappable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_traits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_same.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/advance.h:
+
 /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_assignable.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/file_clock.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h:
 
@@ -11090,19 +11591,21 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_lvalue_reference.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/default_searcher.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_convertible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_heap.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_constructible.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qfunctionpointer.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_gid_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_constructible.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/for_each_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/result_of.h:
 
@@ -11112,8 +11615,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pop_heap.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_fundamental.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_final.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qiterator.h:
@@ -11122,55 +11623,57 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_execution_policy.h:
 
-/opt/homebrew/lib/QtNetwork.framework/Headers/qtnetworkversion.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtnoop.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/independent_bits_engine.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_equality_comparable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference.h:
+/opt/homebrew/include/argon2.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_empty.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/limits.h:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qanystringview.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h:
 
 /opt/homebrew/include/QtCore/qpointer.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_constructible.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_assignable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned_integer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/incrementable_traits.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/extent.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_compound.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_class.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qfuturesynchronizer.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/random_device.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/compressed_pair.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/istream_iterator.h:
 
 /opt/homebrew/include/QtCore/qtresource.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_bounded_array.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/minmax_element.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_base_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/negation.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_array.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/class_or_enum.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h:
 
-/opt/homebrew/include/QtNetwork/QSslSocket:
+/opt/homebrew/lib/QtCore.framework/Headers/q20iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_always_bitcastable.h:
 
@@ -11182,7 +11685,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/duration.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/pointer_traits.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/unreachable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/erase_if_container.h:
 
 clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
@@ -11192,15 +11699,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_abstract.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qfile.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/mergeable.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/time.h:
+/opt/homebrew/lib/QtCore.framework/Headers/qfile.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/cmp.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/invoke.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/qstackedwidget.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/integral_constant.h:
 
@@ -11208,13 +11713,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/reference_wrapper.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/extent.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/disjunction.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/mergeable.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/dependent_type.h:
 
@@ -11222,21 +11725,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qstringliteral.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_set.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/datasizeof.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qjsonarray.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qhash.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qapplicationstatic.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partition_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/copy_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int32_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_type.h:
 
@@ -11244,11 +11743,19 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_primary_template.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_stable_sort.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array:
+
+/opt/homebrew/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config:
+
 /opt/homebrew/lib/QtCore.framework/Headers/qcborcommon.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctime:
 
@@ -11262,6 +11769,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/apply_cv.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/alignment_of.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qnamespace.h:
@@ -11270,31 +11779,27 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h:
 
-/opt/homebrew/include/QtCore/qtenvironmentvariables.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_frontend_dispatch.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_pointer.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_for_each_n.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__condition_variable/condition_variable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like_ext.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique_copy.h:
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unwrap_range.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_element.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/pair_like.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/make_tuple_types.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int32_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tree:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/error_code.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/constexpr_c_functions.h:
 
@@ -11324,13 +11829,19 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkdatagram.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qflags.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_borrowed_range.h:
 
 /opt/homebrew/include/QtWidgets/qabstractspinbox.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/half_positive.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/empty.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_object_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception:
 
@@ -11338,29 +11849,21 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/container_compatible_range.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternal.h:
+
+/opt/homebrew/include/QtCore/qmalloc.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/concepts.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_random_bit_generator.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/QMenu:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/types.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/log2.h:
 
 /opt/homebrew/include/QtCore/qelapsedtimer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/is_valid.h:
 
-/opt/homebrew/include/QtWidgets/qabstractitemdelegate.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_key_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_32_64_or_128_bit.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_reduce.h:
+/opt/homebrew/include/QtCore/qarraydata.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint64_t.h:
 
@@ -11370,9 +11873,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/partial_order.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional:
 
@@ -11386,8 +11893,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/pstl_reduce.h:
 
-/opt/homebrew/include/QtWidgets/qtwidgetsglobal.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h:
 
 /opt/homebrew/include/QtGui/qtguiexports.h:
@@ -11400,9 +11905,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/iota.h:
 
 /opt/homebrew/include/QtCore/qtipccommon.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/system_clock.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_in_out_result.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h:
 
@@ -11414,13 +11925,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qassert.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_assignable.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/tag_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/predicate_traits.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/mutex.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/lock_guard.h:
 
@@ -11428,19 +11935,23 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/traits.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qxmlstream.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_generate.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/integer_sequence.h:
 
 /opt/homebrew/include/QtWidgets/qtabbar.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/algorithm:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/concepts.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qcollator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/memory_resource.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/nl_types.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/voidify.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/weak_result_type.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_all_extents.h:
 
@@ -11456,17 +11967,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/shared_ptr.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_sample.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
 
 /opt/homebrew/include/QtCore/q20functional.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/raw_storage_iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/piecewise_linear_distribution.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_cond_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/negative_binomial_distribution.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/piecewise_linear_distribution.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_list.h:
 
@@ -11476,6 +11985,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/strip_signature.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/identity.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/ranges_uninitialized_algorithms.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/system_error:
@@ -11484,23 +11995,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtCore/QByteArray:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_arg_t.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_constructible.h:
 
-/opt/homebrew/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/extended_grapheme_cluster_table.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/ranges_construct_at.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binary_negate.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_malloc.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pod.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_in_addr_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/includes.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/pointer_traits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/aliases.h:
 
@@ -11532,7 +12037,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtCore/QMutex:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/inplace_merge.h:
+/opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_unsigned.h:
 
@@ -11540,15 +12045,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/mismatch.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/align.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/sortable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/size.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/wait.h:
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h:
+
+/opt/homebrew/include/QtCore/qsize.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/swap_allocator.h:
 
@@ -11558,15 +12063,23 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_rotate.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/readable_traits.h:
+/opt/homebrew/include/QtCore/qregularexpression.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h:
+
+/opt/homebrew/include/QtCore/q23utility.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/view_interface.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/prev.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h:
+
 /opt/homebrew/include/QtWidgets/qlayoutitem.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_search_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocation_guard.h:
 
@@ -11576,8 +12089,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits:
 
-/opt/homebrew/lib/QtGui.framework/Headers/QPainter:
-
 /opt/homebrew/lib/QtNetwork.framework/Headers/QtNetwork:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qmap.h:
@@ -11586,25 +12097,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_wchar_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_stable_sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_function.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/q20iterator.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/permutable.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_iterator.h:
+/opt/homebrew/include/QtGui/qtextoption.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/accumulate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_swap.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_move.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind_back.h:
 
@@ -11612,7 +12113,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/istreambuf_iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/istream_iterator.h:
+/opt/homebrew/include/QtCore/QStringList:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_callable.h:
 
@@ -11626,15 +12127,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_extent.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/half_positive.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/adjacent_difference.h:
-
-/opt/homebrew/include/QtWidgets/qboxlayout.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/erase_if_container.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/empty.h:
 
@@ -11648,11 +12143,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timespec.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_wctype_t.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/data.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/id.h:
-
-/opt/homebrew/include/QtCore/QHash:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/bounded_iter.h:
 
@@ -11662,21 +12159,25 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtCore/qline.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/projected.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_sorted.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sched.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/advance.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/access.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ios/fpos.h:
+clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
+
+/opt/homebrew/include/QtCore/qproperty.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/tuple.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/math.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h:
 
@@ -11684,21 +12185,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/streambuf.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/limits.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/sstream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/pair.h:
 
+/opt/homebrew/include/QtNetwork/qtnetworkglobal.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/ostream.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/memory_resource.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/istream.h:
-
-/opt/homebrew/include/QtCore/qarraydata.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fsfilcnt_t.h:
 
@@ -11708,11 +12203,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkrequest.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_negate.h:
-
 /opt/homebrew/include/QtCore/qnativeinterface.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pointer.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qlocalserver.h:
 
@@ -11722,21 +12213,19 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/alloca.h:
 
-/opt/homebrew/lib/QtNetwork.framework/Headers/qssl.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/ranges_operations.h:
 
 /opt/homebrew/include/QtCore/qiterable.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_cond_t.h:
+/opt/homebrew/lib/QtCore.framework/Headers/qtypes.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternalLegacy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint32_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__std_mbstate_t.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qtversionchecks.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_if.h:
 
@@ -11752,21 +12241,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/errno.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/is_transparent.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_default_constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/invoke.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_in_out_result.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/identity.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder2nd.h:
-
-/opt/homebrew/include/QtCore/QtCore:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind_front.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h:
 
@@ -11782,15 +12263,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/unicode.h:
 
-/opt/homebrew/include/QtCore/qttranslation.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/iter_swap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find_end.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_short.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_to_n_result.h:
 
@@ -11820,19 +12297,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtCore/qbytearrayalgorithms.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h:
-
 /opt/homebrew/include/QtCore/qstringconverter_base.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdint:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception_ptr.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/fence.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__debug_utils/randomize_range.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/swappable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/semiregular.h:
 
@@ -11846,13 +12317,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_partitioned.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/derived_from.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_wctype_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partial_sort.h:
 
@@ -11860,17 +12325,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/totally_ordered.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QUrl:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtimezone.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_frontend_dispatch.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/boolean_testable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/weak_order.h:
 
@@ -11882,19 +12341,19 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/addressof.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/three_way_comparable.h:
-
 /opt/homebrew/lib/QtNetwork.framework/Headers/qudpsocket.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/strong_order.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/backend.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/is_eq.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_xlocale.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtipccommon.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/same_as.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype:
 
@@ -11906,65 +12365,41 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_three_way_result.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/arithmetic.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lexicographical_compare.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/unordered_map:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/file_clock.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_three_way.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/tuple:
 
-/opt/homebrew/lib/QtNetwork.framework/Headers/qhttpmultipart.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_if_not.h:
+/opt/homebrew/include/QtWidgets/qabstractslider.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_partial_order_fallback.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/common_comparison_category.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/rotate.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qstringlistmodel.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/char_traits.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__condition_variable/condition_variable.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wchar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/time_point.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/indirectly_comparable.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/merge.h:
-
 /opt/homebrew/include/QtWidgets/qtabwidget.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/system_clock.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_clock_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/mem_fn.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qsystemsemaphore.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/rank.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/minmax_element.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/countl.h:
 
@@ -11980,9 +12415,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/literals.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/width_estimation_table.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_view.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_push_heap.h:
 
@@ -11992,6 +12425,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/compose.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace_if.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/synth_three_way.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_error.h:
@@ -11999,10 +12434,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/next_permutation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__node_handle:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_transform.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qcborvalue.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/month_weekday.h:
 
@@ -12016,11 +12447,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/rel_ops.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qobject.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/mem_fun_ref.h:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qsslellipticcurve.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config_site:
 
 /opt/homebrew/include/QtCore/qnamespace.h:
 
@@ -12032,9 +12467,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/unique_lock.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_allocator.h:
+/opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/weibull_distribution.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_arithmetic.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_allocator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_result.h:
 
@@ -12042,11 +12479,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtNetwork/qsslsocket.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/normal_distribution.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config_site:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_object_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/has_single_bit.h:
 
@@ -12054,11 +12489,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qpermissions.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/signal.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace_copy.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qexception.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/countr.h:
 
@@ -12067,8 +12500,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/count_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_destructible.h:
-
-/opt/homebrew/include/QtCore/q23utility.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/ordering.h:
 
@@ -12080,15 +12511,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/nth_element.h:
+
 /opt/homebrew/include/QtGui/qtguiglobal.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_ceil.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qobjectcleanuphandler.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_starts_with.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unwrap_range.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/memory_order.h:
 
@@ -12096,11 +12529,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qfileselector.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_gid_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/enable_if.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/make_heap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/resource.h:
 
@@ -12112,25 +12543,23 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/regular.h:
 
+/opt/homebrew/include/QtCore/qbytearraylist.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/check_memory_order.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/is_always_lock_free.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_assignable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_copy_if.h:
 
-/Users/test/Documents/server---clients/chat/clients/client_manager.cpp:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qvariantanimation.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qcbormap.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const.h:
-
-/opt/homebrew/include/QtCore/qregularexpression.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_sorted.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/check_memory_order.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lexicographical_compare_three_way.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_destructible.h:
 
@@ -12138,25 +12567,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__hash_table:
 
-/opt/homebrew/include/QtCore/qcompare_impl.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/invocable.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_lock_free.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qsimd.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_nth_element.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/sched.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_init.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qbasictimer.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_width.h:
 
 /opt/homebrew/include/QtNetwork/qtcpsocket.h:
 
@@ -12166,11 +12585,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/upper_bound.h:
 
+/opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/function.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constructible.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_traits.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdio.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/swap.h:
 
@@ -12184,25 +12609,21 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/TargetConditionals.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_enum.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_unique_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sort_heap.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qscopedpointer.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/shift_right.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_function_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/access.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/shift_left.h:
 
-/opt/homebrew/include/QtCore/qproperty.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits:
-
-/opt/homebrew/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h:
 
@@ -12210,21 +12631,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/set_symmetric_difference.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_symmetric_difference.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/calendar.h:
 
 /opt/homebrew/include/QtCore/qmargins.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constructible.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/QStatusBar:
-
 /opt/homebrew/include/QtCore/qdeadlinetimer.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/partial_order.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qtypes.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/clamp.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/popcount.h:
 
@@ -12232,21 +12645,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/find_if.h:
 
-/opt/homebrew/include/QtCore/qcryptographichash.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/system_error.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_swappable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/search_n.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mbstate_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_strong_order_fallback.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qflags.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qswap.h:
 
@@ -12262,19 +12667,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qhostaddress.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/lazy.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qfuturewatcher.h:
-
-/opt/homebrew/include/QtCore/qbytearraylist.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_first_of.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sample.h:
+/opt/homebrew/include/QtCore/qmetacontainer.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_fill.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sample.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
@@ -12288,6 +12687,8 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_upper_bound.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_flag.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy_n.h:
@@ -12296,13 +12697,9 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_pid_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_unique.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_swap_ranges.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/assert.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdint.h:
 
 /opt/homebrew/include/QtCore/qfuture.h:
 
@@ -12316,11 +12713,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_sort_heap.h:
 
+/opt/homebrew/include/QtGui/qpaintdevice.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constant_evaluated.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/transform.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qcollator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/clocale:
 
@@ -12328,19 +12725,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/make_projected.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/for_each_n.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/stable_partition.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy_if.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdio.h:
+/opt/homebrew/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h:
 
 /opt/homebrew/include/QtCore/qbytearray.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_volatile.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h:
 
@@ -12356,43 +12747,25 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/insert_iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/operations.h:
-
-/opt/homebrew/include/QtCore/QStringList:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_reverse.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_const.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtemporarydir.h:
 
-/opt/homebrew/include/QtCore/qsize.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/temp_value.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/parser_std_format_spec.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocate_at_least.h:
-
-/opt/homebrew/include/QtCore/qarraydatapointer.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_transform.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_indices.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/make_heap.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/QStackedWidget:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_volatile.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partition_point.h:
 
@@ -12404,19 +12777,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exception_guard.h:
-
 /opt/homebrew/lib/QtGui.framework/Headers/QDesktopServices:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/auto_ptr.h:
 
-/opt/homebrew/include/QtGui/qinputmethod.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/map:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/destructible.h:
-
 /opt/homebrew/include/QtWidgets/qrubberband.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/transform_reduce.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_base.h:
 
@@ -12424,15 +12791,17 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partition_copy.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_search_n.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/statically_widen.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception.h:
 
 /Users/test/Documents/server---clients/chat/clients/chat_line.h:
 
+/opt/homebrew/include/QtCore/qglobal.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_next_permutation.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find.h:
 
@@ -12440,17 +12809,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cmath:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/count.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qqueue.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qexception.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax_element.h:
 
 /opt/homebrew/include/QtNetwork/QTcpServer:
 
@@ -12460,15 +12827,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_locale.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_found_result.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_make_heap.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qjsonobject.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_lower_bound.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_arg_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qthreadpool.h:
 
@@ -12478,13 +12841,13 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qttranslation.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_in_port_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_any_all_none_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/discrete_distribution.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/all_of.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_day.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_wint_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_replace.h:
 
@@ -12492,25 +12855,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_partitioned.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/terminate_on_exception.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/push_heap.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_includes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ssize_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdlib.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_sorted.h:
-
-/opt/homebrew/include/QtWidgets/qabstractslider.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_ctype.h:
 
@@ -12521,10 +12874,6 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 /opt/homebrew/include/QtCore/qabstractanimation.h:
 
 /opt/homebrew/include/QtCore/qsystemdetection.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_arithmetic.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/assignable.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qjsondocument.h:
 
@@ -12546,19 +12895,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/include/QtCore/qversiontagging.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_max.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/compressed_pair.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter_integral.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_wint_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_max_element.h:
-
-/opt/homebrew/lib/QtGui.framework/Headers/qpainter.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove_copy.h:
 
@@ -12566,15 +12903,11 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_count_if.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_stdio.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_fun_result.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lexicographical_compare_three_way.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lower_bound.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_permutation.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_zero.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/iterator_operations.h:
 
@@ -12586,17 +12919,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_clamp.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/transform_reduce.h:
-
 /opt/homebrew/include/QtGui/qpen.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_swappable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_binary_search.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_all_of.h:
 
 /opt/homebrew/include/QtCore/qoverload.h:
 
@@ -12606,103 +12929,47 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h:
 
-/opt/homebrew/include/QtCore/qmetacontainer.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/predicate.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_unique_copy.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/data.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_generate_n.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qlocale.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/QFileInfo:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax_element.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_difference.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/dangling.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_adjacent_find.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conditional.h:
-
-/opt/homebrew/include/QtCore/qlibrary.h:
-
 /opt/homebrew/include/QtCore/qdarwinhelpers.h:
+
+/opt/homebrew/lib/QtCore.framework/Headers/qvariantmap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_permutation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/polymorphic_allocator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_equal.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_sort.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_generate.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/none_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_fill_n.h:
 
 /opt/homebrew/include/QtCore/qmutex.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/common_iterator.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/shuffle.h:
 
-/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h:
-
-/opt/homebrew/include/QtCore/qmalloc.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_function_pointer.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdio.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/errc.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partition_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/inclusive_scan.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_heap.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/clamp.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qfuturesynchronizer.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace_if.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_object.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qmutex.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternal.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_cast.h:
 
 /opt/homebrew/include/QtCore/qvariant.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_assignable.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/prev_permutation.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_day.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qxmlstream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter_output.h:
 
@@ -12716,13 +12983,7 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_replace.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_view.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partition.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qobjectcleanuphandler.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdlib:
 
@@ -12736,15 +12997,15 @@ clients/client_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/merge.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdint.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/binary_search.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/byteswap.h:
 
-clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/none_of.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qproperty.h:
+
+/Users/test/Documents/server---clients/chat/clients/chat_line.cpp:
 
 /opt/homebrew/include/QtCore/qcontainertools_impl.h:
 
@@ -12754,19 +13015,9 @@ clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/hh_mm_ss.h:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conjunction.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder1st.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h:
-
-/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/projected.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint16_t.h:
 
@@ -12784,21 +13035,7 @@ clients/client_autogen/EWIEGA46WW/moc_client_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/math.h:
-
-clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partition.h:
-
-/opt/homebrew/include/QtCore/qttypetraits.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/nth_element.h:
-
-/opt/homebrew/include/QtGui/qpaintdevice.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/move.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter_bool.h:
 
@@ -12812,11 +13049,7 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/auto_cast.h:
 
-/opt/homebrew/include/QtNetwork/qtnetworkglobal.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_base_10.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/binary_search.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QFile:
 
@@ -12828,17 +13061,9 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__availability:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_intmax_t.h:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/QMessageBox:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_out_out_result.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qbytearrayview.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/fill.h:
 
@@ -12852,33 +13077,23 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Users/test/Documents/server---clients/chat/clients/chat_protocol.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_reference_with.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qmetatype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/array.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/any_of.h:
 
-/Users/test/Documents/server---clients/chat/clients/chat_line.cpp:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_sorted_until.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_types.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp.h:
-
-/opt/homebrew/include/QtCore/qglobal.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/weekday.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_wctrans_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtextstream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/stable_sort.h:
-
-/opt/homebrew/include/QtWidgets/qdialogbuttonbox.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/noexcept_move_assign_container.h:
 
 /opt/homebrew/include/QtCore/quuid.h:
 
@@ -12892,8 +13107,6 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/move_backward.h:
 
-/opt/homebrew/include/QtCore/qfloat16.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/fill_n.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qline.h:
@@ -12904,17 +13117,11 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/for_each.h:
 
-/opt/homebrew/include/QtGui/qtextoption.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/is_pointer_in_range.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qobject.h:
 
 /opt/homebrew/include/QtCore/qiodevice.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_wctype.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/for_each.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/uses_allocator_construction.h:
 
@@ -12925,6 +13132,8 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_storage.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_in_result.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/equal_range.h:
 
@@ -12940,13 +13149,13 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_backward.h:
 
+/opt/homebrew/lib/QtCore.framework/Headers/qsemaphore.h:
+
 /opt/homebrew/include/QtCore/qvariantanimation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/any_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/weak_result_type.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qmargins.h:
 
@@ -12954,25 +13163,15 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/arithmetic.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit:
 
 /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h:
 
-/opt/homebrew/include/QtCore/qcoreevent.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_mismatch.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint8_t.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qpair.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/limits.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lower_bound.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wchar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h:
 
@@ -12994,25 +13193,17 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string_view.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qsemaphore.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_equal_range.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/QDataStream:
 
 /opt/homebrew/include/QtCore/qset.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/generate_n.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_wctrans_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/midpoint.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find_if_not.h:
 
 /opt/homebrew/include/QtCore/qtclasshelpermacros.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/signal.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_move.h:
 
@@ -13024,33 +13215,21 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uintmax_t.h:
 
-/opt/homebrew/lib/QtCore.framework/Headers/qvariantmap.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_nl_item.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qtimer.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_malloc.h:
-
 /opt/homebrew/lib/QtCore.framework/Headers/qfilesystemwatcher.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_if.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_shuffle.h:
-
-/opt/homebrew/lib/QtCore.framework/Headers/qvariant.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/subrange.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qabstracteventdispatcher.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backend.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h:
 
@@ -13066,10 +13245,6 @@ clients/client_autogen/EWIEGA46WW/moc_client_main_window.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityMacros.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/normal_distribution.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_fill.h:
 
 /opt/homebrew/include/QtNetwork/qnetworkrequest.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_xlocale.h:

@@ -32,8 +32,8 @@ QMap<QString, QString> client_main_window::_name_list = QMap<QString, QString>()
 
 QStackedWidget *client_main_window::_stack = nullptr;
 
-client_main_window::client_main_window(QWidget *parent)
-    : QMainWindow(parent)
+client_main_window::client_main_window(sql::Connection *db_connection, QWidget *parent)
+    : QMainWindow(parent), _db_connection(db_connection)
 {
     QWidget *central_widget = new QWidget(this);
     setCentralWidget(central_widget);
@@ -94,6 +94,7 @@ client_main_window::client_main_window(QWidget *parent)
 void client_main_window::connected()
 {
     client_chat_window *wid = new client_chat_window(this);
+    wid->_db_connection = _db_connection;
     connect(wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
     connect(wid, &client_chat_window::clients_list, this, &client_main_window::on_clients_list);
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);

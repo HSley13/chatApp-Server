@@ -194,6 +194,45 @@ server_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f server/CMakeFiles/server_autogen.dir/build.make server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
 
+#=============================================================================
+# Target rules for targets named database_library
+
+# Build rule for target.
+database_library: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database_library
+.PHONY : database_library
+
+# fast build rule for target.
+database_library/fast:
+	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library.dir/build.make database/CMakeFiles/database_library.dir/build
+.PHONY : database_library/fast
+
+#=============================================================================
+# Target rules for targets named database_library_autogen_timestamp_deps
+
+# Build rule for target.
+database_library_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database_library_autogen_timestamp_deps
+.PHONY : database_library_autogen_timestamp_deps
+
+# fast build rule for target.
+database_library_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build.make database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build
+.PHONY : database_library_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named database_library_autogen
+
+# Build rule for target.
+database_library_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database_library_autogen
+.PHONY : database_library_autogen
+
+# fast build rule for target.
+database_library_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library_autogen.dir/build.make database/CMakeFiles/database_library_autogen.dir/build
+.PHONY : database_library_autogen/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -204,9 +243,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client_autogen"
 	@echo "... client_autogen_timestamp_deps"
+	@echo "... database_library_autogen"
+	@echo "... database_library_autogen_timestamp_deps"
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
 	@echo "... client"
+	@echo "... database_library"
 	@echo "... server"
 .PHONY : help
 

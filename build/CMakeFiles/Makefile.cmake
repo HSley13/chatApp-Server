@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.29.2/CMakeSystem.cmake"
   "/Users/test/Documents/server---clients/chat/CMakeLists.txt"
   "/Users/test/Documents/server---clients/chat/clients/CMakeLists.txt"
+  "/Users/test/Documents/server---clients/chat/database/CMakeLists.txt"
   "/Users/test/Documents/server---clients/chat/server/CMakeLists.txt"
   "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCInformation.cmake"
   "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCXXInformation.cmake"
@@ -310,6 +311,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "server/server.app/Contents/Info.plist"
   "server/server.app/Contents/Info.plist"
   "server/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "database/CMakeFiles/database_library_autogen.dir/AutogenInfo.json"
+  "database/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -320,4 +323,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "server/CMakeFiles/server.dir/DependInfo.cmake"
   "server/CMakeFiles/server_autogen_timestamp_deps.dir/DependInfo.cmake"
   "server/CMakeFiles/server_autogen.dir/DependInfo.cmake"
+  "database/CMakeFiles/database_library.dir/DependInfo.cmake"
+  "database/CMakeFiles/database_library_autogen_timestamp_deps.dir/DependInfo.cmake"
+  "database/CMakeFiles/database_library_autogen.dir/DependInfo.cmake"
   )

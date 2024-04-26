@@ -9,6 +9,8 @@ std::vector<int> server_manager::_ports = std::vector<int>();
 QMap<QString, QTcpSocket *> server_manager::_clients = QMap<QString, QTcpSocket *>();
 QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
 
+sql::Connection *server_manager::_db_connection = nullptr;
+
 server_manager::server_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent),
       _ip(ip), _port(port)

@@ -19,6 +19,8 @@ public:
     client_chat_window(QWidget *parent = nullptr);
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
+    static sql::Connection *_db_connection;
+
     const QString &destinator() const;
     void window_name(QString name);
 

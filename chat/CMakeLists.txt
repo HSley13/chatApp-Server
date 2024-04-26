@@ -8,3 +8,4 @@ qt_standard_project_setup()
 
 add_subdirectory(clients/)
 add_subdirectory(server/)
+add_subdirectory(database/)

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "server/server.app/Contents/MacOS/server"
+			"path" : "clients/client.app/Contents/MacOS/client"
 		}
 	],
 	"backtrace" : 1,
@@ -21,7 +21,7 @@
 		],
 		"files" : 
 		[
-			"server/CMakeLists.txt",
+			"clients/CMakeLists.txt",
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
 			"/opt/homebrew/lib/cmake/Qt6/Qt6Config.cmake",
@@ -217,7 +217,7 @@
 			{
 				"command" : 1,
 				"file" : 14,
-				"line" : 5,
+				"line" : 4,
 				"parent" : 33
 			}
 		]
@@ -290,7 +290,7 @@
 				{
 					"backtrace" : 0,
 					"isSystem" : true,
-					"path" : "/Users/test/Documents/server---clients/build/server/server_autogen/include"
+					"path" : "/Users/test/Documents/server---clients/build/clients/client_autogen/include"
 				},
 				{
 					"backtrace" : 2,
@@ -348,18 +348,18 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 2,
-			"id" : "database_library::@c44ac6e9bb193d64d56d"
-		},
-		{
-			"id" : "server_autogen_timestamp_deps::@d19778d2e34a1e3ddfc0"
+			"id" : "client_autogen_timestamp_deps::@d1ac15f0ebbc02957c76"
 		},
 		{
 			"backtrace" : 0,
-			"id" : "server_autogen::@d19778d2e34a1e3ddfc0"
+			"id" : "client_autogen::@d1ac15f0ebbc02957c76"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "database_library::@c44ac6e9bb193d64d56d"
 		}
 	],
-	"id" : "server::@d19778d2e34a1e3ddfc0",
+	"id" : "client::@d1ac15f0ebbc02957c76",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -472,12 +472,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "server",
-	"nameOnDisk" : "server",
+	"name" : "client",
+	"nameOnDisk" : "client",
 	"paths" : 
 	{
-		"build" : "server",
-		"source" : "server"
+		"build" : "clients",
+		"source" : "clients"
 	},
 	"sourceGroups" : 
 	[
@@ -515,55 +515,55 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "/Users/test/Documents/server---clients/build/server/server_autogen/mocs_compilation.cpp",
+			"path" : "/Users/test/Documents/server---clients/build/clients/client_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/server_main.cpp",
+			"path" : "clients/client_main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/server_main_window.cpp",
+			"path" : "clients/client_main_window.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/server_manager.cpp",
+			"path" : "clients/client_manager.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/server_chat_window.cpp",
+			"path" : "clients/client_chat_window.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/chat_line.cpp",
+			"path" : "clients/chat_protocol.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "server/chat_protocol.cpp",
+			"path" : "clients/chat_line.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "/Users/test/Documents/server---clients/build/server/server_autogen/timestamp",
+			"path" : "/Users/test/Documents/server---clients/build/clients/client_autogen/timestamp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "/Users/test/Documents/server---clients/build/server/server_autogen/timestamp.rule",
+			"path" : "/Users/test/Documents/server---clients/build/clients/client_autogen/timestamp.rule",
 			"sourceGroupIndex" : 2
 		}
 	],

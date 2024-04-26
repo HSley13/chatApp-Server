@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chat_protocol.h"
+#include "database.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QtNetwork>
@@ -17,6 +18,8 @@ class server_manager : public QMainWindow
 public:
     server_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
     server_manager(QTcpSocket *client, QWidget *parent = nullptr);
+
+    static sql::Connection *_db_connection;
 
     void disconnect_from_host();
     void disconnect_all_clients();

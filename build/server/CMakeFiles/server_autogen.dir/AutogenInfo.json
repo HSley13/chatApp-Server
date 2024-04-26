@@ -62,6 +62,8 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/usr/local/mysql-connector-c++-8.2.0/include/jdbc",
+		"/Users/test/Documents/server---clients/chat/database",
 		"/opt/homebrew/lib/QtWidgets.framework/Headers",
 		"/opt/homebrew/lib/QtWidgets.framework",
 		"/opt/homebrew/lib/QtCore.framework/Headers",

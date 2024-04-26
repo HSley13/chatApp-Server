@@ -2978,6 +2978,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -2985,6 +2986,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
@@ -3008,6 +3010,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -3032,6 +3035,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -3151,6 +3155,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -3160,6 +3165,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
@@ -3176,6 +3182,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   server/server_autogen/EWIEGA46WW/moc_server_chat_window.cpp \
   server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp \
   server/server_autogen/EWIEGA46WW/moc_server_manager.cpp \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QCryptographicHash \
   /opt/homebrew/include/QtCore/QDeadlineTimer \
@@ -3439,6 +3446,7 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -3734,7 +3742,23 @@ server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: server/serve
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/server---clients/chat/server/server_chat_window.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -4524,6 +4548,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -4531,6 +4556,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
@@ -4554,6 +4580,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -4578,6 +4605,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -4697,6 +4725,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -4706,12 +4735,14 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
@@ -4983,6 +5014,7 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -5285,7 +5317,23 @@ server/CMakeFiles/server.dir/server_chat_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---clients/chat/server/server_main.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -6075,6 +6123,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -6082,6 +6131,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
@@ -6105,6 +6155,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -6129,6 +6180,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -6248,6 +6300,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -6257,12 +6310,14 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
@@ -6533,6 +6588,7 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -6830,7 +6886,23 @@ server/CMakeFiles/server.dir/server_main.cpp.o: /Users/test/Documents/server---c
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/server---clients/chat/server/server_main_window.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -7620,6 +7692,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -7627,6 +7700,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
@@ -7650,6 +7724,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -7674,6 +7749,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -7793,6 +7869,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -7802,12 +7879,14 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /Users/test/Documents/server---clients/chat/server/chat_line.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_chat_window.h \
@@ -8075,6 +8154,7 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/QList \
@@ -8371,7 +8451,23 @@ server/CMakeFiles/server.dir/server_main_window.cpp.o: /Users/test/Documents/ser
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server---clients/chat/server/server_manager.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
@@ -9161,6 +9257,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -9168,6 +9265,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
@@ -9191,6 +9289,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/source_location \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -9215,6 +9314,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/arm/OSByteOrder.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
@@ -9334,6 +9434,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/__wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_string.h \
@@ -9343,12 +9444,14 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
   /Users/test/Documents/server---clients/chat/server/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/server/server_manager.h \
   /opt/homebrew/include/QtCore/QByteArray \
@@ -9597,6 +9700,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/include/QtWidgets/qtwidgetsexports.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
+  /opt/homebrew/include/argon2.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QByteArray \
   /opt/homebrew/lib/QtCore.framework/Headers/QDateTime \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
@@ -9885,7 +9989,23 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmessagebox.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h
 
 
 /Users/test/Documents/server---clients/chat/server/server_manager.cpp:
@@ -9894,8 +10014,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /Users/test/Documents/server---clients/chat/server/server_main.cpp:
 
-/opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h:
-
 /opt/homebrew/lib/QtGui.framework/Headers/qdesktopservices.h:
 
 /opt/homebrew/include/QtWidgets/qdialog.h:
@@ -9903,6 +10021,20 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 /opt/homebrew/include/QtGui/qguiapplication_platform.h:
 
 /opt/homebrew/include/QtGui/qguiapplication.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h:
+
+/opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h:
 
 /opt/homebrew/lib/QtWidgets.framework/Headers/qtabwidget.h:
 
@@ -9961,6 +10093,8 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 /opt/homebrew/lib/QtCore.framework/Headers/qurlquery.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qurl.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qttypetraits.h:
 
@@ -10180,8 +10314,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /opt/homebrew/include/QtNetwork/QSslConfiguration:
 
-/opt/homebrew/include/QtNetwork/QNetworkAccessManager:
-
 /opt/homebrew/include/QtGui/qvalidator.h:
 
 /opt/homebrew/include/QtGui/qtextformat.h:
@@ -10258,6 +10390,10 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: /Users/test/Documents/server-
 
 /opt/homebrew/include/QtCore/QCryptographicHash:
 
+/opt/homebrew/include/QtNetwork/QNetworkAccessManager:
+
+/Users/test/Documents/server---clients/chat/database/database.h:
+
 server/server_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qprocess.h:
@@ -10272,11 +10408,15 @@ server/server_autogen/EWIEGA46WW/moc_chat_line.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h:
 
@@ -10646,6 +10786,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/syslimits.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/stdio.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/qos.h:
@@ -10685,6 +10827,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_null.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_nlink_t.h:
 
@@ -10799,6 +10943,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_ptrcheck.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/types.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/signal.h:
 
@@ -10950,6 +11096,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/underlying_type.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/extreme_value_distribution.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_time.h:
@@ -11097,6 +11245,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /opt/homebrew/lib/QtNetwork.framework/Headers/qtnetworkversion.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qtnoop.h:
+
+/opt/homebrew/include/argon2.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/independent_bits_engine.h:
 
@@ -11248,6 +11398,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like_ext.h:
 
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_element.h:
@@ -11255,6 +11407,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/pair_like.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/make_tuple_types.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int32_t.h:
 
@@ -11283,6 +11437,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /opt/homebrew/lib/QtCore.framework/Headers/qexceptionhandling.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/_types.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qcontiguouscache.h:
 
@@ -11367,6 +11523,8 @@ server/server_autogen/EWIEGA46WW/moc_chat_protocol.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/QDateTime:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/iota.h:
 
@@ -11511,6 +11669,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/sortable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/size.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/wait.h:
 
@@ -11865,6 +12025,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unwrap_iter.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_three_way_result.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/inttypes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution:
 
@@ -12247,6 +12409,8 @@ server/server_autogen/EWIEGA46WW/moc_server_main_window.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_upper_bound.h:
+
+/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_flag.h:
 
@@ -12702,6 +12866,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/merge.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_inttypes.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdint.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/byteswap.h:
@@ -12987,6 +13153,8 @@ server/server_autogen/EWIEGA46WW/moc_server_manager.cpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_malloc.h:
 
 /opt/homebrew/lib/QtCore.framework/Headers/qfilesystemwatcher.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_if.h:
 

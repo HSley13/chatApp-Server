@@ -10,3 +10,8 @@
 /Users/test/Documents/server---clients/build/server/CMakeFiles/rebuild_cache.dir
 /Users/test/Documents/server---clients/build/server/CMakeFiles/server_autogen_timestamp_deps.dir
 /Users/test/Documents/server---clients/build/server/CMakeFiles/server_autogen.dir
+/Users/test/Documents/server---clients/build/database/CMakeFiles/database_library.dir
+/Users/test/Documents/server---clients/build/database/CMakeFiles/edit_cache.dir
+/Users/test/Documents/server---clients/build/database/CMakeFiles/rebuild_cache.dir
+/Users/test/Documents/server---clients/build/database/CMakeFiles/database_library_autogen_timestamp_deps.dir
+/Users/test/Documents/server---clients/build/database/CMakeFiles/database_library_autogen.dir

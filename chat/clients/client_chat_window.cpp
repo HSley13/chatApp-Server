@@ -16,6 +16,8 @@ QString client_chat_window::_insert_name = nullptr;
 client_manager *client_chat_window::_client = nullptr;
 chat_protocol *client_chat_window::_protocol = nullptr;
 
+sql::Connection *client_chat_window::_db_connection = nullptr;
+
 client_chat_window::client_chat_window(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -219,6 +221,7 @@ void client_chat_window::set_up_window()
     if (!_client && !_protocol)
     {
         _client = new client_manager();
+        _client->_db_connection = _db_connection;
         connect(_client, &client_manager::text_message_received, this, [=](QString sender, QString message)
                 { emit text_message_received(sender, message); });
 

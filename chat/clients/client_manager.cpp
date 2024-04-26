@@ -8,6 +8,8 @@ chat_protocol *client_manager::_protocol = nullptr;
 
 QTcpServer *client_manager::_file_server = nullptr;
 
+sql::Connection *client_manager::_db_connection = nullptr;
+
 client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
     : QMainWindow(parent), _ip(ip), _port(port)
 {
@@ -22,7 +24,6 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
         _protocol = new chat_protocol(this);
     }
 }
-
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 void client_manager::on_ready_read()
 {

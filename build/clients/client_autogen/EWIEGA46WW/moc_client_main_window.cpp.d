@@ -769,6 +769,7 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
@@ -776,9 +777,11 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iosfwd \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
@@ -797,6 +800,7 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -908,6 +912,8 @@
   /Users/test/Documents/server---clients/chat/clients/chat_protocol.h \
   /Users/test/Documents/server---clients/chat/clients/client_chat_window.h \
   /Users/test/Documents/server---clients/chat/clients/client_manager.h \
+  /Users/test/Documents/server---clients/chat/database/database.h \
+  /opt/homebrew/Cellar/argon2/20190702_1/include/argon2.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtCore.framework/Versions/A/Headers/QByteArray \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtCore.framework/Versions/A/Headers/QCryptographicHash \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
@@ -1305,4 +1311,20 @@
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h \
   /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h \
-  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
+  /opt/homebrew/Cellar/qt/6.6.2_2/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/datatype.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/driver.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/exception.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/prepared_statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/resultset_metadata.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/sqlstring.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/statement.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/variant.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/warning.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_connection.h \
+  /usr/local/mysql-connector-c++-8.2.0/include/jdbc/mysql_driver.h

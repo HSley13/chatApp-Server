@@ -2,7 +2,6 @@
 
 #include "client_manager.h"
 #include "client_chat_window.h"
-#include "client_manager.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QStatusBar>
@@ -23,9 +22,11 @@ class client_main_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_main_window(QWidget *parent = nullptr);
+    client_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
 
     void add_on_top(const QString &client_name);
+
+    sql::Connection *_db_connection;
 
 private:
     QStatusBar *_status_bar;

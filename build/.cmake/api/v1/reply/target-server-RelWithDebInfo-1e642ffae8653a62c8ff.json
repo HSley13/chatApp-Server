@@ -34,7 +34,8 @@
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
-			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfig.cmake"
+			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
+			"database/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -209,6 +210,15 @@
 				"file" : 12,
 				"line" : 62,
 				"parent" : 31
+			},
+			{
+				"file" : 14
+			},
+			{
+				"command" : 1,
+				"file" : 14,
+				"line" : 4,
+				"parent" : 33
 			}
 		]
 	},
@@ -269,6 +279,14 @@
 			],
 			"includes" : 
 			[
+				{
+					"backtrace" : 2,
+					"path" : "/usr/local/mysql-connector-c++-8.2.0/include/jdbc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/test/Documents/server---clients/chat/database"
+				},
 				{
 					"backtrace" : 0,
 					"isSystem" : true,
@@ -335,6 +353,10 @@
 		{
 			"backtrace" : 0,
 			"id" : "server_autogen::@d19778d2e34a1e3ddfc0"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "database_library::@c44ac6e9bb193d64d56d"
 		}
 	],
 	"id" : "server::@d19778d2e34a1e3ddfc0",
@@ -355,17 +377,27 @@
 				"role" : "frameworkPath"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/opt/homebrew/lib",
+				"backtrace" : 2,
+				"fragment" : "-L/opt/homebrew/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/usr/local/mysql-connector-c++-8.2.0/lib64",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/opt/homebrew/lib -Wl,-rpath,/usr/local/mysql-connector-c++-8.2.0/lib64",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../database/libdatabase_library.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
 				"fragment" : "/opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "/opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork",
 				"role" : "libraries"
 			},
 			{
@@ -399,6 +431,11 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "/opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "/opt/homebrew/lib/QtCore.framework/Versions/A/QtCore",
 				"role" : "libraries"
 			},
@@ -410,6 +447,26 @@
 			{
 				"backtrace" : 32,
 				"fragment" : "-framework DiskArbitration",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 34,
+				"fragment" : "-largon2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 34,
+				"fragment" : "-lssl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 34,
+				"fragment" : "-lcrypto",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 34,
+				"fragment" : "-lmysqlcppconn",
 				"role" : "libraries"
 			}
 		],

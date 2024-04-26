@@ -188,9 +188,10 @@ server/server.app/Contents/MacOS/server: server/CMakeFiles/server.dir/server_cha
 server/server.app/Contents/MacOS/server: server/CMakeFiles/server.dir/chat_line.cpp.o
 server/server.app/Contents/MacOS/server: server/CMakeFiles/server.dir/chat_protocol.cpp.o
 server/server.app/Contents/MacOS/server: server/CMakeFiles/server.dir/build.make
+server/server.app/Contents/MacOS/server: database/libdatabase_library.a
 server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
-server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
 server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
+server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
 server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 server/server.app/Contents/MacOS/server: server/CMakeFiles/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable server.app/Contents/MacOS/server"

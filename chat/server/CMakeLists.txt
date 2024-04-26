@@ -13,6 +13,7 @@ target_link_libraries(server PRIVATE
                         Qt6::Widgets
                         Qt6::Core
                         Qt6::Network
+                        database_library
                     )
 
 set_target_properties(server PROPERTIES MACOSX_BUNDLE ON)

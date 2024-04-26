@@ -14,8 +14,10 @@ class server_main_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    server_main_window(QWidget *parent = nullptr);
+    server_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
     ~server_main_window();
+
+    sql::Connection *_db_connection;
 
 private:
     QListWidget *_list;

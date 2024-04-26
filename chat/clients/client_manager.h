@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chat_protocol.h"
+#include "database.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QtNetwork>
@@ -10,6 +11,8 @@ class client_manager : public QMainWindow
     Q_OBJECT
 public:
     client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
+
+    static sql::Connection *_db_connection;
 
     void send_text(QString sender, QString receiver, QString text);
     void send_name(QString name);
