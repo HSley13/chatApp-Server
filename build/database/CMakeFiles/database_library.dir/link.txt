@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libdatabase_library.a CMakeFiles/database_library.dir/database_library_autogen/mocs_compilation.cpp.o CMakeFiles/database_library.dir/database.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libdatabase_library.a
