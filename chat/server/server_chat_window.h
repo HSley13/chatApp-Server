@@ -19,8 +19,6 @@ class server_chat_window : public QMainWindow
 public:
     server_chat_window(QTcpSocket *client, QWidget *parent = nullptr);
 
-    static sql::Connection *_db_connection;
-
     void disconnect_from_host();
 
 private:

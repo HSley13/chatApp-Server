@@ -18,10 +18,13 @@ chat_protocol *client_chat_window::_protocol = nullptr;
 
 sql::Connection *client_chat_window::_db_connection = nullptr;
 
-client_chat_window::client_chat_window(QWidget *parent)
+client_chat_window::client_chat_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent)
 {
     set_up_window();
+
+    if (!_db_connection)
+        _db_connection = db_connection;
 
     connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
@@ -220,8 +223,7 @@ void client_chat_window::set_up_window()
 
     if (!_client && !_protocol)
     {
-        _client = new client_manager();
-        _client->_db_connection = _db_connection;
+        _client = new client_manager(_db_connection, this);
         connect(_client, &client_manager::text_message_received, this, [=](QString sender, QString message)
                 { emit text_message_received(sender, message); });
 

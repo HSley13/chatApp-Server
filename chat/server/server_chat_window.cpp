@@ -7,8 +7,6 @@
 #include <QFileDialog>
 #include <QStringList>
 
-sql::Connection *server_chat_window::_db_connection = nullptr;
-
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent)
 {

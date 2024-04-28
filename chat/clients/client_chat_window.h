@@ -16,7 +16,7 @@ class client_chat_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_chat_window(QWidget *parent = nullptr);
+    client_chat_window(sql::Connection *db_connection, QWidget *parent = nullptr);
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
     static sql::Connection *_db_connection;

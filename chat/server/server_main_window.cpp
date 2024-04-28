@@ -28,8 +28,7 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     vbox->addWidget(_list);
     vbox->addWidget(_disconnect_all);
 
-    _server = new server_manager();
-    _server->_db_connection = _db_connection;
+    _server = new server_manager(_db_connection, this);
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
@@ -51,7 +50,6 @@ void server_main_window::on_new_client_connected(QTcpSocket *client)
     QString client_name = client->property("client_name").toString();
 
     server_chat_window *wid = new server_chat_window(client, this);
-    wid->_db_connection = _db_connection;
     _tabs->addTab(wid, QString("Client %1").arg(id));
 
     _window_map.insert(client_name, wid);

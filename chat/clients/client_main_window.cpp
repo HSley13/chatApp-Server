@@ -93,8 +93,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 void client_main_window::connected()
 {
-    client_chat_window *wid = new client_chat_window(this);
-    wid->_db_connection = _db_connection;
+    client_chat_window *wid = new client_chat_window(_db_connection, this);
     connect(wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
     connect(wid, &client_chat_window::clients_list, this, &client_main_window::on_clients_list);
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);

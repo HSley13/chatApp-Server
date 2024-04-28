@@ -10,7 +10,7 @@ class client_manager : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_manager(QHostAddress ip = QHostAddress::LocalHost, int port = 12345, QWidget *parent = nullptr);
+    client_manager(sql::Connection *db_connection, QWidget *parent = nullptr);
 
     static sql::Connection *_db_connection;
 
@@ -34,8 +34,8 @@ public:
 
 private:
     static QTcpSocket *_socket;
-    QHostAddress _ip;
-    int _port;
+    QHostAddress _ip = QHostAddress::LocalHost;
+    int _port = 12345;
 
     static chat_protocol *_protocol;
 

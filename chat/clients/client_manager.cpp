@@ -10,10 +10,10 @@ QTcpServer *client_manager::_file_server = nullptr;
 
 sql::Connection *client_manager::_db_connection = nullptr;
 
-client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
-    : QMainWindow(parent), _ip(ip), _port(port)
+client_manager::client_manager(sql::Connection *db_connection, QWidget *parent)
+    : QMainWindow(parent)
 {
-    if (!_socket && !_protocol)
+    if (!_socket && !_protocol && !_db_connection)
     {
         _socket = new QTcpSocket(this);
         _socket->connectToHost(_ip, _port);
@@ -22,6 +22,8 @@ client_manager::client_manager(QHostAddress ip, int port, QWidget *parent)
         connect(_socket, &QTcpSocket::readyRead, this, &client_manager::on_ready_read);
 
         _protocol = new chat_protocol(this);
+
+        _db_connection = db_connection;
     }
 }
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/

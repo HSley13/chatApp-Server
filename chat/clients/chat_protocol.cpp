@@ -7,9 +7,7 @@
 #include <QStringList>
 
 chat_protocol::chat_protocol(QWidget *parent)
-    : QMainWindow(parent)
-{
-}
+    : QMainWindow(parent) {}
 
 QByteArray chat_protocol::get_data(message_type type, QString data)
 {
