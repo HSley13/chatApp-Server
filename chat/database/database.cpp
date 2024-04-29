@@ -30,7 +30,7 @@ std::string security::generate_random_salt(std::size_t len)
 {
     try
     {
-        std::string valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%*+";
+        std::string valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#&?!~^-$%*+";
 
         std::random_device rd;
         std::mt19937 generator(rd());
