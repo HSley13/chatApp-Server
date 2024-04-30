@@ -12,7 +12,6 @@
 #include <QPushButton>
 #include <QStatusBar>
 #include <QDir>
-
 class server_chat_window : public QMainWindow
 {
     Q_OBJECT

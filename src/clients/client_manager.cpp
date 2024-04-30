@@ -7,7 +7,6 @@ QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;
 
 QTcpServer *client_manager::_file_server = nullptr;
-
 sql::Connection *client_manager::_db_connection = nullptr;
 
 client_manager::client_manager(sql::Connection *db_connection, QWidget *parent)

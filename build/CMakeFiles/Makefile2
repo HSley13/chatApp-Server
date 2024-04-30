@@ -135,9 +135,9 @@ src/server/clean: src/server/CMakeFiles/server_autogen.dir/clean
 # Target rules for target src/clients/CMakeFiles/client.dir
 
 # All Build rule for target.
-src/clients/CMakeFiles/client.dir/all: src/clients/CMakeFiles/client_autogen.dir/all
-src/clients/CMakeFiles/client.dir/all: src/clients/CMakeFiles/client_autogen_timestamp_deps.dir/all
 src/clients/CMakeFiles/client.dir/all: src/database/CMakeFiles/database_library.dir/all
+src/clients/CMakeFiles/client.dir/all: src/clients/CMakeFiles/client_autogen_timestamp_deps.dir/all
+src/clients/CMakeFiles/client.dir/all: src/clients/CMakeFiles/client_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target client"
@@ -215,9 +215,9 @@ src/clients/CMakeFiles/client_autogen.dir/clean:
 # Target rules for target src/server/CMakeFiles/server.dir
 
 # All Build rule for target.
+src/server/CMakeFiles/server.dir/all: src/database/CMakeFiles/database_library.dir/all
 src/server/CMakeFiles/server.dir/all: src/server/CMakeFiles/server_autogen_timestamp_deps.dir/all
 src/server/CMakeFiles/server.dir/all: src/server/CMakeFiles/server_autogen.dir/all
-src/server/CMakeFiles/server.dir/all: src/database/CMakeFiles/database_library.dir/all
 	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=14,15,16,17,18,19,20,21 "Built target server"

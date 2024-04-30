@@ -5,7 +5,6 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QtNetwork>
-
 class client_manager : public QMainWindow
 {
     Q_OBJECT

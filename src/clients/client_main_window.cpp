@@ -4,7 +4,6 @@
 
 #include <QStyledItemDelegate>
 #include <QPainter>
-
 class separator_delegate : public QStyledItemDelegate
 {
 private:

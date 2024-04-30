@@ -11,7 +11,6 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QDir>
-
 class client_chat_window : public QMainWindow
 {
     Q_OBJECT

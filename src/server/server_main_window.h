@@ -9,7 +9,6 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QStatusBar>
-
 class server_main_window : public QMainWindow
 {
     Q_OBJECT

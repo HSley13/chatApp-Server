@@ -11,7 +11,6 @@
 #include <iostream>
 #include <vector>
 #include <mutex>
-
 class server_manager : public QMainWindow
 {
     Q_OBJECT

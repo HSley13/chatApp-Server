@@ -17,7 +17,6 @@
 #include <QLineEdit>
 #include <QStackedWidget>
 #include <QListWidget>
-
 class client_main_window : public QMainWindow
 {
     Q_OBJECT

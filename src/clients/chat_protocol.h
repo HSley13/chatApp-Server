@@ -6,7 +6,6 @@
 #include <QLabel>
 #include <QByteArray>
 #include <QList>
-
 class chat_protocol : public QMainWindow
 {
     Q_OBJECT
