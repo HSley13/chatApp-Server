@@ -57,7 +57,7 @@ RM = /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/test/Documents/server---clients/chat
+CMAKE_SOURCE_DIR = /Users/test/Documents/server---clients
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/test/Documents/server---clients/build
@@ -126,7 +126,7 @@ client: cmake_check_build_system
 
 # fast build rule for target.
 client/fast:
-	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client.dir/build.make clients/CMakeFiles/client.dir/build
+	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/build
 .PHONY : client/fast
 
 #=============================================================================
@@ -139,7 +139,7 @@ client_autogen_timestamp_deps: cmake_check_build_system
 
 # fast build rule for target.
 client_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen_timestamp_deps.dir/build.make clients/CMakeFiles/client_autogen_timestamp_deps.dir/build
+	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client_autogen_timestamp_deps.dir/build.make src/clients/CMakeFiles/client_autogen_timestamp_deps.dir/build
 .PHONY : client_autogen_timestamp_deps/fast
 
 #=============================================================================
@@ -152,7 +152,7 @@ client_autogen: cmake_check_build_system
 
 # fast build rule for target.
 client_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f clients/CMakeFiles/client_autogen.dir/build.make clients/CMakeFiles/client_autogen.dir/build
+	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client_autogen.dir/build.make src/clients/CMakeFiles/client_autogen.dir/build
 .PHONY : client_autogen/fast
 
 #=============================================================================
@@ -165,7 +165,7 @@ server: cmake_check_build_system
 
 # fast build rule for target.
 server/fast:
-	$(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/build
+	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/build
 .PHONY : server/fast
 
 #=============================================================================
@@ -178,7 +178,7 @@ server_autogen_timestamp_deps: cmake_check_build_system
 
 # fast build rule for target.
 server_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f server/CMakeFiles/server_autogen_timestamp_deps.dir/build.make server/CMakeFiles/server_autogen_timestamp_deps.dir/build
+	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_autogen_timestamp_deps.dir/build.make src/server/CMakeFiles/server_autogen_timestamp_deps.dir/build
 .PHONY : server_autogen_timestamp_deps/fast
 
 #=============================================================================
@@ -191,7 +191,7 @@ server_autogen: cmake_check_build_system
 
 # fast build rule for target.
 server_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f server/CMakeFiles/server_autogen.dir/build.make server/CMakeFiles/server_autogen.dir/build
+	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_autogen.dir/build.make src/server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
 
 #=============================================================================
@@ -204,7 +204,7 @@ database_library: cmake_check_build_system
 
 # fast build rule for target.
 database_library/fast:
-	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library.dir/build.make database/CMakeFiles/database_library.dir/build
+	$(MAKE) $(MAKESILENT) -f src/database/CMakeFiles/database_library.dir/build.make src/database/CMakeFiles/database_library.dir/build
 .PHONY : database_library/fast
 
 #=============================================================================
@@ -217,7 +217,7 @@ database_library_autogen_timestamp_deps: cmake_check_build_system
 
 # fast build rule for target.
 database_library_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build.make database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build
+	$(MAKE) $(MAKESILENT) -f src/database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build.make src/database/CMakeFiles/database_library_autogen_timestamp_deps.dir/build
 .PHONY : database_library_autogen_timestamp_deps/fast
 
 #=============================================================================
@@ -230,7 +230,7 @@ database_library_autogen: cmake_check_build_system
 
 # fast build rule for target.
 database_library_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f database/CMakeFiles/database_library_autogen.dir/build.make database/CMakeFiles/database_library_autogen.dir/build
+	$(MAKE) $(MAKESILENT) -f src/database/CMakeFiles/database_library_autogen.dir/build.make src/database/CMakeFiles/database_library_autogen.dir/build
 .PHONY : database_library_autogen/fast
 
 # Help Target

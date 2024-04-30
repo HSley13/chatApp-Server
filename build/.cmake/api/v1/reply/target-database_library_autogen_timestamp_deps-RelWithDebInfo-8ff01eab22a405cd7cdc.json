@@ -1,0 +1,31 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"src/database/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "database_library_autogen_timestamp_deps::@f1aa34bc7b1afc1810b8",
+	"isGeneratorProvided" : true,
+	"name" : "database_library_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "src/database",
+		"source" : "src/database"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/test/Documents/server---clients/chat
+# Install script for directory: /Users/test/Documents/server---clients
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,22 +34,22 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Library/Developer/CommandLineTools/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/test/Documents/server---clients/build/clients/cmake_install.cmake")
+  include("/Users/test/Documents/server---clients/build/src/clients/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/test/Documents/server---clients/build/server/cmake_install.cmake")
+  include("/Users/test/Documents/server---clients/build/src/server/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/test/Documents/server---clients/build/database/cmake_install.cmake")
+  include("/Users/test/Documents/server---clients/build/src/database/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
