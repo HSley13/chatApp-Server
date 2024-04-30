@@ -7,8 +7,6 @@ add_executable(server
                     chat_protocol.cpp
                 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
-
 target_link_libraries(server PRIVATE
                         Qt6::Widgets
                         Qt6::Core

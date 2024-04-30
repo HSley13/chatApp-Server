@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.16...3.21)
 if(NOT QT_DEPLOY_BIN_DIR)
     set(QT_DEPLOY_BIN_DIR "bin")
 endif()
+if(NOT QT_DEPLOY_LIBEXEC_DIR)
+    set(QT_DEPLOY_LIBEXEC_DIR "libexec")
+endif()
 if(NOT QT_DEPLOY_LIB_DIR)
     set(QT_DEPLOY_LIB_DIR "lib")
 endif()
@@ -55,7 +58,8 @@ set(__QT_DEPLOY_QT_DEBUG_POSTFIX "")
 
 # Define the CMake commands to be made available during deployment.
 set(__qt_deploy_support_files
-    "/opt/homebrew/Cellar/qt/6.6.2_2/lib/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
+    "/Users/test/Documents/server---clients/build/.qt/QtDeployTargets.cmake"
+    "/opt/homebrew/Cellar/qt/6.7.0_1/lib/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
 )
 foreach(__qt_deploy_support_file IN LISTS __qt_deploy_support_files)
     include("${__qt_deploy_support_file}")

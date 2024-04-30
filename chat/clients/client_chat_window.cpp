@@ -75,6 +75,13 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
         _client->send_reject_file_client(my_name(), sender);
 }
 
+void client_chat_window::on_update_label()
+{
+    _label->setText(QString("%1's Conversation").arg(_window_name));
+
+    _file->setText(QString("Open %1 Directory").arg(_window_name));
+}
+
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void client_chat_window::send_message()
 {
@@ -200,7 +207,7 @@ void client_chat_window::set_up_window()
     hbox_1->addWidget(_insert_message, 7);
     hbox_1->addWidget(_send_button, 3);
 
-    _file = new QPushButton("Open Directory", this);
+    _file = new QPushButton(QString("Open Server Directory"), this);
 
     _send_file_button = new QPushButton("...", this);
 
@@ -218,8 +225,7 @@ void client_chat_window::set_up_window()
     VBOX->addLayout(hbox_1);
     VBOX->addLayout(hbox_2);
 
-    connect(this, &client_chat_window::update_label, this, [=]()
-            { _label->setText(QString("%1's Conversation").arg(_window_name)); });
+    connect(this, &client_chat_window::update_label, this, &client_chat_window::on_update_label);
 
     if (!_client && !_protocol)
     {
@@ -284,7 +290,7 @@ void client_chat_window::window_name(QString name)
 {
     _window_name = name;
 
-    emit update_label(_label);
+    emit update_label();
 
     QFile::rename(dir.canonicalPath(), name);
 }

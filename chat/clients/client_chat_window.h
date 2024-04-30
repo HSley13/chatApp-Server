@@ -65,7 +65,7 @@ signals:
 
     void socket_disconnected();
 
-    void update_label(QLabel *label);
+    void update_label();
 
     void text_message_sent(QString client_name);
 
@@ -85,4 +85,6 @@ private slots:
 
     void on_init_receiving_file(QString file_name, qint64 file_size);
     void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
+
+    void on_update_label();
 };

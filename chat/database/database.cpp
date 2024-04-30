@@ -132,7 +132,7 @@ std::string security::retrieve_hashed_password(sql::Connection *connection, int 
 
         if (!result->next())
         {
-            QMessageBox::warning(nullptr, "Warning!", "Error Retriving hash password! The Account entered doesn't exist in our database, Check and try again");
+            QMessageBox::warning(nullptr, "Warning!", "Error Retrieving hash password! The Account entered doesn't exist in our database, Check and try again");
 
             return "";
         }

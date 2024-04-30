@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'client_manager.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.2)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,19 +13,16 @@
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
-#if __has_include(<QtCore/qtmochelpers.h>)
 #include <QtCore/qtmochelpers.h>
-#else
-QT_BEGIN_MOC_NAMESPACE
-#endif
-
 
 #include <memory>
 
+
+#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'client_manager.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.2. It"
+#error "This file was generated using the moc from 6.7.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -71,102 +68,9 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "file_connect",
     "on_new_connection"
 );
-#else  // !QT_MOC_HAS_STRING_DATA
-struct qt_meta_stringdata_CLASSclient_managerENDCLASS_t {
-    uint offsetsAndSizes[56];
-    char stringdata0[15];
-    char stringdata1[22];
-    char stringdata2[1];
-    char stringdata3[7];
-    char stringdata4[8];
-    char stringdata5[19];
-    char stringdata6[20];
-    char stringdata7[10];
-    char stringdata8[10];
-    char stringdata9[22];
-    char stringdata10[27];
-    char stringdata11[29];
-    char stringdata12[11];
-    char stringdata13[5];
-    char stringdata14[17];
-    char stringdata15[12];
-    char stringdata16[13];
-    char stringdata17[8];
-    char stringdata18[22];
-    char stringdata19[14];
-    char stringdata20[20];
-    char stringdata21[9];
-    char stringdata22[20];
-    char stringdata23[20];
-    char stringdata24[16];
-    char stringdata25[14];
-    char stringdata26[13];
-    char stringdata27[18];
-};
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_CLASSclient_managerENDCLASS_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_managerENDCLASS_t qt_meta_stringdata_CLASSclient_managerENDCLASS = {
-    {
-        QT_MOC_LITERAL(0, 14),  // "client_manager"
-        QT_MOC_LITERAL(15, 21),  // "text_message_received"
-        QT_MOC_LITERAL(37, 0),  // ""
-        QT_MOC_LITERAL(38, 6),  // "sender"
-        QT_MOC_LITERAL(45, 7),  // "message"
-        QT_MOC_LITERAL(53, 18),  // "is_typing_received"
-        QT_MOC_LITERAL(72, 19),  // "init_receiving_file"
-        QT_MOC_LITERAL(92, 9),  // "file_name"
-        QT_MOC_LITERAL(102, 9),  // "file_size"
-        QT_MOC_LITERAL(112, 21),  // "reject_receiving_file"
-        QT_MOC_LITERAL(134, 26),  // "init_receiving_file_client"
-        QT_MOC_LITERAL(161, 28),  // "reject_receiving_file_client"
-        QT_MOC_LITERAL(190, 10),  // "file_saved"
-        QT_MOC_LITERAL(201, 4),  // "path"
-        QT_MOC_LITERAL(206, 16),  // "client_connected"
-        QT_MOC_LITERAL(223, 11),  // "client_name"
-        QT_MOC_LITERAL(235, 12),  // "clients_list"
-        QT_MOC_LITERAL(248, 7),  // "my_name"
-        QT_MOC_LITERAL(256, 21),  // "QMap<QString,QString>"
-        QT_MOC_LITERAL(278, 13),  // "other_clients"
-        QT_MOC_LITERAL(292, 19),  // "client_name_changed"
-        QT_MOC_LITERAL(312, 8),  // "old_name"
-        QT_MOC_LITERAL(321, 19),  // "client_disconnected"
-        QT_MOC_LITERAL(341, 19),  // "socket_disconnected"
-        QT_MOC_LITERAL(361, 15),  // "on_disconnected"
-        QT_MOC_LITERAL(377, 13),  // "on_ready_read"
-        QT_MOC_LITERAL(391, 12),  // "file_connect"
-        QT_MOC_LITERAL(404, 17)   // "on_new_connection"
-    },
-    "client_manager",
-    "text_message_received",
-    "",
-    "sender",
-    "message",
-    "is_typing_received",
-    "init_receiving_file",
-    "file_name",
-    "file_size",
-    "reject_receiving_file",
-    "init_receiving_file_client",
-    "reject_receiving_file_client",
-    "file_saved",
-    "path",
-    "client_connected",
-    "client_name",
-    "clients_list",
-    "my_name",
-    "QMap<QString,QString>",
-    "other_clients",
-    "client_name_changed",
-    "old_name",
-    "client_disconnected",
-    "socket_disconnected",
-    "on_disconnected",
-    "on_ready_read",
-    "file_connect",
-    "on_new_connection"
-};
-#undef QT_MOC_LITERAL
-#endif // !QT_MOC_HAS_STRING_DATA
+#else  // !QT_MOC_HAS_STRINGDATA
+#error "qtmochelpers.h not found or too old."
+#endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
 Q_CONSTINIT static const uint qt_meta_data_CLASSclient_managerENDCLASS[] = {

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'server_chat_window.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.2)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,19 +13,16 @@
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
-#if __has_include(<QtCore/qtmochelpers.h>)
 #include <QtCore/qtmochelpers.h>
-#else
-QT_BEGIN_MOC_NAMESPACE
-#endif
-
 
 #include <memory>
 
+
+#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'server_chat_window.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.2. It"
+#error "This file was generated using the moc from 6.7.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -66,87 +63,9 @@ constexpr auto qt_meta_stringdata_CLASSserver_chat_windowENDCLASS = QtMocHelpers
     "path",
     "on_client_name_changed"
 );
-#else  // !QT_MOC_HAS_STRING_DATA
-struct qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t {
-    uint offsetsAndSizes[46];
-    char stringdata0[19];
-    char stringdata1[20];
-    char stringdata2[1];
-    char stringdata3[14];
-    char stringdata4[9];
-    char stringdata5[5];
-    char stringdata6[19];
-    char stringdata7[7];
-    char stringdata8[9];
-    char stringdata9[22];
-    char stringdata10[8];
-    char stringdata11[22];
-    char stringdata12[10];
-    char stringdata13[40];
-    char stringdata14[13];
-    char stringdata15[7];
-    char stringdata16[10];
-    char stringdata17[25];
-    char stringdata18[23];
-    char stringdata19[10];
-    char stringdata20[14];
-    char stringdata21[5];
-    char stringdata22[23];
-};
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_chat_windowENDCLASS_t qt_meta_stringdata_CLASSserver_chat_windowENDCLASS = {
-    {
-        QT_MOC_LITERAL(0, 18),  // "server_chat_window"
-        QT_MOC_LITERAL(19, 19),  // "client_name_changed"
-        QT_MOC_LITERAL(39, 0),  // ""
-        QT_MOC_LITERAL(40, 13),  // "original_name"
-        QT_MOC_LITERAL(54, 8),  // "old_name"
-        QT_MOC_LITERAL(63, 4),  // "name"
-        QT_MOC_LITERAL(68, 18),  // "is_typing_received"
-        QT_MOC_LITERAL(87, 6),  // "sender"
-        QT_MOC_LITERAL(94, 8),  // "receiver"
-        QT_MOC_LITERAL(103, 21),  // "text_for_other_client"
-        QT_MOC_LITERAL(125, 7),  // "message"
-        QT_MOC_LITERAL(133, 21),  // "file_for_other_client"
-        QT_MOC_LITERAL(155, 9),  // "file_name"
-        QT_MOC_LITERAL(165, 39),  // "reject_receiving_file_for_oth..."
-        QT_MOC_LITERAL(205, 12),  // "send_message"
-        QT_MOC_LITERAL(218, 6),  // "folder"
-        QT_MOC_LITERAL(225, 9),  // "send_file"
-        QT_MOC_LITERAL(235, 24),  // "on_text_message_received"
-        QT_MOC_LITERAL(260, 22),  // "on_init_receiving_file"
-        QT_MOC_LITERAL(283, 9),  // "file_size"
-        QT_MOC_LITERAL(293, 13),  // "on_file_saved"
-        QT_MOC_LITERAL(307, 4),  // "path"
-        QT_MOC_LITERAL(312, 22)   // "on_client_name_changed"
-    },
-    "server_chat_window",
-    "client_name_changed",
-    "",
-    "original_name",
-    "old_name",
-    "name",
-    "is_typing_received",
-    "sender",
-    "receiver",
-    "text_for_other_client",
-    "message",
-    "file_for_other_client",
-    "file_name",
-    "reject_receiving_file_for_other_clients",
-    "send_message",
-    "folder",
-    "send_file",
-    "on_text_message_received",
-    "on_init_receiving_file",
-    "file_size",
-    "on_file_saved",
-    "path",
-    "on_client_name_changed"
-};
-#undef QT_MOC_LITERAL
-#endif // !QT_MOC_HAS_STRING_DATA
+#else  // !QT_MOC_HAS_STRINGDATA
+#error "qtmochelpers.h not found or too old."
+#endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
 Q_CONSTINIT static const uint qt_meta_data_CLASSserver_chat_windowENDCLASS[] = {

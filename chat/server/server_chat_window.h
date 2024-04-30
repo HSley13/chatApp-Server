@@ -30,6 +30,8 @@ private:
     server_manager *_client;
     chat_protocol *_protocol;
 
+    QPushButton *_file;
+
     QDir dir;
 
 signals:

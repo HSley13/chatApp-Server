@@ -23,6 +23,8 @@ private:
     QListWidget *_list;
     QTabWidget *_tabs;
 
+    QListWidget *_name_list;
+
     QPushButton *_disconnect_all;
 
     server_manager *_server;

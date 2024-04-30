@@ -187,11 +187,7 @@ void client_main_window::on_client_disconnected(QString client_name)
     {
         QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
         if (!items.isEmpty())
-        {
-            QListWidgetItem *item_to_remove = items.first();
-
-            delete item_to_remove;
-        }
+            delete items.first();
 
         _window_map.remove(client_name);
         _name_list.remove(client_name);
@@ -271,7 +267,8 @@ void client_main_window::add_on_top(const QString &client_name)
     QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
     if (!items.empty())
     {
-        QListWidgetItem *item_to_replace = _list->findItems(client_name, Qt::MatchExactly).first();
+        QListWidgetItem *item_to_replace = items.first();
+
         _list->takeItem(_list->row(item_to_replace));
         _list->insertItem(0, item_to_replace);
     }

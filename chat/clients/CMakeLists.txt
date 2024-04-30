@@ -7,8 +7,6 @@ add_executable(client
                     chat_line.cpp
                 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
-
 target_link_libraries(client PRIVATE
                         Qt6::Widgets
                         Qt6::Core

@@ -985,6 +985,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtCore/qbasicatomic.h \
   /opt/homebrew/include/QtCore/qatomic_cxx11.h \
   /opt/homebrew/include/QtCore/qgenericatomic.h \
+  /opt/homebrew/include/QtCore/qyieldcpu.h \
   /opt/homebrew/include/QtCore/qconstructormacros.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
@@ -1024,7 +1025,14 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/literals.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20functional.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20iterator.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/q20map.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory_resource \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/monotonic_buffer_resource.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/pool_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/synchronized_pool_resource.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/unsynchronized_pool_resource.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20memory.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/q20vector.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q23functional.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q23utility.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractanimation.h \
@@ -1057,6 +1065,8 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtCore/qutf8stringview.h \
   /opt/homebrew/include/QtCore/qstringtokenizer.h \
   /opt/homebrew/include/QtCore/qstringbuilder.h \
+  /opt/homebrew/include/QtCore/qstringconverter.h \
+  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qlist.h \
   /opt/homebrew/include/QtCore/qhashfunctions.h \
   /opt/homebrew/include/QtCore/qiterator.h \
@@ -1067,6 +1077,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtCore/qscopedpointer.h \
   /opt/homebrew/include/QtCore/qmetatype.h \
   /opt/homebrew/include/QtCore/qcompare.h \
+  /opt/homebrew/include/QtCore/qcomparehelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
   /opt/homebrew/include/QtCore/qiodevicebase.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
@@ -1080,12 +1091,13 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtCore/qbindingstorage.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
   /opt/homebrew/include/QtCore/qeventloop.h \
+  /opt/homebrew/include/QtCore/qdeadlinetimer.h \
+  /opt/homebrew/include/QtCore/qelapsedtimer.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
   /opt/homebrew/include/QtCore/qhash.h \
   /opt/homebrew/include/QtCore/qvariant.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
-  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qsharedpointer.h \
   /opt/homebrew/include/QtCore/qshareddata.h \
@@ -1105,8 +1117,6 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qapplicationstatic.h \
   /opt/homebrew/include/QtCore/QMutex \
   /opt/homebrew/lib/QtCore.framework/Headers/qmutex.h \
-  /opt/homebrew/include/QtCore/qdeadlinetimer.h \
-  /opt/homebrew/include/QtCore/qelapsedtimer.h \
   /opt/homebrew/include/QtCore/qtsan_impl.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /opt/homebrew/include/QtCore/qcoreapplication.h \
@@ -1119,6 +1129,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qassert.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qassociativeiterable.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qatomic.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qatomicscopedvaluerollback.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbasictimer.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbindingstorage.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbitarray.h \
@@ -1229,7 +1240,6 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
   /opt/homebrew/include/QtCore/qrunnable.h \
   /opt/homebrew/include/QtCore/qexception.h \
-  /opt/homebrew/include/QtCore/qpointer.h \
   /opt/homebrew/include/QtCore/qpromise.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfutureinterface.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
@@ -1256,6 +1266,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlibrary.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlibraryinfo.h \
   /opt/homebrew/include/QtCore/qversionnumber.h \
+  /opt/homebrew/include/QtCore/qtyperevision.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qline.h \
   /opt/homebrew/include/QtCore/qpoint.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
@@ -1289,6 +1300,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qpauseanimation.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qpermissions.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qplugin.h \
+  /opt/homebrew/include/QtCore/qpointer.h \
   /opt/homebrew/include/QtCore/qjsonobject.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qpluginloader.h \
   /opt/homebrew/include/QtCore/qlibrary.h \
@@ -1336,8 +1348,13 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qsize.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qsocketnotifier.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qspan.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
+  /opt/homebrew/include/QtCore/q20iterator.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstack.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstandardpaths.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstaticlatin1stringmatcher.h \
+  /opt/homebrew/include/QtCore/qlatin1stringmatcher.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstorageinfo.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstring.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstringalgorithms.h \
@@ -1378,11 +1395,13 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qtranslator.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtransposeproxymodel.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtresource.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qtsymbolmacros.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qttranslation.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qttypetraits.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtversion.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtversionchecks.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtypeinfo.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qtyperevision.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtypes.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurlquery.h \
@@ -1408,6 +1427,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qxmlstream.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qxpfunctional.h \
   /opt/homebrew/include/QtCore/q23functional.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qyieldcpu.h \
   /opt/homebrew/include/QtGui/QtGui \
   /opt/homebrew/include/QtGui/QtGuiDepends \
   /opt/homebrew/lib/QtGui.framework/Headers/qtguiglobal.h \
@@ -1442,6 +1462,10 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtCore/QSizeF \
   /opt/homebrew/include/QtGui/QTransform \
   /opt/homebrew/lib/QtGui.framework/Headers/qtransform.h \
+  /opt/homebrew/include/QtGui/qscreen_platform.h \
+  /opt/homebrew/include/QtGui/qguiapplication.h \
+  /opt/homebrew/include/QtGui/qinputmethod.h \
+  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
   /opt/homebrew/include/QtGui/qkeysequence.h \
   /opt/homebrew/include/QtGui/qglyphrun.h \
   /opt/homebrew/include/QtGui/qrawfont.h \
@@ -1495,9 +1519,6 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qglyphrun.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qguiapplication.h \
-  /opt/homebrew/include/QtGui/qinputmethod.h \
-  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
-  /opt/homebrew/include/QtGui/qguiapplication.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qicon.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qiconengine.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qiconengineplugin.h \
@@ -1731,6 +1752,7 @@ database/CMakeFiles/database_library.dir/database.cpp.o: \
   /opt/homebrew/include/QtWidgets/QCommonStyle \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qradiobutton.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qrhiwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qrubberband.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qscrollarea.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qscrollbar.h \

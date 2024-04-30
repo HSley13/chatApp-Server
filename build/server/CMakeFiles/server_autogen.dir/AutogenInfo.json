@@ -85,7 +85,8 @@
 		"Q_GADGET",
 		"Q_NAMESPACE",
 		"Q_NAMESPACE_EXPORT",
-		"Q_GADGET_EXPORT"
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS"
 	],
 	"MOC_OPTIONS" : [],
 	"MOC_PATH_PREFIX" : false,
@@ -107,7 +108,7 @@
 	"QT_MOC_EXECUTABLE" : "/opt/homebrew/share/qt/libexec/moc",
 	"QT_UIC_EXECUTABLE" : "/opt/homebrew/share/qt/libexec/uic",
 	"QT_VERSION_MAJOR" : 6,
-	"QT_VERSION_MINOR" : 6,
+	"QT_VERSION_MINOR" : 7,
 	"SETTINGS_FILE" : "/Users/test/Documents/server---clients/build/server/CMakeFiles/server_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[

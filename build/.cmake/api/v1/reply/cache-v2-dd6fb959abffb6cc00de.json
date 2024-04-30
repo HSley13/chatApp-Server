@@ -2786,18 +2786,6 @@
 			"value" : "OFF"
 		},
 		{
-			"name" : "QT_FEATURE_eventfd",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Qt feature: eventfd (from target Qt6::Core)"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "OFF"
-		},
-		{
 			"name" : "QT_FEATURE_f16c",
 			"properties" : 
 			[
@@ -3074,24 +3062,24 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "QT_FEATURE_glibc",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Qt feature: glibc (from target Qt6::Core)"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "OFF"
-		},
-		{
 			"name" : "QT_FEATURE_graphicseffect",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: graphicseffect (from target Qt6::Widgets)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_graphicsframecapture",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: graphicsframecapture (from target Qt6::Gui)"
 				}
 			],
 			"type" : "INTERNAL",
@@ -3240,18 +3228,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
-		},
-		{
-			"name" : "QT_FEATURE_ifr_index",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Qt feature: ifr_index (from target Qt6::Network)"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "OFF"
 		},
 		{
 			"name" : "QT_FEATURE_im",
@@ -5114,18 +5090,6 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "QT_FEATURE_statx",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Qt feature: statx (from target Qt6::Core)"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "OFF"
-		},
-		{
 			"name" : "QT_FEATURE_std_atomic64",
 			"properties" : 
 			[
@@ -5220,6 +5184,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_style_windows11",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: style_windows11 (from target Qt6::Widgets)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
 		},
 		{
 			"name" : "QT_FEATURE_style_windowsvista",
@@ -5972,6 +5948,18 @@
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: wasm_simd128 (from target Qt6::Core)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_wayland",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: wayland (from target Qt6::Gui)"
 				}
 			],
 			"type" : "INTERNAL",

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'server_main_window.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.2)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,19 +13,16 @@
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
-#if __has_include(<QtCore/qtmochelpers.h>)
 #include <QtCore/qtmochelpers.h>
-#else
-QT_BEGIN_MOC_NAMESPACE
-#endif
-
 
 #include <memory>
 
+
+#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'server_main_window.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.2. It"
+#error "This file was generated using the moc from 6.7.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -58,63 +55,9 @@ constexpr auto qt_meta_stringdata_CLASSserver_main_windowENDCLASS = QtMocHelpers
     "close_tabs",
     "index"
 );
-#else  // !QT_MOC_HAS_STRING_DATA
-struct qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t {
-    uint offsetsAndSizes[30];
-    char stringdata0[19];
-    char stringdata1[24];
-    char stringdata2[1];
-    char stringdata3[12];
-    char stringdata4[7];
-    char stringdata5[27];
-    char stringdata6[23];
-    char stringdata7[14];
-    char stringdata8[9];
-    char stringdata9[5];
-    char stringdata10[22];
-    char stringdata11[7];
-    char stringdata12[9];
-    char stringdata13[11];
-    char stringdata14[6];
-};
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_CLASSserver_main_windowENDCLASS_t qt_meta_stringdata_CLASSserver_main_windowENDCLASS = {
-    {
-        QT_MOC_LITERAL(0, 18),  // "server_main_window"
-        QT_MOC_LITERAL(19, 23),  // "on_new_client_connected"
-        QT_MOC_LITERAL(43, 0),  // ""
-        QT_MOC_LITERAL(44, 11),  // "QTcpSocket*"
-        QT_MOC_LITERAL(56, 6),  // "client"
-        QT_MOC_LITERAL(63, 26),  // "on_new_client_disconnected"
-        QT_MOC_LITERAL(90, 22),  // "on_client_name_changed"
-        QT_MOC_LITERAL(113, 13),  // "original_name"
-        QT_MOC_LITERAL(127, 8),  // "old_name"
-        QT_MOC_LITERAL(136, 4),  // "name"
-        QT_MOC_LITERAL(141, 21),  // "on_is_typing_received"
-        QT_MOC_LITERAL(163, 6),  // "sender"
-        QT_MOC_LITERAL(170, 8),  // "receiver"
-        QT_MOC_LITERAL(179, 10),  // "close_tabs"
-        QT_MOC_LITERAL(190, 5)   // "index"
-    },
-    "server_main_window",
-    "on_new_client_connected",
-    "",
-    "QTcpSocket*",
-    "client",
-    "on_new_client_disconnected",
-    "on_client_name_changed",
-    "original_name",
-    "old_name",
-    "name",
-    "on_is_typing_received",
-    "sender",
-    "receiver",
-    "close_tabs",
-    "index"
-};
-#undef QT_MOC_LITERAL
-#endif // !QT_MOC_HAS_STRING_DATA
+#else  // !QT_MOC_HAS_STRINGDATA
+#error "qtmochelpers.h not found or too old."
+#endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
 Q_CONSTINIT static const uint qt_meta_data_CLASSserver_main_windowENDCLASS[] = {

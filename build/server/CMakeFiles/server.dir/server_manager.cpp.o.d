@@ -521,6 +521,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qbasicatomic.h \
   /opt/homebrew/include/QtCore/qatomic_cxx11.h \
   /opt/homebrew/include/QtCore/qgenericatomic.h \
+  /opt/homebrew/include/QtCore/qyieldcpu.h \
   /opt/homebrew/include/QtCore/qconstructormacros.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
@@ -961,6 +962,8 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qutf8stringview.h \
   /opt/homebrew/include/QtCore/qstringtokenizer.h \
   /opt/homebrew/include/QtCore/qstringbuilder.h \
+  /opt/homebrew/include/QtCore/qstringconverter.h \
+  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qlist.h \
   /opt/homebrew/include/QtCore/qhashfunctions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
@@ -984,6 +987,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qscopedpointer.h \
   /opt/homebrew/include/QtCore/qmetatype.h \
   /opt/homebrew/include/QtCore/qcompare.h \
+  /opt/homebrew/include/QtCore/qcomparehelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
   /opt/homebrew/include/QtCore/qiodevicebase.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
@@ -1038,7 +1042,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qvariant.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
-  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qsharedpointer.h \
   /opt/homebrew/include/QtCore/qsharedpointer_impl.h \
@@ -1050,6 +1053,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtGui/qpalette.h \
   /opt/homebrew/include/QtGui/qbrush.h \
   /opt/homebrew/include/QtGui/qfont.h \
+  /opt/homebrew/include/QtCore/qendian.h \
   /opt/homebrew/include/QtGui/qfontmetrics.h \
   /opt/homebrew/include/QtGui/qfontinfo.h \
   /opt/homebrew/include/QtWidgets/qsizepolicy.h \
@@ -1144,12 +1148,21 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/q20chrono.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20functional.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20iterator.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/q20map.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory_resource \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/monotonic_buffer_resource.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/pool_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/synchronized_pool_resource.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/unsynchronized_pool_resource.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q20memory.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/q20vector.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q23functional.h \
   /opt/homebrew/lib/QtCore.framework/Headers/q23utility.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractanimation.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
   /opt/homebrew/include/QtCore/qeventloop.h \
+  /opt/homebrew/include/QtCore/qdeadlinetimer.h \
+  /opt/homebrew/include/QtCore/qelapsedtimer.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qabstractproxymodel.h \
@@ -1161,8 +1174,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qapplicationstatic.h \
   /opt/homebrew/include/QtCore/QMutex \
   /opt/homebrew/lib/QtCore.framework/Headers/qmutex.h \
-  /opt/homebrew/include/QtCore/qdeadlinetimer.h \
-  /opt/homebrew/include/QtCore/qelapsedtimer.h \
   /opt/homebrew/include/QtCore/qtsan_impl.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/sanitizer/tsan_interface.h \
   /opt/homebrew/include/QtCore/qcoreapplication.h \
@@ -1175,6 +1186,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qassert.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qassociativeiterable.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qatomic.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qatomicscopedvaluerollback.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbasictimer.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbindingstorage.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qbitarray.h \
@@ -1194,7 +1206,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/qcborcommon.h \
   /opt/homebrew/include/QtCore/qregularexpression.h \
   /opt/homebrew/include/QtCore/quuid.h \
-  /opt/homebrew/include/QtCore/qendian.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qcborcommon.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qcbormap.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qcborstream.h \
@@ -1282,7 +1293,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
   /opt/homebrew/include/QtCore/qrunnable.h \
   /opt/homebrew/include/QtCore/qexception.h \
-  /opt/homebrew/include/QtCore/qpointer.h \
   /opt/homebrew/include/QtCore/qpromise.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfutureinterface.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
@@ -1309,6 +1319,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qlibrary.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlibraryinfo.h \
   /opt/homebrew/include/QtCore/qversionnumber.h \
+  /opt/homebrew/include/QtCore/qtyperevision.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qline.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qlocale.h \
@@ -1341,6 +1352,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qpauseanimation.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qpermissions.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qplugin.h \
+  /opt/homebrew/include/QtCore/qpointer.h \
   /opt/homebrew/include/QtCore/qjsonobject.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qpluginloader.h \
   /opt/homebrew/include/QtCore/qlibrary.h \
@@ -1386,8 +1398,13 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qsize.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qsocketnotifier.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qspan.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
+  /opt/homebrew/include/QtCore/q20iterator.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstack.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstandardpaths.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstaticlatin1stringmatcher.h \
+  /opt/homebrew/include/QtCore/qlatin1stringmatcher.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstorageinfo.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstring.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qstringalgorithms.h \
@@ -1428,11 +1445,13 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qtranslator.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtransposeproxymodel.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtresource.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qtsymbolmacros.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qttranslation.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qttypetraits.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtversion.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtversionchecks.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtypeinfo.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qtyperevision.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qtypes.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qurlquery.h \
@@ -1458,6 +1477,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qxmlstream.h \
   /opt/homebrew/lib/QtCore.framework/Headers/qxpfunctional.h \
   /opt/homebrew/include/QtCore/q23functional.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/qyieldcpu.h \
   /opt/homebrew/include/QtGui/QtGui \
   /opt/homebrew/include/QtGui/QtGuiDepends \
   /opt/homebrew/lib/QtGui.framework/Headers/qtguiglobal.h \
@@ -1475,6 +1495,10 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtCore/QSizeF \
   /opt/homebrew/include/QtGui/QTransform \
   /opt/homebrew/lib/QtGui.framework/Headers/qtransform.h \
+  /opt/homebrew/include/QtGui/qscreen_platform.h \
+  /opt/homebrew/include/QtGui/qguiapplication.h \
+  /opt/homebrew/include/QtGui/qinputmethod.h \
+  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
   /opt/homebrew/include/QtGui/qglyphrun.h \
   /opt/homebrew/include/QtGui/qrawfont.h \
   /opt/homebrew/include/QtGui/qfontdatabase.h \
@@ -1520,9 +1544,6 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qglyphrun.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qguiapplication.h \
-  /opt/homebrew/include/QtGui/qinputmethod.h \
-  /opt/homebrew/include/QtGui/qguiapplication_platform.h \
-  /opt/homebrew/include/QtGui/qguiapplication.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qicon.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qiconengine.h \
   /opt/homebrew/lib/QtGui.framework/Headers/qiconengineplugin.h \
@@ -1739,6 +1760,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/include/QtWidgets/QCommonStyle \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qradiobutton.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qrhiwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qrubberband.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qscrollarea.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qscrollbar.h \
@@ -1816,6 +1838,7 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhstspolicy.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhttp1configuration.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhttp2configuration.h \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qhttpheaders.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
   /opt/homebrew/include/QtCore/QByteArray \
   /opt/homebrew/include/QtCore/QIODevice \
@@ -1838,9 +1861,16 @@ server/CMakeFiles/server.dir/server_manager.cpp.o: \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkreply.h \
   /opt/homebrew/include/QtNetwork/QNetworkAccessManager \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qnetworkrequestfactory.h \
+  /opt/homebrew/include/QtNetwork/qhttpheaders.h \
+  /opt/homebrew/include/QtCore/qurlquery.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qocspresponse.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
   /opt/homebrew/include/QtCore/QCryptographicHash \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qrestaccessmanager.h \
+  /opt/homebrew/include/QtNetwork/qnetworkaccessmanager.h \
+  /opt/homebrew/lib/QtNetwork.framework/Headers/qrestreply.h \
+  /opt/homebrew/include/QtNetwork/qnetworkreply.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qssl.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qsslcertificate.h \
   /opt/homebrew/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \

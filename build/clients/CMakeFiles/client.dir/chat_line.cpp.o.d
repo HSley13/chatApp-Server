@@ -520,6 +520,7 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o: \
   /opt/homebrew/include/QtCore/qbasicatomic.h \
   /opt/homebrew/include/QtCore/qatomic_cxx11.h \
   /opt/homebrew/include/QtCore/qgenericatomic.h \
+  /opt/homebrew/include/QtCore/qyieldcpu.h \
   /opt/homebrew/include/QtCore/qconstructormacros.h \
   /opt/homebrew/include/QtCore/qdarwinhelpers.h \
   /opt/homebrew/include/QtCore/qexceptionhandling.h \
@@ -960,6 +961,8 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o: \
   /opt/homebrew/include/QtCore/qutf8stringview.h \
   /opt/homebrew/include/QtCore/qstringtokenizer.h \
   /opt/homebrew/include/QtCore/qstringbuilder.h \
+  /opt/homebrew/include/QtCore/qstringconverter.h \
+  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qlist.h \
   /opt/homebrew/include/QtCore/qhashfunctions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
@@ -983,6 +986,7 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o: \
   /opt/homebrew/include/QtCore/qscopedpointer.h \
   /opt/homebrew/include/QtCore/qmetatype.h \
   /opt/homebrew/include/QtCore/qcompare.h \
+  /opt/homebrew/include/QtCore/qcomparehelpers.h \
   /opt/homebrew/include/QtCore/qdatastream.h \
   /opt/homebrew/include/QtCore/qiodevicebase.h \
   /opt/homebrew/include/QtCore/qfloat16.h \
@@ -1037,7 +1041,6 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o: \
   /opt/homebrew/include/QtCore/qvariant.h \
   /opt/homebrew/include/QtCore/qdebug.h \
   /opt/homebrew/include/QtCore/qtextstream.h \
-  /opt/homebrew/include/QtCore/qstringconverter_base.h \
   /opt/homebrew/include/QtCore/qcontiguouscache.h \
   /opt/homebrew/include/QtCore/qsharedpointer.h \
   /opt/homebrew/include/QtCore/qsharedpointer_impl.h \
@@ -1049,6 +1052,7 @@ clients/CMakeFiles/client.dir/chat_line.cpp.o: \
   /opt/homebrew/include/QtGui/qpalette.h \
   /opt/homebrew/include/QtGui/qbrush.h \
   /opt/homebrew/include/QtGui/qfont.h \
+  /opt/homebrew/include/QtCore/qendian.h \
   /opt/homebrew/include/QtGui/qfontmetrics.h \
   /opt/homebrew/include/QtGui/qfontinfo.h \
   /opt/homebrew/include/QtWidgets/qsizepolicy.h \

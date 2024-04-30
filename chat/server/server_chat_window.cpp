@@ -29,14 +29,14 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     hbox_1->addWidget(_insert_message, 7);
     hbox_1->addWidget(_send_button, 3);
 
-    QPushButton *file = new QPushButton("Open Client Directory", this);
-    connect(file, &QPushButton::clicked, this, &server_chat_window::folder);
+    _file = new QPushButton("Open Client Directory", this);
+    connect(_file, &QPushButton::clicked, this, &server_chat_window::folder);
 
     QPushButton *send_file = new QPushButton("...", this);
     connect(send_file, &QPushButton::clicked, this, &server_chat_window::send_file);
 
     QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(file, 7);
+    hbox_2->addWidget(_file, 7);
     hbox_2->addWidget(send_file, 3);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
@@ -95,6 +95,8 @@ void server_chat_window::on_init_receiving_file(QString sender, QString file_nam
 void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
 {
     QFile::rename(dir.canonicalPath(), name);
+
+    _file->setText(QString("Open %1 Directory").arg(name));
 
     emit client_name_changed(original_name, old_name, name);
 }

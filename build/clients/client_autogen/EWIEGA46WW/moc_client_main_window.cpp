@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'client_main_window.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.2)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,19 +13,16 @@
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
-#if __has_include(<QtCore/qtmochelpers.h>)
 #include <QtCore/qtmochelpers.h>
-#else
-QT_BEGIN_MOC_NAMESPACE
-#endif
-
 
 #include <memory>
 
+
+#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'client_main_window.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.2. It"
+#error "This file was generated using the moc from 6.7.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -62,75 +59,9 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "QListWidgetItem*",
     "item"
 );
-#else  // !QT_MOC_HAS_STRING_DATA
-struct qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t {
-    uint offsetsAndSizes[38];
-    char stringdata0[19];
-    char stringdata1[10];
-    char stringdata2[1];
-    char stringdata3[16];
-    char stringdata4[8];
-    char stringdata5[22];
-    char stringdata6[14];
-    char stringdata7[20];
-    char stringdata8[12];
-    char stringdata9[23];
-    char stringdata10[9];
-    char stringdata11[23];
-    char stringdata12[25];
-    char stringdata13[7];
-    char stringdata14[8];
-    char stringdata15[16];
-    char stringdata16[16];
-    char stringdata17[17];
-    char stringdata18[5];
-};
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_CLASSclient_main_windowENDCLASS_t qt_meta_stringdata_CLASSclient_main_windowENDCLASS = {
-    {
-        QT_MOC_LITERAL(0, 18),  // "client_main_window"
-        QT_MOC_LITERAL(19, 9),  // "connected"
-        QT_MOC_LITERAL(29, 0),  // ""
-        QT_MOC_LITERAL(30, 15),  // "on_clients_list"
-        QT_MOC_LITERAL(46, 7),  // "my_name"
-        QT_MOC_LITERAL(54, 21),  // "QMap<QString,QString>"
-        QT_MOC_LITERAL(76, 13),  // "other_clients"
-        QT_MOC_LITERAL(90, 19),  // "on_client_connected"
-        QT_MOC_LITERAL(110, 11),  // "client_name"
-        QT_MOC_LITERAL(122, 22),  // "on_client_name_changed"
-        QT_MOC_LITERAL(145, 8),  // "old_name"
-        QT_MOC_LITERAL(154, 22),  // "on_client_disconnected"
-        QT_MOC_LITERAL(177, 24),  // "on_text_message_received"
-        QT_MOC_LITERAL(202, 6),  // "sender"
-        QT_MOC_LITERAL(209, 7),  // "message"
-        QT_MOC_LITERAL(217, 15),  // "on_name_changed"
-        QT_MOC_LITERAL(233, 15),  // "on_item_clicked"
-        QT_MOC_LITERAL(249, 16),  // "QListWidgetItem*"
-        QT_MOC_LITERAL(266, 4)   // "item"
-    },
-    "client_main_window",
-    "connected",
-    "",
-    "on_clients_list",
-    "my_name",
-    "QMap<QString,QString>",
-    "other_clients",
-    "on_client_connected",
-    "client_name",
-    "on_client_name_changed",
-    "old_name",
-    "on_client_disconnected",
-    "on_text_message_received",
-    "sender",
-    "message",
-    "on_name_changed",
-    "on_item_clicked",
-    "QListWidgetItem*",
-    "item"
-};
-#undef QT_MOC_LITERAL
-#endif // !QT_MOC_HAS_STRING_DATA
+#else  // !QT_MOC_HAS_STRINGDATA
+#error "qtmochelpers.h not found or too old."
+#endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
 Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {

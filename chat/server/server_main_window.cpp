@@ -32,9 +32,12 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
+    _name_list = new QListWidget(this);
+
     QHBoxLayout *HBOX = new QHBoxLayout(central_widget);
-    HBOX->addWidget(_tabs, 3);
-    HBOX->addLayout(vbox);
+    HBOX->addWidget(_tabs, 6);
+    HBOX->addLayout(vbox, 3);
+    HBOX->addWidget(_name_list, 1);
 }
 
 server_main_window::~server_main_window()
@@ -71,6 +74,10 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
     _tabs->removeTab(_tabs->indexOf(_window_map.value(client_name)));
 
     _list->addItem(QString("Client %1 disconnected").arg(id));
+
+    QList<QListWidgetItem *> items = _name_list->findItems(client_name, Qt::MatchExactly);
+    if (!items.isEmpty())
+        delete items.first();
 }
 
 void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
@@ -87,6 +94,11 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
 
     _server->_names.remove(original_name);
     _server->_names.insert(original_name, client_name);
+
+    _name_list->clear();
+
+    for (QString name : _server->_names)
+        _name_list->addItem(name);
 }
 
 void server_main_window::on_is_typing_received(QString sender, QString receiver)

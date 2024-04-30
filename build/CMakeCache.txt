@@ -734,8 +734,6 @@ QT_FEATURE_errormessage:INTERNAL=ON
 QT_FEATURE_etw:INTERNAL=OFF
 //Qt feature: evdev (from target Qt6::Gui)
 QT_FEATURE_evdev:INTERNAL=OFF
-//Qt feature: eventfd (from target Qt6::Core)
-QT_FEATURE_eventfd:INTERNAL=OFF
 //Qt feature: f16c (from target Qt6::Core)
 QT_FEATURE_f16c:INTERNAL=OFF
 //Qt feature: filedialog (from target Qt6::Widgets)
@@ -782,10 +780,10 @@ QT_FEATURE_getifaddrs:INTERNAL=ON
 QT_FEATURE_gif:INTERNAL=ON
 //Qt feature: glib (from target Qt6::Core)
 QT_FEATURE_glib:INTERNAL=ON
-//Qt feature: glibc (from target Qt6::Core)
-QT_FEATURE_glibc:INTERNAL=OFF
 //Qt feature: graphicseffect (from target Qt6::Widgets)
 QT_FEATURE_graphicseffect:INTERNAL=ON
+//Qt feature: graphicsframecapture (from target Qt6::Gui)
+QT_FEATURE_graphicsframecapture:INTERNAL=ON
 //Qt feature: graphicsview (from target Qt6::Widgets)
 QT_FEATURE_graphicsview:INTERNAL=ON
 //Qt feature: groupbox (from target Qt6::Widgets)
@@ -810,8 +808,6 @@ QT_FEATURE_ico:INTERNAL=ON
 QT_FEATURE_icu:INTERNAL=ON
 //Qt feature: identityproxymodel (from target Qt6::Core)
 QT_FEATURE_identityproxymodel:INTERNAL=ON
-//Qt feature: ifr_index (from target Qt6::Network)
-QT_FEATURE_ifr_index:INTERNAL=OFF
 //Qt feature: im (from target Qt6::Gui)
 QT_FEATURE_im:INTERNAL=ON
 //Qt feature: image_heuristic_mask (from target Qt6::Gui)
@@ -1122,8 +1118,6 @@ QT_FEATURE_static:INTERNAL=OFF
 QT_FEATURE_statusbar:INTERNAL=ON
 //Qt feature: statustip (from target Qt6::Widgets)
 QT_FEATURE_statustip:INTERNAL=ON
-//Qt feature: statx (from target Qt6::Core)
-QT_FEATURE_statx:INTERNAL=OFF
 //Qt feature: std_atomic64 (from target Qt6::Core)
 QT_FEATURE_std_atomic64:INTERNAL=ON
 //Qt feature: stdlib_libcpp (from target Qt6::Core)
@@ -1140,6 +1134,8 @@ QT_FEATURE_style_mac:INTERNAL=ON
 QT_FEATURE_style_stylesheet:INTERNAL=ON
 //Qt feature: style_windows (from target Qt6::Widgets)
 QT_FEATURE_style_windows:INTERNAL=ON
+//Qt feature: style_windows11 (from target Qt6::Widgets)
+QT_FEATURE_style_windows11:INTERNAL=OFF
 //Qt feature: style_windowsvista (from target Qt6::Widgets)
 QT_FEATURE_style_windowsvista:INTERNAL=OFF
 //Qt feature: syntaxhighlighter (from target Qt6::Widgets)
@@ -1266,6 +1262,8 @@ QT_FEATURE_vulkan:INTERNAL=ON
 QT_FEATURE_wasm_exceptions:INTERNAL=OFF
 //Qt feature: wasm_simd128 (from target Qt6::Core)
 QT_FEATURE_wasm_simd128:INTERNAL=OFF
+//Qt feature: wayland (from target Qt6::Gui)
+QT_FEATURE_wayland:INTERNAL=OFF
 //Qt feature: whatsthis (from target Qt6::Gui)
 QT_FEATURE_whatsthis:INTERNAL=ON
 //Qt feature: wheelevent (from target Qt6::Gui)

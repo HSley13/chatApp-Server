@@ -94,6 +94,18 @@ void server_manager::on_client_disconnected()
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
 
+    QMap<QString, QString> temp;
+
+    // for (QString name : _names)
+    // {
+    //     if (!name.compare(client_name))
+    //         continue;
+
+    //     temp.key(_names.key(name)) = name;
+    // }
+
+    // _names = temp;
+
     _names.remove(_names.key(client_name));
     _clients.remove(_clients.key(client));
 
