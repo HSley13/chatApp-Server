@@ -131,6 +131,20 @@ server/fast:
 .PHONY : server/fast
 
 # Convenience name for target.
+src/server/CMakeFiles/server_other_files.dir/rule:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/CMakeFiles/server_other_files.dir/rule
+.PHONY : src/server/CMakeFiles/server_other_files.dir/rule
+
+# Convenience name for target.
+server_other_files: src/server/CMakeFiles/server_other_files.dir/rule
+.PHONY : server_other_files
+
+# fast build rule for target.
+server_other_files/fast:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_other_files.dir/build.make src/server/CMakeFiles/server_other_files.dir/build
+.PHONY : server_other_files/fast
+
+# Convenience name for target.
 src/server/CMakeFiles/server_autogen_timestamp_deps.dir/rule:
 	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/CMakeFiles/server_autogen_timestamp_deps.dir/rule
 .PHONY : src/server/CMakeFiles/server_autogen_timestamp_deps.dir/rule
@@ -157,6 +171,30 @@ server_autogen: src/server/CMakeFiles/server_autogen.dir/rule
 server_autogen/fast:
 	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_autogen.dir/build.make src/server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
+
+.rcc/qrc_images.o: .rcc/qrc_images.cpp.o
+.PHONY : .rcc/qrc_images.o
+
+# target to build an object file
+.rcc/qrc_images.cpp.o:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o
+.PHONY : .rcc/qrc_images.cpp.o
+
+.rcc/qrc_images.i: .rcc/qrc_images.cpp.i
+.PHONY : .rcc/qrc_images.i
+
+# target to preprocess a source file
+.rcc/qrc_images.cpp.i:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.i
+.PHONY : .rcc/qrc_images.cpp.i
+
+.rcc/qrc_images.s: .rcc/qrc_images.cpp.s
+.PHONY : .rcc/qrc_images.s
+
+# target to generate assembly for a file
+.rcc/qrc_images.cpp.s:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.s
+.PHONY : .rcc/qrc_images.cpp.s
 
 chat_line.o: chat_line.cpp.o
 .PHONY : chat_line.o
@@ -336,7 +374,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
+	@echo "... server_other_files"
 	@echo "... server"
+	@echo "... .rcc/qrc_images.o"
+	@echo "... .rcc/qrc_images.i"
+	@echo "... .rcc/qrc_images.s"
 	@echo "... chat_line.o"
 	@echo "... chat_line.i"
 	@echo "... chat_line.s"

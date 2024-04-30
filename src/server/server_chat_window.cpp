@@ -22,7 +22,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     _insert_message->setPlaceholderText("Insert New Message");
     connect(_insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
-    QPixmap image("/Users/test/Documents/server---clients/src/ressources/send_icon.png");
+    QPixmap image(":/images/send_icon.png");
     _send_button = new QPushButton(this);
     _send_button->setIcon(image);
     _send_button->setIconSize(QSize(30, 30));

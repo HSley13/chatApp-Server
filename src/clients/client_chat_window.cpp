@@ -201,7 +201,7 @@ void client_chat_window::set_up_window()
     _insert_message = new QLineEdit(this);
     _insert_message->setPlaceholderText("Insert New Message");
 
-    QPixmap image("/Users/test/Documents/server---clients/src/ressources/send_icon.png");
+    QPixmap image(":/images/send_icon.png");
     _send_button = new QPushButton(this);
     _send_button->setIcon(image);
     _send_button->setIconSize(QSize(30, 30));

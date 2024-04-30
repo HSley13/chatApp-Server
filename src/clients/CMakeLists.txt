@@ -9,4 +9,9 @@ add_executable(client
 
 target_link_libraries(client PRIVATE database_library)
 
+qt_add_resources(client "images"
+                    PREFIX "/images"
+                    FILES send_icon.png
+                )
+                
 set_target_properties(client PROPERTIES MACOSX_BUNDLE ON)

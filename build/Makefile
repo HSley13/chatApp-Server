@@ -130,6 +130,19 @@ client/fast:
 .PHONY : client/fast
 
 #=============================================================================
+# Target rules for targets named client_other_files
+
+# Build rule for target.
+client_other_files: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_other_files
+.PHONY : client_other_files
+
+# fast build rule for target.
+client_other_files/fast:
+	$(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client_other_files.dir/build.make src/clients/CMakeFiles/client_other_files.dir/build
+.PHONY : client_other_files/fast
+
+#=============================================================================
 # Target rules for targets named client_autogen_timestamp_deps
 
 # Build rule for target.
@@ -167,6 +180,19 @@ server: cmake_check_build_system
 server/fast:
 	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/build
 .PHONY : server/fast
+
+#=============================================================================
+# Target rules for targets named server_other_files
+
+# Build rule for target.
+server_other_files: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_other_files
+.PHONY : server_other_files
+
+# fast build rule for target.
+server_other_files/fast:
+	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_other_files.dir/build.make src/server/CMakeFiles/server_other_files.dir/build
+.PHONY : server_other_files/fast
 
 #=============================================================================
 # Target rules for targets named server_autogen_timestamp_deps
@@ -243,10 +269,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client_autogen"
 	@echo "... client_autogen_timestamp_deps"
+	@echo "... client_other_files"
 	@echo "... database_library_autogen"
 	@echo "... database_library_autogen_timestamp_deps"
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
+	@echo "... server_other_files"
 	@echo "... client"
 	@echo "... database_library"
 	@echo "... server"

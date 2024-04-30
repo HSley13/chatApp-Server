@@ -4,7 +4,11 @@
 	"CMAKE_CURRENT_BINARY_DIR" : "/Users/test/Documents/server---clients/build/src/server",
 	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/test/Documents/server---clients/src/server",
 	"CMAKE_EXECUTABLE" : "/opt/homebrew/Cellar/cmake/3.29.2/bin/cmake",
-	"CMAKE_LIST_FILES" : [ "/Users/test/Documents/server---clients/src/server/CMakeLists.txt" ],
+	"CMAKE_LIST_FILES" : 
+	[
+		"/Users/test/Documents/server---clients/src/server/CMakeLists.txt",
+		"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
+	],
 	"CMAKE_SOURCE_DIR" : "/Users/test/Documents/server---clients",
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "/Users/test/Documents/server---clients/build/src/server/server_autogen/deps",
@@ -101,7 +105,10 @@
 	],
 	"MOC_PREDEFS_FILE" : "/Users/test/Documents/server---clients/build/src/server/server_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : [],
+	"MOC_SKIP" : 
+	[
+		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp"
+	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
 	"PARSE_CACHE_FILE" : "/Users/test/Documents/server---clients/build/src/server/CMakeFiles/server_autogen.dir/ParseCache.txt",
@@ -145,7 +152,10 @@
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : [],
+	"UIC_SKIP" : 
+	[
+		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp"
+	],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : false,
 	"VERBOSITY" : 0

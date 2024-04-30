@@ -34,7 +34,8 @@
 					[
 						0,
 						1,
-						2
+						2,
+						3
 					]
 				},
 				{
@@ -49,9 +50,10 @@
 					"source" : "src/server",
 					"targetIndexes" : 
 					[
-						6,
 						7,
-						8
+						8,
+						9,
+						10
 					]
 				},
 				{
@@ -66,9 +68,9 @@
 					"source" : "src/database",
 					"targetIndexes" : 
 					[
-						3,
 						4,
-						5
+						5,
+						6
 					]
 				}
 			],
@@ -94,7 +96,9 @@
 						5,
 						6,
 						7,
-						8
+						8,
+						9,
+						10
 					]
 				}
 			],
@@ -103,7 +107,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "client::@9e041423fa8cb161f775",
-					"jsonFile" : "target-client-RelWithDebInfo-13bfb7895501ebc426e1.json",
+					"jsonFile" : "target-client-RelWithDebInfo-f5b558336c43b6b183f5.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
@@ -119,6 +123,13 @@
 					"id" : "client_autogen_timestamp_deps::@9e041423fa8cb161f775",
 					"jsonFile" : "target-client_autogen_timestamp_deps-RelWithDebInfo-0e4876e49e0401e5e522.json",
 					"name" : "client_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "client_other_files::@9e041423fa8cb161f775",
+					"jsonFile" : "target-client_other_files-RelWithDebInfo-4151b124dc4a535dff73.json",
+					"name" : "client_other_files",
 					"projectIndex" : 0
 				},
 				{
@@ -145,7 +156,7 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "server::@2804e40980a64c7d7ad1",
-					"jsonFile" : "target-server-RelWithDebInfo-7e538a418ee55b69375d.json",
+					"jsonFile" : "target-server-RelWithDebInfo-8ac4311b779fe7ae49c2.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
@@ -161,6 +172,13 @@
 					"id" : "server_autogen_timestamp_deps::@2804e40980a64c7d7ad1",
 					"jsonFile" : "target-server_autogen_timestamp_deps-RelWithDebInfo-981d2ec06b72d582e985.json",
 					"name" : "server_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "server_other_files::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server_other_files-RelWithDebInfo-122e7439003c3af2172e.json",
+					"name" : "server_other_files",
 					"projectIndex" : 0
 				}
 			]

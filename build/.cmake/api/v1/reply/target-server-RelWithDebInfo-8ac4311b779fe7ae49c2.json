@@ -17,7 +17,12 @@
 			"find_package",
 			"find_dependency",
 			"_qt_internal_find_third_party_dependencies",
-			"_qt_internal_find_qt_dependencies"
+			"_qt_internal_find_qt_dependencies",
+			"target_sources",
+			"__qt_propagate_generated_resource",
+			"_qt_internal_process_resource",
+			"qt6_add_resources",
+			"qt_add_resources"
 		],
 		"files" : 
 		[
@@ -35,7 +40,8 @@
 			"/opt/homebrew/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
 			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
-			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfig.cmake"
+			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
+			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreMacros.cmake"
 		],
 		"nodes" : 
 		[
@@ -213,6 +219,36 @@
 				"file" : 13,
 				"line" : 62,
 				"parent" : 32
+			},
+			{
+				"command" : 12,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 11,
+				"file" : 15,
+				"line" : 389,
+				"parent" : 34
+			},
+			{
+				"command" : 10,
+				"file" : 15,
+				"line" : 337,
+				"parent" : 35
+			},
+			{
+				"command" : 9,
+				"file" : 15,
+				"line" : 2390,
+				"parent" : 36
+			},
+			{
+				"command" : 8,
+				"file" : 15,
+				"line" : 2004,
+				"parent" : 37
 			}
 		]
 	},
@@ -335,22 +371,23 @@
 				3,
 				4,
 				5,
-				6
+				6,
+				7
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 2,
-			"id" : "database_library::@f1aa34bc7b1afc1810b8"
-		},
-		{
 			"id" : "server_autogen_timestamp_deps::@2804e40980a64c7d7ad1"
 		},
 		{
 			"backtrace" : 0,
 			"id" : "server_autogen::@2804e40980a64c7d7ad1"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "database_library::@f1aa34bc7b1afc1810b8"
 		}
 	],
 	"id" : "server::@2804e40980a64c7d7ad1",
@@ -480,7 +517,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				7
+				8
 			]
 		},
 		{
@@ -492,14 +529,16 @@
 				3,
 				4,
 				5,
-				6
+				6,
+				7
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				8
+				9,
+				10
 			]
 		}
 	],
@@ -549,10 +588,23 @@
 			"sourceGroupIndex" : 1
 		},
 		{
+			"backtrace" : 38,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/server/.rcc/qrc_images.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/src/server/server_autogen/timestamp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/server/.rcc/qrc_images.cpp.rule",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,

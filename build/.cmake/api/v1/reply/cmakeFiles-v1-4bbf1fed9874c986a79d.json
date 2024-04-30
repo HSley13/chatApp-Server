@@ -2125,12 +2125,20 @@
 			"path" : "src/clients/CMakeLists.txt"
 		},
 		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
+		},
+		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/MacOSXBundleInfo.plist.in"
 		},
 		{
 			"path" : "src/server/CMakeLists.txt"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
 		},
 		{
 			"isCMake" : true,

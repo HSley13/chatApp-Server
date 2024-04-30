@@ -1,7 +1,10 @@
 file(REMOVE_RECURSE
+  ".rcc/qrc_images.cpp"
   "CMakeFiles/client_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/client_autogen.dir/ParseCache.txt"
   "client_autogen"
+  "CMakeFiles/client.dir/.rcc/qrc_images.cpp.o"
+  "CMakeFiles/client.dir/.rcc/qrc_images.cpp.o.d"
   "CMakeFiles/client.dir/chat_line.cpp.o"
   "CMakeFiles/client.dir/chat_line.cpp.o.d"
   "CMakeFiles/client.dir/chat_protocol.cpp.o"

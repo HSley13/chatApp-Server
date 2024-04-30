@@ -1531,6 +1531,7 @@ client_autogen/timestamp: \
 	/opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h \
 	/opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/qwidgetaction.h \
 	/opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/qwizard.h \
+	/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in \
 	/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/build_config.h \
 	/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/callback.h \
 	/usr/local/mysql-connector-c++-8.2.0/include/jdbc/cppconn/config.h \
