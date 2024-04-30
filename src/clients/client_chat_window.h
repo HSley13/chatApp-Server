@@ -53,6 +53,12 @@ private:
 
     QString _window_name;
 
+    QPoint drag_start_position;
+    bool dragging;
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+
 signals:
     void clients_list(QString my_name, QMap<QString, QString> other_clients);
     void client_connected(QString client_name);
@@ -68,9 +74,10 @@ signals:
 
     void text_message_sent(QString client_name);
 
+    void swipe_right();
+
 private slots:
-    void
-    send_message();
+    void send_message();
     void send_message_client();
 
     void send_is_typing();

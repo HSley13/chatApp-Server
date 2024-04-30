@@ -53,12 +53,6 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     menu->addAction(connection);
     menu_bar->addMenu(menu);
 
-    _back_button = new QPushButton("←", this);
-    _back_button->setFixedSize(30, 30);
-    _back_button->setStyleSheet(" font-size: 20px; ");
-    connect(_back_button, &QPushButton::clicked, this, [=]()
-            { _stack->setCurrentIndex(0); });
-
     QLabel *my_name = new QLabel("My Name: ", this);
     _name = new QLineEdit(this);
     _name->setPlaceholderText("INSERT YOUR NAME THEN PRESS ENTER");
@@ -66,7 +60,6 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     connect(_name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
 
     QHBoxLayout *hbox = new QHBoxLayout();
-    hbox->addWidget(_back_button);
     hbox->addWidget(my_name);
     hbox->addWidget(_name);
 
@@ -98,6 +91,8 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
+    connect(wid, &client_chat_window::swipe_right, this, [=]()
+            { _stack->setCurrentIndex(0); });
 
     connect(wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });

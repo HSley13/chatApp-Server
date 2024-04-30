@@ -299,3 +299,25 @@ void client_chat_window::window_name(QString name)
 
     QFile::rename(dir.canonicalPath(), name);
 }
+
+void client_chat_window::mousePressEvent(QMouseEvent *event)
+{
+    drag_start_position = event->pos();
+    dragging = true;
+}
+
+void client_chat_window::mouseMoveEvent(QMouseEvent *event)
+{
+    if (dragging && (event->button() != Qt::LeftButton))
+    {
+        int delta_X = event->pos().x() - drag_start_position.x();
+
+        if (delta_X > 25)
+        {
+            emit swipe_right();
+            dragging = false;
+        }
+    }
+    else
+        dragging = false;
+}

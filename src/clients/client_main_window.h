@@ -42,8 +42,6 @@ private:
     static QStackedWidget *_stack;
     QListWidget *_list;
 
-    QPushButton *_back_button;
-
 private slots:
     void connected();
 
