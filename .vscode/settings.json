@@ -1,5 +1,18 @@
 {
-    "cSpell.words": [
-        "Hmmss"
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "local_database",
+            "database": "chatApplicationDatabase",
+            "username": "root",
+            "password": "sleyHortes1312"
+        }
     ]
 }

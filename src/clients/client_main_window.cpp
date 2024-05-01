@@ -92,7 +92,7 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(0); qDebug() << "swipe_right signal is received"; });
+            { _stack->setCurrentIndex(0); });
 
     connect(wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
