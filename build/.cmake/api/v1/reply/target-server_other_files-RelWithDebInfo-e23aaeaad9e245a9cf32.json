@@ -94,7 +94,7 @@
 		{
 			"backtrace" : 5,
 			"isGenerated" : true,
-			"path" : "build/src/server/.rcc/images.qrc",
+			"path" : "build/src/server/.rcc/resources.qrc",
 			"sourceGroupIndex" : 0
 		},
 		{

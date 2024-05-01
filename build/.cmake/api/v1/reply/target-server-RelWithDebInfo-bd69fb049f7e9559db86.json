@@ -591,7 +591,7 @@
 			"backtrace" : 38,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/src/server/.rcc/qrc_images.cpp",
+			"path" : "build/src/server/.rcc/qrc_resources.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -603,7 +603,7 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/src/server/.rcc/qrc_images.cpp.rule",
+			"path" : "build/src/server/.rcc/qrc_resources.cpp.rule",
 			"sourceGroupIndex" : 2
 		},
 		{

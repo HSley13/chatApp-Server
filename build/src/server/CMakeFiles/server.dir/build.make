@@ -69,11 +69,11 @@ include src/server/CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/server/CMakeFiles/server.dir/flags.make
 
-src/server/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/server/send_icon.png
-src/server/.rcc/qrc_images.cpp: src/server/.rcc/images.qrc
-src/server/.rcc/qrc_images.cpp: /opt/homebrew/share/qt/libexec/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource images"
-	cd /Users/test/Documents/server---clients/build/src/server && /opt/homebrew/share/qt/libexec/rcc --output /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp --name images /Users/test/Documents/server---clients/build/src/server/.rcc/images.qrc
+src/server/.rcc/qrc_resources.cpp: /Users/test/Documents/server---clients/src/server/send_icon.png
+src/server/.rcc/qrc_resources.cpp: src/server/.rcc/resources.qrc
+src/server/.rcc/qrc_resources.cpp: /opt/homebrew/share/qt/libexec/rcc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource resources"
+	cd /Users/test/Documents/server---clients/build/src/server && /opt/homebrew/share/qt/libexec/rcc --output /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_resources.cpp --name resources /Users/test/Documents/server---clients/build/src/server/.rcc/resources.qrc
 
 src/server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: src/server/CMakeFiles/server.dir/flags.make
 src/server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o: src/server/server_autogen/mocs_compilation.cpp
@@ -173,19 +173,19 @@ src/server/CMakeFiles/server.dir/chat_protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/chat_protocol.cpp.s"
 	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/src/server/chat_protocol.cpp -o CMakeFiles/server.dir/chat_protocol.cpp.s
 
-src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o: src/server/CMakeFiles/server.dir/flags.make
-src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o: src/server/.rcc/qrc_images.cpp
-src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o: src/server/CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o"
-	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o -MF CMakeFiles/server.dir/.rcc/qrc_images.cpp.o.d -o CMakeFiles/server.dir/.rcc/qrc_images.cpp.o -c /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp
+src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o: src/server/CMakeFiles/server.dir/flags.make
+src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o: src/server/.rcc/qrc_resources.cpp
+src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o: src/server/CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o"
+	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o -MF CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o.d -o CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o -c /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_resources.cpp
 
-src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/.rcc/qrc_images.cpp.i"
-	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp > CMakeFiles/server.dir/.rcc/qrc_images.cpp.i
+src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/.rcc/qrc_resources.cpp.i"
+	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_resources.cpp > CMakeFiles/server.dir/.rcc/qrc_resources.cpp.i
 
-src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/.rcc/qrc_images.cpp.s"
-	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp -o CMakeFiles/server.dir/.rcc/qrc_images.cpp.s
+src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/.rcc/qrc_resources.cpp.s"
+	cd /Users/test/Documents/server---clients/build/src/server && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_resources.cpp -o CMakeFiles/server.dir/.rcc/qrc_resources.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
@@ -196,7 +196,7 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/server_chat_window.cpp.o" \
 "CMakeFiles/server.dir/chat_line.cpp.o" \
 "CMakeFiles/server.dir/chat_protocol.cpp.o" \
-"CMakeFiles/server.dir/.rcc/qrc_images.cpp.o"
+"CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
@@ -208,7 +208,7 @@ src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/se
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/server_chat_window.cpp.o
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/chat_line.cpp.o
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/chat_protocol.cpp.o
-src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o
+src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/build.make
 src/server/server.app/Contents/MacOS/server: src/database/libdatabase_library.a
 src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
@@ -227,7 +227,7 @@ src/server/CMakeFiles/server.dir/clean:
 	cd /Users/test/Documents/server---clients/build/src/server && $(CMAKE_COMMAND) -P CMakeFiles/server.dir/cmake_clean.cmake
 .PHONY : src/server/CMakeFiles/server.dir/clean
 
-src/server/CMakeFiles/server.dir/depend: src/server/.rcc/qrc_images.cpp
+src/server/CMakeFiles/server.dir/depend: src/server/.rcc/qrc_resources.cpp
 	cd /Users/test/Documents/server---clients/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/test/Documents/server---clients /Users/test/Documents/server---clients/src/server /Users/test/Documents/server---clients/build /Users/test/Documents/server---clients/build/src/server /Users/test/Documents/server---clients/build/src/server/CMakeFiles/server.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : src/server/CMakeFiles/server.dir/depend
 

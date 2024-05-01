@@ -172,29 +172,29 @@ server_autogen/fast:
 	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_autogen.dir/build.make src/server/CMakeFiles/server_autogen.dir/build
 .PHONY : server_autogen/fast
 
-.rcc/qrc_images.o: .rcc/qrc_images.cpp.o
-.PHONY : .rcc/qrc_images.o
+.rcc/qrc_resources.o: .rcc/qrc_resources.cpp.o
+.PHONY : .rcc/qrc_resources.o
 
 # target to build an object file
-.rcc/qrc_images.cpp.o:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o
-.PHONY : .rcc/qrc_images.cpp.o
+.rcc/qrc_resources.cpp.o:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.o
+.PHONY : .rcc/qrc_resources.cpp.o
 
-.rcc/qrc_images.i: .rcc/qrc_images.cpp.i
-.PHONY : .rcc/qrc_images.i
+.rcc/qrc_resources.i: .rcc/qrc_resources.cpp.i
+.PHONY : .rcc/qrc_resources.i
 
 # target to preprocess a source file
-.rcc/qrc_images.cpp.i:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.i
-.PHONY : .rcc/qrc_images.cpp.i
+.rcc/qrc_resources.cpp.i:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.i
+.PHONY : .rcc/qrc_resources.cpp.i
 
-.rcc/qrc_images.s: .rcc/qrc_images.cpp.s
-.PHONY : .rcc/qrc_images.s
+.rcc/qrc_resources.s: .rcc/qrc_resources.cpp.s
+.PHONY : .rcc/qrc_resources.s
 
 # target to generate assembly for a file
-.rcc/qrc_images.cpp.s:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.s
-.PHONY : .rcc/qrc_images.cpp.s
+.rcc/qrc_resources.cpp.s:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/.rcc/qrc_resources.cpp.s
+.PHONY : .rcc/qrc_resources.cpp.s
 
 chat_line.o: chat_line.cpp.o
 .PHONY : chat_line.o
@@ -376,9 +376,9 @@ help:
 	@echo "... server_autogen_timestamp_deps"
 	@echo "... server_other_files"
 	@echo "... server"
-	@echo "... .rcc/qrc_images.o"
-	@echo "... .rcc/qrc_images.i"
-	@echo "... .rcc/qrc_images.s"
+	@echo "... .rcc/qrc_resources.o"
+	@echo "... .rcc/qrc_resources.i"
+	@echo "... .rcc/qrc_resources.s"
 	@echo "... chat_line.o"
 	@echo "... chat_line.i"
 	@echo "... chat_line.s"
