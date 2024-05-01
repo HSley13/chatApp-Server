@@ -53,8 +53,8 @@ private:
 
     QString _window_name;
 
-    QPoint drag_start_position;
-    bool dragging;
+    static QPoint drag_start_position;
+    static bool dragging;
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

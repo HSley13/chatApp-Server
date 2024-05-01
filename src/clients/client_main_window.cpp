@@ -92,7 +92,7 @@ void client_main_window::connected()
     connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(0); });
+            { _stack->setCurrentIndex(0); qDebug() << "swipe_right signal is received"; });
 
     connect(wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
@@ -143,6 +143,9 @@ void client_main_window::on_name_changed()
 void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
+    connect(wid, &client_chat_window::swipe_right, this, [=]()
+            { _stack->setCurrentIndex(0); });
+
     wid->window_name(client_name);
 
     _list->addItem(client_name);
@@ -161,6 +164,9 @@ void client_main_window::on_clients_list(QString my_name, QMap<QString, QString>
         if (client_name.compare(my_name))
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
+            connect(wid, &client_chat_window::swipe_right, this, [=]()
+                    { _stack->setCurrentIndex(0); });
+
             wid->window_name(client_name);
 
             _list->addItem(client_name);

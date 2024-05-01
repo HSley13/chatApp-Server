@@ -18,6 +18,9 @@ chat_protocol *client_chat_window::_protocol = nullptr;
 
 sql::Connection *client_chat_window::_db_connection = nullptr;
 
+QPoint client_chat_window::drag_start_position;
+bool client_chat_window::dragging = false;
+
 client_chat_window::client_chat_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent)
 {

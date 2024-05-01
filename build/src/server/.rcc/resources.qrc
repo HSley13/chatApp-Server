@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/resources">
-    <file alias="send_icon.png">/Users/test/Documents/server---clients/src/server/send_icon.png</file>
-  </qresource>
-</RCC>
-
