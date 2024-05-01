@@ -2,13 +2,11 @@
 
 #include "server_chat_window.h"
 #include "server_manager.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QListWidget>
-#include <QTabWidget>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QStatusBar>
+
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class server_main_window : public QMainWindow
 {
     Q_OBJECT
@@ -29,7 +27,7 @@ private:
     server_manager *_server;
 
     QStatusBar *_status_bar;
-    static QMap<QString, QWidget *> _window_map;
+    static QHash<QString, QWidget *> _window_map;
 
 private slots:
     void on_new_client_connected(QTcpSocket *client);

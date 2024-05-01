@@ -1,14 +1,7 @@
 #include "client_chat_window.h"
 #include "client_manager.h"
-#include <QAction>
-#include <QLabel>
 
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QApplication>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QStringList>
+#include <QPermission>
 
 QString client_chat_window::_my_name = nullptr;
 QString client_chat_window::_insert_name = nullptr;
@@ -219,9 +212,54 @@ void client_chat_window::set_up_window()
 
     _send_file_button = new QPushButton("...", this);
 
+    QPushButton *record = new QPushButton("RECORD", this);
+    connect(record, &QPushButton::clicked, this, [=]()
+            {
+    QMicrophonePermission microphonePermission;
+
+    switch (qApp->checkPermission(microphonePermission)) {
+        case Qt::PermissionStatus::Undetermined:
+            // Request permission asynchronously
+            qApp->requestPermission(microphonePermission, [this]()
+                                    {
+                // Permission granted, perform action here
+                qDebug() << "Microphone permission granted!";
+                std::cout << std::endl; std::cout << std::endl; });
+            break;
+        case Qt::PermissionStatus::Denied:
+            // Handle denied permission state appropriately
+            qApp->requestPermission(microphonePermission, [this]()
+                                    {
+                // Permission granted, perform action here
+                qDebug() << "Asking permission within the Denied case!";
+                std::cout << std::endl; std::cout << std::endl; });
+
+            qWarning("Microphone permission is not granted!");
+            std::cout << std::endl;
+            std::cout << std::endl;
+            // Display a message to the user or provide guidance
+            break;
+        case Qt::PermissionStatus::Granted:
+            // Permission already granted, perform action here
+            QMediaCaptureSession session;
+            QAudioInput audioInput;
+            audioInput.device();
+            session.setAudioInput(&audioInput);
+            QMediaRecorder recorder;
+            session.setRecorder(&recorder);
+            recorder.setQuality(QMediaRecorder::HighQuality);
+            recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
+            recorder.record();
+            qDebug() << "Recording started!";
+            std::cout << std::endl;
+            std::cout << std::endl;
+            break;
+    } });
+
     QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(_file, 7);
-    hbox_2->addWidget(_send_file_button, 3);
+    hbox_2->addWidget(_file, 6);
+    hbox_2->addWidget(_send_file_button, 2);
+    hbox_2->addWidget(record, 2);
 
     _list = new QListWidget(this);
 
@@ -256,7 +294,7 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::client_disconnected, this, [=](QString client_name)
                 { emit client_disconnected(client_name); });
 
-        connect(_client, &client_manager::clients_list, this, [=](QString my_name, QMap<QString, QString> other_clients)
+        connect(_client, &client_manager::clients_list, this, [=](QString my_name, QHash<QString, QString> other_clients)
                 { emit clients_list(my_name, other_clients); });
 
         connect(_client, &client_manager::client_name_changed, this, [=](QString old_name, QString client_name)

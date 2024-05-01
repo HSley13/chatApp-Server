@@ -3,15 +3,11 @@
 #include "chat_protocol.h"
 #include "server_manager.h"
 #include "chat_line.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QListWidget>
-#include <QLineEdit>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QStatusBar>
-#include <QDir>
+
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class server_chat_window : public QMainWindow
 {
     Q_OBJECT

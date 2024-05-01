@@ -917,7 +917,6 @@
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QByteArray \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QCryptographicHash \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
-  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QDir \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QEvent \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QFlags \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtCore.framework/Versions/A/Headers/QHash \
@@ -1323,6 +1322,42 @@
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtGui.framework/Versions/A/Headers/qwindow.h \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/QtMultimedia \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/QtMultimediaDepends \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiobuffer.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodecoder.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodevice.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudioformat.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudioinput.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosink.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosource.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qcamera.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qcameradevice.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qcapturablewindow.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qimagecapture.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediacapturesession.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediadevices.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediaenumdebug.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediaformat.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediametadata.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediarecorder.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qmediatimerange.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qscreencapture.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaversion.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qtvideo.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qvideoframe.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qvideoframeformat.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qvideosink.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qwavedecoder.h \
+  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtMultimedia.framework/Versions/A/Headers/qwindowcapture.h \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtNetwork.framework/Versions/A/Headers/QNetworkAccessManager \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtNetwork.framework/Versions/A/Headers/QNetworkRequest \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtNetwork.framework/Versions/A/Headers/QSslConfiguration \
@@ -1381,13 +1416,9 @@
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkversion.h \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtNetwork.framework/Versions/A/Headers/qudpsocket.h \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QCommonStyle \
-  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QLayout \
-  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
-  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
-  /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qt/6.7.0_1/lib/QtWidgets.framework/Versions/A/Headers/QWidget \

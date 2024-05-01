@@ -1,10 +1,4 @@
 #include "chat_protocol.h"
-#include <QTime>
-#include <QIODevice>
-#include <QDataStream>
-#include <QFileInfo>
-#include <QFile>
-#include <QStringList>
 
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent) {}
@@ -317,7 +311,7 @@ const QString &chat_protocol::my_name() const
     return _my_name;
 }
 
-const QMap<QString, QString> &chat_protocol::clients_name() const
+const QHash<QString, QString> &chat_protocol::clients_name() const
 {
     return _clients_name;
 }

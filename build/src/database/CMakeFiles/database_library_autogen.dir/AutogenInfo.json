@@ -25,6 +25,7 @@
 	[
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
+		"QT_MULTIMEDIA_LIB",
 		"QT_NETWORK_LIB",
 		"QT_NO_DEBUG",
 		"QT_WIDGETS_LIB"
@@ -49,6 +50,8 @@
 		"/opt/homebrew/lib/QtGui.framework",
 		"/opt/homebrew/lib/QtNetwork.framework/Headers",
 		"/opt/homebrew/lib/QtNetwork.framework",
+		"/opt/homebrew/lib/QtMultimedia.framework/Headers",
+		"/opt/homebrew/lib/QtMultimedia.framework",
 		"/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1",
 		"/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include",
 		"/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include",

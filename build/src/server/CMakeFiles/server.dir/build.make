@@ -212,8 +212,9 @@ src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/.r
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/build.make
 src/server/server.app/Contents/MacOS/server: src/database/libdatabase_library.a
 src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
-src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
+src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtMultimedia.framework/Versions/A/QtMultimedia
 src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
+src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
 src/server/server.app/Contents/MacOS/server: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 src/server/server.app/Contents/MacOS/server: src/server/CMakeFiles/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable server.app/Contents/MacOS/server"

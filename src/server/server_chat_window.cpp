@@ -1,11 +1,4 @@
 #include "server_chat_window.h"
-#include <QLabel>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QDesktopServices>
-#include <QApplication>
-#include <QFileDialog>
-#include <QStringList>
 
 server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     : QMainWindow(parent)

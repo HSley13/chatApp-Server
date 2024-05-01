@@ -1,10 +1,4 @@
 #include "chat_protocol.h"
-#include <QTime>
-#include <QIODevice>
-#include <QDataStream>
-#include <QFileInfo>
-#include <QFile>
-#include <QStringList>
 
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent) {}
@@ -147,7 +141,7 @@ QByteArray chat_protocol::set_new_client_message(QString client_name)
     return get_data(new_client, client_name);
 }
 
-QByteArray chat_protocol::set_clients_list_message(QString client_name, QMap<QString, QString> other_clients, int port)
+QByteArray chat_protocol::set_clients_list_message(QString client_name, QHash<QString, QString> other_clients, int port)
 {
     QByteArray byte;
 
@@ -290,7 +284,7 @@ const QString &chat_protocol::client_name() const
     return _client_name;
 }
 
-const QMap<QString, QString> &chat_protocol::other_clients() const
+const QHash<QString, QString> &chat_protocol::other_clients() const
 {
     return _other_clients;
 }

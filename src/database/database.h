@@ -13,6 +13,7 @@
 
 #include <QtWidgets>
 #include <QtCore>
+#include <QtMultimedia>
 
 class connection_details
 {

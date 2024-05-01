@@ -43,7 +43,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "clients_list",
     "",
     "my_name",
-    "QMap<QString,QString>",
+    "QHash<QString,QString>",
     "other_clients",
     "client_connected",
     "client_name",
@@ -155,7 +155,7 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         // method 'clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
         // method 'client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -219,7 +219,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<client_chat_window *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
+        case 0: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2]))); break;
         case 1: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 3: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -245,7 +245,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (client_chat_window::*)(QString , QMap<QString,QString> );
+            using _t = void (client_chat_window::*)(QString , QHash<QString,QString> );
             if (_t _q_method = &client_chat_window::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -348,7 +348,7 @@ int client_chat_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void client_chat_window::clients_list(QString _t1, QMap<QString,QString> _t2)
+void client_chat_window::clients_list(QString _t1, QHash<QString,QString> _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

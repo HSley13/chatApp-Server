@@ -1,11 +1,9 @@
 #pragma once
 
-#include <QMainWindow>
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QByteArray>
-#include <QList>
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class chat_protocol : public QMainWindow
 {
     Q_OBJECT
@@ -77,7 +75,7 @@ public:
 
     const QString &old_name() const;
     const QString &my_name() const;
-    const QMap<QString, QString> &clients_name() const;
+    const QHash<QString, QString> &clients_name() const;
 
 private:
     QByteArray get_data(message_type type, QString data);
@@ -104,5 +102,5 @@ private:
 
     QString _old_name;
     QString _my_name;
-    QMap<QString, QString> _clients_name;
+    QHash<QString, QString> _clients_name;
 };

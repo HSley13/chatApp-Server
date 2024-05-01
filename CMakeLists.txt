@@ -4,7 +4,7 @@ project(chat_application)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network Multimedia)
 qt_standard_project_setup()
 
 add_subdirectory(src/clients/)

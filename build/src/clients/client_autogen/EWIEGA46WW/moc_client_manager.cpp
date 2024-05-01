@@ -57,7 +57,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_managerENDCLASS = QtMocHelpers::st
     "client_name",
     "clients_list",
     "my_name",
-    "QMap<QString,QString>",
+    "QHash<QString,QString>",
     "other_clients",
     "client_name_changed",
     "old_name",
@@ -168,7 +168,7 @@ Q_CONSTINIT const QMetaObject client_manager::staticMetaObject = { {
         // method 'clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
         // method 'client_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -204,7 +204,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 5: _t->reject_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 6: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 8: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
+        case 8: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2]))); break;
         case 9: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 10: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 11: _t->socket_disconnected(); break;
@@ -273,7 +273,7 @@ void client_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            using _t = void (client_manager::*)(QString , QMap<QString,QString> );
+            using _t = void (client_manager::*)(QString , QHash<QString,QString> );
             if (_t _q_method = &client_manager::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 8;
                 return;
@@ -389,7 +389,7 @@ void client_manager::client_connected(QString _t1)
 }
 
 // SIGNAL 8
-void client_manager::clients_list(QString _t1, QMap<QString,QString> _t2)
+void client_manager::clients_list(QString _t1, QHash<QString,QString> _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);

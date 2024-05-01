@@ -23,11 +23,11 @@
 
     TO DO
     --- voice notes implementation
+    --- List sent File and Audio in the conversation
     --- client authentification
     --- friend request 
     --- finish the database's configuration
     --- store conversations in the database
-    --- 
     --- 
     --- 
     --- 

@@ -44,7 +44,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "",
     "on_clients_list",
     "my_name",
-    "QMap<QString,QString>",
+    "QHash<QString,QString>",
     "other_clients",
     "on_client_connected",
     "client_name",
@@ -114,7 +114,7 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         // method 'on_clients_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QMap<QString,QString>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
         // method 'on_client_connected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -145,7 +145,7 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         (void)_t;
         switch (_id) {
         case 0: _t->connected(); break;
-        case 1: _t->on_clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMap<QString,QString>>>(_a[2]))); break;
+        case 1: _t->on_clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2]))); break;
         case 2: _t->on_client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 4: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;

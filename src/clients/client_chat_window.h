@@ -3,14 +3,11 @@
 #include "client_manager.h"
 #include "chat_line.h"
 #include "chat_protocol.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QListWidget>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QDir>
+
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class client_chat_window : public QMainWindow
 {
     Q_OBJECT
@@ -60,7 +57,7 @@ private:
     void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
-    void clients_list(QString my_name, QMap<QString, QString> other_clients);
+    void clients_list(QString my_name, QHash<QString, QString> other_clients);
     void client_connected(QString client_name);
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);

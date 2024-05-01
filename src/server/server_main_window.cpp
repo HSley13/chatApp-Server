@@ -1,8 +1,6 @@
 #include "server_main_window.h"
-#include <QHBoxLayout>
-#include <QStringList>
 
-QMap<QString, QWidget *> server_main_window::_window_map = QMap<QString, QWidget *>();
+QHash<QString, QWidget *> server_main_window::_window_map = QHash<QString, QWidget *>();
 
 server_main_window::server_main_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
@@ -43,7 +41,7 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
 server_main_window::~server_main_window()
 {
     delete _server;
-    _window_map = QMap<QString, QWidget *>();
+    _window_map = QHash<QString, QWidget *>();
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/

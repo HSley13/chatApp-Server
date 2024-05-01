@@ -1,9 +1,5 @@
 #include "client_main_window.h"
-#include <QAction>
-#include <QLabel>
 
-#include <QStyledItemDelegate>
-#include <QPainter>
 class separator_delegate : public QStyledItemDelegate
 {
 private:
@@ -26,8 +22,8 @@ public:
     }
 };
 
-QMap<QString, QWidget *> client_main_window::_window_map = QMap<QString, QWidget *>();
-QMap<QString, QString> client_main_window::_name_list = QMap<QString, QString>();
+QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
+QHash<QString, QString> client_main_window::_name_list = QHash<QString, QString>();
 
 QStackedWidget *client_main_window::_stack = nullptr;
 
@@ -157,7 +153,7 @@ void client_main_window::on_client_connected(QString client_name)
     _window_map.insert(client_name, wid);
 }
 
-void client_main_window::on_clients_list(QString my_name, QMap<QString, QString> other_clients)
+void client_main_window::on_clients_list(QString my_name, QHash<QString, QString> other_clients)
 {
     for (QString client_name : other_clients.values())
     {

@@ -1,13 +1,9 @@
 #include "server_manager.h"
-#include <QDir>
-#include <QDateTime>
-#include <QStringList>
-#include <QMessageBox>
 
 std::vector<int> server_manager::_ports = std::vector<int>();
 
-QMap<QString, QTcpSocket *> server_manager::_clients = QMap<QString, QTcpSocket *>();
-QMap<QString, QString> server_manager::_names = QMap<QString, QString>();
+QHash<QString, QTcpSocket *> server_manager::_clients = QHash<QString, QTcpSocket *>();
+QHash<QString, QString> server_manager::_names = QHash<QString, QString>();
 
 sql::Connection *server_manager::_db_connection = nullptr;
 

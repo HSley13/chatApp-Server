@@ -1,7 +1,4 @@
 #include "client_manager.h"
-#include <QFileDialog>
-#include <QFile>
-#include <QStringList>
 
 QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;

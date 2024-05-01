@@ -1,10 +1,9 @@
 #pragma once
 
-#include <QMainWindow>
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QByteArray>
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class chat_protocol : public QMainWindow
 {
     Q_OBJECT
@@ -54,7 +53,7 @@ public:
     QByteArray set_file_message_client(int port);
 
     QByteArray set_new_client_message(QString client_name);
-    QByteArray set_clients_list_message(QString client_name, QMap<QString, QString> other_clients, int port);
+    QByteArray set_clients_list_message(QString client_name, QHash<QString, QString> other_clients, int port);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
@@ -73,7 +72,7 @@ public:
     const QByteArray &file_data() const;
 
     const QString &client_name() const;
-    const QMap<QString, QString> &other_clients() const;
+    const QHash<QString, QString> &other_clients() const;
 
     const QString &receiver() const;
     const QString &sender() const;
@@ -105,5 +104,5 @@ private:
     QString _receiver_typing;
     QString _sender_typing;
     QString _original_name;
-    QMap<QString, QString> _other_clients;
+    QHash<QString, QString> _other_clients;
 };

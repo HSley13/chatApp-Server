@@ -2,9 +2,11 @@
 
 #include "chat_protocol.h"
 #include "database.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QtNetwork>
+
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
+
 class client_manager : public QMainWindow
 {
     Q_OBJECT
@@ -57,7 +59,7 @@ signals:
     void file_saved(QString path);
 
     void client_connected(QString client_name);
-    void clients_list(QString my_name, QMap<QString, QString> other_clients);
+    void clients_list(QString my_name, QHash<QString, QString> other_clients);
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
 

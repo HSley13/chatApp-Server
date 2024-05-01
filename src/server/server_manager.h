@@ -2,15 +2,14 @@
 
 #include "chat_protocol.h"
 #include "database.h"
-#include <QMainWindow>
-#include <QWidget>
-#include <QtNetwork>
-#include <QList>
-#include <QMap>
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
 
 #include <iostream>
 #include <vector>
 #include <mutex>
+
 class server_manager : public QMainWindow
 {
     Q_OBJECT
@@ -45,8 +44,8 @@ public:
 
     QString name() const;
 
-    static QMap<QString, QTcpSocket *> _clients;
-    static QMap<QString, QString> _names;
+    static QHash<QString, QTcpSocket *> _clients;
+    static QHash<QString, QString> _names;
 
     static void range(int start, int end);
 
