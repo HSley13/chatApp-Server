@@ -8,12 +8,13 @@
 			"_qt_internal_expose_source_file_to_ide",
 			"_qt_internal_process_resource",
 			"qt6_add_resources",
-			"qt_add_resources"
+			"qt_add_resources",
+			"set_property"
 		],
 		"files" : 
 		[
 			"/opt/homebrew/lib/cmake/Qt6Core/Qt6CoreMacros.cmake",
-			"src/server/CMakeLists.txt"
+			"src/clients/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -49,15 +50,27 @@
 				"file" : 0,
 				"line" : 2050,
 				"parent" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2269,
+				"parent" : 3
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 2060,
+				"parent" : 6
 			}
 		]
 	},
-	"id" : "server_other_files::@2804e40980a64c7d7ad1",
-	"name" : "server_other_files",
+	"id" : "client_other_files::@9e041423fa8cb161f775",
+	"name" : "client_other_files",
 	"paths" : 
 	{
-		"build" : "src/server",
-		"source" : "src/server"
+		"build" : "src/clients",
+		"source" : "src/clients"
 	},
 	"sourceGroups" : 
 	[
@@ -67,6 +80,13 @@
 			[
 				0
 			]
+		},
+		{
+			"name" : "Resources",
+			"sourceIndexes" : 
+			[
+				1
+			]
 		}
 	],
 	"sources" : 
@@ -74,8 +94,13 @@
 		{
 			"backtrace" : 5,
 			"isGenerated" : true,
-			"path" : "build/src/server/.rcc/images.qrc",
+			"path" : "build/src/clients/.rcc/images.qrc",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"path" : "src/clients/send_icon.png",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "UTILITY"
