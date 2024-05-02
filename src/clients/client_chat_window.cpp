@@ -198,11 +198,14 @@ void client_chat_window::set_up_window()
     _insert_message->setPlaceholderText("Insert New Message");
 
     QPixmap image(":/images/send_icon.png");
+    if (!image)
+        qDebug() << "Image is NULL";
+
     _send_button = new QPushButton(this);
     _send_button->setIcon(image);
     _send_button->setIconSize(QSize(30, 30));
     _send_button->setFixedSize(30, 30);
-    _send_button->setStyleSheet("border: none;");
+    _send_button->setStyleSheet("border: none");
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();
     hbox_1->addWidget(_insert_message, 7);
@@ -217,40 +220,38 @@ void client_chat_window::set_up_window()
             {
     QMicrophonePermission microphonePermission;
 
-    switch (qApp->checkPermission(microphonePermission)) {
+    switch (qApp->checkPermission(microphonePermission)) 
+    {
         case Qt::PermissionStatus::Undetermined:
-            // Request permission asynchronously
-            qApp->requestPermission(microphonePermission, [this]()
-                                    {
-                // Permission granted, perform action here
-                qDebug() << "Microphone permission granted!";
-                std::cout << std::endl; std::cout << std::endl; });
-            break;
-        case Qt::PermissionStatus::Denied:
-            // Handle denied permission state appropriately
-            qApp->requestPermission(microphonePermission, [this]()
-                                    {
-                // Permission granted, perform action here
-                qDebug() << "Asking permission within the Denied case!";
-                std::cout << std::endl; std::cout << std::endl; });
+            qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Undetermined: Microphone permission granted!";});
 
-            qWarning("Microphone permission is not granted!");
             std::cout << std::endl;
             std::cout << std::endl;
-            // Display a message to the user or provide guidance
             break;
+
+        case Qt::PermissionStatus::Denied:
+            qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Asking permission within the Denied case";});
+
+            qWarning("Denied: Microphone permission is not granted!");
+            std::cout << std::endl;
+            std::cout << std::endl;
+            break;
+
         case Qt::PermissionStatus::Granted:
             // Permission already granted, perform action here
             QMediaCaptureSession session;
+
             QAudioInput audioInput;
-            audioInput.device();
             session.setAudioInput(&audioInput);
+
             QMediaRecorder recorder;
             session.setRecorder(&recorder);
+            
             recorder.setQuality(QMediaRecorder::HighQuality);
             recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
             recorder.record();
             qDebug() << "Recording started!";
+
             std::cout << std::endl;
             std::cout << std::endl;
             break;

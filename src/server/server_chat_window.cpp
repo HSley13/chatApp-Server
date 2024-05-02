@@ -16,11 +16,14 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     connect(_insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
     QPixmap image(":/images/send_icon.png");
+    if (!image)
+        qDebug() << "Image is NULL";
+
     _send_button = new QPushButton(this);
     _send_button->setIcon(image);
     _send_button->setIconSize(QSize(30, 30));
     _send_button->setFixedSize(30, 30);
-    _send_button->setStyleSheet("border: none;");
+    _send_button->setStyleSheet("border: none");
     connect(_send_button, &QPushButton::clicked, this, &server_chat_window::send_message);
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();

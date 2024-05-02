@@ -1,5 +1,0 @@
-CREATE TABLE 
-clients(
-    account_number INT AUTO_INCREMENT PRIMARY KEY
-    
-    )AUTO_INCREMENT = 100000000;

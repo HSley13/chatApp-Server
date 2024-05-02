@@ -155,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "CXX compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/clang++"
 		},
 		{
@@ -251,10 +251,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/clang"
 		},
 		{
@@ -1910,6 +1910,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_big_codecs",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: big_codecs (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_brotli",
 			"properties" : 
 			[
@@ -2028,6 +2040,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_codecs",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: codecs (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
 		},
 		{
 			"name" : "QT_FEATURE_colordialog",
@@ -3336,6 +3360,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_iconv",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: iconv (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
 		},
 		{
 			"name" : "QT_FEATURE_icu",
@@ -5726,6 +5762,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_textcodec",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: textcodec (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_textdate",
 			"properties" : 
 			[
@@ -6504,6 +6552,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
+		},
+		{
+			"name" : "Qt6Core5Compat_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6Core5Compat."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/opt/homebrew/lib/cmake/Qt6Core5Compat"
 		},
 		{
 			"name" : "Qt6CoreTools_DIR",

@@ -26,8 +26,8 @@ CMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=/usr/bin/clang++
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -44,8 +44,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:STRING=/usr/bin/clang
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/clang
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -281,6 +281,9 @@ QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
 
 //Additional directories where find(Qt6 ...) components are searched
 QT_ADDITIONAL_PACKAGES_PREFIX_PATH:STRING=
+
+//The directory containing a CMake configuration file for Qt6Core5Compat.
+Qt6Core5Compat_DIR:PATH=/opt/homebrew/lib/cmake/Qt6Core5Compat
 
 //The directory containing a CMake configuration file for Qt6CoreTools.
 Qt6CoreTools_DIR:PATH=/opt/homebrew/lib/cmake/Qt6CoreTools
@@ -591,6 +594,8 @@ QT_FEATURE_avx512vbmi2:INTERNAL=OFF
 QT_FEATURE_avx512vl:INTERNAL=OFF
 //Qt feature: backtrace (from target Qt6::Core)
 QT_FEATURE_backtrace:INTERNAL=ON
+//Qt feature: big_codecs (from target Qt6::Core5Compat)
+QT_FEATURE_big_codecs:INTERNAL=ON
 //Qt feature: brotli (from target Qt6::Network)
 QT_FEATURE_brotli:INTERNAL=ON
 //Qt feature: buttongroup (from target Qt6::Widgets)
@@ -611,6 +616,8 @@ QT_FEATURE_clock_gettime:INTERNAL=ON
 QT_FEATURE_clock_monotonic:INTERNAL=OFF
 //Qt feature: close_range (from target Qt6::Core)
 QT_FEATURE_close_range:INTERNAL=OFF
+//Qt feature: codecs (from target Qt6::Core5Compat)
+QT_FEATURE_codecs:INTERNAL=ON
 //Qt feature: colordialog (from target Qt6::Widgets)
 QT_FEATURE_colordialog:INTERNAL=ON
 //Qt feature: colornames (from target Qt6::Gui)
@@ -829,6 +836,8 @@ QT_FEATURE_hijricalendar:INTERNAL=ON
 QT_FEATURE_http:INTERNAL=ON
 //Qt feature: ico (from target Qt6::Gui)
 QT_FEATURE_ico:INTERNAL=ON
+//Qt feature: iconv (from target Qt6::Core5Compat)
+QT_FEATURE_iconv:INTERNAL=OFF
 //Qt feature: icu (from target Qt6::Core)
 QT_FEATURE_icu:INTERNAL=ON
 //Qt feature: identityproxymodel (from target Qt6::Core)
@@ -1227,6 +1236,8 @@ QT_FEATURE_temporaryfile:INTERNAL=ON
 QT_FEATURE_testlib:INTERNAL=ON
 //Qt feature: textbrowser (from target Qt6::Widgets)
 QT_FEATURE_textbrowser:INTERNAL=ON
+//Qt feature: textcodec (from target Qt6::Core5Compat)
+QT_FEATURE_textcodec:INTERNAL=ON
 //Qt feature: textdate (from target Qt6::Core)
 QT_FEATURE_textdate:INTERNAL=ON
 //Qt feature: textedit (from target Qt6::Widgets)
