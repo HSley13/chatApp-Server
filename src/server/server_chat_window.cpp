@@ -136,6 +136,9 @@ void server_chat_window::send_file()
     {
         _client->send_init_sending_file(file_name);
 
+        connect(_client, &server_manager::file_accepted, this, [=]()
+                { add_file(QFileInfo(file_name).absoluteFilePath()); });
+
         file_name.clear();
     }
 }

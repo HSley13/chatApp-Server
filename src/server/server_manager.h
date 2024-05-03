@@ -82,6 +82,7 @@ signals:
     void file_saved(QString path);
 
     void reject_receiving_file(QString sender);
+    void file_accepted();
 
 private slots:
     void on_new_connection();

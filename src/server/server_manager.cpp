@@ -225,6 +225,8 @@ void server_manager::send_reject_file()
 
 void server_manager::send_file()
 {
+    emit file_accepted();
+
     _socket->write(_protocol->set_file_message(_file_name));
 }
 
