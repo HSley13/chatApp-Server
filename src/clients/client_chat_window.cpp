@@ -1,8 +1,6 @@
 #include "client_chat_window.h"
 #include "client_manager.h"
 
-#include <QPermission>
-
 QString client_chat_window::_my_name = nullptr;
 QString client_chat_window::_insert_name = nullptr;
 
@@ -22,13 +20,9 @@ client_chat_window::client_chat_window(sql::Connection *db_connection, QWidget *
     if (!_db_connection)
         _db_connection = db_connection;
 
-    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
-
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
-    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
-
-    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder);
+    connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
 }
 
 client_chat_window::client_chat_window(QString destinator, QWidget *parent)
@@ -36,13 +30,9 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 {
     set_up_window();
 
-    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message_client);
-
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
-    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing_client);
-
-    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder_client);
+    connect(_client, &client_manager::file_client_saved, this, &client_chat_window::on_file_saved);
 
     dir.mkdir(_destinator);
     dir.setPath("./" + _destinator);
@@ -54,10 +44,8 @@ void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_s
     QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), "Server").arg(file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-    if (result == QMessageBox::Yes)
-        _client->send_accept_file();
-    else
-        _client->send_reject_file();
+
+    (result == QMessageBox::Yes) ? _client->send_accept_file() : _client->send_reject_file();
 }
 
 void client_chat_window::on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size)
@@ -65,10 +53,8 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
     QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), sender).arg(file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-    if (result == QMessageBox::Yes)
-        _client->send_accept_file_client(sender);
-    else
-        _client->send_reject_file_client(my_name(), sender);
+
+    (result == QMessageBox::Yes) ? _client->send_accept_file_client(sender) : _client->send_reject_file_client(my_name(), sender);
 }
 
 void client_chat_window::on_update_label()
@@ -78,44 +64,28 @@ void client_chat_window::on_update_label()
     _file->setText(QString("Open %1 Directory").arg(_window_name));
 }
 
+void client_chat_window::on_file_saved(QString path)
+{
+    QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path));
+
+    add_file(path, false);
+}
+
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 void client_chat_window::send_message()
 {
     QString message = _insert_message->text();
 
-    _client->send_text(my_name(), "Server", message);
+    _client->send_text(my_name(), _destinator, message);
 
     chat_line *wid = new chat_line(this);
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
-    line->setSizeHint(QSize(0, 65));
+    QListWidgetItem *line = new QListWidgetItem(_list);
+    line->setSizeHint(QSize(0, 60));
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
 
-    _list->addItem(line);
-    _list->setItemWidget(line, wid);
-
-    _insert_message->clear();
-
-    emit text_message_sent("Server");
-}
-
-void client_chat_window::send_message_client()
-{
-    QString message = _insert_message->text();
-
-    _client->send_text(my_name(), destinator(), message);
-
-    chat_line *wid = new chat_line(this);
-    wid->set_message(message, true);
-    wid->setStyleSheet("color: black;");
-
-    QListWidgetItem *line = new QListWidgetItem();
-    line->setSizeHint(QSize(0, 65));
-    line->setBackground(QBrush(QColorConstants::Svg::lightblue));
-
-    _list->addItem(line);
     _list->setItemWidget(line, wid);
 
     _insert_message->clear();
@@ -131,7 +101,7 @@ void client_chat_window::message_received(QString message)
 
     QListWidgetItem *line = new QListWidgetItem();
     line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-    line->setSizeHint(QSize(0, 65));
+    line->setSizeHint(QSize(0, 60));
 
     _list->addItem(line);
     _list->setItemWidget(line, wid);
@@ -139,12 +109,7 @@ void client_chat_window::message_received(QString message)
 
 void client_chat_window::send_is_typing()
 {
-    _client->send_is_typing(my_name(), "Server");
-}
-
-void client_chat_window::send_is_typing_client()
-{
-    _client->send_is_typing(my_name(), destinator());
+    _client->send_is_typing(my_name(), _destinator);
 }
 
 void client_chat_window::send_file()
@@ -153,6 +118,9 @@ void client_chat_window::send_file()
     if (!file_name.isEmpty())
     {
         _client->send_init_sending_file(file_name);
+
+        connect(_client, &client_manager::file_accepted, this, [=]()
+                { add_file(QFileInfo(file_name).absoluteFilePath()); });
 
         file_name.clear();
     }
@@ -163,23 +131,16 @@ void client_chat_window::send_file_client()
     QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
     if (!file_name.isEmpty())
     {
-        _client->send_init_sending_file_client(my_name(), destinator(), file_name);
+        _client->send_init_sending_file_client(my_name(), _destinator, file_name);
+
+        connect(_client, &client_manager::file_accepted_client, this, [=]()
+                { add_file(QFileInfo(file_name).absoluteFilePath()); });
 
         file_name.clear();
     }
 }
 
 void client_chat_window::folder()
-{
-    QString executable_directory = QApplication::applicationDirPath();
-    QString full_client_directory = QDir(executable_directory).filePath("Server");
-
-    QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
-    if (!selected_file_path.isEmpty())
-        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
-}
-
-void client_chat_window::folder_client()
 {
     QString executable_directory = QApplication::applicationDirPath();
     QString full_client_directory = QDir(executable_directory).filePath(_window_name);
@@ -196,6 +157,7 @@ void client_chat_window::set_up_window()
 
     _insert_message = new QLineEdit(this);
     _insert_message->setPlaceholderText("Insert New Message");
+    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
 
     QPixmap image(":/images/send_icon.png");
     if (!image)
@@ -206,12 +168,14 @@ void client_chat_window::set_up_window()
     _send_button->setIconSize(QSize(30, 30));
     _send_button->setFixedSize(30, 30);
     _send_button->setStyleSheet("border: none");
+    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();
     hbox_1->addWidget(_insert_message, 7);
     hbox_1->addWidget(_send_button, 3);
 
     _file = new QPushButton(QString("Open Server Directory"), this);
+    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder);
 
     _send_file_button = new QPushButton("...", this);
 
@@ -219,31 +183,31 @@ void client_chat_window::set_up_window()
     connect(record, &QPushButton::clicked, this, [=]()
             {
     QMicrophonePermission microphonePermission;
-
+    
     switch (qApp->checkPermission(microphonePermission)) 
     {
         case Qt::PermissionStatus::Undetermined:
             qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Undetermined: Microphone permission granted!";});
-
+    
             std::cout << std::endl;
             std::cout << std::endl;
             break;
-
+    
         case Qt::PermissionStatus::Denied:
             qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Asking permission within the Denied case";});
-
+    
             qWarning("Denied: Microphone permission is not granted!");
             std::cout << std::endl;
             std::cout << std::endl;
             break;
-
+    
         case Qt::PermissionStatus::Granted:
             // Permission already granted, perform action here
             QMediaCaptureSession session;
-
+    
             QAudioInput audioInput;
             session.setAudioInput(&audioInput);
-
+    
             QMediaRecorder recorder;
             session.setRecorder(&recorder);
             
@@ -251,7 +215,7 @@ void client_chat_window::set_up_window()
             recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
             recorder.record();
             qDebug() << "Recording started!";
-
+    
             std::cout << std::endl;
             std::cout << std::endl;
             break;
@@ -307,9 +271,6 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);
 
-        connect(_client, &client_manager::file_saved, this, [=](QString path)
-                { QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path)); });
-
         _protocol = new chat_protocol(this);
     }
 }
@@ -319,11 +280,6 @@ QString client_chat_window::my_name()
     QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
 
     return name;
-}
-
-const QString &client_chat_window::destinator() const
-{
-    return _destinator;
 }
 
 void client_chat_window::set_name(QString insert_name)
@@ -362,4 +318,26 @@ void client_chat_window::mouseMoveEvent(QMouseEvent *event)
     }
     else
         dragging = false;
+}
+
+void client_chat_window::add_file(QString path, bool is_mine)
+{
+    QPixmap image(":/images/file_icon.webp");
+    if (!image)
+        qDebug() << "File Image is NULL";
+
+    QPushButton *file = new QPushButton(_protocol->file_name(), this);
+    file->setIcon(image);
+    file->setIconSize(QSize(60, 60));
+    file->setFixedSize(QSize(60, 60));
+    file->setStyleSheet("border: none");
+    file->connect(file, &QPushButton::clicked, this, [=]()
+                  { QDesktopServices::openUrl(QUrl::fromLocalFile(path)); });
+
+    QListWidgetItem *item = new QListWidgetItem(_list);
+    item->setSizeHint(QSize(0, 60));
+
+    (is_mine) ? item->setBackground(QBrush(QColorConstants::Svg::lightblue)) : item->setBackground(QBrush(QColorConstants::Svg::lightgray));
+
+    _list->setItemWidget(item, file);
 }

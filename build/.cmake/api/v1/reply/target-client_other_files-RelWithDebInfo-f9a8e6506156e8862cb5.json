@@ -24,7 +24,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 12,
+				"line" : 11,
 				"parent" : 0
 			},
 			{
@@ -62,6 +62,18 @@
 				"file" : 0,
 				"line" : 2060,
 				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2269,
+				"parent" : 3
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 2060,
+				"parent" : 8
 			}
 		]
 	},
@@ -78,7 +90,8 @@
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				2
 			]
 		},
 		{
@@ -101,6 +114,11 @@
 			"backtrace" : 7,
 			"path" : "src/clients/send_icon.png",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 9,
+			"path" : "src/clients/file_icon.webp",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "UTILITY"

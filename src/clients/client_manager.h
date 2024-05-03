@@ -57,6 +57,7 @@ signals:
     void reject_receiving_file_client(QString sender);
 
     void file_saved(QString path);
+    void file_client_saved(QString path);
 
     void client_connected(QString client_name);
     void clients_list(QString my_name, QHash<QString, QString> other_clients);
@@ -64,6 +65,9 @@ signals:
     void client_disconnected(QString client_name);
 
     void socket_disconnected();
+
+    void file_accepted();
+    void file_accepted_client();
 
 private slots:
     void on_disconnected();

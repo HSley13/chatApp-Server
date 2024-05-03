@@ -76,6 +76,8 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
     QList<QListWidgetItem *> items = _name_list->findItems(client_name, Qt::MatchExactly);
     if (!items.isEmpty())
         delete items.first();
+    else
+        qDebug() << "server_main_window ---> on_new_client_disconnected() ---> Couldn't find client to delete in the _list: " << client_name;
 }
 
 void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)

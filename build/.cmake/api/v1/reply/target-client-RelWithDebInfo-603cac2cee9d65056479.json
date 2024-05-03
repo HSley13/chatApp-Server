@@ -57,7 +57,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
@@ -223,7 +223,7 @@
 			{
 				"command" : 12,
 				"file" : 0,
-				"line" : 12,
+				"line" : 11,
 				"parent" : 0
 			},
 			{
@@ -258,7 +258,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk"
+					"fragment" : "-O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk"
 				}
 			],
 			"defines" : 
@@ -397,11 +397,11 @@
 			"id" : "database_library::@f1aa34bc7b1afc1810b8"
 		},
 		{
-			"id" : "client_autogen_timestamp_deps::@9e041423fa8cb161f775"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "client_autogen::@9e041423fa8cb161f775"
+		},
+		{
+			"id" : "client_autogen_timestamp_deps::@9e041423fa8cb161f775"
 		}
 	],
 	"id" : "client::@9e041423fa8cb161f775",

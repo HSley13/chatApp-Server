@@ -6,7 +6,6 @@
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
-#include <QtGui>
 
 class client_main_window : public QMainWindow
 {

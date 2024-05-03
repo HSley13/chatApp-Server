@@ -6,12 +6,13 @@ add_executable(client
                     chat_protocol.cpp
                     chat_line.cpp
                 )
-
 target_link_libraries(client PRIVATE database_library)
 
 qt_add_resources(client "images"
                     PREFIX "/images"
-                    FILES send_icon.png
+                    FILES send_icon.png file_icon.webp
                 )
-                
+
+set(MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+
 set_target_properties(client PROPERTIES MACOSX_BUNDLE ON)

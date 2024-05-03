@@ -33,7 +33,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     QWidget *central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
-    resize(400, 500);
+    setFixedSize(400, 500);
 
     _status_bar = new QStatusBar(this);
     setStatusBar(_status_bar);
@@ -198,20 +198,17 @@ void client_main_window::on_text_message_received(QString sender, QString messag
     if (win)
     {
         client_chat_window *wid = qobject_cast<client_chat_window *>(win);
-
         if (wid)
         {
             wid->message_received(message);
             add_on_top(sender);
         }
-
         else
-            qDebug() << "client_main_window ---> on_text_message_received --> ERROR CASTING THE WIDGET:";
+            qDebug() << "client_main_window ---> on_text_message_received() --> ERROR CASTING THE WIDGET:";
     }
     else
     {
         client_chat_window *wid = new client_chat_window(_name_list.key(sender), this);
-
         if (wid)
         {
             wid->message_received(message);
@@ -224,6 +221,8 @@ void client_main_window::on_text_message_received(QString sender, QString messag
 
             _window_map.insert(sender, wid);
         }
+        else
+            qDebug() << "client_main_window ---> on_text_message_received() --> Couldn't Create a new Conversation for the client :" << sender;
     }
 }
 
@@ -242,6 +241,8 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 
             item_to_change->setText(client_name);
         }
+        else
+            qDebug() << "client_main_window ---> on_client_name_changed() ---> Client Name not Found in the _list: " << old_name;
 
         _window_map.remove(old_name);
         _window_map.insert(client_name, win);
@@ -249,12 +250,14 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         client_chat_window *wind = qobject_cast<client_chat_window *>(win);
         if (wind)
             wind->window_name(client_name);
+        else
+            qDebug() << "client_main_window ---> on_client_name_changed() ---> ERROR CASTING THE WIDGET:";
 
         _name_list.remove(old_name);
         _name_list.insert(old_name, client_name);
     }
     else
-        qDebug() << "client_name to change not FOUND";
+        qDebug() << "client_main_window ---> on_client_name_changed() ---> client_name to change not FOUND in the window_map:" << old_name;
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/

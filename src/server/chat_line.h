@@ -1,9 +1,8 @@
 #pragma once
 
-#include <QMainWindow>
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QLabel>
+#include <QtWidgets>
+#include <QtCore>
+#include <QtMultimedia>
 
 class chat_line : public QMainWindow
 {

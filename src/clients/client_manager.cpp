@@ -184,11 +184,15 @@ void client_manager::send_reject_file_client(QString sender, QString receiver)
 
 void client_manager::send_file()
 {
+    emit file_accepted();
+
     _socket->write(_protocol->set_file_message(_file_name));
 }
 
 void client_manager::send_file_client(int port_transfer)
 {
+    emit file_accepted_client();
+
     QTcpSocket *temp = new QTcpSocket(this);
     temp->connectToHost(QHostAddress::LocalHost, port_transfer);
 
@@ -210,6 +214,8 @@ void client_manager::save_file()
 
         emit file_saved(path);
     }
+    else
+        qDebug() << "client_manager ---> save_file() ---> Couldn't open the file to write to it";
 }
 
 void client_manager::save_file_client(QString sender)
@@ -225,6 +231,8 @@ void client_manager::save_file_client(QString sender)
         file.write(_protocol->file_data_client());
         file.close();
 
-        emit file_saved(path);
+        emit file_client_saved(path);
     }
+    else
+        qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";
 }

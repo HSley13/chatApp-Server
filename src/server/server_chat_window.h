@@ -16,6 +16,8 @@ public:
 
     void disconnect_from_host();
 
+    void add_file(QString path, bool is_mine = true);
+
 private:
     QListWidget *_list;
 

@@ -59,18 +59,17 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "text_message_sent",
     "swipe_right",
     "send_message",
-    "send_message_client",
     "send_is_typing",
-    "send_is_typing_client",
     "send_file",
     "send_file_client",
     "folder",
-    "folder_client",
     "on_init_receiving_file",
     "file_name",
     "file_size",
     "on_init_receiving_file_client",
-    "on_update_label"
+    "on_update_label",
+    "on_file_saved",
+    "path"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -83,7 +82,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -91,29 +90,27 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
       10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,  140,    2, 0x06,    1 /* Public */,
-       6,    1,  145,    2, 0x06,    4 /* Public */,
-       8,    2,  148,    2, 0x06,    6 /* Public */,
-      10,    1,  153,    2, 0x06,    9 /* Public */,
-      11,    2,  156,    2, 0x06,   11 /* Public */,
-      14,    1,  161,    2, 0x06,   14 /* Public */,
-      15,    0,  164,    2, 0x06,   16 /* Public */,
-      16,    0,  165,    2, 0x06,   17 /* Public */,
-      17,    1,  166,    2, 0x06,   18 /* Public */,
-      18,    0,  169,    2, 0x06,   20 /* Public */,
+       1,    2,  128,    2, 0x06,    1 /* Public */,
+       6,    1,  133,    2, 0x06,    4 /* Public */,
+       8,    2,  136,    2, 0x06,    6 /* Public */,
+      10,    1,  141,    2, 0x06,    9 /* Public */,
+      11,    2,  144,    2, 0x06,   11 /* Public */,
+      14,    1,  149,    2, 0x06,   14 /* Public */,
+      15,    0,  152,    2, 0x06,   16 /* Public */,
+      16,    0,  153,    2, 0x06,   17 /* Public */,
+      17,    1,  154,    2, 0x06,   18 /* Public */,
+      18,    0,  157,    2, 0x06,   20 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      19,    0,  170,    2, 0x08,   21 /* Private */,
-      20,    0,  171,    2, 0x08,   22 /* Private */,
-      21,    0,  172,    2, 0x08,   23 /* Private */,
-      22,    0,  173,    2, 0x08,   24 /* Private */,
-      23,    0,  174,    2, 0x08,   25 /* Private */,
-      24,    0,  175,    2, 0x08,   26 /* Private */,
-      25,    0,  176,    2, 0x08,   27 /* Private */,
-      26,    0,  177,    2, 0x08,   28 /* Private */,
-      27,    2,  178,    2, 0x08,   29 /* Private */,
-      30,    3,  183,    2, 0x08,   32 /* Private */,
-      31,    0,  190,    2, 0x08,   36 /* Private */,
+      19,    0,  158,    2, 0x08,   21 /* Private */,
+      20,    0,  159,    2, 0x08,   22 /* Private */,
+      21,    0,  160,    2, 0x08,   23 /* Private */,
+      22,    0,  161,    2, 0x08,   24 /* Private */,
+      23,    0,  162,    2, 0x08,   25 /* Private */,
+      24,    2,  163,    2, 0x08,   26 /* Private */,
+      27,    3,  168,    2, 0x08,   29 /* Private */,
+      28,    0,  175,    2, 0x08,   33 /* Private */,
+      29,    1,  176,    2, 0x08,   34 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
@@ -133,12 +130,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::LongLong,   25,   26,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   12,   25,   26,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::LongLong,   28,   29,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   12,   28,   29,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   30,
 
        0        // eod
 };
@@ -184,19 +179,13 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_message'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'send_message_client'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_is_typing'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'send_is_typing_client'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_file_client'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'folder'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'folder_client'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_init_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -208,7 +197,10 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
         // method 'on_update_label'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_file_saved'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -230,16 +222,14 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 8: _t->text_message_sent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->swipe_right(); break;
         case 10: _t->send_message(); break;
-        case 11: _t->send_message_client(); break;
-        case 12: _t->send_is_typing(); break;
-        case 13: _t->send_is_typing_client(); break;
-        case 14: _t->send_file(); break;
-        case 15: _t->send_file_client(); break;
-        case 16: _t->folder(); break;
-        case 17: _t->folder_client(); break;
-        case 18: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[2]))); break;
-        case 19: _t->on_init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
-        case 20: _t->on_update_label(); break;
+        case 11: _t->send_is_typing(); break;
+        case 12: _t->send_file(); break;
+        case 13: _t->send_file_client(); break;
+        case 14: _t->folder(); break;
+        case 15: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[2]))); break;
+        case 16: _t->on_init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
+        case 17: _t->on_update_label(); break;
+        case 18: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -336,13 +326,13 @@ int client_chat_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 19)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 21;
+        _id -= 19;
     }
     return _id;
 }

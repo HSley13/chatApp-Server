@@ -67,15 +67,14 @@ void server_chat_window::on_text_message_received(QString sender, QString receiv
 {
     if (!receiver.compare("Server"))
     {
-        chat_line *wid = new chat_line();
+        chat_line *wid = new chat_line(this);
         wid->set_message(message);
         wid->setStyleSheet("color: black;");
 
-        QListWidgetItem *line = new QListWidgetItem();
+        QListWidgetItem *line = new QListWidgetItem(_list);
         line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-        line->setSizeHint(QSize(0, 65));
+        line->setSizeHint(QSize(0, 60));
 
-        _list->addItem(line);
         _list->setItemWidget(line, wid);
     }
     else
@@ -107,6 +106,8 @@ void server_chat_window::on_file_saved(QString path)
     QString message = QString("File save at: %1").arg(path);
 
     QMessageBox::information(this, "File Saved", message);
+
+    add_file(path, false);
 }
 
 void server_chat_window::send_message()
@@ -115,15 +116,14 @@ void server_chat_window::send_message()
 
     _client->send_text(message);
 
-    chat_line *wid = new chat_line();
+    chat_line *wid = new chat_line(this);
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
 
-    QListWidgetItem *line = new QListWidgetItem();
+    QListWidgetItem *line = new QListWidgetItem(_list);
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
-    line->setSizeHint(QSize(0, 65));
+    line->setSizeHint(QSize(0, 60));
 
-    _list->addItem(line);
     _list->setItemWidget(line, wid);
 
     _insert_message->clear();
@@ -155,4 +155,26 @@ void server_chat_window::folder()
 void server_chat_window::disconnect_from_host()
 {
     _client->disconnect_from_host();
+}
+
+void server_chat_window::add_file(QString path, bool is_mine)
+{
+    QPixmap image(":/images/file_icon.webp");
+    if (!image)
+        qDebug() << "File Image is NULL";
+
+    QPushButton *file = new QPushButton(_protocol->file_name(), this);
+    file->setIcon(image);
+    file->setIconSize(QSize(60, 60));
+    file->setFixedSize(QSize(60, 60));
+    file->setStyleSheet("border: none");
+    file->connect(file, &QPushButton::clicked, this, [=]()
+                  { QDesktopServices::openUrl(QUrl::fromLocalFile(path)); });
+
+    QListWidgetItem *item = new QListWidgetItem(_list);
+    item->setSizeHint(QSize(0, 60));
+
+    (is_mine) ? item->setBackground(QBrush(QColorConstants::Svg::lightblue)) : item->setBackground(QBrush(QColorConstants::Svg::lightgray));
+
+    _list->setItemWidget(item, file);
 }

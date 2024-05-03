@@ -6,7 +6,7 @@ CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -D
 
 CXX_INCLUDES = -I/usr/local/mysql-connector-c++-8.2.0/include/jdbc -I/Users/test/Documents/server---clients/src/database -isystem /Users/test/Documents/server---clients/build/src/clients/client_autogen/include -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -isystem /opt/homebrew/lib/QtNetwork.framework/Headers -isystem /opt/homebrew/lib/QtMultimedia.framework/Headers
 
-CXX_FLAGSarm64 = -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk
+CXX_FLAGSarm64 = -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
 
-CXX_FLAGS = -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk
+CXX_FLAGS = -O2 -g -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
 

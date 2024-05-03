@@ -252,6 +252,8 @@ void server_manager::save_file()
 
         emit file_saved(path);
     }
+    else
+        qDebug() << "client_manager ---> save_file() ---> Couldn't open the file to write to it";
 }
 
 QString server_manager::name() const
@@ -323,6 +325,8 @@ int server_manager::allocate_port()
 
         return port;
     }
+    else
+        qDebug() << "server_manager ---> allocate_port() ---> _ports is empty";
 
     return 0;
 }

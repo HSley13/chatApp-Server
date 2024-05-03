@@ -17,7 +17,6 @@ public:
 
     static sql::Connection *_db_connection;
 
-    const QString &destinator() const;
     void window_name(QString name);
 
     QString my_name();
@@ -26,6 +25,8 @@ public:
     void set_up_window();
 
     void message_received(QString message);
+
+    void add_file(QString path, bool is_mine = true);
 
 private:
     QStatusBar *_status_bar;
@@ -46,9 +47,9 @@ private:
 
     static QString _my_name;
     static QString _insert_name;
-    QString _destinator;
 
-    QString _window_name;
+    QString _destinator = "Server";
+    QString _window_name = "Server";
 
     static QPoint drag_start_position;
     static bool dragging;
@@ -75,19 +76,17 @@ signals:
 
 private slots:
     void send_message();
-    void send_message_client();
 
     void send_is_typing();
-    void send_is_typing_client();
 
     void send_file();
     void send_file_client();
 
     void folder();
-    void folder_client();
 
     void on_init_receiving_file(QString file_name, qint64 file_size);
     void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
 
     void on_update_label();
+    void on_file_saved(QString path);
 };
