@@ -61,6 +61,7 @@ constexpr auto qt_meta_stringdata_CLASSserver_managerENDCLASS = QtMocHelpers::st
     "file_saved",
     "path",
     "reject_receiving_file",
+    "file_accepted",
     "on_new_connection",
     "on_client_disconnected",
     "on_ready_read",
@@ -77,29 +78,30 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_managerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       9,       // signalCount
+      10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   92,    2, 0x06,    1 /* Public */,
-       5,    1,   95,    2, 0x06,    3 /* Public */,
-       6,    3,   98,    2, 0x06,    5 /* Public */,
-      10,    3,  105,    2, 0x06,    9 /* Public */,
-      14,    2,  112,    2, 0x06,   13 /* Public */,
-      15,    3,  117,    2, 0x06,   16 /* Public */,
-      18,    3,  124,    2, 0x06,   20 /* Public */,
-      19,    1,  131,    2, 0x06,   24 /* Public */,
-      21,    1,  134,    2, 0x06,   26 /* Public */,
+       1,    1,   98,    2, 0x06,    1 /* Public */,
+       5,    1,  101,    2, 0x06,    3 /* Public */,
+       6,    3,  104,    2, 0x06,    5 /* Public */,
+      10,    3,  111,    2, 0x06,    9 /* Public */,
+      14,    2,  118,    2, 0x06,   13 /* Public */,
+      15,    3,  123,    2, 0x06,   16 /* Public */,
+      18,    3,  130,    2, 0x06,   20 /* Public */,
+      19,    1,  137,    2, 0x06,   24 /* Public */,
+      21,    1,  140,    2, 0x06,   26 /* Public */,
+      22,    0,  143,    2, 0x06,   28 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      22,    0,  137,    2, 0x08,   28 /* Private */,
-      23,    0,  138,    2, 0x08,   29 /* Private */,
-      24,    0,  139,    2, 0x08,   30 /* Private */,
-      25,    3,  140,    2, 0x0a,   31 /* Public */,
+      23,    0,  144,    2, 0x08,   29 /* Private */,
+      24,    0,  145,    2, 0x08,   30 /* Private */,
+      25,    0,  146,    2, 0x08,   31 /* Private */,
+      26,    3,  147,    2, 0x0a,   32 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -111,6 +113,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSserver_managerENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    7,    8,   16,
     QMetaType::Void, QMetaType::QString,   20,
     QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
@@ -166,6 +169,8 @@ Q_CONSTINIT const QMetaObject server_manager::staticMetaObject = { {
         // method 'reject_receiving_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'file_accepted'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_new_connection'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_client_disconnected'
@@ -196,10 +201,11 @@ void server_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 6: _t->init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 7: _t->file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 8: _t->reject_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->on_new_connection(); break;
-        case 10: _t->on_client_disconnected(); break;
-        case 11: _t->on_ready_read(); break;
-        case 12: _t->on_text_for_other_clients((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 9: _t->file_accepted(); break;
+        case 10: _t->on_new_connection(); break;
+        case 11: _t->on_client_disconnected(); break;
+        case 12: _t->on_ready_read(); break;
+        case 13: _t->on_text_for_other_clients((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -285,6 +291,13 @@ void server_manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
                 return;
             }
         }
+        {
+            using _t = void (server_manager::*)();
+            if (_t _q_method = &server_manager::file_accepted; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 9;
+                return;
+            }
+        }
     }
 }
 
@@ -307,13 +320,13 @@ int server_manager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }
@@ -379,5 +392,11 @@ void server_manager::reject_receiving_file(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void server_manager::file_accepted()
+{
+    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
 }
 QT_WARNING_POP

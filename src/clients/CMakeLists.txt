@@ -15,4 +15,4 @@ qt_add_resources(client "images"
 
 set(MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
 
-set_target_properties(client PROPERTIES MACOSX_BUNDLE ON)
+set_target_properties(client PROPERTIES MACOSX_BUNDLE ON  MACOSX_BUNDLE_INFO_PLIST ${MACOSX_BUNDLE_INFO_PLIST})
