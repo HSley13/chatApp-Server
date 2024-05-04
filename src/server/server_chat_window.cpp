@@ -63,6 +63,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
 {
     if (!receiver.compare("Server"))
@@ -155,6 +156,7 @@ void server_chat_window::folder()
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
+
 void server_chat_window::disconnect_from_host()
 {
     _client->disconnect_from_host();

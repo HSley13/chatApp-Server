@@ -39,6 +39,7 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_size)
 {
     QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), "Server").arg(file_name).arg(file_size);
@@ -105,6 +106,7 @@ void client_chat_window::start_recording()
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
+
 void client_chat_window::send_message()
 {
     QString message = _insert_message->text();
@@ -314,8 +316,6 @@ void client_chat_window::mouseMoveEvent(QMouseEvent *event)
             dragging = false;
         }
     }
-    else
-        dragging = false;
 }
 
 void client_chat_window::add_file(QString path, bool is_mine)

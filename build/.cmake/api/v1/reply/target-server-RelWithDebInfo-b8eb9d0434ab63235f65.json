@@ -393,15 +393,15 @@
 	"dependencies" : 
 	[
 		{
+			"backtrace" : 2,
+			"id" : "database_library::@f1aa34bc7b1afc1810b8"
+		},
+		{
 			"id" : "server_autogen_timestamp_deps::@2804e40980a64c7d7ad1"
 		},
 		{
 			"backtrace" : 0,
 			"id" : "server_autogen::@2804e40980a64c7d7ad1"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "database_library::@f1aa34bc7b1afc1810b8"
 		}
 	],
 	"id" : "server::@2804e40980a64c7d7ad1",

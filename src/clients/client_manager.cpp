@@ -22,7 +22,9 @@ client_manager::client_manager(sql::Connection *db_connection, QWidget *parent)
         _db_connection = db_connection;
     }
 }
+
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void client_manager::on_ready_read()
 {
     QByteArray data = _socket->readAll();
@@ -111,6 +113,7 @@ void client_manager::on_disconnected()
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
+
 void client_manager::send_text(QString sender, QString receiver, QString text)
 {
     _socket->write(_protocol->set_text_message(sender, receiver, text));

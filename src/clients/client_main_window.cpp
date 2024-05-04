@@ -1,5 +1,15 @@
 #include "client_main_window.h"
 
+QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
+QHash<QString, QString> client_main_window::_name_list = QHash<QString, QString>();
+
+QStackedWidget *client_main_window::_stack = nullptr;
+
+client_chat_window *client_main_window::_server_wid = nullptr;
+
+QPoint client_main_window::drag_start_position;
+bool client_main_window::dragging = false;
+
 class separator_delegate : public QStyledItemDelegate
 {
 private:
@@ -22,13 +32,6 @@ public:
     }
 };
 
-QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
-QHash<QString, QString> client_main_window::_name_list = QHash<QString, QString>();
-
-QStackedWidget *client_main_window::_stack = nullptr;
-
-client_chat_window *client_main_window::_server_wid = nullptr;
-
 client_main_window::client_main_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
 {
@@ -39,6 +42,8 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 
     _status_bar = new QStatusBar(this);
     setStatusBar(_status_bar);
+
+    connect(this, &client_main_window::swipe_right, this, &client_main_window::on_swipe_right);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -58,21 +63,94 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     hbox_1->addWidget(password_label);
     hbox_1->addWidget(_user_password);
 
-    QPushButton *confirm_button = new QPushButton("Confirm", login_widget);
-    connect(confirm_button, &QPushButton::clicked, this, &client_main_window::connected);
+    QPushButton *log_in = new QPushButton("Log In", login_widget);
+    connect(log_in, &QPushButton::clicked, this, &client_main_window::connected);
 
     QVBoxLayout *VBOX = new QVBoxLayout();
     VBOX->addLayout(hbox);
     VBOX->addLayout(hbox_1);
-    VBOX->addWidget(confirm_button);
+    VBOX->addWidget(log_in);
 
-    QGroupBox *group_box = new QGroupBox("Login");
+    QGroupBox *group_box = new QGroupBox("Log In System");
     group_box->setLayout(VBOX);
+
+    QPushButton *sign_in = new QPushButton("Sign In", this);
+    connect(sign_in, &QPushButton::clicked, this, [=]()
+            { _stack->setCurrentIndex(1); });
 
     QGridLayout *grid = new QGridLayout(login_widget);
     grid->addWidget(group_box, 0, 0, 1, 1, Qt::AlignCenter);
+    grid->addWidget(sign_in, 1, 0, 1, 1, Qt::AlignBottom | Qt::AlignLeft);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
+
+    QWidget *sign_in_widget = new QWidget();
+
+    QLabel *first_name_label = new QLabel("First Name: ", this);
+    QLineEdit *_insert_first_name = new QLineEdit(this);
+    QHBoxLayout *first_name_layout = new QHBoxLayout();
+    first_name_layout->addWidget(first_name_label);
+    first_name_layout->addWidget(_insert_first_name);
+
+    QLabel *last_name_label = new QLabel("Last Name: ", this);
+    QLineEdit *_insert_last_name = new QLineEdit(this);
+    QHBoxLayout *last_name_layout = new QHBoxLayout();
+    last_name_layout->addWidget(last_name_label);
+    last_name_layout->addWidget(_insert_last_name);
+
+    QLabel *phone_number_label = new QLabel("Phone Number: ", this);
+    QLineEdit *_insert_phone_number = new QLineEdit(this);
+    QHBoxLayout *phone_number_layout = new QHBoxLayout();
+    phone_number_layout->addWidget(phone_number_label);
+    phone_number_layout->addWidget(_insert_phone_number);
+
+    QLabel *password_label_2 = new QLabel("Password: ", this);
+    QLineEdit *_insert_password = new QLineEdit(this);
+    _insert_password->setEchoMode(QLineEdit::Password);
+    QHBoxLayout *password_layout = new QHBoxLayout();
+    password_layout->addWidget(password_label_2);
+    password_layout->addWidget(_insert_password);
+
+    QLabel *password_confirm_label = new QLabel("Confirm Password: ", this);
+    QLineEdit *_insert_password_confirmation = new QLineEdit(this);
+    _insert_password_confirmation->setEchoMode(QLineEdit::Password);
+    QHBoxLayout *password_confirm_layout = new QHBoxLayout();
+    password_confirm_layout->addWidget(password_confirm_label);
+    password_confirm_layout->addWidget(_insert_password_confirmation);
+
+    QLabel *secret_question_label = new QLabel("Secret Question: ", this);
+    QLineEdit *_insert_secret_question = new QLineEdit(this);
+    QHBoxLayout *secret_question_layout = new QHBoxLayout();
+    secret_question_layout->addWidget(secret_question_label);
+    secret_question_layout->addWidget(_insert_secret_question);
+
+    QLabel *secret_answer_label = new QLabel("Secret Answer: ", this);
+    QLineEdit *_insert_question_answer = new QLineEdit(this);
+    QHBoxLayout *secret_answer_layout = new QHBoxLayout();
+    secret_answer_layout->addWidget(secret_answer_label);
+    secret_answer_layout->addWidget(_insert_question_answer);
+
+    QPushButton *sign_in_button = new QPushButton("Sign In", this);
+    connect(sign_in_button, &QPushButton::clicked, this, [=]() {});
+
+    QVBoxLayout *sign_in_layout = new QVBoxLayout();
+    sign_in_layout->addLayout(first_name_layout);
+    sign_in_layout->addLayout(last_name_layout);
+    sign_in_layout->addLayout(phone_number_layout);
+    sign_in_layout->addLayout(password_layout);
+    sign_in_layout->addLayout(password_confirm_layout);
+    sign_in_layout->addLayout(secret_question_layout);
+    sign_in_layout->addLayout(secret_answer_layout);
+    sign_in_layout->addWidget(sign_in_button);
+
+    QGroupBox *group_box_2 = new QGroupBox("Sign In System");
+    group_box_2->setLayout(sign_in_layout);
+
+    QGridLayout *sign_in_grid = new QGridLayout(sign_in_widget);
+    sign_in_grid->addWidget(group_box_2, 0, 0, 1, 1, Qt::AlignCenter);
+
+    /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
+
     QWidget *chat_widget = new QWidget();
 
     QLabel *name = new QLabel("My Name: ", chat_widget);
@@ -100,14 +178,16 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     VBOX_2->addWidget(_list);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
+
     _stack->addWidget(login_widget);
+    _stack->addWidget(sign_in_widget);
     _stack->addWidget(chat_widget);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 void client_main_window::connected()
 {
-    _stack->setCurrentIndex(1);
+    _stack->setCurrentIndex(2);
 
     if (!_server_wid)
     {
@@ -126,8 +206,7 @@ void client_main_window::connected()
     connect(_server_wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
     connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(_server_wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
-    connect(_server_wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(1); });
+    connect(_server_wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
 
     connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
@@ -169,8 +248,7 @@ void client_main_window::on_name_changed()
 void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
-    connect(wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(1); });
+    connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
 
     wid->window_name(client_name);
 
@@ -191,7 +269,7 @@ void client_main_window::on_clients_list(QString my_name, QHash<QString, QString
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
             connect(wid, &client_chat_window::swipe_right, this, [=]()
-                    { _stack->setCurrentIndex(1); });
+                    { _stack->setCurrentIndex(2); });
 
             wid->window_name(client_name);
 
@@ -291,6 +369,7 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
+
 void client_main_window::add_on_top(const QString &client_name)
 {
     QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
@@ -303,4 +382,32 @@ void client_main_window::add_on_top(const QString &client_name)
     }
     else
         _list->insertItem(0, client_name);
+}
+
+void client_main_window::mousePressEvent(QMouseEvent *event)
+{
+    drag_start_position = event->pos();
+    dragging = true;
+}
+
+void client_main_window::mouseMoveEvent(QMouseEvent *event)
+{
+    if (dragging && (event->button() != Qt::LeftButton))
+    {
+        int delta_X = event->pos().x() - drag_start_position.x();
+
+        if (delta_X > 25)
+        {
+            emit swipe_right();
+            dragging = false;
+        }
+    }
+}
+
+void client_main_window::on_swipe_right()
+{
+    if (_stack->currentIndex() > 2)
+        _stack->setCurrentIndex(2);
+    else
+        _stack->setCurrentIndex(0);
 }

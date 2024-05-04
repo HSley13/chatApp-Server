@@ -35,9 +35,17 @@ private:
     QLineEdit *_user_ID;
     QLineEdit *_user_password;
 
+    static QPoint drag_start_position;
+    static bool dragging;
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+
+signals:
+    void swipe_right();
+
 private slots:
-    void
-    connected();
+    void connected();
 
     void on_clients_list(QString my_name, QHash<QString, QString> other_clients);
     void on_client_connected(QString client_name);
@@ -48,4 +56,6 @@ private slots:
     void on_name_changed();
 
     void on_item_clicked(QListWidgetItem *item);
+
+    void on_swipe_right();
 };

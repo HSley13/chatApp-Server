@@ -32,6 +32,7 @@ server_manager::server_manager(QTcpSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void server_manager::on_new_connection()
 {
     QTcpSocket *client = _server->nextPendingConnection();
@@ -172,6 +173,7 @@ void server_manager::on_text_for_other_clients(QString sender, QString receiver,
     else
         qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
+
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void server_manager::disconnect_all_clients()

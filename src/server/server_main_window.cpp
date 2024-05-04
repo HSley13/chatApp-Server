@@ -45,6 +45,7 @@ server_main_window::~server_main_window()
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void server_main_window::on_new_client_connected(QTcpSocket *client)
 {
     int id = client->property("id").toInt();
