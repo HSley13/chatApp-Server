@@ -61,10 +61,16 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     QPushButton *confirm_button = new QPushButton("Confirm", login_widget);
     connect(confirm_button, &QPushButton::clicked, this, &client_main_window::connected);
 
-    QVBoxLayout *VBOX = new QVBoxLayout(login_widget);
+    QVBoxLayout *VBOX = new QVBoxLayout();
     VBOX->addLayout(hbox);
     VBOX->addLayout(hbox_1);
     VBOX->addWidget(confirm_button);
+
+    QGroupBox *group_box = new QGroupBox("Login");
+    group_box->setLayout(VBOX);
+
+    QGridLayout *grid = new QGridLayout(login_widget);
+    grid->addWidget(group_box, 0, 0, 1, 1, Qt::AlignCenter);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
     QWidget *chat_widget = new QWidget();

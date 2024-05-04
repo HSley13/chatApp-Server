@@ -30,12 +30,12 @@ client_chat_window::client_chat_window(QString destinator, QWidget *parent)
 {
     set_up_window();
 
+    dir.mkdir(_destinator);
+    dir.setPath("./" + _destinator);
+
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
     connect(_client, &client_manager::file_client_saved, this, &client_chat_window::on_file_saved);
-
-    dir.mkdir(_destinator);
-    dir.setPath("./" + _destinator);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -75,7 +75,6 @@ void client_chat_window::start_recording()
                                 { qDebug() << "Undetermined: Microphone permission granted!"; });
 
         std::cout << std::endl;
-        std::cout << std::endl;
         break;
 
     case Qt::PermissionStatus::Denied:
@@ -84,11 +83,9 @@ void client_chat_window::start_recording()
 
         qWarning("Denied: Microphone permission is not granted!");
         std::cout << std::endl;
-        std::cout << std::endl;
         break;
 
     case Qt::PermissionStatus::Granted:
-        // Permission already granted, perform action here
         QMediaCaptureSession session;
 
         QAudioInput audioInput;
@@ -102,7 +99,6 @@ void client_chat_window::start_recording()
         recorder.record();
         qDebug() << "Recording started!";
 
-        std::cout << std::endl;
         std::cout << std::endl;
         break;
     }
@@ -183,8 +179,8 @@ void client_chat_window::folder()
     QString full_client_directory = QDir(executable_directory).filePath(_window_name);
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Directory", full_client_directory);
-    if (!selected_file_path.isEmpty())
-        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
 void client_chat_window::set_up_window()

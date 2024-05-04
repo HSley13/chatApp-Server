@@ -150,8 +150,8 @@ void server_chat_window::folder()
     QString full_client_directory = QDir(executable_directory).filePath(_client->name());
 
     QString selected_file_path = QFileDialog::getOpenFileName(this, "Open Client Directory", full_client_directory);
-    if (!selected_file_path.isEmpty())
-        QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(selected_file_path));
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
