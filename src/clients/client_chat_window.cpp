@@ -57,18 +57,55 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString f
     (result == QMessageBox::Yes) ? _client->send_accept_file_client(sender) : _client->send_reject_file_client(my_name(), sender);
 }
 
-void client_chat_window::on_update_label()
-{
-    _label->setText(QString("%1's Conversation").arg(_window_name));
-
-    _file->setText(QString("Open %1 Directory").arg(_window_name));
-}
-
 void client_chat_window::on_file_saved(QString path)
 {
     QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path));
 
     add_file(path, false);
+}
+
+void client_chat_window::start_recording()
+{
+    QMicrophonePermission microphonePermission;
+
+    switch (qApp->checkPermission(microphonePermission))
+    {
+    case Qt::PermissionStatus::Undetermined:
+        qApp->requestPermission(microphonePermission, this, [=]()
+                                { qDebug() << "Undetermined: Microphone permission granted!"; });
+
+        std::cout << std::endl;
+        std::cout << std::endl;
+        break;
+
+    case Qt::PermissionStatus::Denied:
+        qApp->requestPermission(microphonePermission, this, [=]()
+                                { qDebug() << "Asking permission within the Denied case"; });
+
+        qWarning("Denied: Microphone permission is not granted!");
+        std::cout << std::endl;
+        std::cout << std::endl;
+        break;
+
+    case Qt::PermissionStatus::Granted:
+        // Permission already granted, perform action here
+        QMediaCaptureSession session;
+
+        QAudioInput audioInput;
+        session.setAudioInput(&audioInput);
+
+        QMediaRecorder recorder;
+        session.setRecorder(&recorder);
+
+        recorder.setQuality(QMediaRecorder::HighQuality);
+        recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
+        recorder.record();
+        qDebug() << "Recording started!";
+
+        std::cout << std::endl;
+        std::cout << std::endl;
+        break;
+    }
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -155,88 +192,53 @@ void client_chat_window::set_up_window()
     QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
 
+    QPushButton *button_file = new QPushButton("Server's Conversation", this);
+    button_file->setStyleSheet("border: none;");
+    connect(button_file, &QPushButton::clicked, this, &client_chat_window::folder);
+
+    connect(this, &client_chat_window::update_button_file, this, [=]()
+            { button_file->setText(QString("%1's Conversation").arg(_window_name)); });
+
+    _list = new QListWidget(this);
+
+    _send_file_button = new QPushButton("...", this);
+
     _insert_message = new QLineEdit(this);
     _insert_message->setPlaceholderText("Insert New Message");
     connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
 
-    QPixmap image(":/images/send_icon.png");
-    if (!image)
-        qDebug() << "Image is NULL";
+    QPixmap image_send(":/images/send_icon.png");
+    if (!image_send)
+        qDebug() << "Image Send Button is NULL";
 
-    _send_button = new QPushButton(this);
-    _send_button->setIcon(image);
-    _send_button->setIconSize(QSize(30, 30));
-    _send_button->setFixedSize(30, 30);
-    _send_button->setStyleSheet("border: none");
-    connect(_send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
+    QPushButton *send_button = new QPushButton(this);
+    send_button->setIcon(image_send);
+    send_button->setIconSize(QSize(30, 30));
+    send_button->setFixedSize(30, 30);
+    send_button->setStyleSheet("border: none");
+    connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
-    QHBoxLayout *hbox_1 = new QHBoxLayout();
-    hbox_1->addWidget(_insert_message, 7);
-    hbox_1->addWidget(_send_button, 3);
+    QPixmap image_record(":/images/record_icon.png");
+    if (!image_record)
+        qDebug() << "Image Record Button is NULL";
 
-    _file = new QPushButton(QString("Open Server Directory"), this);
-    connect(_file, &QPushButton::clicked, this, &client_chat_window::folder);
+    QPushButton *record_button = new QPushButton(this);
+    record_button->setIcon(image_record);
+    record_button->setIconSize(QSize(50, 50));
+    record_button->setFixedSize(50, 50);
+    record_button->setStyleSheet("border: none");
+    connect(record_button, &QPushButton::clicked, this, &client_chat_window::start_recording);
 
-    _send_file_button = new QPushButton("...", this);
-
-    QPushButton *record = new QPushButton("RECORD", this);
-    connect(record, &QPushButton::clicked, this, [=]()
-            {
-    QMicrophonePermission microphonePermission;
-    
-    switch (qApp->checkPermission(microphonePermission)) 
-    {
-        case Qt::PermissionStatus::Undetermined:
-            qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Undetermined: Microphone permission granted!";});
-    
-            std::cout << std::endl;
-            std::cout << std::endl;
-            break;
-    
-        case Qt::PermissionStatus::Denied:
-            qApp->requestPermission(microphonePermission, this, [=]() { qDebug() << "Asking permission within the Denied case";});
-    
-            qWarning("Denied: Microphone permission is not granted!");
-            std::cout << std::endl;
-            std::cout << std::endl;
-            break;
-    
-        case Qt::PermissionStatus::Granted:
-            // Permission already granted, perform action here
-            QMediaCaptureSession session;
-    
-            QAudioInput audioInput;
-            session.setAudioInput(&audioInput);
-    
-            QMediaRecorder recorder;
-            session.setRecorder(&recorder);
-            
-            recorder.setQuality(QMediaRecorder::HighQuality);
-            recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
-            recorder.record();
-            qDebug() << "Recording started!";
-    
-            std::cout << std::endl;
-            std::cout << std::endl;
-            break;
-    } });
-
-    QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(_file, 6);
-    hbox_2->addWidget(_send_file_button, 2);
-    hbox_2->addWidget(record, 2);
-
-    _list = new QListWidget(this);
-
-    _label = new QLabel("Server's Conversation", this);
+    QHBoxLayout *hbox = new QHBoxLayout();
+    hbox->addWidget(_send_file_button);
+    hbox->addWidget(_insert_message);
+    hbox->addWidget(send_button);
+    hbox->addWidget(record_button);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(_label);
+    VBOX->addWidget(button_file);
     VBOX->addWidget(_list);
-    VBOX->addLayout(hbox_1);
-    VBOX->addLayout(hbox_2);
-
-    connect(this, &client_chat_window::update_label, this, &client_chat_window::on_update_label);
+    VBOX->addLayout(hbox);
 
     if (!_client && !_protocol)
     {
@@ -293,7 +295,7 @@ void client_chat_window::window_name(QString name)
 {
     _window_name = name;
 
-    emit update_label();
+    emit update_button_file();
 
     QFile::rename(dir.canonicalPath(), name);
 }

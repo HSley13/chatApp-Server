@@ -34,15 +34,13 @@ private:
     static client_manager *_client;
     static chat_protocol *_protocol;
 
-    QLabel *_label;
+    QPushButton *_button_file;
     QListWidget *_list;
 
     QLineEdit *_insert_message;
 
-    QPushButton *_send_button;
     QPushButton *_send_file_button;
 
-    QPushButton *_file;
     QDir dir;
 
     static QString _my_name;
@@ -68,7 +66,7 @@ signals:
 
     void socket_disconnected();
 
-    void update_label();
+    void update_button_file();
 
     void text_message_sent(QString client_name);
 
@@ -87,6 +85,7 @@ private slots:
     void on_init_receiving_file(QString file_name, qint64 file_size);
     void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
 
-    void on_update_label();
     void on_file_saved(QString path);
+
+    void start_recording();
 };

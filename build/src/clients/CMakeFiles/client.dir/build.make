@@ -71,6 +71,7 @@ include src/clients/CMakeFiles/client.dir/flags.make
 
 src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/send_icon.png
 src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/file_icon.webp
+src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/record_icon.png
 src/clients/.rcc/qrc_images.cpp: src/clients/.rcc/images.qrc
 src/clients/.rcc/qrc_images.cpp: /opt/homebrew/share/qt/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource images"

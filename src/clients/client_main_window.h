@@ -1,6 +1,6 @@
 #pragma once
 
-#include "client_manager.h"
+#include "database.h"
 #include "client_chat_window.h"
 
 #include <QtWidgets>
@@ -22,7 +22,7 @@ private:
 
     QTabWidget *_tabs;
 
-    client_manager *_client;
+    static client_chat_window *_server_wid;
 
     static QHash<QString, QWidget *> _window_map;
     static QHash<QString, QString> _name_list;
@@ -32,8 +32,12 @@ private:
     static QStackedWidget *_stack;
     QListWidget *_list;
 
+    QLineEdit *_user_ID;
+    QLineEdit *_user_password;
+
 private slots:
-    void connected();
+    void
+    connected();
 
     void on_clients_list(QString my_name, QHash<QString, QString> other_clients);
     void on_client_connected(QString client_name);

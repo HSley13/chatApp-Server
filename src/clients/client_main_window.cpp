@@ -27,86 +27,110 @@ QHash<QString, QString> client_main_window::_name_list = QHash<QString, QString>
 
 QStackedWidget *client_main_window::_stack = nullptr;
 
+client_chat_window *client_main_window::_server_wid = nullptr;
+
 client_main_window::client_main_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
 {
-    QWidget *central_widget = new QWidget(this);
-    setCentralWidget(central_widget);
+    _stack = new QStackedWidget(this);
 
+    setCentralWidget(_stack);
     setFixedSize(400, 500);
 
     _status_bar = new QStatusBar(this);
     setStatusBar(_status_bar);
 
-    QMenuBar *menu_bar = new QMenuBar(this);
-    setMenuBar(menu_bar);
+    /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
 
-    QMenu *menu = new QMenu("OPTIONS", this);
+    QWidget *login_widget = new QWidget();
 
-    QAction *connection = new QAction("Connect", this);
-    connect(connection, &QAction::triggered, this, &client_main_window::connected);
-
-    menu->addAction(connection);
-    menu_bar->addMenu(menu);
-
-    QLabel *my_name = new QLabel("My Name: ", this);
-    _name = new QLineEdit(this);
-    _name->setPlaceholderText("INSERT YOUR NAME THEN PRESS ENTER");
-    _name->setDisabled(true);
-    connect(_name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
+    QLabel *id_label = new QLabel("Enter Your ID: ", login_widget);
+    _user_ID = new QLineEdit(login_widget);
 
     QHBoxLayout *hbox = new QHBoxLayout();
-    hbox->addWidget(my_name);
-    hbox->addWidget(_name);
+    hbox->addWidget(id_label);
+    hbox->addWidget(_user_ID);
 
-    _list = new QListWidget(this);
+    QLabel *password_label = new QLabel("Enter your Password: ", this);
+    _user_password = new QLineEdit(this);
+
+    QHBoxLayout *hbox_1 = new QHBoxLayout();
+    hbox_1->addWidget(password_label);
+    hbox_1->addWidget(_user_password);
+
+    QPushButton *confirm_button = new QPushButton("Confirm", login_widget);
+    connect(confirm_button, &QPushButton::clicked, this, &client_main_window::connected);
+
+    QVBoxLayout *VBOX = new QVBoxLayout(login_widget);
+    VBOX->addLayout(hbox);
+    VBOX->addLayout(hbox_1);
+    VBOX->addWidget(confirm_button);
+
+    /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
+    QWidget *chat_widget = new QWidget();
+
+    QLabel *name = new QLabel("My Name: ", chat_widget);
+    _name = new QLineEdit(chat_widget);
+    _name->setPlaceholderText("INSERT YOUR NAME THEN PRESS ENTER");
+    connect(_name, &QLineEdit::returnPressed, this, &client_main_window::on_name_changed);
+
+    QHBoxLayout *hbox_2 = new QHBoxLayout();
+    hbox_2->addWidget(name);
+    hbox_2->addWidget(_name);
+
+    _list = new QListWidget(chat_widget);
     _list->setSelectionMode(QAbstractItemView::SingleSelection);
     _list->setMinimumWidth(200);
     _list->setFont(QFont("Arial", 20));
-    _list->setItemDelegate(new separator_delegate(_list));
     _list->setDisabled(true);
+    _list->setItemDelegate(new separator_delegate(_list));
     connect(_list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
 
-    _stack = new QStackedWidget(this);
-    _stack->addWidget(_list);
+    QLabel *chats_label = new QLabel("CHATS", chat_widget);
 
-    QLabel *chats = new QLabel("CHATS", this);
+    QVBoxLayout *VBOX_2 = new QVBoxLayout(chat_widget);
+    VBOX_2->addLayout(hbox_2);
+    VBOX_2->addWidget(chats_label);
+    VBOX_2->addWidget(_list);
 
-    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addLayout(hbox);
-    VBOX->addWidget(chats);
-    VBOX->addWidget(_stack);
+    /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
+    _stack->addWidget(login_widget);
+    _stack->addWidget(chat_widget);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 void client_main_window::connected()
 {
-    client_chat_window *wid = new client_chat_window(_db_connection, this);
-    connect(wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
-    connect(wid, &client_chat_window::clients_list, this, &client_main_window::on_clients_list);
-    connect(wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
-    connect(wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
-    connect(wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
-    connect(wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(0); });
+    _stack->setCurrentIndex(1);
 
-    connect(wid, &client_chat_window::is_typing_received, this, [=](QString sender)
+    if (!_server_wid)
+    {
+        _server_wid = new client_chat_window(_db_connection, this);
+
+        _list->addItem("Server");
+
+        _server_wid->setObjectName("Server");
+        _stack->addWidget(_server_wid);
+
+        _window_map.insert("Server", _server_wid);
+    }
+
+    connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
+    connect(_server_wid, &client_chat_window::clients_list, this, &client_main_window::on_clients_list);
+    connect(_server_wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
+    connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
+    connect(_server_wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
+    connect(_server_wid, &client_chat_window::swipe_right, this, [=]()
+            { _stack->setCurrentIndex(1); });
+
+    connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
 
-    connect(wid, &client_chat_window::socket_disconnected, this, [=]()
+    connect(_server_wid, &client_chat_window::socket_disconnected, this, [=]()
             { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
 
-    connect(wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
+    connect(_server_wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
-
-    _list->addItem("Server");
-
-    wid->setObjectName("Server");
-    _stack->addWidget(wid);
-
-    _window_map.insert("Server", wid);
-
-    _name->setEnabled(true);
 
     _status_bar->showMessage("Connected to the Server", 1000);
 }
@@ -140,7 +164,7 @@ void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
     connect(wid, &client_chat_window::swipe_right, this, [=]()
-            { _stack->setCurrentIndex(0); });
+            { _stack->setCurrentIndex(1); });
 
     wid->window_name(client_name);
 
@@ -161,7 +185,7 @@ void client_main_window::on_clients_list(QString my_name, QHash<QString, QString
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
             connect(wid, &client_chat_window::swipe_right, this, [=]()
-                    { _stack->setCurrentIndex(0); });
+                    { _stack->setCurrentIndex(1); });
 
             wid->window_name(client_name);
 

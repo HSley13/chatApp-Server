@@ -55,7 +55,7 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "message",
     "is_typing_received",
     "socket_disconnected",
-    "update_label",
+    "update_button_file",
     "text_message_sent",
     "swipe_right",
     "send_message",
@@ -67,9 +67,9 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "file_name",
     "file_size",
     "on_init_receiving_file_client",
-    "on_update_label",
     "on_file_saved",
-    "path"
+    "path",
+    "start_recording"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -109,8 +109,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
       23,    0,  162,    2, 0x08,   25 /* Private */,
       24,    2,  163,    2, 0x08,   26 /* Private */,
       27,    3,  168,    2, 0x08,   29 /* Private */,
-      28,    0,  175,    2, 0x08,   33 /* Private */,
-      29,    1,  176,    2, 0x08,   34 /* Private */,
+      28,    1,  175,    2, 0x08,   33 /* Private */,
+      30,    0,  178,    2, 0x08,   35 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
@@ -132,8 +132,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::LongLong,   25,   26,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   12,   25,   26,
+    QMetaType::Void, QMetaType::QString,   29,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   30,
 
        0        // eod
 };
@@ -170,7 +170,7 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'socket_disconnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'update_label'
+        // method 'update_button_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'text_message_sent'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -196,11 +196,11 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
-        // method 'on_update_label'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_file_saved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'start_recording'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -218,7 +218,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 4: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 5: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 6: _t->socket_disconnected(); break;
-        case 7: _t->update_label(); break;
+        case 7: _t->update_button_file(); break;
         case 8: _t->text_message_sent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->swipe_right(); break;
         case 10: _t->send_message(); break;
@@ -228,8 +228,8 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 14: _t->folder(); break;
         case 15: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[2]))); break;
         case 16: _t->on_init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
-        case 17: _t->on_update_label(); break;
-        case 18: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 17: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 18: _t->start_recording(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -285,7 +285,7 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         }
         {
             using _t = void (client_chat_window::*)();
-            if (_t _q_method = &client_chat_window::update_label; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &client_chat_window::update_button_file; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 7;
                 return;
             }
@@ -386,7 +386,7 @@ void client_chat_window::socket_disconnected()
 }
 
 // SIGNAL 7
-void client_chat_window::update_label()
+void client_chat_window::update_button_file()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
