@@ -70,15 +70,14 @@ void server_main_window::on_new_client_disconnected(QTcpSocket *client)
 
     QString client_name = client->property("client_name").toString();
 
-    _tabs->removeTab(_tabs->indexOf(_window_map.value(client_name)));
+    if (_tabs->tabText(_tabs->indexOf(_window_map.value(client_name))) == client_name)
+        _tabs->removeTab(_tabs->indexOf(_window_map.value(client_name)));
 
     _list->addItem(QString("Client %1 disconnected").arg(id));
 
     QList<QListWidgetItem *> items = _name_list->findItems(client_name, Qt::MatchExactly);
     if (!items.isEmpty())
         delete items.first();
-    else
-        qDebug() << "server_main_window ---> on_new_client_disconnected() ---> Couldn't find client to delete in the _list: " << client_name;
 }
 
 void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
@@ -114,6 +113,4 @@ void server_main_window::close_tabs(int index)
 {
     server_chat_window *wid = qobject_cast<server_chat_window *>(_tabs->widget(index));
     wid->disconnect_from_host();
-
-    _tabs->removeTab(index);
 }

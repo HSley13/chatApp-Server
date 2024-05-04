@@ -3,13 +3,7 @@
 QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
 QHash<QString, QString> client_main_window::_name_list = QHash<QString, QString>();
 
-QStackedWidget *client_main_window::_stack = nullptr;
-
 client_chat_window *client_main_window::_server_wid = nullptr;
-
-QPoint client_main_window::drag_start_position;
-bool client_main_window::dragging = false;
-
 class separator_delegate : public QStyledItemDelegate
 {
 private:
@@ -64,7 +58,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     hbox_1->addWidget(_user_password);
 
     QPushButton *log_in = new QPushButton("Log In", login_widget);
-    connect(log_in, &QPushButton::clicked, this, &client_main_window::connected);
+    connect(log_in, &QPushButton::clicked, this, &client_main_window::on_log_in);
 
     QVBoxLayout *VBOX = new QVBoxLayout();
     VBOX->addLayout(hbox);
@@ -172,10 +166,24 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 
     QLabel *chats_label = new QLabel("CHATS", chat_widget);
 
+    QLabel *fr_list = new QLabel("Start New conversation", this);
+    _friend_list = new QComboBox(this);
+    connect(_friend_list, &QComboBox::activated, this, &client_main_window::new_conversation);
+
+    QHBoxLayout *hbox_3 = new QHBoxLayout();
+    hbox_3->addWidget(fr_list);
+    hbox_3->addWidget(_friend_list);
+
+    search_phone_number = new QLineEdit(this);
+    search_phone_number->setPlaceholderText("SEARCH PEOPLE VIA PHONE NUMBER, THEN PRESS ENTER");
+    connect(search_phone_number, &QLineEdit::returnPressed, this, &client_main_window::on_search_friend);
+
     QVBoxLayout *VBOX_2 = new QVBoxLayout(chat_widget);
     VBOX_2->addLayout(hbox_2);
+    VBOX_2->addLayout(hbox_3);
     VBOX_2->addWidget(chats_label);
     VBOX_2->addWidget(_list);
+    VBOX_2->addWidget(search_phone_number);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -185,7 +193,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-void client_main_window::connected()
+void client_main_window::on_log_in()
 {
     _stack->setCurrentIndex(2);
 
@@ -199,6 +207,8 @@ void client_main_window::connected()
         _stack->addWidget(_server_wid);
 
         _window_map.insert("Server", _server_wid);
+
+        _status_bar->showMessage("on_log_in to the Server", 1000);
     }
 
     connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
@@ -216,8 +226,6 @@ void client_main_window::connected()
 
     connect(_server_wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
-
-    _status_bar->showMessage("Connected to the Server", 1000);
 }
 
 void client_main_window::on_item_clicked(QListWidgetItem *item)
@@ -249,13 +257,15 @@ void client_main_window::on_client_connected(QString client_name)
 {
     client_chat_window *wid = new client_chat_window(client_name, this);
     connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
+    connect(wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
+            { add_on_top(client_name); });
 
     wid->window_name(client_name);
 
-    _list->addItem(client_name);
-
     wid->setObjectName(client_name);
     _stack->addWidget(wid);
+
+    _list->addItem(client_name);
 
     _name_list.insert(client_name, client_name);
     _window_map.insert(client_name, wid);
@@ -268,15 +278,16 @@ void client_main_window::on_clients_list(QString my_name, QHash<QString, QString
         if (client_name.compare(my_name))
         {
             client_chat_window *wid = new client_chat_window(other_clients.key(client_name), this);
-            connect(wid, &client_chat_window::swipe_right, this, [=]()
-                    { _stack->setCurrentIndex(2); });
+            connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
+            connect(wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
+                    { add_on_top(client_name); });
 
             wid->window_name(client_name);
 
-            _list->addItem(client_name);
-
             wid->setObjectName(client_name);
             _stack->addWidget(wid);
+
+            _list->addItem(client_name);
 
             _name_list.insert(other_clients.key(client_name), client_name);
             _window_map.insert(client_name, wid);
@@ -322,10 +333,10 @@ void client_main_window::on_text_message_received(QString sender, QString messag
             wid->message_received(message);
             add_on_top(sender);
 
-            _list->addItem(sender);
-
             wid->setObjectName(sender);
             _stack->addWidget(wid);
+
+            _list->addItem(sender);
 
             _window_map.insert(sender, wid);
         }
@@ -410,4 +421,21 @@ void client_main_window::on_swipe_right()
         _stack->setCurrentIndex(2);
     else
         _stack->setCurrentIndex(0);
+}
+
+void client_main_window::on_search_friend()
+{
+    /*
+    Send request to the server to check if the client phone_number exist in the database
+    ? (phone_number) add the client_name to the _friend_list along with its specifier : display a QMessageBox saying the phone_number wasn't found
+    */
+}
+
+void client_main_window::new_conversation(int index)
+{
+    /*
+    QString client_name = _friend_list->itemText(index);
+    Open a client_chat_window() widget with the client_name
+    Add the client_name in the _list if it isn't there.
+    */
 }

@@ -18,25 +18,27 @@ public:
     sql::Connection *_db_connection;
 
 private:
+    QStackedWidget *_stack;
+
     QStatusBar *_status_bar;
 
     QTabWidget *_tabs;
 
-    static client_chat_window *_server_wid;
+    QPoint drag_start_position;
+    bool dragging = false;
 
+    static client_chat_window *_server_wid;
     static QHash<QString, QWidget *> _window_map;
     static QHash<QString, QString> _name_list;
 
     QLineEdit *_name;
-
-    static QStackedWidget *_stack;
-    QListWidget *_list;
-
     QLineEdit *_user_ID;
     QLineEdit *_user_password;
+    QLineEdit *search_phone_number;
 
-    static QPoint drag_start_position;
-    static bool dragging;
+    QListWidget *_list;
+
+    QComboBox *_friend_list;
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -45,7 +47,7 @@ signals:
     void swipe_right();
 
 private slots:
-    void connected();
+    void on_log_in();
 
     void on_clients_list(QString my_name, QHash<QString, QString> other_clients);
     void on_client_connected(QString client_name);
@@ -58,4 +60,8 @@ private slots:
     void on_item_clicked(QListWidgetItem *item);
 
     void on_swipe_right();
+
+    void on_search_friend();
+
+    void new_conversation(int index);
 };

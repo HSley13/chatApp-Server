@@ -15,8 +15,6 @@ public:
     client_chat_window(sql::Connection *db_connection, QWidget *parent = nullptr);
     client_chat_window(QString destinator, QWidget *parent = nullptr);
 
-    static sql::Connection *_db_connection;
-
     void window_name(QString name);
 
     QString my_name();
@@ -30,6 +28,8 @@ public:
 
 private:
     QStatusBar *_status_bar;
+
+    static sql::Connection *_db_connection;
 
     static client_manager *_client;
     static chat_protocol *_protocol;
@@ -49,8 +49,8 @@ private:
     QString _destinator = "Server";
     QString _window_name = "Server";
 
-    static QPoint drag_start_position;
-    static bool dragging;
+    QPoint drag_start_position;
+    bool dragging = false;
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
