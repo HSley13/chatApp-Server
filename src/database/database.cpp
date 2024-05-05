@@ -183,3 +183,36 @@ void Account::create_account(sql::Connection *connection, const int phone_number
         std::cerr << e.what() << std::endl;
     }
 }
+
+std::vector<std::string> Account::retrieve_conversation(sql::Connection *connection, const int conversation_ID)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT M.Timestamp, CASE WHEN M.sender_ID = C.participant1_ID THEN A1.first_name ELSE A2.first_name END AS sender, CASE WHEN M.ReceiverID = C.participant1_ID THEN A1.first_name ELSE A2.first_name END AS receiver M.content FROM messages M JOIN conversations C ON M.conversation_ID = C.conversation_ID JOIN accounts A1 ON C.participant1_ID = A1.phone_number JOIN accounts A2 ON C.participant2_ID = A2.phone_number WHERE C.conversation_ID = ? ORDER BY M.Timestamp;"));
+        prepared_statement->setInt(1, conversation_ID);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        std::vector<std::string> messages;
+
+        while (result->next())
+        {
+            std::string message;
+            message = result->getString("Timestamp") + "/" + result->getString("sender") + "/" + result->getString("receiver") + "/" + result->getString("content");
+
+            messages.push_back(message);
+        }
+
+        return messages;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        return {};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return {};
+    }
+}

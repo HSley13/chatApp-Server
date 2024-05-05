@@ -40,4 +40,6 @@ class Account
 {
 public:
     static void create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hash_password);
+
+    static std::vector<std::string> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
 };
