@@ -32,15 +32,24 @@ private:
     static QHash<QString, QString> _name_list;
 
     QLineEdit *_name;
-    QLineEdit *_user_ID;
+    QLineEdit *_user_phone_number;
     QLineEdit *_user_password;
-    QLineEdit *search_phone_number;
+    QLineEdit *_search_phone_number;
+
+    QLineEdit *_insert_first_name;
+    QLineEdit *_insert_last_name;
+    QLineEdit *_insert_phone_number;
+    QLineEdit *_insert_password;
+    QLineEdit *_insert_password_confirmation;
+    QLineEdit *_insert_secret_question;
+    QLineEdit *_insert_secret_answer;
 
     QListWidget *_list;
 
     QComboBox *_friend_list;
 
-    void mousePressEvent(QMouseEvent *event) override;
+    void
+    mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
@@ -64,4 +73,6 @@ private slots:
     void on_search_friend();
 
     void new_conversation(int index);
+
+    void on_sign_in();
 };

@@ -62,7 +62,8 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "on_swipe_right",
     "on_search_friend",
     "new_conversation",
-    "index"
+    "index",
+    "on_sign_in"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -75,7 +76,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -83,20 +84,21 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   86,    2, 0x06,    1 /* Public */,
+       1,    0,   92,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   87,    2, 0x08,    2 /* Private */,
-       4,    2,   88,    2, 0x08,    3 /* Private */,
-       8,    1,   93,    2, 0x08,    6 /* Private */,
-      10,    2,   96,    2, 0x08,    8 /* Private */,
-      12,    1,  101,    2, 0x08,   11 /* Private */,
-      13,    2,  104,    2, 0x08,   13 /* Private */,
-      16,    0,  109,    2, 0x08,   16 /* Private */,
-      17,    1,  110,    2, 0x08,   17 /* Private */,
-      20,    0,  113,    2, 0x08,   19 /* Private */,
-      21,    0,  114,    2, 0x08,   20 /* Private */,
-      22,    1,  115,    2, 0x08,   21 /* Private */,
+       3,    0,   93,    2, 0x08,    2 /* Private */,
+       4,    2,   94,    2, 0x08,    3 /* Private */,
+       8,    1,   99,    2, 0x08,    6 /* Private */,
+      10,    2,  102,    2, 0x08,    8 /* Private */,
+      12,    1,  107,    2, 0x08,   11 /* Private */,
+      13,    2,  110,    2, 0x08,   13 /* Private */,
+      16,    0,  115,    2, 0x08,   16 /* Private */,
+      17,    1,  116,    2, 0x08,   17 /* Private */,
+      20,    0,  119,    2, 0x08,   19 /* Private */,
+      21,    0,  120,    2, 0x08,   20 /* Private */,
+      22,    1,  121,    2, 0x08,   21 /* Private */,
+      24,    0,  124,    2, 0x08,   23 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -113,6 +115,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   23,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -159,7 +162,9 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'new_conversation'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_sign_in'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -182,6 +187,7 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 9: _t->on_swipe_right(); break;
         case 10: _t->on_search_friend(); break;
         case 11: _t->new_conversation((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 12: _t->on_sign_in(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -215,13 +221,13 @@ int client_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

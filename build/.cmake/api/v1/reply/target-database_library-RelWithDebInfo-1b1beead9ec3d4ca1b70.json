@@ -175,11 +175,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "database_library_autogen_timestamp_deps::@f1aa34bc7b1afc1810b8"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "database_library_autogen::@f1aa34bc7b1afc1810b8"
+		},
+		{
+			"id" : "database_library_autogen_timestamp_deps::@f1aa34bc7b1afc1810b8"
 		}
 	],
 	"id" : "database_library::@f1aa34bc7b1afc1810b8",

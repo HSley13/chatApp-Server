@@ -26,7 +26,7 @@ sql::Connection *connection_setup(connection_details *ID)
     }
 }
 
-std::string security::generate_random_salt(std::size_t len)
+std::string Security::generate_random_salt(std::size_t len)
 {
     try
     {
@@ -51,7 +51,7 @@ std::string security::generate_random_salt(std::size_t len)
     }
 }
 
-std::string security::hashing_password(std::string &password)
+std::string Security::hashing_password(const std::string password)
 {
     try
     {
@@ -88,7 +88,7 @@ std::string security::hashing_password(std::string &password)
     }
 }
 
-bool security::verifying_password(std::string password, std::string &hashed_password)
+bool Security::verifying_password(const std::string password, const std::string &hashed_password)
 {
     try
     {
@@ -121,12 +121,12 @@ bool security::verifying_password(std::string password, std::string &hashed_pass
     }
 }
 
-std::string security::retrieve_hashed_password(sql::Connection *connection, int account_number)
+std::string Security::retrieve_hashed_password(sql::Connection *connection, const int phone_number)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prep_statement(connection->prepareStatement("SELECT hashed_password FROM adm_password_security WHERE account_number = ?"));
-        prep_statement->setInt(1, account_number);
+        std::unique_ptr<sql::PreparedStatement> prep_statement(connection->prepareStatement("SELECT hashed_password FROM password_security WHERE phone_number = ?"));
+        prep_statement->setInt(1, phone_number);
 
         std::unique_ptr<sql::ResultSet> result(prep_statement->executeQuery());
 
@@ -152,5 +152,34 @@ std::string security::retrieve_hashed_password(sql::Connection *connection, int 
         std::cerr << e.what() << std::endl;
 
         return "";
+    }
+}
+
+void Account::create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hashed_password)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts VALUES(?, ?, ?);"));
+        prepared_statement->setInt(1, phone_number);
+        prepared_statement->setString(2, first_name);
+        prepared_statement->setString(3, last_name);
+
+        prepared_statement->executeUpdate();
+
+        prepared_statement = std::unique_ptr<sql::PreparedStatement>(connection->prepareStatement("INSERT INTO password_security VALUES(?, ?, ?, ?);"));
+        prepared_statement->setInt(1, phone_number);
+        prepared_statement->setString(2, hashed_password);
+        prepared_statement->setString(3, secret_question);
+        prepared_statement->setString(4, secret_answer);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 }

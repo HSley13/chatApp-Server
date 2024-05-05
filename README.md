@@ -25,23 +25,32 @@
     --- voice notes implementation
     --- List sent File and Audio in the conversation
     --- client authentification
-    --- friend request 
     --- finish the database's configuration
     --- store conversations in the database
-    --- 
+    --- Implement database conversation retrieve 
     --- 
     --- 
     --- Make the GUI more appealing 
 
 
             *************** ALL THE TABLES ***************
-            -- -- -- -accounts
 
-            CREATE TABLE 
-            clients(
-                account_number INT AUTO_INCREMENT PRIMARY KEY
+            -------accounts
+            CREATE TABLE accounts
+            (
+                phone_number INT PRIMARY KEY,
+                first_name VARCHAR(50),
+                last_name VARCHAR(50)
+            );
 
-                    )AUTO_INCREMENT = 100000000;
+            -------password_security
+            CREATE TABLE password_security
+            (
+                phone_number INT PRIMARY KEY,
+                hashed_password VARBINARY(500),
+                secret_question VARCHAR(500),
+                secret_answer VARCHAR(500)
+            );
 
 
 
