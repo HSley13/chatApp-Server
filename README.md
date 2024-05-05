@@ -58,24 +58,21 @@
                 conversation_ID INT AUTO_INCREMENT PRIMARY KEY,
                 participant1_ID INT,
                 participant2_ID INT,
-                start_time DATETIME,
-                end_time DATETIME,
-                FOREIGN KEY (participant1_ID) REFERENCES accounts(phone_number),
-                FOREIGN KEY (participant2_ID) REFERENCES accounts(phone_number)
+                start_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+                end_time DATETIME
             ) AUTO_INCREMENT = 1;
 
 
             -------messages
             CREATE TABLE messages 
             (
-                message_ID INT AUTO_INCREMENT PRIMARY KEY,
+                message_id INT AUTO_INCREMENT PRIMARY KEY,
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
-                content TEXT,
-                Timestamp DATETIME,
-                FOREIGN KEY (conversation_ID) REFERENCES conversations(conversation_ID)
-            ) AUTO_INCREMENT = 1;
+                content TEXT, 
+                date_time DATETIME DEFAULT CURRENT_TIMESTAMP
+            )AUTO_INCREMENT = 1;
 
 
 

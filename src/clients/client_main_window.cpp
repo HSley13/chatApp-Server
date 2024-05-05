@@ -491,6 +491,31 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         qDebug() << "client_main_window ---> on_client_name_changed() ---> client_name to change not FOUND in the window_map:" << old_name;
 }
 
+void client_main_window::on_swipe_right()
+{
+    if (_stack->currentIndex() > 2)
+        _stack->setCurrentIndex(2);
+    else
+        _stack->setCurrentIndex(0);
+}
+
+void client_main_window::on_search_friend()
+{
+    /*
+        Send request to the server to check if the client phone_number exist in the database
+        ? (phone_number) add the client_name to the _friend_list along with its specifier : display a QMessageBox saying the phone_number wasn't found
+    */
+}
+
+void client_main_window::new_conversation(int index)
+{
+    /*
+        QString client_name = _friend_list->itemText(index);
+        Open a client_chat_window() widget with the client_name
+        Add the client_name in the _list if it isn't there.
+    */
+}
+
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void client_main_window::add_on_top(const QString &client_name)
@@ -525,29 +550,4 @@ void client_main_window::mouseMoveEvent(QMouseEvent *event)
             dragging = false;
         }
     }
-}
-
-void client_main_window::on_swipe_right()
-{
-    if (_stack->currentIndex() > 2)
-        _stack->setCurrentIndex(2);
-    else
-        _stack->setCurrentIndex(0);
-}
-
-void client_main_window::on_search_friend()
-{
-    /*
-    Send request to the server to check if the client phone_number exist in the database
-    ? (phone_number) add the client_name to the _friend_list along with its specifier : display a QMessageBox saying the phone_number wasn't found
-    */
-}
-
-void client_main_window::new_conversation(int index)
-{
-    /*
-    QString client_name = _friend_list->itemText(index);
-    Open a client_chat_window() widget with the client_name
-    Add the client_name in the _list if it isn't there.
-    */
 }

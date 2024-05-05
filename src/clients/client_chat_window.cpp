@@ -120,6 +120,12 @@ void client_chat_window::send_message()
 
     _list->setItemWidget(line, wid);
 
+    if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
+    {
+        Account::create_conversation(_db_connection, 905811513, 905811514);
+        Account::save_message(_db_connection, 1, 905811513, 905811514, message.toStdString());
+    }
+
     _insert_message->clear();
 
     emit text_message_sent(_window_name);
@@ -137,6 +143,9 @@ void client_chat_window::message_received(QString message)
 
     _list->addItem(line);
     _list->setItemWidget(line, wid);
+
+    if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
+        Account::save_message(_db_connection, 1, 905811514, 905811513, message.toStdString());
 }
 
 void client_chat_window::send_is_typing()

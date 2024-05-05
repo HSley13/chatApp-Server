@@ -41,5 +41,9 @@ class Account
 public:
     static void create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hash_password);
 
+    static void create_conversation(sql::Connection *connection, const int participant1_ID, const int participant2_ID);
+
+    static void save_message(sql::Connection *connection, const int conversation_ID, const int sender, const int receiver, const std::string content);
+
     static std::vector<std::string> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
 };
