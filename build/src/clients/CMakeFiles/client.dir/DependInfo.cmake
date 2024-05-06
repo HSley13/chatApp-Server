@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp" "src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o.d"
+  "/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp" "src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o.d"
+  "/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp" "src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o.d"
   "/Users/test/Documents/server---clients/src/clients/chat_line.cpp" "src/clients/CMakeFiles/client.dir/chat_line.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/chat_line.cpp.o.d"
   "/Users/test/Documents/server---clients/src/clients/chat_protocol.cpp" "src/clients/CMakeFiles/client.dir/chat_protocol.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/chat_protocol.cpp.o.d"
   "/Users/test/Documents/server---clients/build/src/clients/client_autogen/mocs_compilation.cpp" "src/clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o" "gcc" "src/clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o.d"

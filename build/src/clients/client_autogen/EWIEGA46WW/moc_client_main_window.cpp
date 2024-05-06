@@ -43,14 +43,9 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "swipe_right",
     "",
     "on_log_in",
-    "on_clients_list",
-    "my_name",
-    "QHash<QString,QString>",
-    "other_clients",
-    "on_client_connected",
-    "client_name",
     "on_client_name_changed",
     "old_name",
+    "client_name",
     "on_client_disconnected",
     "on_text_message_received",
     "sender",
@@ -62,8 +57,15 @@ constexpr auto qt_meta_stringdata_CLASSclient_main_windowENDCLASS = QtMocHelpers
     "on_swipe_right",
     "on_search_friend",
     "new_conversation",
-    "index",
-    "on_sign_in"
+    "name",
+    "on_sign_in",
+    "on_client_added_you",
+    "ID",
+    "on_friend_list",
+    "QHash<QString,int>",
+    "list",
+    "on_lookup_friend_result",
+    "full_name"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -76,7 +78,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,38 +86,40 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_main_windowENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   92,    2, 0x06,    1 /* Public */,
+       1,    0,   98,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   93,    2, 0x08,    2 /* Private */,
-       4,    2,   94,    2, 0x08,    3 /* Private */,
-       8,    1,   99,    2, 0x08,    6 /* Private */,
-      10,    2,  102,    2, 0x08,    8 /* Private */,
-      12,    1,  107,    2, 0x08,   11 /* Private */,
-      13,    2,  110,    2, 0x08,   13 /* Private */,
-      16,    0,  115,    2, 0x08,   16 /* Private */,
-      17,    1,  116,    2, 0x08,   17 /* Private */,
-      20,    0,  119,    2, 0x08,   19 /* Private */,
-      21,    0,  120,    2, 0x08,   20 /* Private */,
-      22,    1,  121,    2, 0x08,   21 /* Private */,
-      24,    0,  124,    2, 0x08,   23 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    2,  100,    2, 0x08,    3 /* Private */,
+       7,    1,  105,    2, 0x08,    6 /* Private */,
+       8,    2,  108,    2, 0x08,    8 /* Private */,
+      11,    0,  113,    2, 0x08,   11 /* Private */,
+      12,    1,  114,    2, 0x08,   12 /* Private */,
+      15,    0,  117,    2, 0x08,   14 /* Private */,
+      16,    0,  118,    2, 0x08,   15 /* Private */,
+      17,    1,  119,    2, 0x08,   16 /* Private */,
+      19,    0,  122,    2, 0x08,   18 /* Private */,
+      20,    2,  123,    2, 0x08,   19 /* Private */,
+      22,    1,  128,    2, 0x08,   22 /* Private */,
+      25,    1,  131,    2, 0x08,   24 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, 0x80000000 | 6,    5,    7,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,    9,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   14,   15,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    5,    6,
+    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    9,   10,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 18,   19,
+    QMetaType::Void, 0x80000000 | 13,   14,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   23,
+    QMetaType::Void, QMetaType::QString,   18,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   18,   21,
+    QMetaType::Void, 0x80000000 | 23,   24,
+    QMetaType::Void, QMetaType::QString,   26,
 
        0        // eod
 };
@@ -133,13 +137,6 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_log_in'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_clients_list'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
-        // method 'on_client_connected'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_client_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -162,9 +159,19 @@ Q_CONSTINIT const QMetaObject client_main_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'new_conversation'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_sign_in'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_client_added_you'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'on_friend_list'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QHash<QString,int>, std::false_type>,
+        // method 'on_lookup_friend_result'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -177,17 +184,18 @@ void client_main_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->swipe_right(); break;
         case 1: _t->on_log_in(); break;
-        case 2: _t->on_clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2]))); break;
-        case 3: _t->on_client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 5: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->on_text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 7: _t->on_name_changed(); break;
-        case 8: _t->on_item_clicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
-        case 9: _t->on_swipe_right(); break;
-        case 10: _t->on_search_friend(); break;
-        case 11: _t->new_conversation((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 12: _t->on_sign_in(); break;
+        case 2: _t->on_client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 3: _t->on_client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->on_text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 5: _t->on_name_changed(); break;
+        case 6: _t->on_item_clicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 7: _t->on_swipe_right(); break;
+        case 8: _t->on_search_friend(); break;
+        case 9: _t->new_conversation((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_sign_in(); break;
+        case 11: _t->on_client_added_you((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 12: _t->on_friend_list((*reinterpret_cast< std::add_pointer_t<QHash<QString,int>>>(_a[1]))); break;
+        case 13: _t->on_lookup_friend_result((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -221,13 +229,13 @@ int client_main_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

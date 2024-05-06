@@ -182,17 +182,17 @@ server/fast:
 .PHONY : server/fast
 
 #=============================================================================
-# Target rules for targets named server_other_files
+# Target rules for targets named client_server_images
 
 # Build rule for target.
-server_other_files: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_other_files
-.PHONY : server_other_files
+client_server_images: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client_server_images
+.PHONY : client_server_images
 
 # fast build rule for target.
-server_other_files/fast:
-	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_other_files.dir/build.make src/server/CMakeFiles/server_other_files.dir/build
-.PHONY : server_other_files/fast
+client_server_images/fast:
+	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/client_server_images.dir/build.make src/server/CMakeFiles/client_server_images.dir/build
+.PHONY : client_server_images/fast
 
 #=============================================================================
 # Target rules for targets named server_autogen_timestamp_deps
@@ -270,11 +270,11 @@ help:
 	@echo "... client_autogen"
 	@echo "... client_autogen_timestamp_deps"
 	@echo "... client_other_files"
+	@echo "... client_server_images"
 	@echo "... database_library_autogen"
 	@echo "... database_library_autogen_timestamp_deps"
 	@echo "... server_autogen"
 	@echo "... server_autogen_timestamp_deps"
-	@echo "... server_other_files"
 	@echo "... client"
 	@echo "... database_library"
 	@echo "... server"

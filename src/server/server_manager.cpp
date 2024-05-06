@@ -54,25 +54,10 @@ void server_manager::on_new_connection()
     {
         int port = server_manager::allocate_port();
         if (port)
-        {
             client->setProperty("port", port);
-
-            QByteArray message = _protocol->set_clients_list_message(client_name, _names, port);
-            client->write(message);
-
-            qDebug() << "Port: " << port << " assigned to: " << client_name;
-
-            QByteArray new_client_message = _protocol->set_new_client_message(client_name);
-            for (QTcpSocket *cl : _clients)
-                cl->write(new_client_message);
-        }
         else
             qDebug() << "server_manager--> new_connection()--> _pool vector variable empty";
     }
-
-    QTcpSocket *first_client = _clients.value("client 1");
-    if (first_client)
-        first_client->write(_protocol->set_first_client_message("client 1", 99999));
 }
 
 void server_manager::on_client_disconnected()
@@ -80,16 +65,6 @@ void server_manager::on_client_disconnected()
     QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
 
     QString client_name = client->property("client_name").toString();
-
-    QByteArray message = _protocol->set_client_disconnected_message(client_name);
-
-    if (!_clients.isEmpty())
-    {
-        for (QTcpSocket *cl : _clients)
-            cl->write(message);
-    }
-    else
-        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
 
     _names.remove(_names.key(client_name));
     _clients.remove(_clients.key(client));
@@ -146,7 +121,7 @@ void server_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file_client:
-        file_for_other_clients(_protocol->sender(), _protocol->receiver(), _protocol->file_name_client(), _protocol->file_size_client());
+        file_for_other_clients(_protocol->sender(), _protocol->clients_ID(), _protocol->receiver(), _protocol->file_name_client(), _protocol->file_size_client());
 
         break;
 
@@ -157,6 +132,31 @@ void server_manager::on_ready_read()
 
     case chat_protocol::reject_sending_file_client:
         reject_receiving_file_clients(_protocol->sender(), _protocol->receiver());
+
+        break;
+
+    case chat_protocol::log_in:
+        login(_protocol->clients_ID());
+
+        break;
+
+    case chat_protocol::added_you:
+        client_add_client(_protocol->client_name(), _protocol->clients_ID(), _protocol->receiver());
+
+        break;
+
+    case chat_protocol::lookup_friend:
+        lookup_friend(_protocol->clients_ID());
+
+        break;
+
+    case chat_protocol::create_conversation:
+        create_conversation(_protocol->participant1(), _protocol->participant1_ID(), _protocol->participant2(), _protocol->participant2_ID());
+
+        break;
+
+    case chat_protocol::save_message:
+        save_conversation_message(_protocol->sender(), _protocol->receiver(), _protocol->message());
 
         break;
 
@@ -234,11 +234,11 @@ void server_manager::send_file()
 
 void server_manager::send_accept_file_client(QString receiver, int port)
 {
-    QTcpSocket *client = _clients.value(_names.key(receiver));
+    QTcpSocket *client = _clients.value(receiver);
     if (client)
         client->write(_protocol->set_accept_file_message_client(port));
     else
-        qDebug() << "server_manager--> send_file_client()--> receiver not FOUND: " << _names.key(receiver);
+        qDebug() << "server_manager--> send_accept_file_client()--> receiver not FOUND: " << receiver;
 }
 
 void server_manager::save_file()
@@ -287,22 +287,22 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
         qDebug() << "server_manager--> notify_other_clients()--> _clients is empty, can't send message to other clients";
 }
 
-void server_manager::file_for_other_clients(QString sender, QString receiver, QString file_name, qint64 file_size)
+void server_manager::file_for_other_clients(QString sender, QString ID, QString receiver, QString file_name, qint64 file_size)
 {
     QTcpSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_init_sending_file_message_client(sender, file_name, file_size));
+        client->write(_protocol->set_init_sending_file_message_client(sender, ID, file_name, file_size));
     else
         qDebug() << "server_manager -->  file_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::reject_receiving_file_clients(QString sender, QString receiver)
 {
-    QTcpSocket *client = _clients.value(_names.key(receiver));
+    QTcpSocket *client = _clients.value(receiver);
     if (client)
         client->write(_protocol->set_reject_file_message_client(sender, receiver));
     else
-        qDebug() << "server_manager --> on_reject_receiving_file_for_other_clients() --> receiver not FOUND" << _names.key(receiver);
+        qDebug() << "server_manager --> on_reject_receiving_file_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(QString sender, QString receiver)
@@ -338,4 +338,45 @@ int server_manager::allocate_port()
 void server_manager::deallocate_all()
 {
     _ports.clear();
+}
+
+void server_manager::login(QString ID)
+{
+    _clients.insert(ID, _socket);
+
+    QString name_and_port = QString::fromStdString(Account::retrieve_full_name_and_port(_db_connection, ID.toInt()));
+
+    QString full_name = name_and_port.split("/").first();
+
+    QString port = name_and_port.split("/").last();
+
+    QHash<QString, int> friend_list = Account::retrieve_friend_list(_db_connection, ID.toInt());
+
+    _socket->write(_protocol->set_login_message(full_name, port.toInt(), friend_list));
+}
+
+void server_manager::client_add_client(QString name, QString ID, QString receiver)
+{
+    QTcpSocket *client = _clients.value(receiver);
+    if (client)
+        client->write(_protocol->set_added_you_message(name, ID, ""));
+    else
+        qDebug() << "server_manager --> client_add_client() --> receiver not FOUND" << receiver;
+}
+
+void server_manager::lookup_friend(QString ID)
+{
+    QString full_name_and_port = QString::fromStdString(Account::retrieve_full_name_and_port(_db_connection, ID.toInt()));
+
+    _socket->write(_protocol->set_lookup_friend_message(full_name_and_port.split("/").first()));
+}
+
+void server_manager::create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID)
+{
+    Account::create_conversation(_db_connection, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID);
+}
+
+void server_manager::save_conversation_message(QString sender, QString receiver, QString content)
+{
+    Account::save_message(_db_connection, sender.toInt(), receiver.toInt(), content.toStdString());
 }

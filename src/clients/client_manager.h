@@ -11,9 +11,7 @@ class client_manager : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_manager(sql::Connection *db_connection, QWidget *parent = nullptr);
-
-    static sql::Connection *_db_connection;
+    client_manager(QWidget *parent = nullptr);
 
     void send_text(QString sender, QString receiver, QString text);
     void send_name(QString name);
@@ -33,6 +31,16 @@ public:
     void save_file();
     void save_file_client(QString sender);
 
+    void send_client_added_you_message(QString receiver);
+
+    void log_in(QString ID);
+
+    void send_lookup_friend(QString ID);
+
+    void send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+
+    void send_save_conversation_message(QString sender, QString receiver, QString content);
+
 private:
     static QTcpSocket *_socket;
     QHostAddress _ip = QHostAddress::LocalHost;
@@ -46,6 +54,9 @@ private:
     QString _file_name;
     QString _file_name_client;
 
+    static QString _my_ID;
+    static QString _my_name;
+
 signals:
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
@@ -53,14 +64,12 @@ signals:
     void init_receiving_file(QString file_name, qint64 file_size);
     void reject_receiving_file();
 
-    void init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
+    void init_receiving_file_client(QString sender, QString ID, QString file_name, qint64 file_size);
     void reject_receiving_file_client(QString sender);
 
     void file_saved(QString path);
     void file_client_saved(QString path);
 
-    void client_connected(QString client_name);
-    void clients_list(QString my_name, QHash<QString, QString> other_clients);
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
 
@@ -68,6 +77,12 @@ signals:
 
     void file_accepted();
     void file_accepted_client();
+
+    void friend_list(QHash<QString, int> friend_list);
+
+    void client_added_you(QString name, QString ID);
+
+    void lookup_friend_result(QString name);
 
 private slots:
     void on_disconnected();

@@ -1,15 +1,13 @@
 {
-	"backtrace" : 5,
+	"backtrace" : 4,
 	"backtraceGraph" : 
 	{
 		"commands" : 
 		[
 			"add_custom_target",
-			"_qt_internal_expose_source_file_to_ide",
 			"_qt_internal_process_resource",
 			"qt6_add_resources",
-			"qt_add_resources",
-			"set_property"
+			"qt_add_resources"
 		],
 		"files" : 
 		[
@@ -22,51 +20,33 @@
 				"file" : 1
 			},
 			{
-				"command" : 4,
+				"command" : 3,
 				"file" : 1,
 				"line" : 12,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 2,
 				"file" : 0,
 				"line" : 389,
 				"parent" : 1
 			},
 			{
-				"command" : 2,
+				"command" : 1,
 				"file" : 0,
 				"line" : 337,
 				"parent" : 2
 			},
 			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 2215,
-				"parent" : 3
-			},
-			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 2050,
-				"parent" : 4
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 2269,
+				"line" : 2361,
 				"parent" : 3
-			},
-			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 2060,
-				"parent" : 6
 			}
 		]
 	},
-	"id" : "server_other_files::@2804e40980a64c7d7ad1",
-	"name" : "server_other_files",
+	"id" : "client_server_images::@2804e40980a64c7d7ad1",
+	"name" : "client_server_images",
 	"paths" : 
 	{
 		"build" : "src/server",
@@ -82,24 +62,32 @@
 			]
 		},
 		{
-			"name" : "Resources",
+			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				1
+				1,
+				2
 			]
 		}
 	],
 	"sources" : 
 	[
 		{
-			"backtrace" : 5,
+			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "build/src/server/.rcc/images.qrc",
+			"path" : "build/src/server/CMakeFiles/client_server_images",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 7,
-			"path" : "src/server/send_icon.png",
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/server/CMakeFiles/client_server_images.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/server/.rcc/qrc_server_images.cpp.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

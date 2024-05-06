@@ -29,7 +29,7 @@ private:
 
     static client_chat_window *_server_wid;
     static QHash<QString, QWidget *> _window_map;
-    static QHash<QString, QString> _name_list;
+    static QHash<QString, QString> _phone_list;
 
     QLineEdit *_name;
     QLineEdit *_user_phone_number;
@@ -58,8 +58,6 @@ signals:
 private slots:
     void on_log_in();
 
-    void on_clients_list(QString my_name, QHash<QString, QString> other_clients);
-    void on_client_connected(QString client_name);
     void on_client_name_changed(QString old_name, QString client_name);
     void on_client_disconnected(QString client_name);
 
@@ -72,7 +70,13 @@ private slots:
 
     void on_search_friend();
 
-    void new_conversation(int index);
+    void new_conversation(const QString &name);
 
     void on_sign_in();
+
+    void on_client_added_you(QString name, QString ID);
+
+    void on_friend_list(QHash<QString, int> list);
+
+    void on_lookup_friend_result(QString full_name);
 };

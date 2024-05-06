@@ -172,29 +172,53 @@ client_autogen/fast:
 	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client_autogen.dir/build.make src/clients/CMakeFiles/client_autogen.dir/build
 .PHONY : client_autogen/fast
 
-.rcc/qrc_images.o: .rcc/qrc_images.cpp.o
-.PHONY : .rcc/qrc_images.o
+.rcc/qrc_client_images.o: .rcc/qrc_client_images.cpp.o
+.PHONY : .rcc/qrc_client_images.o
 
 # target to build an object file
-.rcc/qrc_images.cpp.o:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o
-.PHONY : .rcc/qrc_images.cpp.o
+.rcc/qrc_client_images.cpp.o:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o
+.PHONY : .rcc/qrc_client_images.cpp.o
 
-.rcc/qrc_images.i: .rcc/qrc_images.cpp.i
-.PHONY : .rcc/qrc_images.i
+.rcc/qrc_client_images.i: .rcc/qrc_client_images.cpp.i
+.PHONY : .rcc/qrc_client_images.i
 
 # target to preprocess a source file
-.rcc/qrc_images.cpp.i:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.i
-.PHONY : .rcc/qrc_images.cpp.i
+.rcc/qrc_client_images.cpp.i:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.i
+.PHONY : .rcc/qrc_client_images.cpp.i
 
-.rcc/qrc_images.s: .rcc/qrc_images.cpp.s
-.PHONY : .rcc/qrc_images.s
+.rcc/qrc_client_images.s: .rcc/qrc_client_images.cpp.s
+.PHONY : .rcc/qrc_client_images.s
 
 # target to generate assembly for a file
-.rcc/qrc_images.cpp.s:
-	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.s
-.PHONY : .rcc/qrc_images.cpp.s
+.rcc/qrc_client_images.cpp.s:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.s
+.PHONY : .rcc/qrc_client_images.cpp.s
+
+__/server/.rcc/qrc_server_images.o: __/server/.rcc/qrc_server_images.cpp.o
+.PHONY : __/server/.rcc/qrc_server_images.o
+
+# target to build an object file
+__/server/.rcc/qrc_server_images.cpp.o:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o
+.PHONY : __/server/.rcc/qrc_server_images.cpp.o
+
+__/server/.rcc/qrc_server_images.i: __/server/.rcc/qrc_server_images.cpp.i
+.PHONY : __/server/.rcc/qrc_server_images.i
+
+# target to preprocess a source file
+__/server/.rcc/qrc_server_images.cpp.i:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.i
+.PHONY : __/server/.rcc/qrc_server_images.cpp.i
+
+__/server/.rcc/qrc_server_images.s: __/server/.rcc/qrc_server_images.cpp.s
+.PHONY : __/server/.rcc/qrc_server_images.s
+
+# target to generate assembly for a file
+__/server/.rcc/qrc_server_images.cpp.s:
+	cd /Users/test/Documents/server---clients/build && $(MAKE) $(MAKESILENT) -f src/clients/CMakeFiles/client.dir/build.make src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.s
+.PHONY : __/server/.rcc/qrc_server_images.cpp.s
 
 chat_line.o: chat_line.cpp.o
 .PHONY : chat_line.o
@@ -376,9 +400,12 @@ help:
 	@echo "... client_autogen_timestamp_deps"
 	@echo "... client_other_files"
 	@echo "... client"
-	@echo "... .rcc/qrc_images.o"
-	@echo "... .rcc/qrc_images.i"
-	@echo "... .rcc/qrc_images.s"
+	@echo "... .rcc/qrc_client_images.o"
+	@echo "... .rcc/qrc_client_images.i"
+	@echo "... .rcc/qrc_client_images.s"
+	@echo "... __/server/.rcc/qrc_server_images.o"
+	@echo "... __/server/.rcc/qrc_server_images.i"
+	@echo "... __/server/.rcc/qrc_server_images.s"
 	@echo "... chat_line.o"
 	@echo "... chat_line.i"
 	@echo "... chat_line.s"

@@ -41,9 +41,15 @@ class Account
 public:
     static void create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hash_password);
 
-    static void create_conversation(sql::Connection *connection, const int participant1_ID, const int participant2_ID);
+    static void create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID);
 
-    static void save_message(sql::Connection *connection, const int conversation_ID, const int sender, const int receiver, const std::string content);
+    static void save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content);
 
     static std::vector<std::string> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
+
+    static QHash<QString, int> retrieve_friend_list(sql::Connection *connection, const int phone_number);
+
+    static std::string retrieve_full_name_and_port(sql::Connection *connection, const int phone_number);
+
+    static int allocate_port(sql::Connection *connection);
 };

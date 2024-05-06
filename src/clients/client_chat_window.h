@@ -12,8 +12,8 @@ class client_chat_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_chat_window(sql::Connection *db_connection, QWidget *parent = nullptr);
-    client_chat_window(QString destinator, QWidget *parent = nullptr);
+    client_chat_window(QString my_ID, QWidget *parent = nullptr);
+    client_chat_window(QString destinator, QString full_name, QWidget *parent = nullptr);
 
     void window_name(QString name);
 
@@ -26,10 +26,12 @@ public:
 
     void add_file(QString path, bool is_mine = true);
 
+    void client_added(QString ID);
+
+    void add_friend(QString ID);
+
 private:
     QStatusBar *_status_bar;
-
-    static sql::Connection *_db_connection;
 
     static client_manager *_client;
     static chat_protocol *_protocol;
@@ -41,7 +43,10 @@ private:
 
     QPushButton *_send_file_button;
 
+    QString _destinator_name;
+
     QDir dir;
+    QString _my_ID;
 
     static QString _my_name;
     static QString _insert_name;
@@ -52,12 +57,12 @@ private:
     QPoint drag_start_position;
     bool dragging = false;
 
+    std::vector<int> _conversation_list;
+
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
-    void clients_list(QString my_name, QHash<QString, QString> other_clients);
-    void client_connected(QString client_name);
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
 
@@ -72,10 +77,15 @@ signals:
 
     void swipe_right();
 
-private slots:
-    void send_message();
+    void client_added_you(QString name, QString ID);
 
-    void send_is_typing();
+    void friend_list(QHash<QString, int> list);
+
+    void lookup_friend_result(QString name);
+
+private slots:
+    void
+    send_message();
 
     void send_file();
     void send_file_client();
@@ -83,7 +93,7 @@ private slots:
     void folder();
 
     void on_init_receiving_file(QString file_name, qint64 file_size);
-    void on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size);
+    void on_init_receiving_file_client(QString sender, QString ID, QString file_name, qint64 file_size);
 
     void on_file_saved(QString path);
 

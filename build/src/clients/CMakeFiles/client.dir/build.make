@@ -69,13 +69,13 @@ include src/clients/CMakeFiles/client.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/clients/CMakeFiles/client.dir/flags.make
 
-src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/send_icon.png
-src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/file_icon.webp
-src/clients/.rcc/qrc_images.cpp: /Users/test/Documents/server---clients/src/clients/record_icon.png
-src/clients/.rcc/qrc_images.cpp: src/clients/.rcc/images.qrc
-src/clients/.rcc/qrc_images.cpp: /opt/homebrew/share/qt/libexec/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource images"
-	cd /Users/test/Documents/server---clients/build/src/clients && /opt/homebrew/share/qt/libexec/rcc --output /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp --name images /Users/test/Documents/server---clients/build/src/clients/.rcc/images.qrc
+src/clients/.rcc/qrc_client_images.cpp: /Users/test/Documents/server---clients/src/clients/send_icon.png
+src/clients/.rcc/qrc_client_images.cpp: /Users/test/Documents/server---clients/src/clients/file_icon.webp
+src/clients/.rcc/qrc_client_images.cpp: /Users/test/Documents/server---clients/src/clients/record_icon.png
+src/clients/.rcc/qrc_client_images.cpp: src/clients/.rcc/client_images.qrc
+src/clients/.rcc/qrc_client_images.cpp: /opt/homebrew/share/qt/libexec/rcc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource client_images"
+	cd /Users/test/Documents/server---clients/build/src/clients && /opt/homebrew/share/qt/libexec/rcc --output /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp --name client_images /Users/test/Documents/server---clients/build/src/clients/.rcc/client_images.qrc
 
 src/clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: src/clients/CMakeFiles/client.dir/flags.make
 src/clients/CMakeFiles/client.dir/client_autogen/mocs_compilation.cpp.o: src/clients/client_autogen/mocs_compilation.cpp
@@ -175,19 +175,33 @@ src/clients/CMakeFiles/client.dir/chat_line.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/chat_line.cpp.s"
 	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/src/clients/chat_line.cpp -o CMakeFiles/client.dir/chat_line.cpp.s
 
-src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o: src/clients/CMakeFiles/client.dir/flags.make
-src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o: src/clients/.rcc/qrc_images.cpp
-src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o: src/clients/CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o"
-	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o -MF CMakeFiles/client.dir/.rcc/qrc_images.cpp.o.d -o CMakeFiles/client.dir/.rcc/qrc_images.cpp.o -c /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp
+src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o: src/clients/CMakeFiles/client.dir/flags.make
+src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o: src/clients/.rcc/qrc_client_images.cpp
+src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o: src/clients/CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o -MF CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o.d -o CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o -c /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp
 
-src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/.rcc/qrc_images.cpp.i"
-	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp > CMakeFiles/client.dir/.rcc/qrc_images.cpp.i
+src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.i"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp > CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.i
 
-src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/.rcc/qrc_images.cpp.s"
-	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp -o CMakeFiles/client.dir/.rcc/qrc_images.cpp.s
+src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.s"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp -o CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.s
+
+src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o: src/clients/CMakeFiles/client.dir/flags.make
+src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o: src/server/.rcc/qrc_server_images.cpp
+src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o: src/clients/CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o -MF CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o.d -o CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o -c /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp
+
+src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.i"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp > CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.i
+
+src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.s"
+	cd /Users/test/Documents/server---clients/build/src/clients && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp -o CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
@@ -198,7 +212,8 @@ client_OBJECTS = \
 "CMakeFiles/client.dir/client_chat_window.cpp.o" \
 "CMakeFiles/client.dir/chat_protocol.cpp.o" \
 "CMakeFiles/client.dir/chat_line.cpp.o" \
-"CMakeFiles/client.dir/.rcc/qrc_images.cpp.o"
+"CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o" \
+"CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
@@ -210,7 +225,8 @@ src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/
 src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/client_chat_window.cpp.o
 src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/chat_protocol.cpp.o
 src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/chat_line.cpp.o
-src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/.rcc/qrc_images.cpp.o
+src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/.rcc/qrc_client_images.cpp.o
+src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/__/server/.rcc/qrc_server_images.cpp.o
 src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/build.make
 src/clients/client.app/Contents/MacOS/client: src/database/libdatabase_library.a
 src/clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
@@ -219,7 +235,7 @@ src/clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtNetwork.framew
 src/clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
 src/clients/client.app/Contents/MacOS/client: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 src/clients/client.app/Contents/MacOS/client: src/clients/CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable client.app/Contents/MacOS/client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/test/Documents/server---clients/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable client.app/Contents/MacOS/client"
 	cd /Users/test/Documents/server---clients/build/src/clients && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -230,7 +246,7 @@ src/clients/CMakeFiles/client.dir/clean:
 	cd /Users/test/Documents/server---clients/build/src/clients && $(CMAKE_COMMAND) -P CMakeFiles/client.dir/cmake_clean.cmake
 .PHONY : src/clients/CMakeFiles/client.dir/clean
 
-src/clients/CMakeFiles/client.dir/depend: src/clients/.rcc/qrc_images.cpp
+src/clients/CMakeFiles/client.dir/depend: src/clients/.rcc/qrc_client_images.cpp
 	cd /Users/test/Documents/server---clients/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/test/Documents/server---clients /Users/test/Documents/server---clients/src/clients /Users/test/Documents/server---clients/build /Users/test/Documents/server---clients/build/src/clients /Users/test/Documents/server---clients/build/src/clients/CMakeFiles/client.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : src/clients/CMakeFiles/client.dir/depend
 

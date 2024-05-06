@@ -7,7 +7,7 @@
 /Users/test/Documents/server---clients/build/src/clients/CMakeFiles/client_autogen_timestamp_deps.dir
 /Users/test/Documents/server---clients/build/src/clients/CMakeFiles/client_autogen.dir
 /Users/test/Documents/server---clients/build/src/server/CMakeFiles/server.dir
-/Users/test/Documents/server---clients/build/src/server/CMakeFiles/server_other_files.dir
+/Users/test/Documents/server---clients/build/src/server/CMakeFiles/client_server_images.dir
 /Users/test/Documents/server---clients/build/src/server/CMakeFiles/edit_cache.dir
 /Users/test/Documents/server---clients/build/src/server/CMakeFiles/rebuild_cache.dir
 /Users/test/Documents/server---clients/build/src/server/CMakeFiles/server_autogen_timestamp_deps.dir

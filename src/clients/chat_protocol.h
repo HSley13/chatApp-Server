@@ -28,12 +28,14 @@ public:
         send_file,
         send_file_client,
 
-        new_client,
-        clients_list,
         client_new_name,
         client_disconnected,
 
-        first_client,
+        log_in,
+        added_you,
+        lookup_friend,
+        create_conversation,
+        save_message
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -44,18 +46,28 @@ public:
     QByteArray set_accept_file_message();
     QByteArray set_reject_file_message();
 
-    QByteArray set_init_sending_file_message_client(QString sender, QString receive, QString filename);
+    QByteArray set_init_sending_file_message_client(QString sender, QString ID, QString receiver, QString filename);
     QByteArray set_accept_file_message_client(QString receiver, int port);
     QByteArray set_reject_file_message_client(QString sender, QString receiver);
 
     QByteArray set_file_message(QString filename);
     QByteArray set_file_message_client(QString filename, QString sender);
 
+    QByteArray set_login_message(QString ID);
+
+    QByteArray set_added_you_message(QString name, QString ID, QString receiver);
+
+    QByteArray set_lookup_friend_message(QString ID);
+
+    QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    QByteArray set_save_message_message(QString sender, QString receiver, QString content);
+
     void load_data(QByteArray data);
 
     message_type type() const;
     const QString &message() const;
     const QString &name() const;
+
     const QString &file_name() const;
     const qint64 &file_size() const;
     const QByteArray &file_data() const;
@@ -64,8 +76,6 @@ public:
     const qint64 &file_size_client() const;
     const QByteArray &file_data_client() const;
 
-    const QString &client_name() const;
-
     const QString &receiver() const;
     const QString &sender() const;
     const QString &sender_file() const;
@@ -73,9 +83,17 @@ public:
     const int &port() const;
     const int &port_transfer() const;
 
+    const QString &client_name() const;
+
     const QString &old_name() const;
     const QString &my_name() const;
-    const QHash<QString, QString> &clients_name() const;
+
+    const QString &my_ID() const;
+    const QString &clients_ID() const;
+
+    const QString &full_name() const;
+
+    const QHash<QString, int> &friend_list() const;
 
 private:
     QByteArray get_data(message_type type, QString data);
@@ -101,6 +119,12 @@ private:
     QString _sender_file;
 
     QString _old_name;
+
     QString _my_name;
-    QHash<QString, QString> _clients_name;
+
+    QString _full_name;
+    QString _my_ID;
+    QHash<QString, int> _friend_list;
+
+    QString _client_ID;
 };

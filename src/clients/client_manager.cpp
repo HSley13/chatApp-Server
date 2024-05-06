@@ -4,12 +4,13 @@ QTcpSocket *client_manager::_socket = nullptr;
 chat_protocol *client_manager::_protocol = nullptr;
 
 QTcpServer *client_manager::_file_server = nullptr;
-sql::Connection *client_manager::_db_connection = nullptr;
 
-client_manager::client_manager(sql::Connection *db_connection, QWidget *parent)
+QString client_manager::_my_ID;
+
+client_manager::client_manager(QWidget *parent)
     : QMainWindow(parent)
 {
-    if (!_socket && !_protocol && !_db_connection)
+    if (!_socket && !_protocol)
     {
         _socket = new QTcpSocket(this);
         _socket->connectToHost(_ip, _port);
@@ -18,8 +19,6 @@ client_manager::client_manager(sql::Connection *db_connection, QWidget *parent)
         connect(_socket, &QTcpSocket::readyRead, this, &client_manager::on_ready_read);
 
         _protocol = new chat_protocol(this);
-
-        _db_connection = db_connection;
     }
 }
 
@@ -48,7 +47,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::init_sending_file_client:
-        emit init_receiving_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_size_client());
+        emit init_receiving_file_client(_protocol->sender(), _protocol->clients_ID(), _protocol->file_name_client(), _protocol->file_size_client());
 
         break;
 
@@ -82,16 +81,6 @@ void client_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::new_client:
-        emit client_connected(_protocol->client_name());
-
-        break;
-
-    case chat_protocol::clients_list:
-        emit clients_list(_protocol->my_name(), _protocol->clients_name());
-
-        break;
-
     case chat_protocol::client_new_name:
         emit client_name_changed(_protocol->old_name(), _protocol->client_name());
 
@@ -99,6 +88,21 @@ void client_manager::on_ready_read()
 
     case chat_protocol::client_disconnected:
         emit client_disconnected(_protocol->client_name());
+
+        break;
+
+    case chat_protocol::added_you:
+        emit client_added_you(_protocol->client_name(), _protocol->clients_ID());
+
+        break;
+
+    case chat_protocol::log_in:
+        emit friend_list(_protocol->friend_list());
+
+        break;
+
+    case chat_protocol::lookup_friend:
+        emit lookup_friend_result(_protocol->client_name());
 
         break;
 
@@ -138,7 +142,7 @@ void client_manager::send_init_sending_file(QString file_name)
 void client_manager::send_init_sending_file_client(QString sender, QString receiver, QString file_name)
 {
     _file_name_client = file_name;
-    _socket->write(_protocol->set_init_sending_file_message_client(sender, receiver, file_name));
+    _socket->write(_protocol->set_init_sending_file_message_client(sender, _my_ID, receiver, file_name));
 }
 
 void client_manager::send_accept_file()
@@ -202,6 +206,17 @@ void client_manager::send_file_client(int port_transfer)
     temp->write(_protocol->set_file_message_client(_file_name_client, _protocol->my_name()));
 }
 
+void client_manager::log_in(QString ID)
+{
+    _my_ID = ID;
+    _socket->write(_protocol->set_login_message(ID));
+}
+
+void client_manager::send_client_added_you_message(QString receiver)
+{
+    _socket->write(_protocol->set_added_you_message(_protocol->full_name(), _my_ID, receiver));
+}
+
 void client_manager::save_file()
 {
     QDir dir;
@@ -238,4 +253,19 @@ void client_manager::save_file_client(QString sender)
     }
     else
         qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";
+}
+
+void client_manager::send_lookup_friend(QString ID)
+{
+    _socket->write(_protocol->set_lookup_friend_message(ID));
+}
+
+void client_manager::send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID)
+{
+    _socket->write(_protocol->set_create_conversation_message(participant1, participant1_ID, participant2, participant2_ID));
+}
+
+void client_manager::send_save_conversation_message(QString sender, QString receiver, QString content)
+{
+    _socket->write(_protocol->set_save_message_message(sender, receiver, content));
 }

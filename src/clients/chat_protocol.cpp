@@ -64,7 +64,7 @@ QByteArray chat_protocol::set_init_sending_file_message(QString filename)
     return byte;
 }
 
-QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString receiver, QString filename)
+QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString ID, QString receiver, QString filename)
 {
     QByteArray byte;
 
@@ -73,7 +73,7 @@ QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, Q
 
     QFileInfo info(filename);
 
-    out << init_sending_file_client << sender << receiver << info.fileName() << info.size();
+    out << init_sending_file_client << sender << ID << receiver << info.fileName() << info.size();
 
     return byte;
 }
@@ -152,6 +152,52 @@ QByteArray chat_protocol::set_file_message_client(QString filename, QString send
     return byte;
 }
 
+QByteArray chat_protocol::set_login_message(QString ID)
+{
+    return get_data(log_in, ID);
+}
+
+QByteArray chat_protocol::set_added_you_message(QString name, QString ID, QString receiver)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << added_you << name << ID << receiver;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_lookup_friend_message(QString ID)
+{
+    return get_data(lookup_friend, ID);
+}
+
+QByteArray chat_protocol::set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << create_conversation << participant1 << participant1_ID << participant2 << participant2_ID;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_save_message_message(QString sender, QString receiver, QString content)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << save_message << sender << receiver << content;
+
+    return byte;
+}
+
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -182,7 +228,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case init_sending_file_client:
-        in >> _sender >> _file_name_client >> _file_size_client;
+        in >> _sender >> _client_ID >> _file_name_client >> _file_size_client;
 
         break;
 
@@ -196,18 +242,8 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case new_client:
-        in >> _client_name;
-
-        break;
-
     case client_disconnected:
         in >> _client_name;
-
-        break;
-
-    case clients_list:
-        in >> _my_name >> _clients_name >> _port;
 
         break;
 
@@ -226,8 +262,18 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case first_client:
-        in >> _my_name >> _port;
+    case added_you:
+        in >> _client_name >> _client_ID >> _receiver;
+
+        break;
+
+    case log_in:
+        in >> _full_name >> _port >> _friend_list;
+
+        break;
+
+    case lookup_friend:
+        in >> _client_name;
 
         break;
 
@@ -311,11 +357,6 @@ const QString &chat_protocol::my_name() const
     return _my_name;
 }
 
-const QHash<QString, QString> &chat_protocol::clients_name() const
-{
-    return _clients_name;
-}
-
 const int &chat_protocol::port() const
 {
     return _port;
@@ -324,4 +365,24 @@ const int &chat_protocol::port() const
 const int &chat_protocol::port_transfer() const
 {
     return _port_transfer;
+}
+
+const QString &chat_protocol::my_ID() const
+{
+    return _my_ID;
+}
+
+const QString &chat_protocol::clients_ID() const
+{
+    return _client_ID;
+}
+
+const QString &chat_protocol::full_name() const
+{
+    return _full_name;
+}
+
+const QHash<QString, int> &chat_protocol::friend_list() const
+{
+    return _friend_list;
 }

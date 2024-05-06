@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp" "src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o" "gcc" "src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o.d"
   "/Users/test/Documents/server---clients/src/server/chat_line.cpp" "src/server/CMakeFiles/server.dir/chat_line.cpp.o" "gcc" "src/server/CMakeFiles/server.dir/chat_line.cpp.o.d"
   "/Users/test/Documents/server---clients/src/server/chat_protocol.cpp" "src/server/CMakeFiles/server.dir/chat_protocol.cpp.o" "gcc" "src/server/CMakeFiles/server.dir/chat_protocol.cpp.o.d"
   "/Users/test/Documents/server---clients/build/src/server/server_autogen/mocs_compilation.cpp" "src/server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o" "gcc" "src/server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o.d"

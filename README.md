@@ -40,8 +40,9 @@
             (
                 phone_number INT PRIMARY KEY,
                 first_name VARCHAR(50),
-                last_name VARCHAR(50)
-            );
+                last_name VARCHAR(50),
+                port INT AUTO_INCREMENT
+            )AUTO_INCREMENT = 9999;
 
             -------password_security
             CREATE TABLE password_security
@@ -56,10 +57,11 @@
             CREATE TABLE conversations 
             (
                 conversation_ID INT AUTO_INCREMENT PRIMARY KEY,
+                participant1 VARCHAR(50),
                 participant1_ID INT,
+                participant1 VARCHAR(50),
                 participant2_ID INT,
-                start_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-                end_time DATETIME
+                start_time DATETIME DEFAULT CURRENT_TIMESTAMP
             ) AUTO_INCREMENT = 1;
 
 
@@ -73,24 +75,6 @@
                 content TEXT, 
                 date_time DATETIME DEFAULT CURRENT_TIMESTAMP
             )AUTO_INCREMENT = 1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 */
 

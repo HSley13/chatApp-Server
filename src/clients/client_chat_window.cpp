@@ -7,28 +7,23 @@ QString client_chat_window::_insert_name = nullptr;
 client_manager *client_chat_window::_client = nullptr;
 chat_protocol *client_chat_window::_protocol = nullptr;
 
-sql::Connection *client_chat_window::_db_connection = nullptr;
-
-client_chat_window::client_chat_window(sql::Connection *db_connection, QWidget *parent)
-    : QMainWindow(parent)
+client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
+    : QMainWindow(parent), _my_ID(my_ID)
 {
     set_up_window();
-
-    if (!_db_connection)
-        _db_connection = db_connection;
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
     connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
 }
 
-client_chat_window::client_chat_window(QString destinator, QWidget *parent)
-    : QMainWindow(parent), _destinator(destinator)
+client_chat_window::client_chat_window(QString destinator, QString full_name, QWidget *parent)
+    : QMainWindow(parent), _destinator(destinator), _destinator_name(full_name)
 {
     set_up_window();
 
-    dir.mkdir(_destinator);
-    dir.setPath("./" + _destinator);
+    dir.mkdir(_destinator_name);
+    dir.setPath("./" + _destinator_name);
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
@@ -46,13 +41,13 @@ void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_s
     (result == QMessageBox::Yes) ? _client->send_accept_file() : _client->send_reject_file();
 }
 
-void client_chat_window::on_init_receiving_file_client(QString sender, QString file_name, qint64 file_size)
+void client_chat_window::on_init_receiving_file_client(QString sender, QString ID, QString file_name, qint64 file_size)
 {
     QString message = QString("-------- %1 --------\n  %2 wants to send a File. Willing to accept it or not?\n File Name: %3\n File Size: %4 bytes").arg(my_name(), sender).arg(file_name).arg(file_size);
 
     QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
 
-    (result == QMessageBox::Yes) ? _client->send_accept_file_client(sender) : _client->send_reject_file_client(my_name(), sender);
+    (result == QMessageBox::Yes) ? _client->send_accept_file_client(ID) : _client->send_reject_file_client(my_name(), ID);
 }
 
 void client_chat_window::on_file_saved(QString path)
@@ -122,8 +117,11 @@ void client_chat_window::send_message()
 
     if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
     {
-        Account::create_conversation(_db_connection, 905811513, 905811514);
-        Account::save_message(_db_connection, 1, 905811513, 905811514, message.toStdString());
+
+        _client->send_create_conversation_message(_protocol->full_name(), _my_ID.toInt(), _destinator_name, _destinator.toInt());
+        _client->send_save_conversation_message(_my_ID, _destinator, message);
+
+        _insert_message->clear();
     }
 
     _insert_message->clear();
@@ -145,12 +143,7 @@ void client_chat_window::message_received(QString message)
     _list->setItemWidget(line, wid);
 
     if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
-        Account::save_message(_db_connection, 1, 905811514, 905811513, message.toStdString());
-}
-
-void client_chat_window::send_is_typing()
-{
-    _client->send_is_typing(my_name(), _destinator);
+        _client->send_save_conversation_message(_destinator, _my_ID, message);
 }
 
 void client_chat_window::send_file()
@@ -209,7 +202,8 @@ void client_chat_window::set_up_window()
 
     _insert_message = new QLineEdit(this);
     _insert_message->setPlaceholderText("Insert New Message");
-    connect(_insert_message, &QLineEdit::textChanged, this, &client_chat_window::send_is_typing);
+    connect(_insert_message, &QLineEdit::textChanged, this, [=]()
+            { _client->send_is_typing(my_name(), _destinator); });
 
     QPixmap image_send(":/images/send_icon.png");
     if (!image_send)
@@ -246,7 +240,7 @@ void client_chat_window::set_up_window()
 
     if (!_client && !_protocol)
     {
-        _client = new client_manager(_db_connection, this);
+        _client = new client_manager(this);
         connect(_client, &client_manager::text_message_received, this, [=](QString sender, QString message)
                 { emit text_message_received(sender, message); });
 
@@ -259,14 +253,8 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::reject_receiving_file_client, this, [=](QString sender)
                 { QMessageBox::critical(this, "File Rejected", QString("-------- %1 --------\n %2 Rejected Your request to send the file").arg(my_name(), sender)); });
 
-        connect(_client, &client_manager::client_connected, this, [=](QString client_name)
-                { emit client_connected(client_name); });
-
         connect(_client, &client_manager::client_disconnected, this, [=](QString client_name)
                 { emit client_disconnected(client_name); });
-
-        connect(_client, &client_manager::clients_list, this, [=](QString my_name, QHash<QString, QString> other_clients)
-                { emit clients_list(my_name, other_clients); });
 
         connect(_client, &client_manager::client_name_changed, this, [=](QString old_name, QString client_name)
                 { emit client_name_changed(old_name, client_name); });
@@ -274,16 +262,27 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::socket_disconnected, this, [=]()
                 { emit socket_disconnected(); });
 
+        connect(_client, &client_manager::client_added_you, this, [=](QString name, QString ID)
+                { emit client_added_you(name, ID); });
+
+        connect(_client, &client_manager::lookup_friend_result, this, [=](QString name)
+                { emit lookup_friend_result(name); });
+
+        connect(_client, &client_manager::friend_list, this, [=](QHash<QString, int> list)
+                { emit friend_list(list); });
+
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);
 
         _protocol = new chat_protocol(this);
+
+        _client->log_in(_my_ID);
     }
 }
 
 QString client_chat_window::my_name()
 {
-    QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name();
+    QString name = _insert_name.length() > 0 ? _insert_name : _protocol->my_name().split(" ").first();
 
     return name;
 }
@@ -344,4 +343,58 @@ void client_chat_window::add_file(QString path, bool is_mine)
     (is_mine) ? item->setBackground(QBrush(QColorConstants::Svg::lightblue)) : item->setBackground(QBrush(QColorConstants::Svg::lightgray));
 
     _list->setItemWidget(item, file);
+}
+
+// This wil be for the server
+// void client_chat_window::retrieve_conversation()
+// {
+//     std::vector<std::string> messages;
+
+//     for (int conversation_ID : _conversation_list)
+//         messages = Account::retrieve_conversation(_db_connection, conversation_ID);
+
+//     for (std::string message : messages)
+//     {
+//         std::string sender_ID = std::strtok(&message[0], "/");
+//         std::string receiver_ID = std::strtok(nullptr, "/");
+//         std::string content = std::strtok(nullptr, "/");
+//         std::string date_time = std::strtok(nullptr, "/");
+
+//         if (!sender_ID.compare(_my_ID.toStdString()))
+//         {
+//             chat_line *wid = new chat_line(this);
+//             wid->set_message(QString::fromStdString(content), true, date_time);
+//             wid->setStyleSheet("color: black;");
+
+//             QListWidgetItem *line = new QListWidgetItem();
+//             line->setBackground(QBrush(QColorConstants::Svg::lightblue));
+//             line->setSizeHint(QSize(0, 60));
+
+//             _list->addItem(line);
+//             _list->setItemWidget(line, wid);
+//         }
+//         else
+//         {
+//             chat_line *wid = new chat_line(this);
+//             wid->set_message(QString::fromStdString(content), false, date_time);
+//             wid->setStyleSheet("color: black;");
+
+//             QListWidgetItem *line = new QListWidgetItem();
+//             line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+//             line->setSizeHint(QSize(0, 60));
+
+//             _list->addItem(line);
+//             _list->setItemWidget(line, wid);
+//         }
+//     }
+// }
+
+void client_chat_window::client_added(QString ID)
+{
+    _client->send_client_added_you_message(ID);
+}
+
+void client_chat_window::add_friend(QString ID)
+{
+    _client->send_lookup_friend(ID);
 }

@@ -39,7 +39,7 @@ public:
     void send_file();
     void save_file();
 
-    void file_for_other_clients(QString sender, QString receiver, QString file_name, qint64 file_size);
+    void file_for_other_clients(QString sender, QString ID, QString receiver, QString file_name, qint64 file_size);
     void reject_receiving_file_clients(QString sender, QString receiver);
 
     QString name() const;
@@ -52,6 +52,16 @@ public:
     static int allocate_port();
 
     static void deallocate_all();
+
+    void login(QString ID);
+
+    void client_add_client(QString name, QString ID, QString receiver);
+
+    void lookup_friend(QString ID);
+
+    void create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+
+    void save_conversation_message(QString sender, QString receiver, QString content);
 
 private:
     QWidget *central_widget;

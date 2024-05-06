@@ -110,7 +110,8 @@
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp"
+		"/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp",
+		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
@@ -157,7 +158,8 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_images.cpp"
+		"/Users/test/Documents/server---clients/build/src/clients/.rcc/qrc_client_images.cpp",
+		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_server_images.cpp"
 	],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : false,

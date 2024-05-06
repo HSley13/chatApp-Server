@@ -108,10 +108,7 @@
 	],
 	"MOC_PREDEFS_FILE" : "/Users/test/Documents/server---clients/build/src/server/server_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : 
-	[
-		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp"
-	],
+	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
 	"PARSE_CACHE_FILE" : "/Users/test/Documents/server---clients/build/src/server/CMakeFiles/server_autogen.dir/ParseCache.txt",
@@ -155,10 +152,7 @@
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : 
-	[
-		"/Users/test/Documents/server---clients/build/src/server/.rcc/qrc_images.cpp"
-	],
+	"UIC_SKIP" : [],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : false,
 	"VERBOSITY" : 0

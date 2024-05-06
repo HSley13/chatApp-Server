@@ -40,15 +40,10 @@ namespace {
 struct qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers::stringData(
     "client_chat_window",
-    "clients_list",
-    "",
-    "my_name",
-    "QHash<QString,QString>",
-    "other_clients",
-    "client_connected",
-    "client_name",
     "client_name_changed",
+    "",
     "old_name",
+    "client_name",
     "client_disconnected",
     "text_message_received",
     "sender",
@@ -58,8 +53,14 @@ constexpr auto qt_meta_stringdata_CLASSclient_chat_windowENDCLASS = QtMocHelpers
     "update_button_file",
     "text_message_sent",
     "swipe_right",
+    "client_added_you",
+    "name",
+    "ID",
+    "friend_list",
+    "QHash<QString,int>",
+    "list",
+    "lookup_friend_result",
     "send_message",
-    "send_is_typing",
     "send_file",
     "send_file_client",
     "folder",
@@ -87,52 +88,52 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSclient_chat_windowENDCLASS[] = {
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      10,       // signalCount
+      11,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    2,  128,    2, 0x06,    1 /* Public */,
-       6,    1,  133,    2, 0x06,    4 /* Public */,
-       8,    2,  136,    2, 0x06,    6 /* Public */,
-      10,    1,  141,    2, 0x06,    9 /* Public */,
-      11,    2,  144,    2, 0x06,   11 /* Public */,
-      14,    1,  149,    2, 0x06,   14 /* Public */,
-      15,    0,  152,    2, 0x06,   16 /* Public */,
-      16,    0,  153,    2, 0x06,   17 /* Public */,
-      17,    1,  154,    2, 0x06,   18 /* Public */,
-      18,    0,  157,    2, 0x06,   20 /* Public */,
+       5,    1,  133,    2, 0x06,    4 /* Public */,
+       6,    2,  136,    2, 0x06,    6 /* Public */,
+       9,    1,  141,    2, 0x06,    9 /* Public */,
+      10,    0,  144,    2, 0x06,   11 /* Public */,
+      11,    0,  145,    2, 0x06,   12 /* Public */,
+      12,    1,  146,    2, 0x06,   13 /* Public */,
+      13,    0,  149,    2, 0x06,   15 /* Public */,
+      14,    2,  150,    2, 0x06,   16 /* Public */,
+      17,    1,  155,    2, 0x06,   19 /* Public */,
+      20,    1,  158,    2, 0x06,   21 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      19,    0,  158,    2, 0x08,   21 /* Private */,
-      20,    0,  159,    2, 0x08,   22 /* Private */,
-      21,    0,  160,    2, 0x08,   23 /* Private */,
-      22,    0,  161,    2, 0x08,   24 /* Private */,
-      23,    0,  162,    2, 0x08,   25 /* Private */,
-      24,    2,  163,    2, 0x08,   26 /* Private */,
-      27,    3,  168,    2, 0x08,   29 /* Private */,
-      28,    1,  175,    2, 0x08,   33 /* Private */,
-      30,    0,  178,    2, 0x08,   35 /* Private */,
+      21,    0,  161,    2, 0x08,   23 /* Private */,
+      22,    0,  162,    2, 0x08,   24 /* Private */,
+      23,    0,  163,    2, 0x08,   25 /* Private */,
+      24,    0,  164,    2, 0x08,   26 /* Private */,
+      25,    2,  165,    2, 0x08,   27 /* Private */,
+      28,    4,  170,    2, 0x08,   30 /* Private */,
+      29,    1,  179,    2, 0x08,   35 /* Private */,
+      31,    0,  182,    2, 0x08,   37 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
-    QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    9,    7,
-    QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   12,   13,
-    QMetaType::Void, QMetaType::QString,   12,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
+    QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    7,    8,
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   15,   16,
+    QMetaType::Void, 0x80000000 | 18,   19,
+    QMetaType::Void, QMetaType::QString,   15,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::LongLong,   25,   26,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,   12,   25,   26,
-    QMetaType::Void, QMetaType::QString,   29,
+    QMetaType::Void, QMetaType::QString, QMetaType::LongLong,   26,   27,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::LongLong,    7,   16,   26,   27,
+    QMetaType::Void, QMetaType::QString,   30,
     QMetaType::Void,
 
        0        // eod
@@ -147,13 +148,6 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSclient_chat_windowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<client_chat_window, std::true_type>,
-        // method 'clients_list'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
-        // method 'client_connected'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'client_name_changed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -177,9 +171,17 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'swipe_right'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'send_message'
+        // method 'client_added_you'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'send_is_typing'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'friend_list'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QHash<QString,int>, std::false_type>,
+        // method 'lookup_friend_result'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'send_message'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'send_file'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -193,6 +195,7 @@ Q_CONSTINIT const QMetaObject client_chat_window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
         // method 'on_init_receiving_file_client'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<qint64, std::false_type>,
@@ -211,23 +214,23 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<client_chat_window *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->clients_list((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2]))); break;
-        case 1: _t->client_connected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 3: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 5: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->socket_disconnected(); break;
-        case 7: _t->update_button_file(); break;
-        case 8: _t->text_message_sent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->swipe_right(); break;
-        case 10: _t->send_message(); break;
-        case 11: _t->send_is_typing(); break;
+        case 0: _t->client_name_changed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 1: _t->client_disconnected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 2: _t->text_message_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 3: _t->is_typing_received((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->socket_disconnected(); break;
+        case 5: _t->update_button_file(); break;
+        case 6: _t->text_message_sent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->swipe_right(); break;
+        case 8: _t->client_added_you((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 9: _t->friend_list((*reinterpret_cast< std::add_pointer_t<QHash<QString,int>>>(_a[1]))); break;
+        case 10: _t->lookup_friend_result((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->send_message(); break;
         case 12: _t->send_file(); break;
         case 13: _t->send_file_client(); break;
         case 14: _t->folder(); break;
         case 15: _t->on_init_receiving_file((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[2]))); break;
-        case 16: _t->on_init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[3]))); break;
+        case 16: _t->on_init_receiving_file_client((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<qint64>>(_a[4]))); break;
         case 17: _t->on_file_saved((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 18: _t->start_recording(); break;
         default: ;
@@ -235,72 +238,79 @@ void client_chat_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (client_chat_window::*)(QString , QHash<QString,QString> );
-            if (_t _q_method = &client_chat_window::clients_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (client_chat_window::*)(QString , QString );
+            if (_t _q_method = &client_chat_window::client_name_changed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)(QString );
-            if (_t _q_method = &client_chat_window::client_connected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &client_chat_window::client_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)(QString , QString );
-            if (_t _q_method = &client_chat_window::client_name_changed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &client_chat_window::text_message_received; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)(QString );
-            if (_t _q_method = &client_chat_window::client_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 3;
-                return;
-            }
-        }
-        {
-            using _t = void (client_chat_window::*)(QString , QString );
-            if (_t _q_method = &client_chat_window::text_message_received; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 4;
-                return;
-            }
-        }
-        {
-            using _t = void (client_chat_window::*)(QString );
             if (_t _q_method = &client_chat_window::is_typing_received; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 5;
+                *result = 3;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)();
             if (_t _q_method = &client_chat_window::socket_disconnected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 6;
+                *result = 4;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)();
             if (_t _q_method = &client_chat_window::update_button_file; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 7;
+                *result = 5;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)(QString );
             if (_t _q_method = &client_chat_window::text_message_sent; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 8;
+                *result = 6;
                 return;
             }
         }
         {
             using _t = void (client_chat_window::*)();
             if (_t _q_method = &client_chat_window::swipe_right; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (client_chat_window::*)(QString , QString );
+            if (_t _q_method = &client_chat_window::client_added_you; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            using _t = void (client_chat_window::*)(QHash<QString,int> );
+            if (_t _q_method = &client_chat_window::friend_list; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (client_chat_window::*)(QString );
+            if (_t _q_method = &client_chat_window::lookup_friend_result; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 10;
                 return;
             }
         }
@@ -338,69 +348,76 @@ int client_chat_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void client_chat_window::clients_list(QString _t1, QHash<QString,QString> _t2)
+void client_chat_window::client_name_changed(QString _t1, QString _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void client_chat_window::client_connected(QString _t1)
+void client_chat_window::client_disconnected(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void client_chat_window::client_name_changed(QString _t1, QString _t2)
+void client_chat_window::text_message_received(QString _t1, QString _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void client_chat_window::client_disconnected(QString _t1)
+void client_chat_window::is_typing_received(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void client_chat_window::text_message_received(QString _t1, QString _t2)
+void client_chat_window::socket_disconnected()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
-    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 
 // SIGNAL 5
-void client_chat_window::is_typing_received(QString _t1)
+void client_chat_window::update_button_file()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 
 // SIGNAL 6
-void client_chat_window::socket_disconnected()
+void client_chat_window::text_message_sent(QString _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void client_chat_window::update_button_file()
+void client_chat_window::swipe_right()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 
 // SIGNAL 8
-void client_chat_window::text_message_sent(QString _t1)
+void client_chat_window::client_added_you(QString _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
-void client_chat_window::swipe_right()
+void client_chat_window::friend_list(QHash<QString,int> _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void client_chat_window::lookup_friend_result(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
 }
 QT_WARNING_POP

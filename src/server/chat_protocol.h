@@ -28,12 +28,14 @@ public:
         send_file,
         send_file_client,
 
-        new_client,
-        clients_list,
         client_new_name,
         client_disconnected,
 
-        first_client
+        log_in,
+        added_you,
+        lookup_friend,
+        create_conversation,
+        save_message
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -41,7 +43,7 @@ public:
     QByteArray set_name_message(QString name);
 
     QByteArray set_init_sending_file_message(QString filename);
-    QByteArray set_init_sending_file_message_client(QString sender, QString filename, qint64 file_size);
+    QByteArray set_init_sending_file_message_client(QString sender, QString ID, QString filename, qint64 file_size);
 
     QByteArray set_accept_file_message();
     QByteArray set_accept_file_message_client(int port);
@@ -52,12 +54,13 @@ public:
     QByteArray set_file_message(QString filename);
     QByteArray set_file_message_client(int port);
 
-    QByteArray set_new_client_message(QString client_name);
-    QByteArray set_clients_list_message(QString client_name, QHash<QString, QString> other_clients, int port);
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
-    QByteArray set_first_client_message(QString name, int port_transfer);
+    QByteArray set_login_message(QString full_name, int port, QHash<QString, int> friend_list);
+    QByteArray set_added_you_message(QString name, QString ID, QString receiver);
+
+    QByteArray set_lookup_friend_message(QString ID);
 
     void load_data(QByteArray data);
 
@@ -82,6 +85,13 @@ public:
 
     const int &port() const;
 
+    const QString &clients_ID() const;
+
+    const QString &participant1() const;
+    const int &participant1_ID() const;
+    const QString &participant2() const;
+    const int &participant2_ID() const;
+
 private:
     QByteArray get_data(message_type type, QString data);
 
@@ -105,4 +115,11 @@ private:
     QString _sender_typing;
     QString _original_name;
     QHash<QString, QString> _other_clients;
+
+    QString _client_ID;
+
+    QString _participant1;
+    int _participant1_ID;
+    QString _participant2;
+    int _participant2_ID;
 };

@@ -87,8 +87,6 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
 
     _tabs->setTabText(index, client_name);
 
-    _server->notify_other_clients(old_name, client_name);
-
     _window_map.remove(old_name);
     _window_map.insert(client_name, wid);
 

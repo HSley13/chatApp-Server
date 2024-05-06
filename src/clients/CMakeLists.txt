@@ -8,7 +8,7 @@ add_executable(client
                 )
 target_link_libraries(client PRIVATE database_library)
 
-qt_add_resources(client "images"
+qt_add_resources(client "client_images"
                     PREFIX "/images"
                     FILES send_icon.png file_icon.webp record_icon.png
                 )
