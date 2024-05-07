@@ -230,20 +230,21 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT participant2, participant2_ID, conversation_ID FROM conversations WHERE participant1_ID = ? ;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT CASE WHEN participant1_ID = ? THEN participant2 ELSE participant1 END AS other_participant, CASE WHEN participant1_ID = ? THEN participant2_ID ELSE participant1_ID END AS other_participant_ID, conversation_ID FROM conversations WHERE participant1_ID = ? OR participant2_ID = ?;"));
         prepared_statement->setInt(1, phone_number);
+        prepared_statement->setInt(2, phone_number);
+        prepared_statement->setInt(3, phone_number);
+        prepared_statement->setInt(4, phone_number);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
-
-        if (!result->next())
-            return {};
 
         QHash<int, QHash<QString, int>> friend_list_pack;
 
         while (result->next())
         {
-            std::string participant2 = result->getString("participant2");
-            int participant2_ID = result->getInt("participant2_ID");
+            std::string participant2 = result->getString("other_participant");
+
+            int participant2_ID = result->getInt("other_participant_ID");
 
             QHash<QString, int> friend_list;
             friend_list.insert(QString::fromStdString(participant2), participant2_ID);

@@ -178,7 +178,9 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     _search_phone_number = new QLineEdit(this);
     _search_phone_number->setPlaceholderText("ADD PEOPLE VIA PHONE NUMBER, THEN PRESS ENTER");
     connect(_search_phone_number, &QLineEdit::returnPressed, this, [=]()
-            { _server_wid->add_friend(_search_phone_number->text()); });
+            { if (_friend_list->findText(_search_phone_number->text(), Qt::MatchExactly) >= 0)
+                return;
+                _server_wid->add_friend(_search_phone_number->text()); });
 
     QVBoxLayout *VBOX_2 = new QVBoxLayout(chat_widget);
     VBOX_2->addLayout(hbox_2);
@@ -337,7 +339,7 @@ void client_main_window::on_log_in()
             { add_on_top(client_name); });
 
     _user_phone_number->clear();
-    _user_phone_number->clear();
+    _user_password->clear();
 }
 
 void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
