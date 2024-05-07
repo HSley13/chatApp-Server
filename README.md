@@ -69,6 +69,7 @@
             CREATE TABLE messages 
             (
                 message_id INT AUTO_INCREMENT PRIMARY KEY,
+                conversation_ID,
                 sender_ID INT,
                 receiver_ID INT,
                 content TEXT, 

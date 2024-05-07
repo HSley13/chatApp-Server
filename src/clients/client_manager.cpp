@@ -265,7 +265,7 @@ void client_manager::send_create_conversation_message(QString participant1, int 
     _socket->write(_protocol->set_create_conversation_message(participant1, participant1_ID, participant2, participant2_ID, conversation_ID));
 }
 
-void client_manager::send_save_conversation_message(QString sender, QString receiver, QString content)
+void client_manager::send_save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID)
 {
-    _socket->write(_protocol->set_save_message_message(sender, receiver, content));
+    _socket->write(_protocol->set_save_message_message(sender, receiver, content, conversation_ID));
 }

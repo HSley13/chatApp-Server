@@ -53,7 +53,7 @@ public:
 
     void create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
 
-    void save_conversation_message(QString sender, QString receiver, QString content);
+    void save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID);
 
 private:
     QWidget *central_widget;

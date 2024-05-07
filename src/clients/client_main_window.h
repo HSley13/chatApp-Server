@@ -29,7 +29,7 @@ private:
 
     static client_chat_window *_server_wid;
     static QHash<QString, QWidget *> _window_map;
-    static QHash<QString, QString> _phone_list;
+    static QHash<QString, int> _phone_list;
 
     QLineEdit *_name;
     QLineEdit *_user_phone_number;

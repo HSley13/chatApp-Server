@@ -138,7 +138,7 @@ void server_manager::on_ready_read()
         break;
 
     case chat_protocol::save_message:
-        save_conversation_message(_protocol->sender(), _protocol->receiver(), _protocol->message());
+        save_conversation_message(_protocol->sender(), _protocol->receiver(), _protocol->message(), _protocol->conversation_ID());
 
         break;
 
@@ -335,7 +335,7 @@ void server_manager::create_conversation(QString participant1, int participant1_
     Account::create_conversation(_db_connection, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID, conversation_ID);
 }
 
-void server_manager::save_conversation_message(QString sender, QString receiver, QString content)
+void server_manager::save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID)
 {
-    Account::save_message(_db_connection, sender.toInt(), receiver.toInt(), content.toStdString());
+    Account::save_message(_db_connection, sender.toInt(), receiver.toInt(), content.toStdString(), conversation_ID);
 }

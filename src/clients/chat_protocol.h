@@ -58,7 +58,7 @@ public:
     QByteArray set_lookup_friend_message(QString ID);
 
     QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
-    QByteArray set_save_message_message(QString sender, QString receiver, QString content);
+    QByteArray set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID);
 
     void load_data(QByteArray data);
 

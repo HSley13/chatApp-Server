@@ -28,6 +28,8 @@ public:
 
     void add_friend(QString ID);
 
+    void retrieve_conversation(std::vector<std::string> messages);
+
 private:
     QStatusBar *_status_bar;
 

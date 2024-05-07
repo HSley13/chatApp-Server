@@ -197,7 +197,7 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time FROM message WHERE conversation_id = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement->setInt(1, conversation_ID);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -206,8 +206,7 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
 
         while (result->next())
         {
-            std::string message;
-            message = result->getString("sender_ID") + "/" + result->getString("receiver_ID") + "/" + result->getString("content") + "/" + result->getString("date_time");
+            std::string message = result->getString("sender_ID") + "/" + result->getString("receiver_ID") + "/" + result->getString("content") + "/" + result->getString("date_time");
 
             messages.push_back(message);
         }
@@ -243,7 +242,6 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
         while (result->next())
         {
             std::string participant2 = result->getString("other_participant");
-
             int participant2_ID = result->getInt("other_participant_ID");
 
             QHash<QString, int> friend_list;
@@ -268,14 +266,15 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
     }
 }
 
-void Account::save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content)
+void Account::save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content, const int conversation_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (sender_ID, receiver_ID, content) VALUES (?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (sender_ID, receiver_ID, content, conversation_ID) VALUES (?,?,?,?);"));
         prepared_statement->setInt(1, sender);
         prepared_statement->setInt(2, receiver);
         prepared_statement->setString(3, content);
+        prepared_statement->setInt(4, conversation_ID);
 
         prepared_statement->executeUpdate();
     }

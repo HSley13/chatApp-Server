@@ -259,7 +259,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case save_message:
-        in >> _sender >> _receiver >> _message;
+        in >> _sender >> _receiver >> _message >> _conversation_ID;
 
         break;
 

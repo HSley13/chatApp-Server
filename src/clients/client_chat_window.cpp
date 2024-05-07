@@ -117,7 +117,7 @@ void client_chat_window::send_message()
 
     _client->send_text(my_name(), _destinator, message);
 
-    _client->send_save_conversation_message(_client->_my_ID, _destinator, message);
+    _client->send_save_conversation_message(_client->_my_ID, _destinator, message, _conversation_ID);
 
     _insert_message->clear();
 
@@ -137,7 +137,7 @@ void client_chat_window::message_received(QString message)
     _list->addItem(line);
     _list->setItemWidget(line, wid);
 
-    _client->send_save_conversation_message(_destinator, _client->_my_ID, message);
+    _client->send_save_conversation_message(_destinator, _client->_my_ID, message, _conversation_ID);
 }
 
 void client_chat_window::send_file()
@@ -339,49 +339,46 @@ void client_chat_window::add_file(QString path, bool is_mine)
     _list->setItemWidget(item, file);
 }
 
-// This will be added later
-// void client_chat_window::retrieve_conversation()
-// {
-//     std::vector<std::string> messages;
+void client_chat_window::retrieve_conversation(std::vector<std::string> messages)
+{
+    if (messages.empty())
+        return;
 
-//     for (int conversation_ID : _conversation_list)
-//         messages = Account::retrieve_conversation(_db_connection, conversation_ID);
+    for (std::string message : messages)
+    {
+        std::string sender_ID = std::strtok(&message[0], "/");
+        std::string receiver_ID = std::strtok(nullptr, "/");
+        std::string content = std::strtok(nullptr, "/");
+        std::string date_time = std::strtok(nullptr, "/");
 
-//     for (std::string message : messages)
-//     {
-//         std::string sender_ID = std::strtok(&message[0], "/");
-//         std::string receiver_ID = std::strtok(nullptr, "/");
-//         std::string content = std::strtok(nullptr, "/");
-//         std::string date_time = std::strtok(nullptr, "/");
+        if (!sender_ID.compare(_client->_my_ID.toStdString()))
+        {
+            chat_line *wid = new chat_line(this);
+            wid->set_message(QString::fromStdString(content), true, date_time);
+            wid->setStyleSheet("color: black;");
 
-//         if (!sender_ID.compare(_my_ID.toStdString()))
-//         {
-//             chat_line *wid = new chat_line(this);
-//             wid->set_message(QString::fromStdString(content), true, date_time);
-//             wid->setStyleSheet("color: black;");
+            QListWidgetItem *line = new QListWidgetItem();
+            line->setBackground(QBrush(QColorConstants::Svg::lightblue));
+            line->setSizeHint(QSize(0, 60));
 
-//             QListWidgetItem *line = new QListWidgetItem();
-//             line->setBackground(QBrush(QColorConstants::Svg::lightblue));
-//             line->setSizeHint(QSize(0, 60));
+            _list->addItem(line);
+            _list->setItemWidget(line, wid);
+        }
+        else
+        {
+            chat_line *wid = new chat_line(this);
+            wid->set_message(QString::fromStdString(content), false, date_time);
+            wid->setStyleSheet("color: black;");
 
-//             _list->addItem(line);
-//             _list->setItemWidget(line, wid);
-//         }
-//         else
-//         {
-//             chat_line *wid = new chat_line(this);
-//             wid->set_message(QString::fromStdString(content), false, date_time);
-//             wid->setStyleSheet("color: black;");
+            QListWidgetItem *line = new QListWidgetItem();
+            line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+            line->setSizeHint(QSize(0, 60));
 
-//             QListWidgetItem *line = new QListWidgetItem();
-//             line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-//             line->setSizeHint(QSize(0, 60));
-
-//             _list->addItem(line);
-//             _list->setItemWidget(line, wid);
-//         }
-//     }
-// }
+            _list->addItem(line);
+            _list->setItemWidget(line, wid);
+        }
+    }
+}
 
 void client_chat_window::add_friend(QString ID)
 {

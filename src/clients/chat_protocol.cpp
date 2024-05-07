@@ -174,14 +174,14 @@ QByteArray chat_protocol::set_create_conversation_message(QString participant1, 
     return byte;
 }
 
-QByteArray chat_protocol::set_save_message_message(QString sender, QString receiver, QString content)
+QByteArray chat_protocol::set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << save_message << sender << receiver << content;
+    out << save_message << sender << receiver << content << conversation_ID;
 
     return byte;
 }

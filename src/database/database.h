@@ -43,7 +43,7 @@ public:
 
     static void create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID, const int conversation_ID);
 
-    static void save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content);
+    static void save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content, const int conversation_ID);
 
     static std::vector<std::string> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
 
