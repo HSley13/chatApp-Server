@@ -21,7 +21,7 @@ sql::Connection *connection_setup(connection_details *ID)
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "connection_setup() --> SQL ERROR: " << e.what() << std::endl;
 
         return nullptr;
     }
@@ -144,7 +144,7 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_hashed_password() ---> SQL ERROR: " << e.what() << std::endl;
 
         return "";
     }
@@ -161,15 +161,15 @@ void Account::create_account(sql::Connection *connection, const int phone_number
     try
     {
         std::random_device rd;
-        std::mt19937 gen(rd());
+        std::mt19937 generator(rd());
 
-        std::uniform_int_distribution<int> dist(9999, std::numeric_limits<int>::max());
+        std::uniform_int_distribution<int> distribution(1024, 49151);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts VALUES(?, ?, ?, ?);"));
         prepared_statement->setInt(1, phone_number);
         prepared_statement->setString(2, first_name);
         prepared_statement->setString(3, last_name);
-        prepared_statement->setInt(4, dist(gen));
+        prepared_statement->setInt(4, distribution(generator));
 
         prepared_statement->executeUpdate();
 
@@ -180,10 +180,12 @@ void Account::create_account(sql::Connection *connection, const int phone_number
         prepared_statement->setString(4, secret_answer);
 
         prepared_statement->executeUpdate();
+
+        QMessageBox::information(nullptr, "New Account", "Account Created Successfully");
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "create_account() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -214,7 +216,7 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
         return {};
     }
     catch (const std::exception &e)
@@ -224,36 +226,38 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
     }
 }
 
-QHash<QString, int> Account::retrieve_friend_list(sql::Connection *connection, const int phone_number)
+QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *connection, const int phone_number)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT participant1, participant2, participant1_ID, participant1_ID FROM conversations WHERE phone_number = ? ;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT participant2, participant2_ID, conversation_ID FROM conversations WHERE participant1_ID = ? ;"));
         prepared_statement->setInt(1, phone_number);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<QString, int> friend_list;
+        if (!result->next())
+            return {};
+
+        QHash<int, QHash<QString, int>> friend_list_pack;
 
         while (result->next())
         {
-            std::string participant1 = result->getString("participant1");
-            int participant1_ID = result->getInt("participant1_ID");
-
             std::string participant2 = result->getString("participant2");
             int participant2_ID = result->getInt("participant2_ID");
 
-            if (participant1_ID == phone_number)
-                friend_list.insert(QString::fromStdString(participant2), participant2_ID);
-            else
-                friend_list.insert(QString::fromStdString(participant1), participant1_ID);
+            QHash<QString, int> friend_list;
+            friend_list.insert(QString::fromStdString(participant2), participant2_ID);
+
+            int conversation_ID = result->getInt("conversation_ID");
+
+            friend_list_pack.insert(conversation_ID, friend_list);
         }
 
-        return friend_list;
+        return friend_list_pack;
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_friend_list() ---> SQL ERROR: " << e.what() << std::endl;
         return {};
     }
     catch (const std::exception &e)
@@ -267,7 +271,7 @@ void Account::save_message(sql::Connection *connection, const int sender, const 
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO messages (sender_ID, receiver_ID, content) VALUES (?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (sender_ID, receiver_ID, content) VALUES (?,?,?);"));
         prepared_statement->setInt(1, sender);
         prepared_statement->setInt(2, receiver);
         prepared_statement->setString(3, content);
@@ -276,7 +280,7 @@ void Account::save_message(sql::Connection *connection, const int sender, const 
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "save_message() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -284,21 +288,22 @@ void Account::save_message(sql::Connection *connection, const int sender, const 
     }
 }
 
-void Account::create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID)
+void Account::create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID, const int conversation_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (participant1, participant1_ID, participant2, participant2_ID) VALUES (?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (participant1, participant1_ID, participant2, participant2_ID, conversation_ID) VALUES (?,?,?,?,?);"));
         prepared_statement->setString(1, participant1);
         prepared_statement->setInt(2, participant1_ID);
         prepared_statement->setString(3, participant2);
         prepared_statement->setInt(4, participant2_ID);
+        prepared_statement->setInt(5, conversation_ID);
 
         prepared_statement->executeUpdate();
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "create_conversation() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -324,46 +329,12 @@ std::string Account::retrieve_full_name_and_port(sql::Connection *connection, co
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_full_name_and_port() ---> SQL ERROR: " << e.what() << std::endl;
         return "";
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
         return "";
-    }
-}
-
-int Account::allocate_port(sql::Connection *connection)
-{
-    try
-    {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT port FROM port_pool;"));
-
-        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
-        if (!result->next())
-        {
-            std::cerr << "No available port in the pool." << std::endl;
-            return 0;
-        }
-
-        int port = result->getInt("port");
-
-        prepared_statement = std::unique_ptr<sql::PreparedStatement>(connection->prepareStatement("UPDATE port_pool SET port = ?;"));
-        prepared_statement->setInt(1, port - 1);
-
-        prepared_statement->executeUpdate();
-
-        return port;
-    }
-    catch (const sql::SQLException &e)
-    {
-        std::cerr << "SQL ERROR: " << e.what() << std::endl;
-        return 0;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-        return 0;
     }
 }

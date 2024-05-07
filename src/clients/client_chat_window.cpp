@@ -17,13 +17,15 @@ client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
 }
 
-client_chat_window::client_chat_window(QString destinator, QString full_name, QWidget *parent)
-    : QMainWindow(parent), _destinator(destinator), _destinator_name(full_name)
+client_chat_window::client_chat_window(QString destinator, QString full_name, int conversation_ID, QWidget *parent)
+    : QMainWindow(parent), _destinator(destinator), _destinator_name(full_name), _conversation_ID(conversation_ID)
 {
     set_up_window();
 
     dir.mkdir(_destinator_name);
     dir.setPath("./" + _destinator_name);
+
+    _client->send_create_conversation_message(_client->_full_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt(), _conversation_ID);
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 
@@ -103,8 +105,6 @@ void client_chat_window::send_message()
 {
     QString message = _insert_message->text();
 
-    _client->send_text(my_name(), _destinator, message);
-
     chat_line *wid = new chat_line(this);
     wid->set_message(message, true);
     wid->setStyleSheet("color: black;");
@@ -115,14 +115,9 @@ void client_chat_window::send_message()
 
     _list->setItemWidget(line, wid);
 
-    if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
-    {
+    _client->send_text(my_name(), _destinator, message);
 
-        _client->send_create_conversation_message(_protocol->full_name(), _my_ID.toInt(), _destinator_name, _destinator.toInt());
-        _client->send_save_conversation_message(_my_ID, _destinator, message);
-
-        _insert_message->clear();
-    }
+    _client->send_save_conversation_message(_client->_my_ID, _destinator, message);
 
     _insert_message->clear();
 
@@ -142,8 +137,7 @@ void client_chat_window::message_received(QString message)
     _list->addItem(line);
     _list->setItemWidget(line, wid);
 
-    if (_list->item(0)->background() == QBrush(QColorConstants::Svg::lightblue))
-        _client->send_save_conversation_message(_destinator, _my_ID, message);
+    _client->send_save_conversation_message(_destinator, _client->_my_ID, message);
 }
 
 void client_chat_window::send_file()
@@ -262,13 +256,13 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::socket_disconnected, this, [=]()
                 { emit socket_disconnected(); });
 
-        connect(_client, &client_manager::client_added_you, this, [=](QString name, QString ID)
-                { emit client_added_you(name, ID); });
+        connect(_client, &client_manager::client_added_you, this, [=](QString name, QString ID, int conversation_ID)
+                { emit client_added_you(name, ID, conversation_ID); });
 
-        connect(_client, &client_manager::lookup_friend_result, this, [=](QString name)
-                { emit lookup_friend_result(name); });
+        connect(_client, &client_manager::lookup_friend_result, this, [=](QString name, int conversation_ID)
+                { emit lookup_friend_result(name, conversation_ID); });
 
-        connect(_client, &client_manager::friend_list, this, [=](QHash<QString, int> list)
+        connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list)
                 { emit friend_list(list); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
@@ -345,7 +339,7 @@ void client_chat_window::add_file(QString path, bool is_mine)
     _list->setItemWidget(item, file);
 }
 
-// This wil be for the server
+// This will be added later
 // void client_chat_window::retrieve_conversation()
 // {
 //     std::vector<std::string> messages;
@@ -389,12 +383,9 @@ void client_chat_window::add_file(QString path, bool is_mine)
 //     }
 // }
 
-void client_chat_window::client_added(QString ID)
-{
-    _client->send_client_added_you_message(ID);
-}
-
 void client_chat_window::add_friend(QString ID)
 {
+    if (!_client->_my_ID.compare(ID))
+        return;
     _client->send_lookup_friend(ID);
 }

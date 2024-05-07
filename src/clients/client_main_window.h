@@ -68,15 +68,13 @@ private slots:
 
     void on_swipe_right();
 
-    void on_search_friend();
-
     void new_conversation(const QString &name);
 
     void on_sign_in();
 
-    void on_client_added_you(QString name, QString ID);
+    void on_client_added_you(QString name, QString ID, int conversation_ID);
 
-    void on_friend_list(QHash<QString, int> list);
+    void on_friend_list(QHash<int, QHash<QString, int>> list);
 
-    void on_lookup_friend_result(QString full_name);
+    void on_lookup_friend_result(QString full_name, int conversation_ID);
 };

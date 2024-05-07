@@ -13,7 +13,7 @@ class client_chat_window : public QMainWindow
     Q_OBJECT
 public:
     client_chat_window(QString my_ID, QWidget *parent = nullptr);
-    client_chat_window(QString destinator, QString full_name, QWidget *parent = nullptr);
+    client_chat_window(QString destinator, QString full_name, int conversation_ID, QWidget *parent = nullptr);
 
     void window_name(QString name);
 
@@ -25,8 +25,6 @@ public:
     void message_received(QString message);
 
     void add_file(QString path, bool is_mine = true);
-
-    void client_added(QString ID);
 
     void add_friend(QString ID);
 
@@ -44,6 +42,7 @@ private:
     QPushButton *_send_file_button;
 
     QString _destinator_name;
+    int _conversation_ID;
 
     QDir dir;
     QString _my_ID;
@@ -77,15 +76,14 @@ signals:
 
     void swipe_right();
 
-    void client_added_you(QString name, QString ID);
+    void client_added_you(QString name, QString ID, int conversation_ID);
 
-    void friend_list(QHash<QString, int> list);
+    void lookup_friend_result(QString name, int conversation_ID);
 
-    void lookup_friend_result(QString name);
+    void friend_list(QHash<int, QHash<QString, int>> list);
 
 private slots:
-    void
-    send_message();
+    void send_message();
 
     void send_file();
     void send_file_client();

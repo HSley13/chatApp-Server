@@ -47,19 +47,11 @@ public:
     static QHash<QString, QTcpSocket *> _clients;
     static QHash<QString, QString> _names;
 
-    static void range(int start, int end);
-
-    static int allocate_port();
-
-    static void deallocate_all();
-
     void login(QString ID);
-
-    void client_add_client(QString name, QString ID, QString receiver);
 
     void lookup_friend(QString ID);
 
-    void create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    void create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
 
     void save_conversation_message(QString sender, QString receiver, QString content);
 
@@ -75,8 +67,6 @@ private:
 
     QHostAddress _ip = QHostAddress::LocalHost;
     int _port = 12345;
-
-    static std::vector<int> _ports;
 
 signals:
     void new_client_connected(QTcpSocket *client);

@@ -41,8 +41,8 @@
                 phone_number INT PRIMARY KEY,
                 first_name VARCHAR(50),
                 last_name VARCHAR(50),
-                port INT AUTO_INCREMENT
-            )AUTO_INCREMENT = 9999;
+                port INT
+            );
 
             -------password_security
             CREATE TABLE password_security
@@ -56,20 +56,19 @@
             -------conversations
             CREATE TABLE conversations 
             (
-                conversation_ID INT AUTO_INCREMENT PRIMARY KEY,
+                conversation_ID INT PRIMARY KEY,
                 participant1 VARCHAR(50),
                 participant1_ID INT,
-                participant1 VARCHAR(50),
+                participant2 VARCHAR(50),
                 participant2_ID INT,
                 start_time DATETIME DEFAULT CURRENT_TIMESTAMP
-            ) AUTO_INCREMENT = 1;
+            );
 
 
             -------messages
             CREATE TABLE messages 
             (
                 message_id INT AUTO_INCREMENT PRIMARY KEY,
-                conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
                 content TEXT, 

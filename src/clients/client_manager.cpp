@@ -6,6 +6,7 @@ chat_protocol *client_manager::_protocol = nullptr;
 QTcpServer *client_manager::_file_server = nullptr;
 
 QString client_manager::_my_ID;
+QString client_manager::_full_name;
 
 client_manager::client_manager(QWidget *parent)
     : QMainWindow(parent)
@@ -92,17 +93,21 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::added_you:
-        emit client_added_you(_protocol->client_name(), _protocol->clients_ID());
+        emit client_added_you(_protocol->client_name(), _protocol->clients_ID(), _protocol->conversation_ID());
 
         break;
 
     case chat_protocol::log_in:
+    {
         emit friend_list(_protocol->friend_list());
 
-        break;
+        _full_name = _protocol->full_name();
+    }
+
+    break;
 
     case chat_protocol::lookup_friend:
-        emit lookup_friend_result(_protocol->client_name());
+        emit lookup_friend_result(_protocol->client_name(), _protocol->conversation_ID());
 
         break;
 
@@ -212,11 +217,6 @@ void client_manager::log_in(QString ID)
     _socket->write(_protocol->set_login_message(ID));
 }
 
-void client_manager::send_client_added_you_message(QString receiver)
-{
-    _socket->write(_protocol->set_added_you_message(_protocol->full_name(), _my_ID, receiver));
-}
-
 void client_manager::save_file()
 {
     QDir dir;
@@ -260,9 +260,9 @@ void client_manager::send_lookup_friend(QString ID)
     _socket->write(_protocol->set_lookup_friend_message(ID));
 }
 
-void client_manager::send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID)
+void client_manager::send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)
 {
-    _socket->write(_protocol->set_create_conversation_message(participant1, participant1_ID, participant2, participant2_ID));
+    _socket->write(_protocol->set_create_conversation_message(participant1, participant1_ID, participant2, participant2_ID, conversation_ID));
 }
 
 void client_manager::send_save_conversation_message(QString sender, QString receiver, QString content)

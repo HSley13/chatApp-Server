@@ -15,7 +15,7 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     _insert_message->setPlaceholderText("Insert New Message");
     connect(_insert_message, &QLineEdit::textChanged, _client, &server_manager::send_is_typing);
 
-    QPixmap image(":/images/send_icon.png");
+    QPixmap image(":/s_images/send_icon.png");
     if (!image)
         qDebug() << "Image is NULL";
 

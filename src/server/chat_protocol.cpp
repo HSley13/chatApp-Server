@@ -153,7 +153,7 @@ QByteArray chat_protocol::set_client_disconnected_message(QString client_name)
     return get_data(client_disconnected, client_name);
 }
 
-QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<QString, int> friend_list)
+QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list)
 {
     QByteArray byte;
 
@@ -165,21 +165,28 @@ QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<Q
     return byte;
 }
 
-QByteArray chat_protocol::set_added_you_message(QString name, QString ID, QString receiver)
+QByteArray chat_protocol::set_added_you_message(QString name, QString ID, QString receiver, int conversation_ID)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << added_you << name << ID << receiver;
+    out << added_you << name << ID << receiver << conversation_ID;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_lookup_friend_message(QString ID)
+QByteArray chat_protocol::set_lookup_friend_message(QString ID, int conversation_ID)
 {
-    return get_data(lookup_friend, ID);
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << lookup_friend << ID << conversation_ID;
+
+    return byte;
 }
 
 void chat_protocol::load_data(QByteArray data)
@@ -232,6 +239,8 @@ void chat_protocol::load_data(QByteArray data)
     case added_you:
         in >> _client_name >> _client_ID >> _receiver;
 
+        qDebug() << "Client added You received:  receiver: " << _receiver << "sender : " << _client_name << " ID:" << _client_ID;
+
         break;
 
     case log_in:
@@ -245,7 +254,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case create_conversation:
-        in >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID;
+        in >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID >> _conversation_ID;
 
         break;
 
@@ -358,4 +367,9 @@ const QString &chat_protocol::participant2() const
 const int &chat_protocol::participant2_ID() const
 {
     return _participant2_ID;
+}
+
+const int &chat_protocol::conversation_ID() const
+{
+    return _conversation_ID;
 }

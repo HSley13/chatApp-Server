@@ -55,11 +55,9 @@ public:
 
     QByteArray set_login_message(QString ID);
 
-    QByteArray set_added_you_message(QString name, QString ID, QString receiver);
-
     QByteArray set_lookup_friend_message(QString ID);
 
-    QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
     QByteArray set_save_message_message(QString sender, QString receiver, QString content);
 
     void load_data(QByteArray data);
@@ -93,7 +91,9 @@ public:
 
     const QString &full_name() const;
 
-    const QHash<QString, int> &friend_list() const;
+    const QHash<int, QHash<QString, int>> &friend_list() const;
+
+    const int &conversation_ID() const;
 
 private:
     QByteArray get_data(message_type type, QString data);
@@ -124,7 +124,9 @@ private:
 
     QString _full_name;
     QString _my_ID;
-    QHash<QString, int> _friend_list;
+    QHash<int, QHash<QString, int>> _friend_list;
 
     QString _client_ID;
+
+    int _conversation_ID;
 };

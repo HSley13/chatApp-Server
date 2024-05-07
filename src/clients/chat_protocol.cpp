@@ -157,31 +157,19 @@ QByteArray chat_protocol::set_login_message(QString ID)
     return get_data(log_in, ID);
 }
 
-QByteArray chat_protocol::set_added_you_message(QString name, QString ID, QString receiver)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-
-    out << added_you << name << ID << receiver;
-
-    return byte;
-}
-
 QByteArray chat_protocol::set_lookup_friend_message(QString ID)
 {
     return get_data(lookup_friend, ID);
 }
 
-QByteArray chat_protocol::set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID)
+QByteArray chat_protocol::set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << create_conversation << participant1 << participant1_ID << participant2 << participant2_ID;
+    out << create_conversation << participant1 << participant1_ID << participant2 << participant2_ID << conversation_ID;
 
     return byte;
 }
@@ -263,7 +251,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case added_you:
-        in >> _client_name >> _client_ID >> _receiver;
+        in >> _client_name >> _client_ID >> _receiver >> _conversation_ID;
 
         break;
 
@@ -273,7 +261,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case lookup_friend:
-        in >> _client_name;
+        in >> _client_name >> _conversation_ID;
 
         break;
 
@@ -382,7 +370,12 @@ const QString &chat_protocol::full_name() const
     return _full_name;
 }
 
-const QHash<QString, int> &chat_protocol::friend_list() const
+const QHash<int, QHash<QString, int>> &chat_protocol::friend_list() const
 {
     return _friend_list;
+}
+
+const int &chat_protocol::conversation_ID() const
+{
+    return _conversation_ID;
 }

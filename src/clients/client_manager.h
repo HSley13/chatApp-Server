@@ -31,15 +31,17 @@ public:
     void save_file();
     void save_file_client(QString sender);
 
-    void send_client_added_you_message(QString receiver);
-
     void log_in(QString ID);
 
     void send_lookup_friend(QString ID);
 
-    void send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    void send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
 
     void send_save_conversation_message(QString sender, QString receiver, QString content);
+
+    static QString _my_ID;
+
+    static QString _full_name;
 
 private:
     static QTcpSocket *_socket;
@@ -54,7 +56,6 @@ private:
     QString _file_name;
     QString _file_name_client;
 
-    static QString _my_ID;
     static QString _my_name;
 
 signals:
@@ -78,11 +79,11 @@ signals:
     void file_accepted();
     void file_accepted_client();
 
-    void friend_list(QHash<QString, int> friend_list);
+    void friend_list(QHash<int, QHash<QString, int>> friend_list);
 
-    void client_added_you(QString name, QString ID);
+    void client_added_you(QString name, QString ID, int conversation_ID);
 
-    void lookup_friend_result(QString name);
+    void lookup_friend_result(QString name, int conversation_ID);
 
 private slots:
     void on_disconnected();

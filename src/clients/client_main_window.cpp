@@ -177,7 +177,8 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 
     _search_phone_number = new QLineEdit(this);
     _search_phone_number->setPlaceholderText("ADD PEOPLE VIA PHONE NUMBER, THEN PRESS ENTER");
-    connect(_search_phone_number, &QLineEdit::returnPressed, this, &client_main_window::on_search_friend);
+    connect(_search_phone_number, &QLineEdit::returnPressed, this, [=]()
+            { _server_wid->add_friend(_search_phone_number->text()); });
 
     QVBoxLayout *VBOX_2 = new QVBoxLayout(chat_widget);
     VBOX_2->addLayout(hbox_2);
@@ -270,8 +271,6 @@ void client_main_window::on_sign_in()
 
     Account::create_account(_db_connection, _insert_phone_number->text().toInt(), _insert_first_name->text().toStdString(), _insert_last_name->text().toStdString(), _insert_secret_question->text().toStdString(), _insert_secret_answer->text().toStdString(), hash_password);
 
-    QMessageBox::information(this, "New Account", "Account Created Successfully");
-
     _insert_phone_number->clear();
     _insert_first_name->clear();
     _insert_last_name->clear();
@@ -336,29 +335,43 @@ void client_main_window::on_log_in()
 
     connect(_server_wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
+
+    _user_phone_number->clear();
+    _user_phone_number->clear();
 }
 
-void client_main_window::on_friend_list(QHash<QString, int> list)
+void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
 {
-    for (QString full_name : list.keys())
+    if (list_g.isEmpty())
+        return;
+
+    for (int conversation_ID : list_g.keys())
     {
-        _friend_list->addItem(full_name);
+        const QHash<QString, int> &list = list_g.value(conversation_ID);
 
-        QString first_name = full_name.split(" ").first();
+        for (const QString &full_name : list.keys())
+        {
+            _friend_list->addItem(full_name);
 
-        client_chat_window *wid = new client_chat_window(QString::number(list.value(full_name)), full_name, this);
-        connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-        connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
-                { add_on_top(first_name); });
+            QString first_name = full_name.split(" ").first();
 
-        wid->window_name(first_name);
+            if (_window_map.contains(first_name))
+                continue;
 
-        wid->setObjectName(first_name);
-        _stack->addWidget(wid);
+            client_chat_window *wid = new client_chat_window(QString::number(list.value(full_name)), full_name, conversation_ID, this);
+            connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
+            connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
+                    { add_on_top(first_name); });
 
-        _window_map.insert(first_name, wid);
+            wid->window_name(first_name);
 
-        _phone_list.insert(first_name, _search_phone_number->text());
+            wid->setObjectName(first_name);
+            _stack->addWidget(wid);
+
+            _window_map.insert(first_name, wid);
+
+            _phone_list.insert(first_name, _search_phone_number->text());
+        }
     }
 }
 
@@ -457,12 +470,7 @@ void client_main_window::on_swipe_right()
         _stack->setCurrentIndex(0);
 }
 
-void client_main_window::on_search_friend()
-{
-    _server_wid->add_friend(_search_phone_number->text());
-}
-
-void client_main_window::on_lookup_friend_result(QString full_name)
+void client_main_window::on_lookup_friend_result(QString full_name, int conversation_ID)
 {
     if (full_name == "")
         return;
@@ -473,7 +481,7 @@ void client_main_window::on_lookup_friend_result(QString full_name)
 
         QString first_name = full_name.split(" ").first();
 
-        client_chat_window *wid = new client_chat_window(_search_phone_number->text(), full_name, this);
+        client_chat_window *wid = new client_chat_window(_search_phone_number->text(), full_name, conversation_ID, this);
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
         connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
@@ -486,11 +494,11 @@ void client_main_window::on_lookup_friend_result(QString full_name)
         _window_map.insert(first_name, wid);
 
         _phone_list.insert(first_name, _search_phone_number->text());
-
-        _server_wid->client_added(_search_phone_number->text());
     }
     else
-        _status_bar->showMessage(QString("%1 know as %2 is already in your friend_list").arg(_search_phone_number->text(), full_name), 5000);
+        _status_bar->showMessage(QString("%1 known as %2 is already in your friend_list").arg(_search_phone_number->text(), full_name), 5000);
+
+    _search_phone_number->clear();
 }
 
 void client_main_window::new_conversation(const QString &name)
@@ -509,7 +517,7 @@ void client_main_window::new_conversation(const QString &name)
     }
 }
 
-void client_main_window::on_client_added_you(QString name, QString ID)
+void client_main_window::on_client_added_you(QString name, QString ID, int conversation_ID)
 {
     if (_friend_list->findText(name, Qt::MatchExactly) == -1)
     {
@@ -518,7 +526,7 @@ void client_main_window::on_client_added_you(QString name, QString ID)
         QStringList contact_info = name.split(" ");
         QString first_name = contact_info.first();
 
-        client_chat_window *wid = new client_chat_window(ID, name, this);
+        client_chat_window *wid = new client_chat_window(ID, name, conversation_ID, this);
         if (!wid)
         {
             qDebug() << "couldn't create a chat for the seach number";
@@ -540,6 +548,8 @@ void client_main_window::on_client_added_you(QString name, QString ID)
 
         _status_bar->showMessage(QString("%1 added You").arg(first_name), 5000);
     }
+    else
+        qDebug() << "Client that added you is already in your friend_list :" << name << " " << ID;
 }
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 

@@ -17,7 +17,7 @@ void chat_line::set_message(QString message, bool is_mine, std::string date_time
     QLabel *msg_label = new QLabel(message, this);
     QLabel *time_label;
 
-    if (date_time.compare(""))
+    if (!date_time.compare(" "))
         time_label = new QLabel(QTime::currentTime().toString(), this);
     else
         time_label = new QLabel(QString::fromStdString(date_time), this);
