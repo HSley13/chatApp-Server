@@ -29,6 +29,10 @@ public:
 
     void retrieve_conversation(std::vector<std::string> messages);
 
+    void ask_microphone_permission();
+
+    bool is_recording = false;
+
 private:
     QStatusBar *_status_bar;
 
@@ -40,6 +44,8 @@ private:
     QLineEdit *_insert_message;
 
     QPushButton *_send_file_button;
+
+    QLabel *duration_label;
 
     QString _destinator_name;
     int _conversation_ID;
@@ -60,6 +66,10 @@ private:
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
+
+    QMediaCaptureSession *session;
+    QAudioInput *audio_input;
+    QMediaRecorder *recorder;
 
 signals:
     void client_name_changed(QString old_name, QString client_name);
@@ -96,4 +106,6 @@ private slots:
     void on_file_saved(QString path);
 
     void start_recording();
+
+    void on_duration_changed(qint64 duration);
 };

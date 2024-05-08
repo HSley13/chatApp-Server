@@ -1,4 +1,4 @@
-add_executable(client
+qt_add_executable(client
                     client_main.cpp
                     client_main_window.cpp
                     client_manager.cpp

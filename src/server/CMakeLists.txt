@@ -1,4 +1,4 @@
-add_executable(server
+qt_add_executable(server
                     server_main.cpp
                     server_main_window.cpp
                     server_manager.cpp

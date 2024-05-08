@@ -63,7 +63,6 @@
                 start_time DATETIME DEFAULT CURRENT_TIMESTAMP
             );
 
-
             -------messages
             CREATE TABLE messages 
             (

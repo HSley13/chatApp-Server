@@ -35,7 +35,7 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
 
     QHBoxLayout *HBOX = new QHBoxLayout(central_widget);
-    HBOX->addWidget(_tabs, 6);
+    HBOX->addWidget(_tabs, 7);
     HBOX->addLayout(vbox, 3);
 }
 

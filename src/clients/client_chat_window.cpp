@@ -14,6 +14,8 @@ client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
     connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
+
+    ask_microphone_permission();
 }
 
 client_chat_window::client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent)
@@ -72,7 +74,7 @@ void client_chat_window::on_file_saved(QString path)
     emit data_received_sent(_window_name);
 }
 
-void client_chat_window::start_recording()
+void client_chat_window::ask_microphone_permission()
 {
     QMicrophonePermission microphonePermission;
 
@@ -82,36 +84,66 @@ void client_chat_window::start_recording()
         qApp->requestPermission(microphonePermission, this, [=]()
                                 { qDebug() << "Undetermined: Microphone permission granted!"; });
 
-        std::cout << std::endl;
         break;
 
     case Qt::PermissionStatus::Denied:
-        qApp->requestPermission(microphonePermission, this, [=]()
-                                { qDebug() << "Asking permission within the Denied case"; });
+        qDebug() << "Granted: Microphone permission is granted!";
 
-        qWarning("Denied: Microphone permission is not granted!");
-        std::cout << std::endl;
         break;
 
     case Qt::PermissionStatus::Granted:
-        QMediaCaptureSession session;
 
-        QAudioInput audioInput;
-        session.setAudioInput(&audioInput);
+        session = new QMediaCaptureSession(this);
+        audio_input = new QAudioInput(this);
+        session->setAudioInput(audio_input);
 
-        QMediaRecorder recorder;
-        session.setRecorder(&recorder);
+        recorder = new QMediaRecorder(this);
+        connect(recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
+        session->setRecorder(recorder);
 
-        recorder.setQuality(QMediaRecorder::HighQuality);
-        recorder.setOutputLocation(QUrl::fromLocalFile("test.mp3"));
-        recorder.record();
-        qDebug() << "Recording started!";
+        recorder->setQuality(QMediaRecorder::VeryHighQuality);
+        recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio"));
+        recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
-        std::cout << std::endl;
         break;
     }
 }
 
+void client_chat_window::start_recording()
+{
+    if (!is_recording)
+    {
+        if (QFile::exists("audio.m4a"))
+        {
+            if (!QFile::remove("audio.m4a"))
+            {
+                qDebug() << "Error: Unable to delete the existing audio file!";
+                return;
+            }
+        }
+
+        recorder->record();
+        duration_label->show();
+        is_recording = true;
+    }
+    else
+    {
+        recorder->stop();
+        is_recording = false;
+        duration_label->hide();
+        duration_label->clear();
+    }
+}
+
+void client_chat_window::on_duration_changed(qint64 duration)
+{
+    if (recorder->error() != QMediaRecorder::NoError || duration < 1000)
+        return;
+
+    QString duration_str = QString("Recording... %1:%2").arg(duration / 60000, 2, 10, QChar('0')).arg((duration % 60000) / 1000, 2, 10, QChar('0'));
+
+    duration_label->setText(duration_str);
+}
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void client_chat_window::send_message()
@@ -234,11 +266,15 @@ void client_chat_window::set_up_window()
     record_button->setStyleSheet("border: none");
     connect(record_button, &QPushButton::clicked, this, &client_chat_window::start_recording);
 
+    duration_label = new QLabel(this);
+    duration_label->hide();
+
     QHBoxLayout *hbox = new QHBoxLayout();
     hbox->addWidget(_send_file_button);
     hbox->addWidget(_insert_message);
     hbox->addWidget(send_button);
     hbox->addWidget(record_button);
+    hbox->addWidget(duration_label);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(button_file);

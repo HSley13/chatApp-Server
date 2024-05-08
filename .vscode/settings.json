@@ -96,6 +96,7 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "chrono": "cpp",
-        "stdfloat": "cpp"
+        "stdfloat": "cpp",
+        "qmessagebox": "cpp"
     }
 }
