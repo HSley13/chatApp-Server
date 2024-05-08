@@ -41,7 +41,8 @@
                 phone_number INT PRIMARY KEY,
                 first_name VARCHAR(50),
                 last_name VARCHAR(50),
-                port INT
+                port INT,
+                alias VARCHAR(50) DEFAULT NULL
             );
 
             -------password_security
@@ -69,13 +70,26 @@
             CREATE TABLE messages 
             (
                 message_id INT AUTO_INCREMENT PRIMARY KEY,
-                conversation_ID,
+                conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
                 content TEXT, 
                 date_time DATETIME DEFAULT CURRENT_TIMESTAMP
             )AUTO_INCREMENT = 1;
 
+
+
+
+            *************** ALL THE TRIGGERS ***************
+
+            -------default_alias
+            CREATE TRIGGER default_alias BEFORE INSERT ON accounts
+            FOR EACH ROW
+                BEGIN
+                    IF NEW.alias IS NULL THEN 
+                        SET NEW.alias = NEW.first_name;
+                    END IF;
+                END;
 */
 
 

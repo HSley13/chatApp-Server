@@ -53,6 +53,16 @@ void server_manager::on_client_disconnected()
 
     QString client_name = client->property("client_name").toString();
 
+    QByteArray message = _protocol->set_client_disconnected_message(client_name);
+
+    if (!_clients.isEmpty())
+    {
+        for (QTcpSocket *cl : _clients)
+            cl->write(message);
+    }
+    else
+        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
+
     _names.remove(_names.key(client_name));
     _clients.remove(_clients.key(client));
 
@@ -78,6 +88,8 @@ void server_manager::on_ready_read()
         _socket->setProperty("client_name", _protocol->name());
 
         emit client_name_changed(_protocol->original_name(), old_name, _protocol->name());
+
+        Account::update_alias(_db_connection, _clients.key(_socket).toInt(), _protocol->name().toStdString());
 
         break;
     }
@@ -239,9 +251,7 @@ void server_manager::save_file()
 
 QString server_manager::name() const
 {
-    int id = _socket->property("id").toInt();
-
-    QString name = _protocol->name().length() > 0 ? _protocol->name() : QString("Client %1").arg(id);
+    QString name = _protocol->name().length() > 0 ? _protocol->name() : _socket->property("client_name").toString();
 
     return name;
 }
@@ -297,15 +307,21 @@ void server_manager::login(QString ID)
 
     _clients.insert(ID, _socket);
 
-    QString name_and_port = QString::fromStdString(Account::retrieve_full_name_and_port(_db_connection, ID.toInt()));
+    QString name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID.toInt()));
 
-    QString full_name = name_and_port.split("/").first();
+    QString name = name_and_port.split("/").first();
+    _socket->setProperty("client_name", name);
+
+    QString old_name = _socket->property("client_name").toString();
+    _names.remove(old_name);
+
+    _names.insert(ID, name);
 
     QString port = name_and_port.split("/").last();
 
     QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, ID.toInt());
 
-    _socket->write(_protocol->set_login_message(full_name, port.toInt(), friend_list));
+    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list));
 }
 
 void server_manager::lookup_friend(QString ID)
@@ -317,17 +333,17 @@ void server_manager::lookup_friend(QString ID)
 
     int conversation_ID = distribution(generator);
 
-    QString full_name_and_port = QString::fromStdString(Account::retrieve_full_name_and_port(_db_connection, ID.toInt()));
+    QString name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID.toInt()));
 
-    _socket->write(_protocol->set_lookup_friend_message(full_name_and_port.split("/").first(), conversation_ID));
+    _socket->write(_protocol->set_lookup_friend_message(name_and_port.split("/").first(), conversation_ID));
 
     QString ID_2 = _clients.key(_socket);
 
-    full_name_and_port = QString::fromStdString(Account::retrieve_full_name_and_port(_db_connection, ID_2.toInt()));
+    name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID_2.toInt()));
 
     QTcpSocket *client = _clients.value(ID);
     if (client)
-        client->write(_protocol->set_added_you_message(full_name_and_port.split("/").first(), ID_2, "", conversation_ID));
+        client->write(_protocol->set_added_you_message(name_and_port.split("/").first(), ID_2, "", conversation_ID));
 }
 
 void server_manager::create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)

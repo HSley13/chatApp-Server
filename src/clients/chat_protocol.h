@@ -122,7 +122,6 @@ private:
 
     QString _my_name;
 
-    QString _full_name;
     QString _my_ID;
     QHash<int, QHash<QString, int>> _friend_list;
 

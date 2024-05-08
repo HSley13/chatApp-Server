@@ -1,2 +1,2 @@
 SELECT *
-FROM messages;
+FROM conversations;

@@ -165,7 +165,7 @@ void Account::create_account(sql::Connection *connection, const int phone_number
 
         std::uniform_int_distribution<int> distribution(1024, 49151);
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts VALUES(?, ?, ?, ?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts (phone_number, first_name, last_name, port) VALUES(?, ?, ?, ?);"));
         prepared_statement->setInt(1, phone_number);
         prepared_statement->setString(2, first_name);
         prepared_statement->setString(3, last_name);
@@ -311,11 +311,11 @@ void Account::create_conversation(sql::Connection *connection, std::string parti
     }
 }
 
-std::string Account::retrieve_full_name_and_port(sql::Connection *connection, const int phone_number)
+std::string Account::retrieve_name_and_port(sql::Connection *connection, const int phone_number)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT first_name, last_name, port FROM accounts WHERE phone_number = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT alias, port FROM accounts WHERE phone_number = ?;"));
         prepared_statement->setInt(1, phone_number);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -323,18 +323,48 @@ std::string Account::retrieve_full_name_and_port(sql::Connection *connection, co
         if (!result->next())
             QMessageBox::warning(nullptr, "Phone Number XXX", "The entered Phone Number doesn't exist in our database, Check and try again");
 
-        std::string name = result->getString("first_name") + " " + result->getString("last_name") + "/" + std::to_string(result->getInt("port"));
+        std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
 
         return name;
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "retrieve_full_name_and_port() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_name_and_port() ---> SQL ERROR: " << e.what() << std::endl;
         return "";
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
         return "";
+    }
+}
+
+void Account::update_alias(sql::Connection *connection, const int phone_number, const std::string name)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE accounts SET alias = ? WHERE phone_number = ?;"));
+        prepared_statement->setString(1, name);
+        prepared_statement->setInt(2, phone_number);
+
+        prepared_statement->executeUpdate();
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement_conversation(connection->prepareStatement("UPDATE conversations SET participant1 = CASE WHEN participant1_ID = ? THEN ? ELSE participant1 END, participant2 = CASE WHEN participant2_ID = ? THEN ? ELSE participant2 END WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        prepared_statement_conversation->setInt(1, phone_number);
+        prepared_statement_conversation->setString(2, name);
+        prepared_statement_conversation->setInt(3, phone_number);
+        prepared_statement_conversation->setString(4, name);
+        prepared_statement_conversation->setInt(5, phone_number);
+        prepared_statement_conversation->setInt(6, phone_number);
+
+        prepared_statement_conversation->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "update_alias() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 }

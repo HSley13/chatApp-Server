@@ -6,7 +6,7 @@ chat_protocol *client_manager::_protocol = nullptr;
 QTcpServer *client_manager::_file_server = nullptr;
 
 QString client_manager::_my_ID;
-QString client_manager::_full_name;
+QString client_manager::_my_name;
 
 client_manager::client_manager(QWidget *parent)
     : QMainWindow(parent)
@@ -101,7 +101,7 @@ void client_manager::on_ready_read()
     {
         emit friend_list(_protocol->friend_list());
 
-        _full_name = _protocol->full_name();
+        _my_name = _protocol->my_name();
     }
 
     break;
@@ -130,7 +130,7 @@ void client_manager::send_text(QString sender, QString receiver, QString text)
 
 void client_manager::send_name(QString name)
 {
-    _socket->write(_protocol->set_name_message(_protocol->my_name(), name));
+    _socket->write(_protocol->set_name_message(_my_ID, name));
 }
 
 void client_manager::send_is_typing(QString sender, QString receiver)

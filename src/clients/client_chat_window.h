@@ -2,7 +2,6 @@
 
 #include "client_manager.h"
 #include "chat_line.h"
-#include "chat_protocol.h"
 
 #include <QtWidgets>
 #include <QtCore>
@@ -13,7 +12,7 @@ class client_chat_window : public QMainWindow
     Q_OBJECT
 public:
     client_chat_window(QString my_ID, QWidget *parent = nullptr);
-    client_chat_window(QString destinator, QString full_name, int conversation_ID, QWidget *parent = nullptr);
+    client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent = nullptr);
 
     void window_name(QString name);
 
@@ -34,7 +33,6 @@ private:
     QStatusBar *_status_bar;
 
     static client_manager *_client;
-    static chat_protocol *_protocol;
 
     QPushButton *_button_file;
     QListWidget *_list;
@@ -74,7 +72,7 @@ signals:
 
     void update_button_file();
 
-    void text_message_sent(QString client_name);
+    void data_sent(QString client_name);
 
     void swipe_right();
 

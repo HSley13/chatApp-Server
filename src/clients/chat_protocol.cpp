@@ -256,7 +256,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case log_in:
-        in >> _full_name >> _port >> _friend_list;
+        in >> _my_name >> _port >> _friend_list;
 
         break;
 
@@ -363,11 +363,6 @@ const QString &chat_protocol::my_ID() const
 const QString &chat_protocol::clients_ID() const
 {
     return _client_ID;
-}
-
-const QString &chat_protocol::full_name() const
-{
-    return _full_name;
 }
 
 const QHash<int, QHash<QString, int>> &chat_protocol::friend_list() const

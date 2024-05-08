@@ -161,7 +161,6 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     _list->setSelectionMode(QAbstractItemView::SingleSelection);
     _list->setMinimumWidth(200);
     _list->setFont(QFont("Arial", 20));
-    _list->setDisabled(true);
     _list->setItemDelegate(new separator_delegate(_list));
     connect(_list, &QListWidget::itemClicked, this, &client_main_window::on_item_clicked);
 
@@ -333,7 +332,7 @@ void client_main_window::on_log_in()
     connect(_server_wid, &client_chat_window::socket_disconnected, this, [=]()
             { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
 
-    connect(_server_wid, &client_chat_window::text_message_sent, this, [=](QString client_name)
+    connect(_server_wid, &client_chat_window::data_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
 
     _user_phone_number->clear();
@@ -349,53 +348,39 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
     {
         const QHash<QString, int> &list = list_g.value(conversation_ID);
 
-        for (const QString &full_name : list.keys())
+        for (const QString &name : list.keys())
         {
-            _friend_list->addItem(full_name);
+            _friend_list->addItem(name);
 
-            QString first_name = full_name.split(" ").first();
-
-            if (_window_map.contains(first_name))
+            if (_window_map.contains(name))
                 continue;
 
             std::vector<std::string> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
 
-            client_chat_window *wid = new client_chat_window(QString::number(list.value(full_name)), full_name, conversation_ID, this);
+            client_chat_window *wid = new client_chat_window(QString::number(list.value(name)), name, conversation_ID, this);
             wid->retrieve_conversation(messages);
 
             connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-            connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
+            connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
                     { add_on_top(first_name); });
 
-            wid->window_name(first_name);
+            wid->window_name(name);
 
-            wid->setObjectName(first_name);
+            _window_map.insert(name, wid);
+
             _stack->addWidget(wid);
 
-            _window_map.insert(first_name, wid);
+            _list->addItem(name);
 
-            _phone_list.insert(full_name, conversation_ID);
+            _phone_list.insert(name, conversation_ID);
         }
     }
-}
-
-void client_main_window::on_item_clicked(QListWidgetItem *item)
-{
-    QString client_name = item->text();
-
-    QWidget *wid = _stack->findChild<QWidget *>(client_name);
-    if (wid)
-        _stack->setCurrentIndex(_stack->indexOf(wid));
-    else
-        qDebug() << "client_main_window--> on_item_clicked()--> window to forward not FOUND: " << client_name;
 }
 
 void client_main_window::on_name_changed()
 {
     if (!_name->text().isEmpty())
     {
-        _list->setEnabled(true);
-
         for (QWidget *win : _window_map)
         {
             client_chat_window *wid = qobject_cast<client_chat_window *>(win);
@@ -435,13 +420,23 @@ void client_main_window::on_text_message_received(QString sender, QString review
     }
 }
 
+void client_main_window::on_item_clicked(QListWidgetItem *item)
+{
+    QWidget *wid = _window_map.value(item->text(), this);
+    if (wid)
+
+        _stack->setCurrentIndex(_stack->indexOf(wid));
+    else
+        qDebug() << "client_main_window--> on_item_clicked()--> Widget not found in _window_map for name:" << item->text();
+}
+
 void client_main_window::on_client_name_changed(QString old_name, QString client_name)
 {
     QWidget *win = _window_map.value(old_name);
     if (win)
     {
-        QWidget *wid = _stack->findChild<QWidget *>(old_name);
-        wid->setObjectName(client_name);
+        _window_map.remove(old_name);
+        _window_map.insert(client_name, win);
 
         QList<QListWidgetItem *> items = _list->findItems(old_name, Qt::MatchExactly);
         if (!items.isEmpty())
@@ -453,8 +448,13 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         else
             qDebug() << "client_main_window ---> on_client_name_changed() ---> Client Name not Found in the _list: " << old_name;
 
-        _window_map.remove(old_name);
-        _window_map.insert(client_name, win);
+        int index = _friend_list->findText(old_name);
+        if (index != -1)
+        {
+            _friend_list->removeItem(index);
+
+            _friend_list->insertItem(index, client_name);
+        }
 
         client_chat_window *wind = qobject_cast<client_chat_window *>(win);
         if (wind)
@@ -462,8 +462,6 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         else
             qDebug() << "client_main_window ---> on_client_name_changed() ---> ERROR CASTING THE WIDGET:";
     }
-    else
-        qDebug() << "client_main_window ---> on_client_name_changed() ---> client_name to change not FOUND in the window_map:" << old_name;
 }
 
 void client_main_window::on_swipe_right()
@@ -474,51 +472,43 @@ void client_main_window::on_swipe_right()
         _stack->setCurrentIndex(0);
 }
 
-void client_main_window::on_lookup_friend_result(QString full_name, int conversation_ID)
+void client_main_window::on_lookup_friend_result(QString name, int conversation_ID)
 {
-    if (full_name == "")
+    if (name == "")
         return;
 
-    if (_friend_list->findText(full_name, Qt::MatchExactly) == -1)
+    if (_friend_list->findText(name, Qt::MatchExactly) == -1)
     {
-        _friend_list->addItem(full_name);
+        _friend_list->addItem(name);
 
-        QString first_name = full_name.split(" ").first();
-
-        client_chat_window *wid = new client_chat_window(_search_phone_number->text(), full_name, conversation_ID, this);
+        client_chat_window *wid = new client_chat_window(_search_phone_number->text(), name, conversation_ID, this);
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-        connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
+        connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
 
-        wid->window_name(first_name);
+        wid->window_name(name);
 
-        wid->setObjectName(first_name);
+        wid->setObjectName(name);
         _stack->addWidget(wid);
 
-        _window_map.insert(first_name, wid);
+        _window_map.insert(name, wid);
 
-        _phone_list.insert(full_name, conversation_ID);
+        _phone_list.insert(name, conversation_ID);
     }
     else
-        _status_bar->showMessage(QString("%1 known as %2 is already in your friend_list").arg(_search_phone_number->text(), full_name), 5000);
+        _status_bar->showMessage(QString("%1 known as %2 is already in your friend_list").arg(_search_phone_number->text(), name), 5000);
 
     _search_phone_number->clear();
 }
 
 void client_main_window::new_conversation(const QString &name)
 {
-    QList<QListWidgetItem *> items = _list->findItems(name, Qt::MatchExactly);
-    if (items.empty())
-    {
-        QStringList contact_info = name.split(" ");
-        QString first_name = contact_info.first();
+    QWidget *wid = _window_map.value(name, this);
+    if (wid)
 
-        QWidget *wid = _stack->findChild<QWidget *>(first_name);
-        if (wid)
-            _stack->setCurrentIndex(_stack->indexOf(wid));
-        else
-            qDebug() << "client_main_window--> new_conversation()--> window to forward not FOUND: " << first_name;
-    }
+        _stack->setCurrentIndex(_stack->indexOf(wid));
+    else
+        qDebug() << "client_main_window--> new_conversation()--> Widget not found in _window_map for name:" << name;
 }
 
 void client_main_window::on_client_added_you(QString name, QString ID, int conversation_ID)
@@ -526,8 +516,6 @@ void client_main_window::on_client_added_you(QString name, QString ID, int conve
     if (_friend_list->findText(name, Qt::MatchExactly) == -1)
     {
         _friend_list->addItem(name);
-
-        QString first_name = name.split(" ").first();
 
         client_chat_window *wid = new client_chat_window(ID, name, conversation_ID, this);
         if (!wid)
@@ -537,19 +525,19 @@ void client_main_window::on_client_added_you(QString name, QString ID, int conve
         }
 
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-        connect(wid, &client_chat_window::text_message_sent, this, [=](QString first_name)
+        connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
 
-        wid->window_name(first_name);
+        wid->window_name(name);
 
-        wid->setObjectName(first_name);
+        wid->setObjectName(name);
         _stack->addWidget(wid);
 
-        _window_map.insert(first_name, wid);
+        _window_map.insert(name, wid);
 
         _phone_list.insert(name, conversation_ID);
 
-        _status_bar->showMessage(QString("%1 added You").arg(first_name), 5000);
+        _status_bar->showMessage(QString("%1 added You").arg(name), 5000);
     }
 }
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/

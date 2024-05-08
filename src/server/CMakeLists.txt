@@ -9,9 +9,9 @@ add_executable(server
 
 target_link_libraries(server PRIVATE database_library)
 
-qt_add_resources(client "server_images"
+qt_add_resources(server "images"
                     PREFIX "/images"
-                    FILES send_icon.png file_icon.webp record_icon.png
+                    FILES send_icon.png
                 )
      
 set_target_properties(server PROPERTIES MACOSX_BUNDLE ON)

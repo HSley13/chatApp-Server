@@ -40,8 +40,9 @@ public:
     void send_save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID);
 
     static QString _my_ID;
-
-    static QString _full_name;
+    static QString _my_name;
+    QString _file_name;
+    QString _file_name_client;
 
 private:
     static QTcpSocket *_socket;
@@ -52,11 +53,6 @@ private:
 
     static QTcpServer *_file_server;
     QTcpSocket *_file_socket;
-
-    QString _file_name;
-    QString _file_name_client;
-
-    static QString _my_name;
 
 signals:
     void text_message_received(QString sender, QString message);
