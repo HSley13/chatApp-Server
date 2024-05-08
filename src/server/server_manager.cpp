@@ -1,8 +1,6 @@
 #include "server_manager.h"
 
 QHash<QString, QTcpSocket *> server_manager::_clients = QHash<QString, QTcpSocket *>();
-QHash<QString, QString> server_manager::_names = QHash<QString, QString>();
-
 sql::Connection *server_manager::_db_connection = nullptr;
 
 server_manager::server_manager(sql::Connection *db_connection, QWidget *parent)
@@ -41,8 +39,6 @@ void server_manager::on_new_connection()
     client->setProperty("client_name", client_name);
     _clients.insert(client_name, client);
 
-    _names.insert(client_name, client_name);
-
     connect(client, &QTcpSocket::disconnected, this, &server_manager::on_client_disconnected);
     emit new_client_connected(client);
 }
@@ -63,9 +59,6 @@ void server_manager::on_client_disconnected()
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
 
-    _names.remove(_names.key(client_name));
-    _clients.remove(_clients.key(client));
-
     emit new_client_disconnected(client);
 }
 
@@ -78,7 +71,7 @@ void server_manager::on_ready_read()
     switch (_protocol->type())
     {
     case chat_protocol::text:
-        emit text_message_received(_protocol->sender(), _protocol->receiver(), _protocol->message());
+        message_received(_protocol->sender(), _protocol->receiver(), _protocol->message());
 
         break;
 
@@ -159,13 +152,18 @@ void server_manager::on_ready_read()
     }
 }
 
-void server_manager::on_text_for_other_clients(QString sender, QString receiver, QString message)
+void server_manager::message_received(QString sender, QString receiver, QString message)
 {
-    QTcpSocket *client = _clients.value(receiver);
-    if (client)
-        client->write(_protocol->set_text_message(sender, "", message));
+    if (!receiver.compare("Server"))
+        emit text_message_received(message);
     else
-        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
+    {
+        QTcpSocket *client = _clients.value(receiver);
+        if (client)
+            client->write(_protocol->set_text_message(sender, "", message));
+        else
+            qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
+    }
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -303,6 +301,7 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
 
 void server_manager::login(QString ID)
 {
+    QString old_name = _socket->property("client_name").toString();
     _clients.remove(_clients.key(_socket));
 
     _clients.insert(ID, _socket);
@@ -312,10 +311,7 @@ void server_manager::login(QString ID)
     QString name = name_and_port.split("/").first();
     _socket->setProperty("client_name", name);
 
-    QString old_name = _socket->property("client_name").toString();
-    _names.remove(old_name);
-
-    _names.insert(ID, name);
+    emit client_name_changed(ID, old_name, name);
 
     QString port = name_and_port.split("/").last();
 

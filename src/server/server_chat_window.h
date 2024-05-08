@@ -47,7 +47,7 @@ private slots:
     void folder();
     void send_file();
 
-    void on_text_message_received(QString sender, QString receiver, QString message);
+    void on_text_message_received(QString message);
 
     void on_init_receiving_file(QString sender, QString file_name, qint64 file_size);
 

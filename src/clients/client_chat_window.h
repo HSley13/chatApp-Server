@@ -72,7 +72,7 @@ signals:
 
     void update_button_file();
 
-    void data_sent(QString client_name);
+    void data_received_sent(QString client_name);
 
     void swipe_right();
 

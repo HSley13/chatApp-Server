@@ -20,11 +20,9 @@ private:
     QListWidget *_list;
     QTabWidget *_tabs;
 
-    QListWidget *_name_list;
-
     QPushButton *_disconnect_all;
 
-    server_manager *_server;
+    static server_manager *_server;
 
     QStatusBar *_status_bar;
     static QHash<QString, QWidget *> _window_map;

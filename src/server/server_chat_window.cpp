@@ -61,22 +61,18 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
-void server_chat_window::on_text_message_received(QString sender, QString receiver, QString message)
+void server_chat_window::on_text_message_received(QString message)
 {
-    if (!receiver.compare("Server"))
-    {
-        chat_line *wid = new chat_line(this);
-        wid->set_message(message);
-        wid->setStyleSheet("color: black;");
 
-        QListWidgetItem *line = new QListWidgetItem(_list);
-        line->setBackground(QBrush(QColorConstants::Svg::lightgray));
-        line->setSizeHint(QSize(0, 60));
+    chat_line *wid = new chat_line(this);
+    wid->set_message(message);
+    wid->setStyleSheet("color: black;");
 
-        _list->setItemWidget(line, wid);
-    }
-    else
-        emit text_for_other_client(sender, receiver, message);
+    QListWidgetItem *line = new QListWidgetItem(_list);
+    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    line->setSizeHint(QSize(0, 60));
+
+    _list->setItemWidget(line, wid);
 }
 
 void server_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)

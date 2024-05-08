@@ -193,6 +193,12 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     _stack->addWidget(chat_widget);
 }
 
+client_main_window::~client_main_window()
+{
+    _window_map = QHash<QString, QWidget *>();
+    _phone_list = QHash<QString, int>();
+}
+
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
 void client_main_window::on_sign_in()
@@ -325,6 +331,7 @@ void client_main_window::on_log_in()
     connect(_server_wid, &client_chat_window::client_added_you, this, &client_main_window::on_client_added_you);
     connect(_server_wid, &client_chat_window::friend_list, this, &client_main_window::on_friend_list);
     connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
+    connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
 
     connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
@@ -332,7 +339,7 @@ void client_main_window::on_log_in()
     connect(_server_wid, &client_chat_window::socket_disconnected, this, [=]()
             { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
 
-    connect(_server_wid, &client_chat_window::data_sent, this, [=](QString client_name)
+    connect(_server_wid, &client_chat_window::data_received_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
 
     _user_phone_number->clear();
@@ -361,7 +368,7 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
             wid->retrieve_conversation(messages);
 
             connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-            connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
+            connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
                     { add_on_top(first_name); });
 
             wid->window_name(name);
@@ -398,7 +405,13 @@ void client_main_window::on_client_disconnected(QString client_name)
         if (!items.isEmpty())
             delete items.first();
 
+        int index = _friend_list->findText(client_name);
+        if (index != -1)
+            _friend_list->removeItem(index);
+
         _window_map.remove(client_name);
+
+        _status_bar->showMessage(QString("%1 is disconnected").arg(client_name), 3000);
     }
     else
         qDebug() << "client_main_window ---> on_client_disconnected() --> client_name to Disconnect not FOUND: " << client_name;
@@ -439,12 +452,8 @@ void client_main_window::on_client_name_changed(QString old_name, QString client
         _window_map.insert(client_name, win);
 
         QList<QListWidgetItem *> items = _list->findItems(old_name, Qt::MatchExactly);
-        if (!items.isEmpty())
-        {
-            QListWidgetItem *item_to_change = items.first();
-
-            item_to_change->setText(client_name);
-        }
+        if (!items.empty())
+            items.first()->setText(client_name);
         else
             qDebug() << "client_main_window ---> on_client_name_changed() ---> Client Name not Found in the _list: " << old_name;
 
@@ -483,7 +492,7 @@ void client_main_window::on_lookup_friend_result(QString name, int conversation_
 
         client_chat_window *wid = new client_chat_window(_search_phone_number->text(), name, conversation_ID, this);
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-        connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
+        connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
 
         wid->window_name(name);
@@ -525,7 +534,7 @@ void client_main_window::on_client_added_you(QString name, QString ID, int conve
         }
 
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-        connect(wid, &client_chat_window::data_sent, this, [=](QString first_name)
+        connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
 
         wid->window_name(name);

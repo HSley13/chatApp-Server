@@ -2,6 +2,7 @@
 
 #include "chat_protocol.h"
 #include "database.h"
+
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
@@ -72,7 +73,7 @@ signals:
     void new_client_connected(QTcpSocket *client);
     void new_client_disconnected(QTcpSocket *client);
 
-    void text_message_received(QString sender, QString receiver, QString message);
+    void text_message_received(QString message);
     void client_name_changed(QString original_name, QString old_name, QString name);
     void is_typing_received(QString sender, QString receiver);
 
@@ -84,12 +85,13 @@ signals:
     void reject_receiving_file(QString sender);
     void file_accepted();
 
+    void after_login(QString old_name, QString name);
+
 private slots:
     void on_new_connection();
     void on_client_disconnected();
 
     void on_ready_read();
 
-public slots:
-    void on_text_for_other_clients(QString sender, QString receiver, QString message);
+    void message_received(QString sender, QString receiver, QString message);
 };

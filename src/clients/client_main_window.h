@@ -12,6 +12,7 @@ class client_main_window : public QMainWindow
     Q_OBJECT
 public:
     client_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
+    ~client_main_window();
 
     void add_on_top(const QString &client_name);
 

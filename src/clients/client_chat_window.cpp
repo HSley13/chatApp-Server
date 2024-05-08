@@ -42,7 +42,7 @@ void client_chat_window::on_init_receiving_file(QString file_name, qint64 file_s
     if (result == QMessageBox::Yes)
     {
         _client->send_accept_file();
-        emit data_sent(_window_name);
+        emit data_received_sent(_window_name);
     }
     else
         _client->send_reject_file();
@@ -57,7 +57,7 @@ void client_chat_window::on_init_receiving_file_client(QString sender, QString I
     if (result == QMessageBox::Yes)
     {
         _client->send_accept_file_client(ID);
-        emit data_sent(_window_name);
+        emit data_received_sent(_window_name);
     }
     else
         _client->send_reject_file_client(my_name(), ID);
@@ -68,6 +68,8 @@ void client_chat_window::on_file_saved(QString path)
     QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path));
 
     add_file(path, false);
+
+    emit data_received_sent(_window_name);
 }
 
 void client_chat_window::start_recording()
@@ -132,7 +134,7 @@ void client_chat_window::send_message()
 
     _insert_message->clear();
 
-    emit data_sent(_window_name);
+    emit data_received_sent(_window_name);
 }
 
 void client_chat_window::message_received(QString message)
