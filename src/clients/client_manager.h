@@ -31,6 +31,9 @@ public:
     void save_file();
     void save_file_client(QString sender);
 
+    void save_audio(QString sender);
+    void send_audio_message(QString sender, QString receiver, QString audio_name);
+
     void log_in(QString ID);
 
     void send_lookup_friend(QString ID);
@@ -80,6 +83,8 @@ signals:
     void client_added_you(QString name, QString ID, int conversation_ID);
 
     void lookup_friend_result(QString name, int conversation_ID);
+
+    void audio_received(QString sender, QString path);
 
 private slots:
     void on_disconnected();

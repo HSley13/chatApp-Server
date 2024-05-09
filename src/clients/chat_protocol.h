@@ -35,7 +35,9 @@ public:
         added_you,
         lookup_friend,
         create_conversation,
-        save_message
+        save_message,
+
+        audio
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -59,6 +61,8 @@ public:
 
     QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
     QByteArray set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID);
+
+    QByteArray set_audio_message(QString sender, QString receiver, QString audio_name);
 
     void load_data(QByteArray data);
 
@@ -95,6 +99,10 @@ public:
 
     const int &conversation_ID() const;
 
+    const QString &audio_name() const;
+    const QString &audio_sender() const;
+    const QByteArray &audio_data() const;
+
 private:
     QByteArray get_data(message_type type, QString data);
 
@@ -128,4 +136,8 @@ private:
     QString _client_ID;
 
     int _conversation_ID;
+
+    QString _audio_name;
+    QString _audio_sender;
+    QByteArray _audio_data;
 };

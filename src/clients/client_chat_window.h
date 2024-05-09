@@ -108,6 +108,8 @@ signals:
 
     void friend_list(QHash<int, QHash<QString, int>> list);
 
+    void audio_received(QString sender, QString path);
+
 private slots:
     void send_message();
 

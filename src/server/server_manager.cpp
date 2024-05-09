@@ -147,6 +147,11 @@ void server_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::audio:
+        audio_received(_protocol->audio_sender(), _protocol->audio_receiver(), _protocol->audio_name(), _protocol->audio_data());
+
+        break;
+
     default:
         break;
     }
@@ -164,6 +169,15 @@ void server_manager::message_received(QString sender, QString receiver, QString 
         else
             qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
     }
+}
+
+void server_manager::audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data)
+{
+    QTcpSocket *client = _clients.value(receiver);
+    if (client)
+        client->write(_protocol->set_audio_message(sender, audio_name, audio_data));
+    else
+        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/

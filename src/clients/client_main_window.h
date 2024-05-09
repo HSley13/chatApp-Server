@@ -77,4 +77,6 @@ private slots:
     void on_friend_list(QHash<int, QHash<QString, int>> list);
 
     void on_lookup_friend_result(QString full_name, int conversation_ID);
+
+    void on_audio_received(QString sender, QString path);
 };

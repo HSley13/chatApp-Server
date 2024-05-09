@@ -139,7 +139,7 @@ void client_chat_window::ask_microphone_permission()
         connect(_recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
         _session->setRecorder(_recorder);
 
-        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/_audio.m4a"));
+        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio.m4a"));
         _recorder->setQuality(QMediaRecorder::VeryHighQuality);
         _recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
@@ -151,11 +151,11 @@ void client_chat_window::start_recording()
 {
     if (!is_recording)
     {
-        if (QFile::exists("_audio.m4a"))
+        if (QFile::exists("audio.m4a"))
         {
-            if (!QFile::remove("_audio.m4a"))
+            if (!QFile::remove("audio.m4a"))
             {
-                qDebug() << "Error: Unable to delete the existing _audio file!";
+                qDebug() << "Error: Unable to delete the existing audio file!";
                 return;
             }
         }
@@ -172,6 +172,10 @@ void client_chat_window::start_recording()
         _duration_label->clear();
 
         add_audio(_recorder->outputLocation(), true);
+
+        _client->send_audio_message(my_name(), _destinator, "audio.m4a");
+
+        emit data_received_sent(_window_name);
     }
 }
 
@@ -409,6 +413,9 @@ void client_chat_window::set_up_window()
 
         connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list)
                 { emit friend_list(list); });
+
+        connect(_client, &client_manager::audio_received, this, [=](QString sender, QString path)
+                { emit audio_received(sender, path); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);

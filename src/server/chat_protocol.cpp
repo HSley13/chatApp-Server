@@ -189,6 +189,18 @@ QByteArray chat_protocol::set_lookup_friend_message(QString ID, int conversation
     return byte;
 }
 
+QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, QByteArray audio_data)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << audio << sender << audio_name << audio_data;
+
+    return byte;
+}
+
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
@@ -239,8 +251,6 @@ void chat_protocol::load_data(QByteArray data)
     case added_you:
         in >> _client_name >> _client_ID >> _receiver;
 
-        qDebug() << "Client added You received:  receiver: " << _receiver << "sender : " << _client_name << " ID:" << _client_ID;
-
         break;
 
     case log_in:
@@ -260,6 +270,11 @@ void chat_protocol::load_data(QByteArray data)
 
     case save_message:
         in >> _sender >> _receiver >> _message >> _conversation_ID;
+
+        break;
+
+    case audio:
+        in >> _audio_sender >> _audio_receiver >> _audio_name >> _audio_data;
 
         break;
 
@@ -372,4 +387,24 @@ const int &chat_protocol::participant2_ID() const
 const int &chat_protocol::conversation_ID() const
 {
     return _conversation_ID;
+}
+
+const QString &chat_protocol::audio_name() const
+{
+    return _audio_name;
+}
+
+const QByteArray &chat_protocol::audio_data() const
+{
+    return _audio_data;
+}
+
+const QString &chat_protocol::audio_sender() const
+{
+    return _audio_sender;
+}
+
+const QString &chat_protocol::audio_receiver() const
+{
+    return _audio_receiver;
 }

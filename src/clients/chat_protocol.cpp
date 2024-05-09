@@ -174,6 +174,28 @@ QByteArray chat_protocol::set_create_conversation_message(QString participant1, 
     return byte;
 }
 
+QByteArray chat_protocol::set_audio_message(QString sender, QString receiver, QString audio_name)
+{
+    QByteArray byte;
+
+    QFile file(audio_name);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QDataStream out(&byte, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_6_0);
+
+        QFileInfo info(audio_name);
+
+        out << audio << sender << receiver << info.fileName() << file.readAll();
+
+        file.close();
+    }
+    else
+        qDebug() << "chat_protocol ---> set_audio_message() ---> Can't open the file you wanna send";
+
+    return byte;
+}
+
 QByteArray chat_protocol::set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID)
 {
     QByteArray byte;
@@ -262,6 +284,11 @@ void chat_protocol::load_data(QByteArray data)
 
     case lookup_friend:
         in >> _client_name >> _conversation_ID;
+
+        break;
+
+    case audio:
+        in >> _audio_sender >> _audio_name >> _audio_data;
 
         break;
 
@@ -373,4 +400,19 @@ const QHash<int, QHash<QString, int>> &chat_protocol::friend_list() const
 const int &chat_protocol::conversation_ID() const
 {
     return _conversation_ID;
+}
+
+const QString &chat_protocol::audio_name() const
+{
+    return _audio_name;
+}
+
+const QByteArray &chat_protocol::audio_data() const
+{
+    return _audio_data;
+}
+
+const QString &chat_protocol::audio_sender() const
+{
+    return _audio_sender;
 }

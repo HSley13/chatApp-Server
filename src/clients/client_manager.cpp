@@ -111,6 +111,11 @@ void client_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::audio:
+        save_audio(_protocol->audio_sender());
+
+        break;
+
     default:
         break;
     }
@@ -253,6 +258,30 @@ void client_manager::save_file_client(QString sender)
     }
     else
         qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";
+}
+
+void client_manager::save_audio(QString sender)
+{
+    QDir dir;
+    dir.mkdir(sender);
+
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->audio_name());
+
+    QFile file(path);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        file.write(_protocol->audio_data());
+        file.close();
+
+        emit audio_received(sender, path);
+    }
+    else
+        qDebug() << "client_manager ---> save_audio() ---> Couldn't open the file to write to it";
+}
+
+void client_manager::send_audio_message(QString sender, QString receiver, QString audio_name)
+{
+    _socket->write(_protocol->set_audio_message(sender, receiver, audio_name));
 }
 
 void client_manager::send_lookup_friend(QString ID)
