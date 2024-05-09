@@ -79,4 +79,6 @@ private slots:
     void on_lookup_friend_result(QString full_name, int conversation_ID);
 
     void on_audio_received(QString sender, QString path);
+
+    void on_file_saved(QString sender, QString path);
 };

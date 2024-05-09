@@ -333,6 +333,7 @@ void client_main_window::on_log_in()
     connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
     connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(_server_wid, &client_chat_window::audio_received, this, &client_main_window::on_audio_received);
+    connect(_server_wid, &client_chat_window::file_saved, this, &client_main_window::on_file_saved);
 
     connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
             { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
@@ -560,6 +561,22 @@ void client_main_window::on_audio_received(QString sender, QString path)
         if (wid)
         {
             wid->add_audio(path);
+            add_on_top(sender);
+        }
+        else
+            qDebug() << "client_main_window ---> on_text_message_received() --> ERROR CASTING THE WIDGET:";
+    }
+}
+
+void client_main_window::on_file_saved(QString sender, QString path)
+{
+    QWidget *win = _window_map.value(sender);
+    if (win)
+    {
+        client_chat_window *wid = qobject_cast<client_chat_window *>(win);
+        if (wid)
+        {
+            wid->add_file(path);
             add_on_top(sender);
         }
         else

@@ -235,7 +235,7 @@ void client_manager::save_file()
         file.write(_protocol->file_data());
         file.close();
 
-        emit file_saved(path);
+        emit file_saved("Server", path);
     }
     else
         qDebug() << "client_manager ---> save_file() ---> Couldn't open the file to write to it";
@@ -254,7 +254,7 @@ void client_manager::save_file_client(QString sender)
         file.write(_protocol->file_data_client());
         file.close();
 
-        emit file_client_saved(path);
+        emit file_saved(sender, path);
     }
     else
         qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";

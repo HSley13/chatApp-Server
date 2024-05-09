@@ -110,6 +110,8 @@ signals:
 
     void audio_received(QString sender, QString path);
 
+    void file_saved(QString sender, QString path);
+
 private slots:
     void send_message();
 

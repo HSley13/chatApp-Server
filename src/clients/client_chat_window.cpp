@@ -34,8 +34,6 @@ client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     set_up_window();
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
-
-    connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
 }
 
 client_chat_window::client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent)
@@ -67,8 +65,6 @@ client_chat_window::client_chat_window(QString destinator, QString name, int con
     _client->send_create_conversation_message(_client->_my_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt(), _conversation_ID);
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
-
-    connect(_client, &client_manager::file_client_saved, this, &client_chat_window::on_file_saved);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -416,6 +412,9 @@ void client_chat_window::set_up_window()
 
         connect(_client, &client_manager::audio_received, this, [=](QString sender, QString path)
                 { emit audio_received(sender, path); });
+
+        connect(_client, &client_manager::file_saved, this, [=](QString sender, QString path)
+                { emit file_saved(sender, path); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);

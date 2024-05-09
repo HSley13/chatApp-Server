@@ -67,8 +67,7 @@ signals:
     void init_receiving_file_client(QString sender, QString ID, QString file_name, qint64 file_size);
     void reject_receiving_file_client(QString sender);
 
-    void file_saved(QString path);
-    void file_client_saved(QString path);
+    void file_saved(QString sender, QString path);
 
     void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
