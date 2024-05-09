@@ -49,8 +49,7 @@ private:
 
     QComboBox *_friend_list;
 
-    void
-    mousePressEvent(QMouseEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:

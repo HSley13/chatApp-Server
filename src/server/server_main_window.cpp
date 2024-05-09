@@ -4,6 +4,28 @@ server_manager *server_main_window::_server = nullptr;
 
 QHash<QString, QWidget *> server_main_window::_window_map = QHash<QString, QWidget *>();
 
+class separator_delegate : public QStyledItemDelegate
+{
+private:
+    QListWidget *m_parent;
+
+public:
+    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        QStyledItemDelegate::paint(painter, option, index);
+
+        if (index.row() != m_parent->count() - 1)
+        {
+            painter->save();
+            painter->setPen(Qt::white);
+            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
+            painter->restore();
+        }
+    }
+};
+
 server_main_window::server_main_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
 {
@@ -20,6 +42,8 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     setStatusBar(_status_bar);
 
     _list = new QListWidget(this);
+    _list->setItemDelegate(new separator_delegate(_list));
+
     _disconnect_all = new QPushButton("Disconnect ALL CLIENTS", this);
     connect(_disconnect_all, &QPushButton::clicked, this, [=]()
             { _server->disconnect_all_clients(); });

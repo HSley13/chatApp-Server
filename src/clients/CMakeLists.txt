@@ -6,7 +6,10 @@ qt_add_executable(client
                     chat_protocol.cpp
                     chat_line.cpp
                 )
+
+
 target_link_libraries(client PRIVATE database_library)
+
 
 qt_add_resources(client "client_images"
                     PREFIX "/images"

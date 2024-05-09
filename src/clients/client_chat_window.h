@@ -23,7 +23,9 @@ public:
 
     void message_received(QString message);
 
-    void add_file(QString path, bool is_mine = true);
+    void add_file(QString path, bool is_mine = false, QString date_time = "");
+
+    void add_audio(const QUrl &source, bool is_mine = false, QString date_time = "");
 
     void add_friend(QString ID);
 
@@ -33,13 +35,25 @@ public:
 
     bool is_recording = false;
 
+    bool is_playing = false;
+
+    int paused_position = 0;
+
 private:
     QStatusBar *_status_bar;
 
     static client_manager *_client;
 
-    QPushButton *_button_file;
-    QListWidget *_list;
+    QString _destinator_name;
+    int _conversation_ID;
+
+    QString _destinator = "Server";
+    QString _window_name = "Server";
+
+    QString _my_ID;
+
+    static QString _my_name;
+    static QString _insert_name;
 
     QLineEdit *_insert_message;
 
@@ -47,31 +61,20 @@ private:
 
     QLabel *_duration_label;
 
-    QVBoxLayout *_VBOX;
-
     QSlider *_slider;
 
-    QString _destinator_name;
-    int _conversation_ID;
-
-    QDir dir;
-    QString _my_ID;
-
-    static QString _my_name;
-    static QString _insert_name;
-
-    QString _destinator = "Server";
-    QString _window_name = "Server";
-
-    QPoint drag_start_position;
-    bool dragging = false;
+    QPoint _drag_start_position;
+    bool _dragging = false;
 
     std::vector<int> _conversation_list;
 
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
+    QPushButton *_button_file;
+    QPushButton *_audio;
+
+    QListWidget *_list;
 
     QHBoxLayout *_hbox;
+    QDir _dir;
 
     QMediaCaptureSession *_session;
     QAudioInput *_audio_input;
@@ -80,7 +83,8 @@ private:
     QMediaPlayer *_player;
     QAudioOutput *_audio_output;
 
-    QBuffer *_buffer;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
     void

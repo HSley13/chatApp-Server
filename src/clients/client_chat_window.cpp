@@ -6,6 +6,28 @@ QString client_chat_window::_insert_name = nullptr;
 
 client_manager *client_chat_window::_client = nullptr;
 
+class separator_delegate : public QStyledItemDelegate
+{
+private:
+    QListWidget *m_parent;
+
+public:
+    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        QStyledItemDelegate::paint(painter, option, index);
+
+        if (index.row() != m_parent->count() - 1)
+        {
+            painter->save();
+            painter->setPen(Qt::white);
+            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
+            painter->restore();
+        }
+    }
+};
+
 client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     : QMainWindow(parent), _my_ID(my_ID)
 {
@@ -39,8 +61,8 @@ client_chat_window::client_chat_window(QString destinator, QString name, int con
     _hbox->addWidget(record_button);
     _hbox->addWidget(_duration_label);
 
-    dir.mkdir(_destinator_name);
-    dir.setPath("./" + _destinator_name);
+    _dir.mkdir(_destinator_name);
+    _dir.setPath("./" + _destinator_name);
 
     _client->send_create_conversation_message(_client->_my_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt(), _conversation_ID);
 
@@ -85,7 +107,7 @@ void client_chat_window::on_file_saved(QString path)
 {
     QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path));
 
-    add_file(path, false);
+    add_file(path);
 
     emit data_received_sent(_window_name);
 }
@@ -117,10 +139,7 @@ void client_chat_window::ask_microphone_permission()
         connect(_recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
         _session->setRecorder(_recorder);
 
-        _buffer = new QBuffer(this);
-        _buffer->open(QIODevice::ReadWrite);
-
-        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio.m4a"));
+        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/_audio.m4a"));
         _recorder->setQuality(QMediaRecorder::VeryHighQuality);
         _recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
@@ -132,11 +151,11 @@ void client_chat_window::start_recording()
 {
     if (!is_recording)
     {
-        if (QFile::exists("audio.m4a"))
+        if (QFile::exists("_audio.m4a"))
         {
-            if (!QFile::remove("audio.m4a"))
+            if (!QFile::remove("_audio.m4a"))
             {
-                qDebug() << "Error: Unable to delete the existing audio file!";
+                qDebug() << "Error: Unable to delete the existing _audio file!";
                 return;
             }
         }
@@ -152,7 +171,7 @@ void client_chat_window::start_recording()
         _duration_label->hide();
         _duration_label->clear();
 
-        play_audio(_recorder->outputLocation());
+        add_audio(_recorder->outputLocation(), true);
     }
 }
 
@@ -168,33 +187,68 @@ void client_chat_window::on_duration_changed(qint64 duration)
 
 void client_chat_window::play_audio(const QUrl &source)
 {
-    _player = new QMediaPlayer;
-    _audio_output = new QAudioOutput;
-    _player->setAudioOutput(_audio_output);
-    _player->setSource(source);
-    _audio_output->setVolume(50);
+    if (!is_playing)
+    {
+        _slider->show();
 
-    _slider->show();
-    _slider->setRange(0, _player->duration());
-    _slider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        if (paused_position)
+        {
+            _player->setPosition(paused_position);
+            _player->play();
 
-    connect(_player, &QMediaPlayer::durationChanged, this, [=](qint64 duration)
-            { _slider->setRange(0, duration); });
+            is_playing = true;
 
-    connect(_player, &QMediaPlayer::playbackStateChanged, this, [=](QMediaPlayer::PlaybackState state)
-            {
-                if (state == QMediaPlayer::StoppedState) 
-                _slider->hide(); });
+            _audio->setText("⏸️");
+        }
+        else
+        {
+            _player = new QMediaPlayer(this);
+            _audio_output = new QAudioOutput(this);
+            _player->setAudioOutput(_audio_output);
+            _player->setSource(source);
+            _audio_output->setVolume(50);
 
-    connect(_slider, &QSlider::valueChanged, _player, &QMediaPlayer::setPosition);
+            connect(_slider, &QSlider::valueChanged, _player, &QMediaPlayer::setPosition);
 
-    QTimer *timer = new QTimer(this);
-    timer->start(100);
+            connect(_player, &QMediaPlayer::durationChanged, this, [=](qint64 duration)
+                    {
+                        _slider->setRange(0, duration);
+                        _slider->setValue(_player->position()); });
 
-    connect(timer, &QTimer::timeout, [=]()
-            { _slider->setValue(_player->position()); });
+            connect(_player, &QMediaPlayer::playbackStateChanged, this, [=](QMediaPlayer::PlaybackState state)
+                    {
+                        if (state == QMediaPlayer::StoppedState)
+                        {
+                            paused_position = 0;
 
-    _player->play();
+                            _slider->hide();
+
+                            is_playing = false;
+
+                            _audio->setText("▶️");
+                        } });
+
+            QTimer *timer = new QTimer(this);
+            connect(timer, &QTimer::timeout, [=]()
+                    { _slider->setValue(_player->position()); });
+            timer->start(100);
+
+            _player->play();
+
+            is_playing = true;
+
+            _audio->setText("⏸️");
+        }
+    }
+    else
+    {
+        paused_position = _player->position();
+        _player->pause();
+
+        is_playing = false;
+
+        _audio->setText("▶️");
+    }
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -209,6 +263,7 @@ void client_chat_window::send_message()
 
     QListWidgetItem *line = new QListWidgetItem(_list);
     line->setSizeHint(QSize(0, 60));
+
     line->setBackground(QBrush(QColorConstants::Svg::lightblue));
 
     _list->setItemWidget(line, wid);
@@ -246,7 +301,7 @@ void client_chat_window::send_file()
         _client->send_init_sending_file(file_name);
 
         connect(_client, &client_manager::file_accepted, this, [=]()
-                { add_file(QFileInfo(file_name).absoluteFilePath()); });
+                { add_file(QFileInfo(file_name).absoluteFilePath(), true); });
 
         file_name.clear();
     }
@@ -260,7 +315,7 @@ void client_chat_window::send_file_client()
         _client->send_init_sending_file_client(my_name(), _destinator, file_name);
 
         connect(_client, &client_manager::file_accepted_client, this, [=]()
-                { add_file(QFileInfo(file_name).absoluteFilePath()); });
+                { add_file(QFileInfo(file_name).absoluteFilePath(), true); });
 
         file_name.clear();
     }
@@ -289,6 +344,7 @@ void client_chat_window::set_up_window()
             { button_file->setText(QString("%1's Conversation").arg(_window_name)); });
 
     _list = new QListWidget(this);
+    _list->setItemDelegate(new separator_delegate(_list));
 
     _send_file_button = new QPushButton("...", this);
 
@@ -313,14 +369,13 @@ void client_chat_window::set_up_window()
     _hbox->addWidget(_insert_message);
     _hbox->addWidget(send_button);
 
+    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
+    VBOX->addWidget(button_file);
+    VBOX->addWidget(_list);
+    VBOX->addLayout(_hbox);
+
     _slider = new QSlider(Qt::Horizontal, this);
     _slider->hide();
-
-    _VBOX = new QVBoxLayout(central_widget);
-    _VBOX->addWidget(button_file);
-    _VBOX->addWidget(_list);
-    _VBOX->addLayout(_hbox);
-    _VBOX->addWidget(_slider);
 
     if (!_client)
     {
@@ -382,49 +437,100 @@ void client_chat_window::window_name(QString name)
 
     emit update_button_file();
 
-    QFile::rename(dir.canonicalPath(), name);
+    QFile::rename(_dir.canonicalPath(), name);
 }
 
 void client_chat_window::mousePressEvent(QMouseEvent *event)
 {
-    drag_start_position = event->pos();
-    dragging = true;
+    _drag_start_position = event->pos();
+    _dragging = true;
 }
 
 void client_chat_window::mouseMoveEvent(QMouseEvent *event)
 {
-    if (dragging && (event->button() != Qt::LeftButton))
+    if (_dragging && (event->button() != Qt::LeftButton))
     {
-        int delta_X = event->pos().x() - drag_start_position.x();
+        int delta_X = event->pos().x() - _drag_start_position.x();
 
         if (delta_X > 25)
         {
             emit swipe_right();
-            dragging = false;
+            _dragging = false;
         }
     }
 }
 
-void client_chat_window::add_file(QString path, bool is_mine)
+void client_chat_window::add_file(QString path, bool is_mine, QString date_time)
 {
+    QWidget *wid = new QWidget();
+    wid->setStyleSheet("color: black;");
+
     QPixmap image(":/images/file_icon.webp");
-    if (!image)
+    if (image.isNull())
         qDebug() << "File Image is NULL";
 
-    QPushButton *file = new QPushButton(_client->_file_name, this);
+    QLabel *time_label;
+
+    if (date_time.isEmpty())
+        time_label = new QLabel(QTime::currentTime().toString(), this);
+    else
+        time_label = new QLabel(date_time, this);
+
+    QPushButton *file = new QPushButton(this);
     file->setIcon(image);
-    file->setIconSize(QSize(60, 60));
-    file->setFixedSize(QSize(60, 60));
+    file->setIconSize(QSize(30, 30));
+    file->setFixedSize(QSize(30, 30));
     file->setStyleSheet("border: none");
     file->connect(file, &QPushButton::clicked, this, [=]()
                   { QDesktopServices::openUrl(QUrl::fromLocalFile(path)); });
 
-    QListWidgetItem *item = new QListWidgetItem(_list);
-    item->setSizeHint(QSize(0, 60));
+    QHBoxLayout *file_lay = new QHBoxLayout();
+    file_lay->addWidget(file);
 
-    (is_mine) ? item->setBackground(QBrush(QColorConstants::Svg::lightblue)) : item->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    QVBoxLayout *vbox = new QVBoxLayout();
+    vbox->addWidget(file, 7);
+    vbox->addWidget(time_label, 3);
 
-    _list->setItemWidget(item, file);
+    wid->setLayout(vbox);
+
+    QListWidgetItem *line = new QListWidgetItem(_list);
+    line->setSizeHint(QSize(0, 68));
+
+    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightblue)) : line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+
+    _list->setItemWidget(line, wid);
+}
+
+void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString date_time)
+{
+    QWidget *wid = new QWidget();
+    wid->setStyleSheet("color: black;");
+
+    QLabel *time_label;
+
+    if (!date_time.compare(""))
+        time_label = new QLabel(QTime::currentTime().toString(), this);
+    else
+        time_label = new QLabel(date_time, this);
+
+    _audio = new QPushButton("▶️", this);
+    connect(_audio, &QPushButton::clicked, this, [=]()
+            { play_audio(source); });
+
+    QHBoxLayout *hbox_1 = new QHBoxLayout();
+    hbox_1->addWidget(_audio);
+    hbox_1->addWidget(_slider);
+
+    QVBoxLayout *vbox_1 = new QVBoxLayout(wid);
+    vbox_1->addLayout(hbox_1, 8);
+    vbox_1->addWidget(time_label, 2);
+
+    QListWidgetItem *line = new QListWidgetItem(_list);
+    line->setSizeHint(QSize(0, 80));
+
+    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightblue)) : line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+
+    _list->setItemWidget(line, wid);
 }
 
 void client_chat_window::retrieve_conversation(std::vector<std::string> messages)
