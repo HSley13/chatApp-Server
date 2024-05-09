@@ -21,9 +21,9 @@
     ------
 
     TO DO
-    --- Store the Files within the Database or a folder on the PC 
-    --- Implement Voice note feature and List it in the conversation (I would have done it already if it wasn't for macOS cause it won't allow the app to use microphone).
-    --- Group Chats
+    --- Store the Files within the Database or a folder on the PC.
+    --- Implement Voice note feature and List it in the conversation.
+    --- Group Chats.
     --- Finish the database's configuration.
     --- 
     --- 

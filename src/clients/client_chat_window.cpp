@@ -14,14 +14,30 @@ client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 
     connect(_client, &client_manager::file_saved, this, &client_chat_window::on_file_saved);
-
-    ask_microphone_permission();
 }
 
 client_chat_window::client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent)
     : QMainWindow(parent), _destinator(destinator), _destinator_name(name), _conversation_ID(conversation_ID)
 {
     set_up_window();
+
+    ask_microphone_permission();
+
+    QPixmap image_record(":/images/record_icon.png");
+    if (!image_record)
+        qDebug() << "Image Record Button is NULL";
+
+    QPushButton *record_button = new QPushButton(this);
+    record_button->setIcon(image_record);
+    record_button->setIconSize(QSize(50, 50));
+    record_button->setFixedSize(50, 50);
+    record_button->setStyleSheet("border: none");
+    connect(record_button, &QPushButton::clicked, this, &client_chat_window::start_recording);
+
+    _duration_label = new QLabel(this);
+    _duration_label->hide();
+    _hbox->addWidget(record_button);
+    _hbox->addWidget(_duration_label);
 
     dir.mkdir(_destinator_name);
     dir.setPath("./" + _destinator_name);
@@ -87,23 +103,26 @@ void client_chat_window::ask_microphone_permission()
         break;
 
     case Qt::PermissionStatus::Denied:
-        qDebug() << "Granted: Microphone permission is granted!";
+        qDebug() << "Denied: Microphone permission is Denied!";
 
         break;
 
     case Qt::PermissionStatus::Granted:
 
-        session = new QMediaCaptureSession(this);
-        audio_input = new QAudioInput(this);
-        session->setAudioInput(audio_input);
+        _session = new QMediaCaptureSession(this);
+        _audio_input = new QAudioInput(this);
+        _session->setAudioInput(_audio_input);
 
-        recorder = new QMediaRecorder(this);
-        connect(recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
-        session->setRecorder(recorder);
+        _recorder = new QMediaRecorder(this);
+        connect(_recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
+        _session->setRecorder(_recorder);
 
-        recorder->setQuality(QMediaRecorder::VeryHighQuality);
-        recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio"));
-        recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
+        _buffer = new QBuffer(this);
+        _buffer->open(QIODevice::ReadWrite);
+
+        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio.m4a"));
+        _recorder->setQuality(QMediaRecorder::VeryHighQuality);
+        _recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
         break;
     }
@@ -122,27 +141,39 @@ void client_chat_window::start_recording()
             }
         }
 
-        recorder->record();
-        duration_label->show();
+        _recorder->record();
+        _duration_label->show();
         is_recording = true;
     }
     else
     {
-        recorder->stop();
+        _recorder->stop();
         is_recording = false;
-        duration_label->hide();
-        duration_label->clear();
+        _duration_label->hide();
+        _duration_label->clear();
+
+        play_audio(_recorder->outputLocation());
     }
 }
 
 void client_chat_window::on_duration_changed(qint64 duration)
 {
-    if (recorder->error() != QMediaRecorder::NoError || duration < 1000)
+    if (_recorder->error() != QMediaRecorder::NoError || duration < 1000)
         return;
 
     QString duration_str = QString("Recording... %1:%2").arg(duration / 60000, 2, 10, QChar('0')).arg((duration % 60000) / 1000, 2, 10, QChar('0'));
 
-    duration_label->setText(duration_str);
+    _duration_label->setText(duration_str);
+}
+
+void client_chat_window::play_audio(const QUrl &source)
+{
+    _player = new QMediaPlayer;
+    _audio_output = new QAudioOutput;
+    _player->setAudioOutput(_audio_output);
+    _player->setSource(source);
+    _audio_output->setVolume(50);
+    _player->play();
 }
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
@@ -255,31 +286,15 @@ void client_chat_window::set_up_window()
     send_button->setStyleSheet("border: none");
     connect(send_button, &QPushButton::clicked, this, &client_chat_window::send_message);
 
-    QPixmap image_record(":/images/record_icon.png");
-    if (!image_record)
-        qDebug() << "Image Record Button is NULL";
-
-    QPushButton *record_button = new QPushButton(this);
-    record_button->setIcon(image_record);
-    record_button->setIconSize(QSize(50, 50));
-    record_button->setFixedSize(50, 50);
-    record_button->setStyleSheet("border: none");
-    connect(record_button, &QPushButton::clicked, this, &client_chat_window::start_recording);
-
-    duration_label = new QLabel(this);
-    duration_label->hide();
-
-    QHBoxLayout *hbox = new QHBoxLayout();
-    hbox->addWidget(_send_file_button);
-    hbox->addWidget(_insert_message);
-    hbox->addWidget(send_button);
-    hbox->addWidget(record_button);
-    hbox->addWidget(duration_label);
+    _hbox = new QHBoxLayout();
+    _hbox->addWidget(_send_file_button);
+    _hbox->addWidget(_insert_message);
+    _hbox->addWidget(send_button);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(button_file);
     VBOX->addWidget(_list);
-    VBOX->addLayout(hbox);
+    VBOX->addLayout(_hbox);
 
     if (!_client)
     {

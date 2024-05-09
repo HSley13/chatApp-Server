@@ -45,7 +45,7 @@ private:
 
     QPushButton *_send_file_button;
 
-    QLabel *duration_label;
+    QLabel *_duration_label;
 
     QString _destinator_name;
     int _conversation_ID;
@@ -67,12 +67,20 @@ private:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
-    QMediaCaptureSession *session;
-    QAudioInput *audio_input;
-    QMediaRecorder *recorder;
+    QHBoxLayout *_hbox;
+
+    QMediaCaptureSession *_session;
+    QAudioInput *_audio_input;
+    QMediaRecorder *_recorder;
+
+    QMediaPlayer *_player;
+    QAudioOutput *_audio_output;
+
+    QBuffer *_buffer;
 
 signals:
-    void client_name_changed(QString old_name, QString client_name);
+    void
+    client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
 
     void text_message_received(QString sender, QString message);
@@ -108,4 +116,6 @@ private slots:
     void start_recording();
 
     void on_duration_changed(qint64 duration);
+
+    void play_audio(const QUrl &source);
 };
