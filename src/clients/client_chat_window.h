@@ -47,6 +47,10 @@ private:
 
     QLabel *_duration_label;
 
+    QVBoxLayout *_VBOX;
+
+    QSlider *_slider;
+
     QString _destinator_name;
     int _conversation_ID;
 

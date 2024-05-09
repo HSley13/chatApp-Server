@@ -173,8 +173,30 @@ void client_chat_window::play_audio(const QUrl &source)
     _player->setAudioOutput(_audio_output);
     _player->setSource(source);
     _audio_output->setVolume(50);
+
+    _slider->show();
+    _slider->setRange(0, _player->duration());
+    _slider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+    connect(_player, &QMediaPlayer::durationChanged, this, [=](qint64 duration)
+            { _slider->setRange(0, duration); });
+
+    connect(_player, &QMediaPlayer::playbackStateChanged, this, [=](QMediaPlayer::PlaybackState state)
+            {
+                if (state == QMediaPlayer::StoppedState) 
+                _slider->hide(); });
+
+    connect(_slider, &QSlider::valueChanged, _player, &QMediaPlayer::setPosition);
+
+    QTimer *timer = new QTimer(this);
+    timer->start(100);
+
+    connect(timer, &QTimer::timeout, [=]()
+            { _slider->setValue(_player->position()); });
+
     _player->play();
 }
+
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
 void client_chat_window::send_message()
@@ -291,10 +313,14 @@ void client_chat_window::set_up_window()
     _hbox->addWidget(_insert_message);
     _hbox->addWidget(send_button);
 
-    QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
-    VBOX->addWidget(button_file);
-    VBOX->addWidget(_list);
-    VBOX->addLayout(_hbox);
+    _slider = new QSlider(Qt::Horizontal, this);
+    _slider->hide();
+
+    _VBOX = new QVBoxLayout(central_widget);
+    _VBOX->addWidget(button_file);
+    _VBOX->addWidget(_list);
+    _VBOX->addLayout(_hbox);
+    _VBOX->addWidget(_slider);
 
     if (!_client)
     {
