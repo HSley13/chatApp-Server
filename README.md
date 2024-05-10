@@ -76,16 +76,15 @@
 
 
             -------files
-            CREATE TABLE files 
+            CREATE TABLE binary_data 
             (
                 file_ID INT AUTO_INCREMENT PRIMARY KEY,
                 conversation_ID INT,
                 file_name VARCHAR(255),
                 file_data MEDIUMBLOB,
+                data_type TEXT,
                 date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) AUTO_INCREMENT = 1;
-
-
 
 
             *************** ALL THE TRIGGERS ***************
@@ -103,6 +102,6 @@
             CREATE TRIGGER add_file_message AFTER INSERT ON files 
             FOR EACH ROW 
                 BEGIN
-                    INSERT INTO messages (conversation_ID, sender_ID, receiver_ID, content, type)
-                    VALUES ( NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, 'file');
+                    INSERT INTO messages (conversation_ID, sender_ID, receiver_ID, content, message_type)
+                    VALUES ( NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, data_type);
                 END;

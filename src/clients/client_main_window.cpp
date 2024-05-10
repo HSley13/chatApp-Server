@@ -359,7 +359,7 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
 
         QVector<QString> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
 
-        QHash<QString, QByteArray> files = Account::retrieve_file(_db_connection, conversation_ID);
+        QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, conversation_ID);
 
         for (const QString &name : list.keys())
         {
@@ -369,7 +369,7 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
                 continue;
 
             client_chat_window *wid = new client_chat_window(conversation_ID, QString::number(list.value(name)), name, this);
-            wid->retrieve_conversation(messages, files);
+            wid->retrieve_conversation(messages, binary_data);
 
             connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
             connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
@@ -412,8 +412,6 @@ void client_main_window::on_client_disconnected(QString client_name)
         int index = _friend_list->findText(client_name);
         if (index != -1)
             _friend_list->removeItem(index);
-
-        _window_map.remove(client_name);
 
         _status_bar->showMessage(QString("%1 is disconnected").arg(client_name), 3000);
     }

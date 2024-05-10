@@ -29,7 +29,7 @@ public:
 
     void add_friend(QString ID);
 
-    void retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &files);
+    void retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &binary_data);
 
     void ask_microphone_permission();
 
@@ -61,15 +61,10 @@ private:
 
     QLabel *_duration_label;
 
-    QSlider *_slider;
-
     QPoint _drag_start_position;
     bool _dragging = false;
 
     std::vector<int> _conversation_list;
-
-    QPushButton *_button_file;
-    QPushButton *_audio;
 
     QListWidget *_list;
 
@@ -129,5 +124,5 @@ private slots:
 
     void on_duration_changed(qint64 duration);
 
-    void play_audio(const QUrl &source);
+    void play_audio(const QUrl &source, QPushButton *audio, QSlider *slider);
 };

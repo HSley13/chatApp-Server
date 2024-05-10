@@ -43,17 +43,17 @@ public:
 
     static void create_conversation(sql::Connection *connection, const int conversation_ID, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID);
 
-    static void save_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content);
-
-    static QVector<QString> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
-
     static QHash<int, QHash<QString, int>> retrieve_friend_list(sql::Connection *connection, const int phone_number);
 
     static QString retrieve_name_and_port(sql::Connection *connection, const int phone_number);
 
     static void update_alias(sql::Connection *connection, const int phone_number, const std::string name);
 
-    static void save_file(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size);
+    static void save_text_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content);
 
-    static QHash<QString, QByteArray> retrieve_file(sql::Connection *connection, const int conversation_ID);
+    static void save_binary_data(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size, std::string type);
+
+    static QVector<QString> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
+
+    static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int conversation_ID);
 };

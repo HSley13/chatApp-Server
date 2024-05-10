@@ -58,7 +58,7 @@ public:
 
     void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data);
 
-    void save_file_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data);
+    void save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type);
 
 private:
     QWidget *central_widget;

@@ -152,8 +152,8 @@ void server_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::save_file:
-        save_file_client(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->file_name_client(), _protocol->file_data());
+    case chat_protocol::save_data:
+        save_data_client(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->file_name_client(), _protocol->file_data(), _protocol->data_type());
 
         break;
 
@@ -350,7 +350,7 @@ void server_manager::lookup_friend(QString ID)
 
     QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
 
-    _socket->write(_protocol->set_lookup_friend_message(name_and_port.split("/").first(), conversation_ID));
+    _socket->write(_protocol->set_lookup_friend_message(conversation_ID, name_and_port.split("/").first()));
 
     QString ID_2 = _clients.key(_socket);
 
@@ -358,7 +358,7 @@ void server_manager::lookup_friend(QString ID)
 
     QTcpSocket *client = _clients.value(ID);
     if (client)
-        client->write(_protocol->set_added_you_message(name_and_port.split("/").first(), ID_2, "", conversation_ID));
+        client->write(_protocol->set_added_you_message(conversation_ID, name_and_port.split("/").first(), ID_2, ""));
 }
 
 void server_manager::create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID)
@@ -368,10 +368,10 @@ void server_manager::create_conversation(int conversation_ID, QString participan
 
 void server_manager::save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content)
 {
-    Account::save_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString());
+    Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString());
 }
 
-void server_manager::save_file_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data)
+void server_manager::save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type)
 {
-    Account::save_file(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size());
+    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString());
 }

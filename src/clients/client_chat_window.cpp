@@ -105,7 +105,7 @@ void client_chat_window::on_file_saved(QString path)
 
     add_file(path);
 
-    _client->send_save_file_message(_conversation_ID, _destinator, _client->_my_ID);
+    _client->send_save_data_message(_conversation_ID, _destinator, _client->_my_ID, "file");
 
     emit data_received_sent(_window_name);
 }
@@ -173,6 +173,8 @@ void client_chat_window::start_recording()
 
         _client->send_audio_message(my_name(), _destinator, "audio.m4a");
 
+        _client->send_save_audio_message(_conversation_ID, _client->_my_ID, _destinator, "audio.m4a", "audio");
+
         emit data_received_sent(_window_name);
     }
 }
@@ -187,11 +189,11 @@ void client_chat_window::on_duration_changed(qint64 duration)
     _duration_label->setText(duration_str);
 }
 
-void client_chat_window::play_audio(const QUrl &source)
+void client_chat_window::play_audio(const QUrl &source, QPushButton *audio, QSlider *slider)
 {
     if (!is_playing)
     {
-        _slider->show();
+        slider->show();
 
         if (paused_position)
         {
@@ -200,7 +202,7 @@ void client_chat_window::play_audio(const QUrl &source)
 
             is_playing = true;
 
-            _audio->setText("⏸️");
+            audio->setText("⏸️");
         }
         else
         {
@@ -210,12 +212,12 @@ void client_chat_window::play_audio(const QUrl &source)
             _player->setSource(source);
             _audio_output->setVolume(50);
 
-            connect(_slider, &QSlider::valueChanged, _player, &QMediaPlayer::setPosition);
+            connect(slider, &QSlider::valueChanged, _player, &QMediaPlayer::setPosition);
 
             connect(_player, &QMediaPlayer::durationChanged, this, [=](qint64 duration)
                     {
-                        _slider->setRange(0, duration);
-                        _slider->setValue(_player->position()); });
+                        slider->setRange(0, duration);
+                        slider->setValue(_player->position()); });
 
             connect(_player, &QMediaPlayer::playbackStateChanged, this, [=](QMediaPlayer::PlaybackState state)
                     {
@@ -223,23 +225,23 @@ void client_chat_window::play_audio(const QUrl &source)
                         {
                             paused_position = 0;
 
-                            _slider->hide();
+                            slider->hide();
 
                             is_playing = false;
 
-                            _audio->setText("▶️");
+                            audio->setText("▶️");
                         } });
 
             QTimer *timer = new QTimer(this);
             connect(timer, &QTimer::timeout, [=]()
-                    { _slider->setValue(_player->position()); });
+                    { slider->setValue(_player->position()); });
             timer->start(100);
 
             _player->play();
 
             is_playing = true;
 
-            _audio->setText("⏸️");
+            audio->setText("⏸️");
         }
     }
     else
@@ -249,7 +251,7 @@ void client_chat_window::play_audio(const QUrl &source)
 
         is_playing = false;
 
-        _audio->setText("▶️");
+        audio->setText("▶️");
     }
 }
 
@@ -318,7 +320,7 @@ void client_chat_window::send_file_client()
 
         connect(_client, &client_manager::file_accepted_client, this, [=]()
                 { add_file(QFileInfo(file_name).absoluteFilePath(), true);
-            _client->send_save_file_message(_conversation_ID, _client->_my_ID, _destinator); });
+            _client->send_save_data_message(_conversation_ID, _client->_my_ID, _destinator, "file"); });
 
         file_name.clear();
     }
@@ -377,9 +379,6 @@ void client_chat_window::set_up_window()
     VBOX->addWidget(_list);
     VBOX->addLayout(_hbox);
 
-    _slider = new QSlider(Qt::Horizontal, this);
-    _slider->hide();
-
     if (!_client)
     {
         _client = new client_manager(this);
@@ -405,10 +404,10 @@ void client_chat_window::set_up_window()
                 { emit socket_disconnected(); });
 
         connect(_client, &client_manager::client_added_you, this, [=](int conversation_ID, QString name, QString ID)
-                { emit client_added_you(_conversation_ID, name, ID); });
+                { emit client_added_you(conversation_ID, name, ID); });
 
         connect(_client, &client_manager::lookup_friend_result, this, [=](int conversation_ID, QString name)
-                { emit lookup_friend_result(_conversation_ID, name); });
+                { emit lookup_friend_result(conversation_ID, name); });
 
         connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list)
                 { emit friend_list(list); });
@@ -517,18 +516,21 @@ void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString dat
 
     QLabel *time_label;
 
-    if (!date_time.compare(""))
+    if (date_time.isEmpty())
         time_label = new QLabel(QTime::currentTime().toString(), this);
     else
         time_label = new QLabel(date_time, this);
 
-    _audio = new QPushButton("▶️", this);
-    connect(_audio, &QPushButton::clicked, this, [=]()
-            { play_audio(source); });
+    QSlider *slider = new QSlider(Qt::Horizontal, this);
+    slider->hide();
+
+    QPushButton *audio = new QPushButton("▶️", this);
+    connect(audio, &QPushButton::clicked, this, [=]()
+            { play_audio(source, audio, slider); });
 
     QHBoxLayout *hbox_1 = new QHBoxLayout();
-    hbox_1->addWidget(_audio);
-    hbox_1->addWidget(_slider);
+    hbox_1->addWidget(audio);
+    hbox_1->addWidget(slider);
 
     QVBoxLayout *vbox_1 = new QVBoxLayout(wid);
     vbox_1->addLayout(hbox_1, 8);
@@ -542,7 +544,7 @@ void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString dat
     _list->setItemWidget(line, wid);
 }
 
-void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &files)
+void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &binary_data)
 {
     if (messages.isEmpty())
         return;
@@ -561,14 +563,28 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
         {
             if (!type.compare("file"))
             {
-                _client->save_file_client(_destinator_name, content, files.value(date_time));
+                _client->save_file_client(_destinator_name, content, binary_data.value(date_time));
 
                 QDir dir;
-                dir.mkdir(receiver_ID);
+                if (!_destinator_name.isEmpty() && !_destinator_name.isNull())
+                    dir.mkdir(_destinator_name);
 
                 QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
 
                 add_file(path, true, date_time);
+                continue;
+            }
+            else if (!type.compare("audio"))
+            {
+                _client->save_audio(_destinator_name, content, binary_data.value(date_time));
+
+                QDir dir;
+                if (!_destinator_name.isEmpty() && !_destinator_name.isNull())
+                    dir.mkdir(_destinator_name);
+
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+
+                add_audio(path, true, date_time);
                 continue;
             }
 
@@ -587,12 +603,26 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
             if (!type.compare("file"))
             {
                 QDir dir;
-                dir.mkdir(my_name());
+                if (!my_name().isEmpty() && !my_name().isNull())
+                    dir.mkdir(my_name());
 
-                _client->save_file_client(my_name(), content, files.value(date_time));
+                _client->save_file_client(my_name(), content, binary_data.value(date_time));
                 QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
 
                 add_file(path, false, date_time);
+                continue;
+            }
+            else if (!type.compare("audio"))
+            {
+                _client->save_audio(my_name(), content, binary_data.value(date_time));
+
+                QDir dir;
+                if (!my_name().isEmpty() && !my_name().isNull())
+                    dir.mkdir(my_name());
+
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+
+                add_audio(path, false, date_time);
                 continue;
             }
 

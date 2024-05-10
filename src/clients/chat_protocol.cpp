@@ -208,7 +208,7 @@ QByteArray chat_protocol::set_save_message_message(int conversation_ID, QString 
     return byte;
 }
 
-QByteArray chat_protocol::set_save_file_message(int conversation_ID, QString sender, QString receiver, QString file_name)
+QByteArray chat_protocol::set_save_data_message(int conversation_ID, QString sender, QString receiver, QString file_name, QString type)
 {
 
     QByteArray byte;
@@ -221,7 +221,7 @@ QByteArray chat_protocol::set_save_file_message(int conversation_ID, QString sen
 
         QFileInfo info(file_name);
 
-        out << save_file << conversation_ID << sender << receiver << info.fileName() << file.readAll();
+        out << save_data << conversation_ID << sender << receiver << info.fileName() << file.readAll() << type;
 
         file.close();
     }

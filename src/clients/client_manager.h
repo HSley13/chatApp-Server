@@ -31,7 +31,7 @@ public:
     void save_file();
     void save_file_client(QString sender, QString file_name, QByteArray file_data);
 
-    void save_audio(QString sender);
+    void save_audio(QString sender, QString file_name, QByteArray file_data);
     void send_audio_message(QString sender, QString receiver, QString audio_name);
 
     void log_in(QString ID);
@@ -42,7 +42,9 @@ public:
 
     void send_save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content);
 
-    void send_save_file_message(int conversation_ID, QString sender, QString receiver);
+    void send_save_data_message(int conversation_ID, QString sender, QString receiver, QString type);
+
+    void send_save_audio_message(int conversation_ID, QString sender, QString receiver, QString audio_name, QString type);
 
     static QString _my_ID;
     static QString _my_name;

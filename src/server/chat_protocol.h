@@ -38,8 +38,7 @@ public:
         save_message,
 
         audio,
-        save_file,
-        save_audio
+        save_data
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -62,9 +61,9 @@ public:
     QByteArray set_client_disconnected_message(QString client_name);
 
     QByteArray set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list);
-    QByteArray set_added_you_message(QString name, QString ID, QString receiver, int conversation_ID);
+    QByteArray set_added_you_message(int conversation_ID, QString name, QString ID, QString receiver);
 
-    QByteArray set_lookup_friend_message(QString ID, int conversation_ID);
+    QByteArray set_lookup_friend_message(int conversation_ID, QString ID);
 
     QByteArray set_audio_message(QString sender, QString audio_name, QByteArray audio_data);
 
@@ -103,6 +102,7 @@ public:
     const QString &audio_name() const;
     const QString &audio_sender() const;
     const QString &audio_receiver() const;
+    const QString &data_type() const;
     const QByteArray &audio_data() const;
 
 private:
@@ -142,4 +142,5 @@ private:
     QString _audio_sender;
     QString _audio_receiver;
     QByteArray _audio_data;
+    QString _data_type;
 };

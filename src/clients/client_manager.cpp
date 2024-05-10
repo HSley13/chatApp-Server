@@ -112,7 +112,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::audio:
-        save_audio(_protocol->audio_sender());
+        save_audio(_protocol->audio_sender(), _protocol->audio_name(), _protocol->audio_data());
 
         break;
 
@@ -244,7 +244,8 @@ void client_manager::save_file()
 void client_manager::save_file_client(QString sender, QString file_name, QByteArray file_data)
 {
     QDir dir;
-    dir.mkdir(sender);
+    if (!sender.isEmpty() && !sender.isNull())
+        dir.mkdir(sender);
 
     QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), file_name);
 
@@ -260,22 +261,28 @@ void client_manager::save_file_client(QString sender, QString file_name, QByteAr
         qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";
 }
 
-void client_manager::send_save_file_message(int conversation_ID, QString sender, QString receiver)
+void client_manager::send_save_data_message(int conversation_ID, QString sender, QString receiver, QString type)
 {
-    _socket->write(_protocol->set_save_file_message(conversation_ID, sender, receiver, _file_name_client));
+    _socket->write(_protocol->set_save_data_message(conversation_ID, sender, receiver, _file_name_client, type));
 }
 
-void client_manager::save_audio(QString sender)
+void client_manager::send_save_audio_message(int conversation_ID, QString sender, QString receiver, QString audio_name, QString type)
+{
+    _socket->write(_protocol->set_save_data_message(conversation_ID, sender, receiver, audio_name, type));
+}
+
+void client_manager::save_audio(QString sender, QString file_name, QByteArray file_data)
 {
     QDir dir;
-    dir.mkdir(sender);
+    if (!sender.isEmpty() && !sender.isNull())
+        dir.mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->audio_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), file_name);
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly))
     {
-        file.write(_protocol->audio_data());
+        file.write(file_data);
         file.close();
 
         emit audio_received(sender, path);

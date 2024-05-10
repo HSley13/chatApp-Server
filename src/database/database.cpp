@@ -197,7 +197,7 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, message_type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement->setInt(1, conversation_ID);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -211,7 +211,7 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
                                   .arg(result->getString("receiver_ID").c_str())
                                   .arg(result->getString("content").c_str())
                                   .arg(result->getString("date_time").c_str())
-                                  .arg(result->getString("type").c_str());
+                                  .arg(result->getString("message_type").c_str());
 
             messages.push_back(message);
         }
@@ -271,7 +271,7 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
     }
 }
 
-void Account::save_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content)
+void Account::save_text_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content)
 {
     try
     {
@@ -285,7 +285,7 @@ void Account::save_message(sql::Connection *connection, const int conversation_I
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "save_message() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "save_text_message() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -328,11 +328,9 @@ QString Account::retrieve_name_and_port(sql::Connection *connection, const int p
         if (!result->next())
             QMessageBox::warning(nullptr, "Phone Number XXX", "The entered Phone Number doesn't exist in our database, Check and try again");
 
-        QString name = QString("%1/%2")
-                           .arg(result->getString("alias").c_str())
-                           .arg(result->getInt("port"));
+        std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
 
-        return name;
+        return QString::fromStdString(name);
     }
     catch (const sql::SQLException &e)
     {
@@ -376,24 +374,25 @@ void Account::update_alias(sql::Connection *connection, const int phone_number, 
     }
 }
 
-void Account::save_file(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size)
+void Account::save_binary_data(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size, std::string type)
 {
     try
     {
         std::istringstream blob_stream(std::string(file_data, file_size));
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO files (conversation_ID, sender_ID, receiver_ID, file_name, file_data) VALUES (?,?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type) VALUES (?,?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
         prepared_statement->setString(4, file_name);
         prepared_statement->setBlob(5, &blob_stream);
+        prepared_statement->setString(6, type);
 
         prepared_statement->executeUpdate();
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "save_file() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "save_binary_data() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -401,16 +400,16 @@ void Account::save_file(sql::Connection *connection, const int conversation_ID, 
     }
 }
 
-QHash<QString, QByteArray> Account::retrieve_file(sql::Connection *connection, const int conversation_ID)
+QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connection, const int conversation_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM files WHERE conversation_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM binary_data WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement->setInt(1, conversation_ID);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<QString, QByteArray> files;
+        QHash<QString, QByteArray> binary_data;
 
         while (result->next())
         {
@@ -420,14 +419,14 @@ QHash<QString, QByteArray> Account::retrieve_file(sql::Connection *connection, c
 
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
-            files.insert(date_time, file_data);
+            binary_data.insert(date_time, file_data);
         }
 
-        return files;
+        return binary_data;
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "retrieve_file() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_binary_data() ---> SQL ERROR: " << e.what() << std::endl;
         return QHash<QString, QByteArray>();
     }
     catch (const std::exception &e)

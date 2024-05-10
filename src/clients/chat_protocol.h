@@ -38,8 +38,7 @@ public:
         save_message,
 
         audio,
-        save_file,
-        save_audio
+        save_data
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -66,7 +65,7 @@ public:
 
     QByteArray set_audio_message(QString sender, QString receiver, QString audio_name);
 
-    QByteArray set_save_file_message(int conversation_ID, QString sender, QString receiver, QString file_name);
+    QByteArray set_save_data_message(int conversation_ID, QString sender, QString receiver, QString file_name, QString type);
 
     void load_data(QByteArray data);
 
