@@ -368,3 +368,64 @@ void Account::update_alias(sql::Connection *connection, const int phone_number, 
         std::cerr << e.what() << std::endl;
     }
 }
+
+void Account::save_file(sql::Connection *connection, const int sender, const int receiver, std::string file_name, const char *file_data, const int file_size, const int conversation_ID)
+{
+    try
+    {
+        std::istringstream blob_stream(std::string(file_data, file_size));
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO files (conversation_ID, sender_ID, receiver_ID, file_name, file_data) VALUES (?,?,?,?,?);"));
+        prepared_statement->setInt(1, conversation_ID);
+        prepared_statement->setInt(2, sender);
+        prepared_statement->setInt(3, receiver);
+        prepared_statement->setString(4, file_name);
+        prepared_statement->setBlob(5, &blob_stream);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "save_message() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+QHash<std::string, QByteArray> Account::retrieve_file(sql::Connection *connection, const int conversation_ID)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, file_name, file_data, date_time FROM files WHERE conversation_ID = ? ORDER BY date_time;"));
+        prepared_statement->setInt(1, conversation_ID);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        QHash<std::string, QByteArray> files;
+
+        while (result->next())
+        {
+            std::string info = result->getString("sender_ID") + "/" + result->getString("receiver_ID") + "/" + result->getString("file_name") + "/" + result->getString("date_time");
+
+            std::istream *file_stream = result->getBlob("file_data");
+
+            QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
+
+            files.insert(info, file_data);
+        }
+
+        return files;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
+        return {};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return {};
+    }
+}

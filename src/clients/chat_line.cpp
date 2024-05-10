@@ -1,9 +1,6 @@
 #include "chat_line.h"
 #include <QTime>
 
-#include <QLabel>
-#include <QMouseEvent>
-
 chat_line::chat_line(QWidget *parent)
     : QMainWindow(parent)
 {

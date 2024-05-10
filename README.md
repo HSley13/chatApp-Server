@@ -74,6 +74,19 @@
             )AUTO_INCREMENT = 1;
 
 
+            -------files
+            CREATE TABLE files 
+            (
+                file_ID INT AUTO_INCREMENT PRIMARY KEY,
+                conversation_ID INT,
+                sender_ID INT,
+                receiver_ID INT,
+                file_name VARCHAR(255),
+                file_data MEDIUMBLOB,
+                date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ) AUTO_INCREMENT = 1;
+
+
 
 
             *************** ALL THE TRIGGERS ***************
