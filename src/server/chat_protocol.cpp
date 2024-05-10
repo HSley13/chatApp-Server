@@ -264,17 +264,22 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case create_conversation:
-        in >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID >> _conversation_ID;
+        in >> _conversation_ID >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID;
 
         break;
 
     case save_message:
-        in >> _sender >> _receiver >> _message >> _conversation_ID;
+        in >> _conversation_ID >> _sender >> _receiver >> _message;
 
         break;
 
     case audio:
         in >> _audio_sender >> _audio_receiver >> _audio_name >> _audio_data;
+
+        break;
+
+    case save_file:
+        in >> _conversation_ID >> _sender >> _receiver >> _file_name_client >> _file_data;
 
         break;
 

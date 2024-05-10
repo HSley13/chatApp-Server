@@ -12,7 +12,7 @@ class client_chat_window : public QMainWindow
     Q_OBJECT
 public:
     client_chat_window(QString my_ID, QWidget *parent = nullptr);
-    client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent = nullptr);
+    client_chat_window(int conversation_ID, QString destinator, QString name, QWidget *parent = nullptr);
 
     void window_name(QString name);
 
@@ -29,7 +29,7 @@ public:
 
     void add_friend(QString ID);
 
-    void retrieve_conversation(QVector<QString> messages);
+    void retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &files);
 
     void ask_microphone_permission();
 
@@ -102,9 +102,9 @@ signals:
 
     void swipe_right();
 
-    void client_added_you(QString name, QString ID, int conversation_ID);
+    void client_added_you(int conversation_ID, QString name, QString ID);
 
-    void lookup_friend_result(QString name, int conversation_ID);
+    void lookup_friend_result(int conversation_ID, QString name);
 
     void friend_list(QHash<int, QHash<QString, int>> list);
 

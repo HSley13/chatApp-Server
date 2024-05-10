@@ -36,8 +36,8 @@ client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file);
 }
 
-client_chat_window::client_chat_window(QString destinator, QString name, int conversation_ID, QWidget *parent)
-    : QMainWindow(parent), _destinator(destinator), _destinator_name(name), _conversation_ID(conversation_ID)
+client_chat_window::client_chat_window(int conversation_ID, QString destinator, QString name, QWidget *parent)
+    : QMainWindow(parent), _conversation_ID(conversation_ID), _destinator(destinator), _destinator_name(name)
 {
     set_up_window();
 
@@ -62,7 +62,7 @@ client_chat_window::client_chat_window(QString destinator, QString name, int con
     _dir.mkdir(_destinator_name);
     _dir.setPath("./" + _destinator_name);
 
-    _client->send_create_conversation_message(_client->_my_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt(), _conversation_ID);
+    _client->send_create_conversation_message(_conversation_ID, _client->_my_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt());
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
 }
@@ -104,6 +104,8 @@ void client_chat_window::on_file_saved(QString path)
     QMessageBox::information(this, "File Saved", QString("File save at: %1").arg(path));
 
     add_file(path);
+
+    _client->send_save_file_message(_conversation_ID, _destinator, _client->_my_ID);
 
     emit data_received_sent(_window_name);
 }
@@ -270,7 +272,7 @@ void client_chat_window::send_message()
 
     _client->send_text(my_name(), _destinator, message);
 
-    _client->send_save_conversation_message(_client->_my_ID, _destinator, message, _conversation_ID);
+    _client->send_save_conversation_message(_conversation_ID, _client->_my_ID, _destinator, message);
 
     _insert_message->clear();
 
@@ -290,7 +292,7 @@ void client_chat_window::message_received(QString message)
     _list->addItem(line);
     _list->setItemWidget(line, wid);
 
-    _client->send_save_conversation_message(_destinator, _client->_my_ID, message, _conversation_ID);
+    _client->send_save_conversation_message(_conversation_ID, _destinator, _client->_my_ID, message);
 }
 
 void client_chat_window::send_file()
@@ -315,7 +317,8 @@ void client_chat_window::send_file_client()
         _client->send_init_sending_file_client(my_name(), _destinator, file_name);
 
         connect(_client, &client_manager::file_accepted_client, this, [=]()
-                { add_file(QFileInfo(file_name).absoluteFilePath(), true); });
+                { add_file(QFileInfo(file_name).absoluteFilePath(), true);
+            _client->send_save_file_message(_conversation_ID, _client->_my_ID, _destinator); });
 
         file_name.clear();
     }
@@ -401,11 +404,11 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::socket_disconnected, this, [=]()
                 { emit socket_disconnected(); });
 
-        connect(_client, &client_manager::client_added_you, this, [=](QString name, QString ID, int conversation_ID)
-                { emit client_added_you(name, ID, conversation_ID); });
+        connect(_client, &client_manager::client_added_you, this, [=](int conversation_ID, QString name, QString ID)
+                { emit client_added_you(_conversation_ID, name, ID); });
 
-        connect(_client, &client_manager::lookup_friend_result, this, [=](QString name, int conversation_ID)
-                { emit lookup_friend_result(name, conversation_ID); });
+        connect(_client, &client_manager::lookup_friend_result, this, [=](int conversation_ID, QString name)
+                { emit lookup_friend_result(_conversation_ID, name); });
 
         connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list)
                 { emit friend_list(list); });
@@ -539,7 +542,7 @@ void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString dat
     _list->setItemWidget(line, wid);
 }
 
-void client_chat_window::retrieve_conversation(QVector<QString> messages)
+void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &files)
 {
     if (messages.isEmpty())
         return;
@@ -548,13 +551,27 @@ void client_chat_window::retrieve_conversation(QVector<QString> messages)
     {
         QStringList parts = message.split("/");
 
-        QString sender_ID = parts.at(0);
+        QString sender_ID = parts.first();
         QString receiver_ID = parts.at(1);
         QString content = parts.at(2);
         QString date_time = parts.at(3);
+        QString type = parts.last();
 
         if (sender_ID == _client->_my_ID)
         {
+            if (!type.compare("file"))
+            {
+                _client->save_file_client(_destinator_name, content, files.value(date_time));
+
+                QDir dir;
+                dir.mkdir(receiver_ID);
+
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+
+                add_file(path, true, date_time);
+                continue;
+            }
+
             chat_line *wid = new chat_line(this);
             wid->set_message(content, true, date_time);
             wid->setStyleSheet("color: black;");
@@ -567,6 +584,18 @@ void client_chat_window::retrieve_conversation(QVector<QString> messages)
         }
         else
         {
+            if (!type.compare("file"))
+            {
+                QDir dir;
+                dir.mkdir(my_name());
+
+                _client->save_file_client(my_name(), content, files.value(date_time));
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+
+                add_file(path, false, date_time);
+                continue;
+            }
+
             chat_line *wid = new chat_line(this);
             wid->set_message(content, false, date_time);
             wid->setStyleSheet("color: black;");

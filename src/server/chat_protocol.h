@@ -37,7 +37,9 @@ public:
         create_conversation,
         save_message,
 
-        audio
+        audio,
+        save_file,
+        save_audio
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);

@@ -69,7 +69,8 @@
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
-                content TEXT, 
+                content TEXT,
+                message_type TEXT, 
                 date_time DATETIME DEFAULT CURRENT_TIMESTAMP
             )AUTO_INCREMENT = 1;
 
@@ -79,8 +80,6 @@
             (
                 file_ID INT AUTO_INCREMENT PRIMARY KEY,
                 conversation_ID INT,
-                sender_ID INT,
-                receiver_ID INT,
                 file_name VARCHAR(255),
                 file_data MEDIUMBLOB,
                 date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -98,4 +97,12 @@
                     IF NEW.alias IS NULL THEN 
                         SET NEW.alias = NEW.first_name;
                     END IF;
+                END;
+
+            -------add_file_message
+            CREATE TRIGGER add_file_message AFTER INSERT ON files 
+            FOR EACH ROW 
+                BEGIN
+                    INSERT INTO messages (conversation_ID, sender_ID, receiver_ID, content, type)
+                    VALUES ( NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, 'file');
                 END;

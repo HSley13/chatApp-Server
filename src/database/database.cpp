@@ -197,7 +197,7 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement->setInt(1, conversation_ID);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -206,11 +206,12 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
 
         while (result->next())
         {
-            QString message = QString("%1/%2/%3/%4")
+            QString message = QString("%1/%2/%3/%4/%5")
                                   .arg(result->getString("sender_ID").c_str())
                                   .arg(result->getString("receiver_ID").c_str())
                                   .arg(result->getString("content").c_str())
-                                  .arg(result->getString("date_time").c_str());
+                                  .arg(result->getString("date_time").c_str())
+                                  .arg(result->getString("type").c_str());
 
             messages.push_back(message);
         }
@@ -270,15 +271,15 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
     }
 }
 
-void Account::save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content, const int conversation_ID)
+void Account::save_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (sender_ID, receiver_ID, content, conversation_ID) VALUES (?,?,?,?);"));
-        prepared_statement->setInt(1, sender);
-        prepared_statement->setInt(2, receiver);
-        prepared_statement->setString(3, content);
-        prepared_statement->setInt(4, conversation_ID);
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (conversation_ID, sender_ID, receiver_ID, content) VALUES (?,?,?,?);"));
+        prepared_statement->setInt(1, conversation_ID);
+        prepared_statement->setInt(2, sender_ID);
+        prepared_statement->setInt(3, receiver_ID);
+        prepared_statement->setString(4, content);
 
         prepared_statement->executeUpdate();
     }
@@ -292,16 +293,16 @@ void Account::save_message(sql::Connection *connection, const int sender, const 
     }
 }
 
-void Account::create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID, const int conversation_ID)
+void Account::create_conversation(sql::Connection *connection, const int conversation_ID, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (participant1, participant1_ID, participant2, participant2_ID, conversation_ID) VALUES (?,?,?,?,?);"));
-        prepared_statement->setString(1, participant1);
-        prepared_statement->setInt(2, participant1_ID);
-        prepared_statement->setString(3, participant2);
-        prepared_statement->setInt(4, participant2_ID);
-        prepared_statement->setInt(5, conversation_ID);
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (conversation_ID, participant1, participant1_ID, participant2, participant2_ID) VALUES (?,?,?,?,?);"));
+        prepared_statement->setInt(1, conversation_ID);
+        prepared_statement->setString(2, participant1);
+        prepared_statement->setInt(3, participant1_ID);
+        prepared_statement->setString(4, participant2);
+        prepared_statement->setInt(5, participant2_ID);
 
         prepared_statement->executeUpdate();
     }
@@ -375,7 +376,7 @@ void Account::update_alias(sql::Connection *connection, const int phone_number, 
     }
 }
 
-void Account::save_file(sql::Connection *connection, const int sender, const int receiver, std::string file_name, const char *file_data, const int file_size, const int conversation_ID)
+void Account::save_file(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size)
 {
     try
     {
@@ -383,8 +384,8 @@ void Account::save_file(sql::Connection *connection, const int sender, const int
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO files (conversation_ID, sender_ID, receiver_ID, file_name, file_data) VALUES (?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
-        prepared_statement->setInt(2, sender);
-        prepared_statement->setInt(3, receiver);
+        prepared_statement->setInt(2, sender_ID);
+        prepared_statement->setInt(3, receiver_ID);
         prepared_statement->setString(4, file_name);
         prepared_statement->setBlob(5, &blob_stream);
 
@@ -392,7 +393,7 @@ void Account::save_file(sql::Connection *connection, const int sender, const int
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "save_message() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "save_file() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -404,7 +405,7 @@ QHash<QString, QByteArray> Account::retrieve_file(sql::Connection *connection, c
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, file_name, file_data, date_time FROM files WHERE conversation_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM files WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement->setInt(1, conversation_ID);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -413,24 +414,20 @@ QHash<QString, QByteArray> Account::retrieve_file(sql::Connection *connection, c
 
         while (result->next())
         {
-            QString info = QString("%1/%2/%3/%4")
-                               .arg(result->getString("sender_ID").c_str())
-                               .arg(result->getString("receiver_ID").c_str())
-                               .arg(result->getString("file_name").c_str())
-                               .arg(result->getString("date_time").c_str());
+            QString date_time = result->getString("date_time").c_str();
 
             std::istream *file_stream = result->getBlob("file_data");
 
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
-            files.insert(info, file_data);
+            files.insert(date_time, file_data);
         }
 
         return files;
     }
     catch (const sql::SQLException &e)
     {
-        std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
+        std::cerr << "retrieve_file() ---> SQL ERROR: " << e.what() << std::endl;
         return QHash<QString, QByteArray>();
     }
     catch (const std::exception &e)

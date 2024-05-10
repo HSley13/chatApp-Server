@@ -29,7 +29,7 @@ public:
     void send_file_client(int port_transfer);
 
     void save_file();
-    void save_file_client(QString sender);
+    void save_file_client(QString sender, QString file_name, QByteArray file_data);
 
     void save_audio(QString sender);
     void send_audio_message(QString sender, QString receiver, QString audio_name);
@@ -38,9 +38,11 @@ public:
 
     void send_lookup_friend(QString ID);
 
-    void send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
+    void send_create_conversation_message(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
 
-    void send_save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID);
+    void send_save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content);
+
+    void send_save_file_message(int conversation_ID, QString sender, QString receiver);
 
     static QString _my_ID;
     static QString _my_name;
@@ -79,9 +81,9 @@ signals:
 
     void friend_list(QHash<int, QHash<QString, int>> friend_list);
 
-    void client_added_you(QString name, QString ID, int conversation_ID);
+    void client_added_you(int conversation_ID, QString name, QString ID);
 
-    void lookup_friend_result(QString name, int conversation_ID);
+    void lookup_friend_result(int conversation_ID, QString name);
 
     void audio_received(QString sender, QString path);
 

@@ -138,17 +138,22 @@ void server_manager::on_ready_read()
         break;
 
     case chat_protocol::create_conversation:
-        create_conversation(_protocol->participant1(), _protocol->participant1_ID(), _protocol->participant2(), _protocol->participant2_ID(), _protocol->conversation_ID());
+        create_conversation(_protocol->conversation_ID(), _protocol->participant1(), _protocol->participant1_ID(), _protocol->participant2(), _protocol->participant2_ID());
 
         break;
 
     case chat_protocol::save_message:
-        save_conversation_message(_protocol->sender(), _protocol->receiver(), _protocol->message(), _protocol->conversation_ID());
+        save_conversation_message(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->message());
 
         break;
 
     case chat_protocol::audio:
         audio_received(_protocol->audio_sender(), _protocol->audio_receiver(), _protocol->audio_name(), _protocol->audio_data());
+
+        break;
+
+    case chat_protocol::save_file:
+        save_file_client(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->file_name_client(), _protocol->file_data());
 
         break;
 
@@ -356,12 +361,17 @@ void server_manager::lookup_friend(QString ID)
         client->write(_protocol->set_added_you_message(name_and_port.split("/").first(), ID_2, "", conversation_ID));
 }
 
-void server_manager::create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)
+void server_manager::create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID)
 {
-    Account::create_conversation(_db_connection, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID, conversation_ID);
+    Account::create_conversation(_db_connection, conversation_ID, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID);
 }
 
-void server_manager::save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID)
+void server_manager::save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content)
 {
-    Account::save_message(_db_connection, sender.toInt(), receiver.toInt(), content.toStdString(), conversation_ID);
+    Account::save_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString());
+}
+
+void server_manager::save_file_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data)
+{
+    Account::save_file(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size());
 }

@@ -52,11 +52,13 @@ public:
 
     void lookup_friend(QString ID);
 
-    void create_conversation(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
+    void create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
 
-    void save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID);
+    void save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content);
 
     void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data);
+
+    void save_file_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data);
 
 private:
     QWidget *central_widget;

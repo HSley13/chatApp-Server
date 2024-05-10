@@ -41,9 +41,9 @@ class Account
 public:
     static void create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hash_password);
 
-    static void create_conversation(sql::Connection *connection, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID, const int conversation_ID);
+    static void create_conversation(sql::Connection *connection, const int conversation_ID, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID);
 
-    static void save_message(sql::Connection *connection, const int sender, const int receiver, const std::string content, const int conversation_ID);
+    static void save_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content);
 
     static QVector<QString> retrieve_conversation(sql::Connection *connection, const int conversation_ID);
 
@@ -53,7 +53,7 @@ public:
 
     static void update_alias(sql::Connection *connection, const int phone_number, const std::string name);
 
-    static void save_file(sql::Connection *connection, const int sender, const int receiver, std::string file_name, const char *file_data, const int file_size, const int conversation_ID);
+    static void save_file(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size);
 
-    QHash<QString, QByteArray> retrieve_file(sql::Connection *connection, const int conversation_ID);
+    static QHash<QString, QByteArray> retrieve_file(sql::Connection *connection, const int conversation_ID);
 };

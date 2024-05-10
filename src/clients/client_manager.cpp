@@ -78,7 +78,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::send_file_client:
-        save_file_client(_protocol->sender_file());
+        save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client());
 
         break;
 
@@ -93,7 +93,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::added_you:
-        emit client_added_you(_protocol->client_name(), _protocol->clients_ID(), _protocol->conversation_ID());
+        emit client_added_you(_protocol->conversation_ID(), _protocol->client_name(), _protocol->clients_ID());
 
         break;
 
@@ -107,7 +107,7 @@ void client_manager::on_ready_read()
     break;
 
     case chat_protocol::lookup_friend:
-        emit lookup_friend_result(_protocol->client_name(), _protocol->conversation_ID());
+        emit lookup_friend_result(_protocol->conversation_ID(), _protocol->client_name());
 
         break;
 
@@ -186,7 +186,7 @@ void client_manager::file_connect()
     data = _file_socket->readAll();
     _protocol->load_data(data);
 
-    save_file_client(_protocol->sender());
+    save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client());
 }
 
 void client_manager::send_reject_file()
@@ -241,23 +241,28 @@ void client_manager::save_file()
         qDebug() << "client_manager ---> save_file() ---> Couldn't open the file to write to it";
 }
 
-void client_manager::save_file_client(QString sender)
+void client_manager::save_file_client(QString sender, QString file_name, QByteArray file_data)
 {
     QDir dir;
     dir.mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name_client());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), file_name);
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly))
     {
-        file.write(_protocol->file_data_client());
+        file.write(file_data);
         file.close();
 
         emit file_saved(sender, path);
     }
     else
         qDebug() << "client_manager ---> save_file_client() ---> Couldn't open the file to write to it";
+}
+
+void client_manager::send_save_file_message(int conversation_ID, QString sender, QString receiver)
+{
+    _socket->write(_protocol->set_save_file_message(conversation_ID, sender, receiver, _file_name_client));
 }
 
 void client_manager::save_audio(QString sender)
@@ -289,12 +294,12 @@ void client_manager::send_lookup_friend(QString ID)
     _socket->write(_protocol->set_lookup_friend_message(ID));
 }
 
-void client_manager::send_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)
+void client_manager::send_create_conversation_message(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID)
 {
-    _socket->write(_protocol->set_create_conversation_message(participant1, participant1_ID, participant2, participant2_ID, conversation_ID));
+    _socket->write(_protocol->set_create_conversation_message(conversation_ID, participant1, participant1_ID, participant2, participant2_ID));
 }
 
-void client_manager::send_save_conversation_message(QString sender, QString receiver, QString content, int conversation_ID)
+void client_manager::send_save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content)
 {
-    _socket->write(_protocol->set_save_message_message(sender, receiver, content, conversation_ID));
+    _socket->write(_protocol->set_save_message_message(conversation_ID, sender, receiver, content));
 }

@@ -37,7 +37,9 @@ public:
         create_conversation,
         save_message,
 
-        audio
+        audio,
+        save_file,
+        save_audio
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -59,10 +61,12 @@ public:
 
     QByteArray set_lookup_friend_message(QString ID);
 
-    QByteArray set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID);
-    QByteArray set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID);
+    QByteArray set_create_conversation_message(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    QByteArray set_save_message_message(int conversation_ID, QString sender, QString receiver, QString content);
 
     QByteArray set_audio_message(QString sender, QString receiver, QString audio_name);
+
+    QByteArray set_save_file_message(int conversation_ID, QString sender, QString receiver, QString file_name);
 
     void load_data(QByteArray data);
 

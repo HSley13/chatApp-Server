@@ -357,6 +357,10 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
     {
         const QHash<QString, int> &list = list_g.value(conversation_ID);
 
+        QVector<QString> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
+
+        QHash<QString, QByteArray> files = Account::retrieve_file(_db_connection, conversation_ID);
+
         for (const QString &name : list.keys())
         {
             _friend_list->addItem(name);
@@ -364,10 +368,8 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
             if (_window_map.contains(name))
                 continue;
 
-            QVector<QString> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
-
-            client_chat_window *wid = new client_chat_window(QString::number(list.value(name)), name, conversation_ID, this);
-            wid->retrieve_conversation(messages);
+            client_chat_window *wid = new client_chat_window(conversation_ID, QString::number(list.value(name)), name, this);
+            wid->retrieve_conversation(messages, files);
 
             connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
             connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
@@ -483,7 +485,7 @@ void client_main_window::on_swipe_right()
         _stack->setCurrentIndex(0);
 }
 
-void client_main_window::on_lookup_friend_result(QString name, int conversation_ID)
+void client_main_window::on_lookup_friend_result(int conversation_ID, QString name)
 {
     if (name == "")
         return;
@@ -492,7 +494,7 @@ void client_main_window::on_lookup_friend_result(QString name, int conversation_
     {
         _friend_list->addItem(name);
 
-        client_chat_window *wid = new client_chat_window(_search_phone_number->text(), name, conversation_ID, this);
+        client_chat_window *wid = new client_chat_window(conversation_ID, _search_phone_number->text(), name, this);
         connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
         connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
                 { add_on_top(first_name); });
@@ -522,13 +524,13 @@ void client_main_window::new_conversation(const QString &name)
         qDebug() << "client_main_window--> new_conversation()--> Widget not found in _window_map for name:" << name;
 }
 
-void client_main_window::on_client_added_you(QString name, QString ID, int conversation_ID)
+void client_main_window::on_client_added_you(int conversation_ID, QString name, QString ID)
 {
     if (_friend_list->findText(name, Qt::MatchExactly) == -1)
     {
         _friend_list->addItem(name);
 
-        client_chat_window *wid = new client_chat_window(ID, name, conversation_ID, this);
+        client_chat_window *wid = new client_chat_window(conversation_ID, ID, name, this);
         if (!wid)
         {
             qDebug() << "couldn't create a chat for the seach number";

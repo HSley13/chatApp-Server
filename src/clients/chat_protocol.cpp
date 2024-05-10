@@ -162,14 +162,14 @@ QByteArray chat_protocol::set_lookup_friend_message(QString ID)
     return get_data(lookup_friend, ID);
 }
 
-QByteArray chat_protocol::set_create_conversation_message(QString participant1, int participant1_ID, QString participant2, int participant2_ID, int conversation_ID)
+QByteArray chat_protocol::set_create_conversation_message(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << create_conversation << participant1 << participant1_ID << participant2 << participant2_ID << conversation_ID;
+    out << create_conversation << conversation_ID << participant1 << participant1_ID << participant2 << participant2_ID;
 
     return byte;
 }
@@ -196,14 +196,37 @@ QByteArray chat_protocol::set_audio_message(QString sender, QString receiver, QS
     return byte;
 }
 
-QByteArray chat_protocol::set_save_message_message(QString sender, QString receiver, QString content, int conversation_ID)
+QByteArray chat_protocol::set_save_message_message(int conversation_ID, QString sender, QString receiver, QString content)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << save_message << sender << receiver << content << conversation_ID;
+    out << save_message << conversation_ID << sender << receiver << content;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_save_file_message(int conversation_ID, QString sender, QString receiver, QString file_name)
+{
+
+    QByteArray byte;
+
+    QFile file(file_name);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QDataStream out(&byte, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_6_0);
+
+        QFileInfo info(file_name);
+
+        out << save_file << conversation_ID << sender << receiver << info.fileName() << file.readAll();
+
+        file.close();
+    }
+    else
+        qDebug() << "chat_protocol ---> set_save_file_message() ---> Can't open the file you wanna send";
 
     return byte;
 }
@@ -273,7 +296,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case added_you:
-        in >> _client_name >> _client_ID >> _receiver >> _conversation_ID;
+        in >> _conversation_ID >> _client_name >> _client_ID >> _receiver;
 
         break;
 
@@ -283,7 +306,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case lookup_friend:
-        in >> _client_name >> _conversation_ID;
+        in >> _conversation_ID >> _client_name;
 
         break;
 
