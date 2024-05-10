@@ -12,15 +12,15 @@ chat_line::chat_line(QWidget *parent)
     VBOX = new QVBoxLayout(central_widget);
 }
 
-void chat_line::set_message(QString message, bool is_mine, std::string date_time)
+void chat_line::set_message(const QString message, bool is_mine, const QString &date_time)
 {
     QLabel *msg_label = new QLabel(message, this);
     QLabel *time_label;
 
-    if (!date_time.compare(""))
+    if (date_time.isNull())
         time_label = new QLabel(QTime::currentTime().toString(), this);
     else
-        time_label = new QLabel(QString::fromStdString(date_time), this);
+        time_label = new QLabel(date_time, this);
 
     if (is_mine)
     {

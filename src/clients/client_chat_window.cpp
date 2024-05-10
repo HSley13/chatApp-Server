@@ -539,22 +539,24 @@ void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString dat
     _list->setItemWidget(line, wid);
 }
 
-void client_chat_window::retrieve_conversation(std::vector<std::string> messages)
+void client_chat_window::retrieve_conversation(QVector<QString> messages)
 {
-    if (messages.empty())
+    if (messages.isEmpty())
         return;
 
-    for (std::string message : messages)
+    for (const QString &message : messages)
     {
-        std::string sender_ID = std::strtok(&message[0], "/");
-        std::string receiver_ID = std::strtok(nullptr, "/");
-        std::string content = std::strtok(nullptr, "/");
-        std::string date_time = std::strtok(nullptr, "/");
+        QStringList parts = message.split("/");
 
-        if (!sender_ID.compare(_client->_my_ID.toStdString()))
+        QString sender_ID = parts.at(0);
+        QString receiver_ID = parts.at(1);
+        QString content = parts.at(2);
+        QString date_time = parts.at(3);
+
+        if (sender_ID == _client->_my_ID)
         {
             chat_line *wid = new chat_line(this);
-            wid->set_message(QString::fromStdString(content), true, date_time);
+            wid->set_message(content, true, date_time);
             wid->setStyleSheet("color: black;");
 
             QListWidgetItem *line = new QListWidgetItem(_list);
@@ -566,7 +568,7 @@ void client_chat_window::retrieve_conversation(std::vector<std::string> messages
         else
         {
             chat_line *wid = new chat_line(this);
-            wid->set_message(QString::fromStdString(content), false, date_time);
+            wid->set_message(content, false, date_time);
             wid->setStyleSheet("color: black;");
 
             QListWidgetItem *line = new QListWidgetItem(_list);

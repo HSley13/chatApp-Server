@@ -10,7 +10,7 @@ class chat_line : public QMainWindow
 public:
     chat_line(QWidget *parent = nullptr);
 
-    void set_message(QString message, bool is_mine = false, std::string date_time = "");
+    void set_message(QString message, bool is_mine = false, const QString &date_time = nullptr);
 
 private:
     QWidget *central_widget;

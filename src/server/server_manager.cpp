@@ -320,7 +320,7 @@ void server_manager::login(QString ID)
 
     _clients.insert(ID, _socket);
 
-    QString name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID.toInt()));
+    QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
 
     QString name = name_and_port.split("/").first();
     _socket->setProperty("client_name", name);
@@ -343,13 +343,13 @@ void server_manager::lookup_friend(QString ID)
 
     int conversation_ID = distribution(generator);
 
-    QString name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID.toInt()));
+    QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
 
     _socket->write(_protocol->set_lookup_friend_message(name_and_port.split("/").first(), conversation_ID));
 
     QString ID_2 = _clients.key(_socket);
 
-    name_and_port = QString::fromStdString(Account::retrieve_name_and_port(_db_connection, ID_2.toInt()));
+    name_and_port = Account::retrieve_name_and_port(_db_connection, ID_2.toInt());
 
     QTcpSocket *client = _clients.value(ID);
     if (client)

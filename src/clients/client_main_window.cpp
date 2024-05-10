@@ -364,7 +364,7 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
             if (_window_map.contains(name))
                 continue;
 
-            std::vector<std::string> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
+            QVector<QString> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
 
             client_chat_window *wid = new client_chat_window(QString::number(list.value(name)), name, conversation_ID, this);
             wid->retrieve_conversation(messages);

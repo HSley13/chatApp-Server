@@ -29,7 +29,7 @@ public:
 
     void add_friend(QString ID);
 
-    void retrieve_conversation(std::vector<std::string> messages);
+    void retrieve_conversation(QVector<QString> messages);
 
     void ask_microphone_permission();
 

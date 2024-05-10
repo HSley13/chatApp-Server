@@ -193,7 +193,7 @@ void Account::create_account(sql::Connection *connection, const int phone_number
     }
 }
 
-std::vector<std::string> Account::retrieve_conversation(sql::Connection *connection, const int conversation_ID)
+QVector<QString> Account::retrieve_conversation(sql::Connection *connection, const int conversation_ID)
 {
     try
     {
@@ -202,11 +202,15 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        std::vector<std::string> messages;
+        QVector<QString> messages;
 
         while (result->next())
         {
-            std::string message = result->getString("sender_ID") + "/" + result->getString("receiver_ID") + "/" + result->getString("content") + "/" + result->getString("date_time");
+            QString message = QString("%1/%2/%3/%4")
+                                  .arg(result->getString("sender_ID").c_str())
+                                  .arg(result->getString("receiver_ID").c_str())
+                                  .arg(result->getString("content").c_str())
+                                  .arg(result->getString("date_time").c_str());
 
             messages.push_back(message);
         }
@@ -216,12 +220,12 @@ std::vector<std::string> Account::retrieve_conversation(sql::Connection *connect
     catch (const sql::SQLException &e)
     {
         std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
-        return {};
+        return QVector<QString>();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        return {};
+        return QVector<QString>();
     }
 }
 
@@ -311,7 +315,7 @@ void Account::create_conversation(sql::Connection *connection, std::string parti
     }
 }
 
-std::string Account::retrieve_name_and_port(sql::Connection *connection, const int phone_number)
+QString Account::retrieve_name_and_port(sql::Connection *connection, const int phone_number)
 {
     try
     {
@@ -323,7 +327,9 @@ std::string Account::retrieve_name_and_port(sql::Connection *connection, const i
         if (!result->next())
             QMessageBox::warning(nullptr, "Phone Number XXX", "The entered Phone Number doesn't exist in our database, Check and try again");
 
-        std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
+        QString name = QString("%1/%2")
+                           .arg(result->getString("alias").c_str())
+                           .arg(result->getInt("port"));
 
         return name;
     }
@@ -394,7 +400,7 @@ void Account::save_file(sql::Connection *connection, const int sender, const int
     }
 }
 
-QHash<std::string, QByteArray> Account::retrieve_file(sql::Connection *connection, const int conversation_ID)
+QHash<QString, QByteArray> Account::retrieve_file(sql::Connection *connection, const int conversation_ID)
 {
     try
     {
@@ -403,11 +409,15 @@ QHash<std::string, QByteArray> Account::retrieve_file(sql::Connection *connectio
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<std::string, QByteArray> files;
+        QHash<QString, QByteArray> files;
 
         while (result->next())
         {
-            std::string info = result->getString("sender_ID") + "/" + result->getString("receiver_ID") + "/" + result->getString("file_name") + "/" + result->getString("date_time");
+            QString info = QString("%1/%2/%3/%4")
+                               .arg(result->getString("sender_ID").c_str())
+                               .arg(result->getString("receiver_ID").c_str())
+                               .arg(result->getString("file_name").c_str())
+                               .arg(result->getString("date_time").c_str());
 
             std::istream *file_stream = result->getBlob("file_data");
 
@@ -421,11 +431,11 @@ QHash<std::string, QByteArray> Account::retrieve_file(sql::Connection *connectio
     catch (const sql::SQLException &e)
     {
         std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
-        return {};
+        return QHash<QString, QByteArray>();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        return {};
+        return QHash<QString, QByteArray>();
     }
 }
