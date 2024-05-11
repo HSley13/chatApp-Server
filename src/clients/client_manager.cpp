@@ -73,12 +73,12 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::send_file:
-        save_file();
+        save_file(QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss"));
 
         break;
 
     case chat_protocol::send_file_client:
-        save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client());
+        save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client(), QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss"));
 
         break;
 
@@ -112,7 +112,7 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::audio:
-        save_audio(_protocol->audio_sender(), _protocol->audio_name(), _protocol->audio_data());
+        save_audio(_protocol->audio_sender(), _protocol->audio_name(), _protocol->audio_data(), QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss"));
 
         break;
 
@@ -186,7 +186,7 @@ void client_manager::file_connect()
     data = _file_socket->readAll();
     _protocol->load_data(data);
 
-    save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client());
+    save_file_client(_protocol->sender(), _protocol->file_name_client(), _protocol->file_data_client(), QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss"));
 }
 
 void client_manager::send_reject_file()
@@ -222,12 +222,12 @@ void client_manager::log_in(QString ID)
     _socket->write(_protocol->set_login_message(ID));
 }
 
-void client_manager::save_file()
+void client_manager::save_file(QString date_time)
 {
     QDir dir;
     dir.mkdir("Server");
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), _protocol->file_name());
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), "Server", date_time, _protocol->file_name());
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly))
@@ -241,13 +241,13 @@ void client_manager::save_file()
         qDebug() << "client_manager ---> save_file() ---> Couldn't open the file to write to it";
 }
 
-void client_manager::save_file_client(QString sender, QString file_name, QByteArray file_data)
+void client_manager::save_file_client(QString sender, QString file_name, QByteArray file_data, QString date_time)
 {
     QDir dir;
     if (!sender.isEmpty() && !sender.isNull())
         dir.mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), file_name);
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, date_time, file_name);
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly))
@@ -271,13 +271,13 @@ void client_manager::send_save_audio_message(int conversation_ID, QString sender
     _socket->write(_protocol->set_save_data_message(conversation_ID, sender, receiver, audio_name, type));
 }
 
-void client_manager::save_audio(QString sender, QString file_name, QByteArray file_data)
+void client_manager::save_audio(QString sender, QString file_name, QByteArray file_data, QString date_time)
 {
     QDir dir;
     if (!sender.isEmpty() && !sender.isNull())
         dir.mkdir(sender);
 
-    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), file_name);
+    QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), sender, date_time, file_name);
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly))

@@ -381,7 +381,8 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
 
             _stack->addWidget(wid);
 
-            _list->addItem(name);
+            if (!messages.isEmpty())
+                _list->addItem(name);
 
             _phone_list.insert(name, conversation_ID);
         }
@@ -424,10 +425,16 @@ void client_main_window::on_text_message_received(QString sender, QString review
     QWidget *win = _window_map.value(sender);
     if (win)
     {
+        int index = _friend_list->findText(sender, Qt::MatchExactly);
+        qDebug() << "Index: " << index;
+        if (index == -1)
+            _friend_list->addItem(sender);
+
         client_chat_window *wid = qobject_cast<client_chat_window *>(win);
         if (wid)
         {
             wid->message_received(review);
+
             add_on_top(sender);
         }
         else
@@ -489,6 +496,7 @@ void client_main_window::on_lookup_friend_result(int conversation_ID, QString na
         return;
 
     if (_friend_list->findText(name, Qt::MatchExactly) == -1)
+
     {
         _friend_list->addItem(name);
 

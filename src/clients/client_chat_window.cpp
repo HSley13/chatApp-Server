@@ -137,7 +137,7 @@ void client_chat_window::ask_microphone_permission()
         connect(_recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
         _session->setRecorder(_recorder);
 
-        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/audio.m4a"));
+        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/" + QTime::currentTime().toString("yyyyMMdd_HHmmss") + "_audio.m4a"));
         _recorder->setQuality(QMediaRecorder::VeryHighQuality);
         _recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
@@ -149,9 +149,9 @@ void client_chat_window::start_recording()
 {
     if (!is_recording)
     {
-        if (QFile::exists("audio.m4a"))
+        if (QFile::exists(_recorder->outputLocation().toLocalFile()))
         {
-            if (!QFile::remove("audio.m4a"))
+            if (!QFile::remove(_recorder->outputLocation().toLocalFile()))
             {
                 qDebug() << "Error: Unable to delete the existing audio file!";
                 return;
@@ -171,9 +171,9 @@ void client_chat_window::start_recording()
 
         add_audio(_recorder->outputLocation(), true);
 
-        _client->send_audio_message(my_name(), _destinator, "audio.m4a");
+        _client->send_audio_message(my_name(), _destinator, _recorder->outputLocation().toLocalFile());
 
-        _client->send_save_audio_message(_conversation_ID, _client->_my_ID, _destinator, "audio.m4a", "audio");
+        _client->send_save_audio_message(_conversation_ID, _client->_my_ID, _destinator, _recorder->outputLocation().toLocalFile(), "audio");
 
         emit data_received_sent(_window_name);
     }
@@ -563,26 +563,26 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
         {
             if (!type.compare("file"))
             {
-                _client->save_file_client(_destinator_name, content, binary_data.value(date_time));
+                _client->save_file_client(_destinator_name, content, binary_data.value(date_time), date_time);
 
                 QDir dir;
                 if (!_destinator_name.isEmpty() && !_destinator_name.isNull())
                     dir.mkdir(_destinator_name);
 
-                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, date_time, content);
 
                 add_file(path, true, date_time);
                 continue;
             }
             else if (!type.compare("audio"))
             {
-                _client->save_audio(_destinator_name, content, binary_data.value(date_time));
+                _client->save_audio(_destinator_name, content, binary_data.value(date_time), date_time);
 
                 QDir dir;
                 if (!_destinator_name.isEmpty() && !_destinator_name.isNull())
                     dir.mkdir(_destinator_name);
 
-                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), _destinator_name, date_time, content);
 
                 add_audio(path, true, date_time);
                 continue;
@@ -606,21 +606,21 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
                 if (!my_name().isEmpty() && !my_name().isNull())
                     dir.mkdir(my_name());
 
-                _client->save_file_client(my_name(), content, binary_data.value(date_time));
-                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+                _client->save_file_client(my_name(), content, binary_data.value(date_time), date_time);
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), date_time, content);
 
                 add_file(path, false, date_time);
                 continue;
             }
             else if (!type.compare("audio"))
             {
-                _client->save_audio(my_name(), content, binary_data.value(date_time));
+                _client->save_audio(my_name(), content, binary_data.value(date_time), date_time);
 
                 QDir dir;
                 if (!my_name().isEmpty() && !my_name().isNull())
                     dir.mkdir(my_name());
 
-                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), QDateTime::currentDateTime().toString("yyyMMdd_HHmmss"), content);
+                QString path = QString("%1/%2/%3_%4").arg(dir.canonicalPath(), my_name(), date_time, content);
 
                 add_audio(path, false, date_time);
                 continue;

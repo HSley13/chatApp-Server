@@ -28,10 +28,10 @@ public:
     void send_file();
     void send_file_client(int port_transfer);
 
-    void save_file();
-    void save_file_client(QString sender, QString file_name, QByteArray file_data);
+    void save_file(QString date_time);
+    void save_file_client(QString sender, QString file_name, QByteArray file_data, QString date_time);
 
-    void save_audio(QString sender, QString file_name, QByteArray file_data);
+    void save_audio(QString sender, QString file_name, QByteArray file_data, QString date_time);
     void send_audio_message(QString sender, QString receiver, QString audio_name);
 
     void log_in(QString ID);
