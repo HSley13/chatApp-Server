@@ -21,10 +21,9 @@
     ------
 
     TO DO
-    --- Store the Files and Voice within the Database to still be available when log in or off Your account.
+    --- On/Offline Status
     --- Group Chats.
     --- Finish the database's configuration.
-    --- 
     --- 
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
