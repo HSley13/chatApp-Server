@@ -1,6 +1,9 @@
 #include "server_manager.h"
 
 QHash<QString, QTcpSocket *> server_manager::_clients = QHash<QString, QTcpSocket *>();
+
+QHash<QString, QString> server_manager::_names = QHash<QString, QString>();
+
 sql::Connection *server_manager::_db_connection = nullptr;
 
 server_manager::server_manager(sql::Connection *db_connection, QWidget *parent)
@@ -81,6 +84,7 @@ void server_manager::on_ready_read()
         _socket->setProperty("client_name", _protocol->name());
 
         emit client_name_changed(_protocol->original_name(), old_name, _protocol->name());
+        emit notify_other_clients(old_name, _protocol->name());
 
         Account::update_alias(_db_connection, _clients.key(_socket).toInt(), _protocol->name().toStdString());
 
@@ -275,7 +279,9 @@ QString server_manager::name() const
 
 void server_manager::notify_other_clients(QString old_name, QString new_name)
 {
-    QByteArray message = _protocol->set_client_name_message(old_name, new_name);
+    QByteArray message_1 = _protocol->set_client_name_message(old_name, new_name);
+
+    QByteArray message_2 = _protocol->set_client_connected_message(new_name);
 
     if (!_clients.isEmpty())
     {
@@ -284,7 +290,12 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
             QString client_name = cl->property("client_name").toString();
 
             if (client_name.compare(new_name))
-                cl->write(message);
+            {
+                if (!old_name.compare(""))
+                    cl->write(message_2);
+                else
+                    cl->write(message_1);
+            }
         }
     }
     else
@@ -330,13 +341,31 @@ void server_manager::login(QString ID)
     QString name = name_and_port.split("/").first();
     _socket->setProperty("client_name", name);
 
+    _names.insert(ID, name);
+
     emit client_name_changed(ID, old_name, name);
+
+    notify_other_clients("", name);
 
     QString port = name_and_port.split("/").last();
 
     QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, ID.toInt());
 
-    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list));
+    QList<QString> online_friends;
+
+    for (QHash<QString, int> &info : friend_list)
+    {
+        for (int friend_id : info.values())
+        {
+            if (_clients.contains(QString::number(friend_id)))
+            {
+                QString friend_name = _names.value(QString::number(friend_id));
+                online_friends << friend_name;
+            }
+        }
+    }
+
+    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list, online_friends));
 }
 
 void server_manager::lookup_friend(QString ID)

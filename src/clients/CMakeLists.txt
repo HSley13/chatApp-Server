@@ -13,7 +13,7 @@ target_link_libraries(client PRIVATE database_library)
 
 qt_add_resources(client "client_images"
                     PREFIX "/images"
-                    FILES send_icon.png file_icon.webp record_icon.png
+                    FILES send_icon.png file_icon.webp record_icon.png online.jpeg offline.jpeg
                 )
 
 set(MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)

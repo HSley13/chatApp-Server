@@ -280,6 +280,11 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
+    case client_connected:
+        in >> _client_name;
+
+        break;
+
     case client_new_name:
         in >> _old_name >> _client_name;
 
@@ -301,7 +306,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case log_in:
-        in >> _my_name >> _port >> _friend_list;
+        in >> _my_name >> _port >> _friend_list >> _online_friends;
 
         break;
 
@@ -438,4 +443,9 @@ const QByteArray &chat_protocol::audio_data() const
 const QString &chat_protocol::audio_sender() const
 {
     return _audio_sender;
+}
+
+const QList<QString> &chat_protocol::online_friends() const
+{
+    return _online_friends;
 }

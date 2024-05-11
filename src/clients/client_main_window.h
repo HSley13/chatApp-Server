@@ -18,6 +18,8 @@ public:
 
     sql::Connection *_db_connection;
 
+    QIcon create_dot_icon(const QColor &color, int size);
+
 private:
     QStackedWidget *_stack;
 
@@ -61,6 +63,8 @@ private slots:
     void on_client_name_changed(QString old_name, QString client_name);
     void on_client_disconnected(QString client_name);
 
+    void on_client_connected(QString client_name);
+
     void on_text_message_received(QString sender, QString message);
     void on_name_changed();
 
@@ -74,7 +78,7 @@ private slots:
 
     void on_client_added_you(int conversation_ID, QString name, QString ID);
 
-    void on_friend_list(QHash<int, QHash<QString, int>> list);
+    void on_friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
 
     void on_lookup_friend_result(int conversation_ID, QString full_name);
 

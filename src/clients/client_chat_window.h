@@ -82,9 +82,10 @@ private:
     void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
-    void
-    client_name_changed(QString old_name, QString client_name);
+    void client_name_changed(QString old_name, QString client_name);
     void client_disconnected(QString client_name);
+
+    void client_connected(QString client_name);
 
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
@@ -101,7 +102,7 @@ signals:
 
     void lookup_friend_result(int conversation_ID, QString name);
 
-    void friend_list(QHash<int, QHash<QString, int>> list);
+    void friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
 
     void audio_received(QString sender, QString path);
 

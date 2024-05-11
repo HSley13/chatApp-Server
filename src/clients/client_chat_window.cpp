@@ -397,6 +397,9 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::client_disconnected, this, [=](QString client_name)
                 { emit client_disconnected(client_name); });
 
+        connect(_client, &client_manager::client_connected, this, [=](QString client_name)
+                { emit client_connected(client_name); });
+
         connect(_client, &client_manager::client_name_changed, this, [=](QString old_name, QString client_name)
                 { emit client_name_changed(old_name, client_name); });
 
@@ -409,8 +412,8 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::lookup_friend_result, this, [=](int conversation_ID, QString name)
                 { emit lookup_friend_result(conversation_ID, name); });
 
-        connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list)
-                { emit friend_list(list); });
+        connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list, QList<QString> online_friends)
+                { emit friend_list(list, online_friends); });
 
         connect(_client, &client_manager::audio_received, this, [=](QString sender, QString path)
                 { emit audio_received(sender, path); });

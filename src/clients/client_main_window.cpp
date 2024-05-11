@@ -332,6 +332,7 @@ void client_main_window::on_log_in()
     connect(_server_wid, &client_chat_window::friend_list, this, &client_main_window::on_friend_list);
     connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
     connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
+    connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
     connect(_server_wid, &client_chat_window::audio_received, this, &client_main_window::on_audio_received);
     connect(_server_wid, &client_chat_window::file_saved, this, &client_main_window::on_file_saved);
 
@@ -348,10 +349,13 @@ void client_main_window::on_log_in()
     _user_password->clear();
 }
 
-void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
+void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends)
 {
     if (list_g.isEmpty())
         return;
+
+    QIcon offline_icon = create_dot_icon(Qt::red, 10);
+    QIcon online_icon = create_dot_icon(Qt::green, 10);
 
     for (int conversation_ID : list_g.keys())
     {
@@ -364,6 +368,10 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
         for (const QString &name : list.keys())
         {
             _friend_list->addItem(name);
+
+            QIcon valid_icon = online_friends.contains(name) ? online_icon : offline_icon;
+
+            _friend_list->setItemIcon(_friend_list->count() - 1, valid_icon);
 
             if (_window_map.contains(name))
                 continue;
@@ -382,7 +390,12 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g)
             _stack->addWidget(wid);
 
             if (!messages.isEmpty())
-                _list->addItem(name);
+            {
+                QListWidgetItem *item = new QListWidgetItem(name);
+                item->setIcon(valid_icon);
+
+                _list->addItem(item);
+            }
 
             _phone_list.insert(name, conversation_ID);
         }
@@ -401,23 +414,63 @@ void client_main_window::on_name_changed()
     }
 }
 
+QIcon client_main_window::create_dot_icon(const QColor &color, int size)
+{
+    QPixmap pixmap(size, size);
+    pixmap.fill(Qt::transparent);
+
+    QPainter painter(&pixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(color);
+
+    int circle_size = size - 4;
+    int x = (size - circle_size) / 2;
+    int y = (size - circle_size) / 2;
+    painter.drawEllipse(x, y, circle_size, circle_size);
+
+    return QIcon(pixmap);
+}
+
 void client_main_window::on_client_disconnected(QString client_name)
 {
     QWidget *win = _window_map.value(client_name);
     if (win)
     {
-        QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
-        if (!items.isEmpty())
-            delete items.first();
+        QIcon offline_icon = create_dot_icon(Qt::red, 10);
 
         int index = _friend_list->findText(client_name);
         if (index != -1)
-            _friend_list->removeItem(index);
+            _friend_list->setItemIcon(index, offline_icon);
 
-        _status_bar->showMessage(QString("%1 is disconnected").arg(client_name), 3000);
+        QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
+        if (!items.isEmpty())
+            items.first()->setIcon(offline_icon);
+
+        _status_bar->showMessage(QString("%1 is Disconnected").arg(client_name), 3000);
     }
     else
         qDebug() << "client_main_window ---> on_client_disconnected() --> client_name to Disconnect not FOUND: " << client_name;
+}
+
+void client_main_window::on_client_connected(QString client_name)
+{
+    QWidget *win = _window_map.value(client_name);
+    if (win)
+    {
+        QIcon online_icon = create_dot_icon(Qt::green, 10);
+
+        int index = _friend_list->findText(client_name);
+        if (index != -1)
+            _friend_list->setItemIcon(index, online_icon);
+
+        QList<QListWidgetItem *> items = _list->findItems(client_name, Qt::MatchExactly);
+        if (!items.isEmpty())
+            items.first()->setIcon(online_icon);
+
+        _status_bar->showMessage(QString("%1 is Connected").arg(client_name), 3000);
+    }
+    else
+        qDebug() << "client_main_window ---> on_client_connected() --> client_name to show online not FOUND: " << client_name;
 }
 
 void client_main_window::on_text_message_received(QString sender, QString review)

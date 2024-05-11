@@ -31,6 +31,8 @@ public:
         client_new_name,
         client_disconnected,
 
+        client_connected,
+
         log_in,
         added_you,
         lookup_friend,
@@ -106,6 +108,8 @@ public:
     const QString &audio_sender() const;
     const QByteArray &audio_data() const;
 
+    const QList<QString> &online_friends() const;
+
 private:
     QByteArray get_data(message_type type, QString data);
 
@@ -143,4 +147,6 @@ private:
     QString _audio_name;
     QString _audio_sender;
     QByteArray _audio_data;
+
+    QList<QString> _online_friends;
 };

@@ -74,6 +74,7 @@ signals:
     void file_saved(QString sender, QString path);
 
     void client_name_changed(QString old_name, QString client_name);
+    void client_connected(QString client_name);
     void client_disconnected(QString client_name);
 
     void socket_disconnected();
@@ -81,7 +82,7 @@ signals:
     void file_accepted();
     void file_accepted_client();
 
-    void friend_list(QHash<int, QHash<QString, int>> friend_list);
+    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
 
     void client_added_you(int conversation_ID, QString name, QString ID);
 

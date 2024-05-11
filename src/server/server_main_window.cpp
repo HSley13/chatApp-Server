@@ -1,6 +1,7 @@
 #include "server_main_window.h"
 
 server_manager *server_main_window::_server = nullptr;
+chat_protocol *server_main_window::_protocol = nullptr;
 
 QHash<QString, QWidget *> server_main_window::_window_map = QHash<QString, QWidget *>();
 
@@ -52,8 +53,11 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     vbox->addWidget(_list);
     vbox->addWidget(_disconnect_all);
 
-    if (!_server)
+    if (!_server && !_protocol)
+    {
         _server = new server_manager(_db_connection, this);
+        _protocol = new chat_protocol(this);
+    }
 
     connect(_server, &server_manager::new_client_connected, this, &server_main_window::on_new_client_connected);
     connect(_server, &server_manager::new_client_disconnected, this, &server_main_window::on_new_client_disconnected);
@@ -107,8 +111,6 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
 
     _window_map.remove(old_name);
     _window_map.insert(client_name, wid);
-
-    _server->notify_other_clients(old_name, client_name);
 }
 
 void server_main_window::on_is_typing_received(QString sender, QString receiver)

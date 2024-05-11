@@ -92,6 +92,11 @@ void client_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::client_connected:
+        emit client_connected(_protocol->client_name());
+
+        break;
+
     case chat_protocol::added_you:
         emit client_added_you(_protocol->conversation_ID(), _protocol->client_name(), _protocol->clients_ID());
 
@@ -99,7 +104,7 @@ void client_manager::on_ready_read()
 
     case chat_protocol::log_in:
     {
-        emit friend_list(_protocol->friend_list());
+        emit friend_list(_protocol->friend_list(), _protocol->online_friends());
 
         _my_name = _protocol->my_name();
     }

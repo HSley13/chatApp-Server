@@ -23,6 +23,7 @@ private:
     QPushButton *_disconnect_all;
 
     static server_manager *_server;
+    static chat_protocol *_protocol;
 
     QStatusBar *_status_bar;
     static QHash<QString, QWidget *> _window_map;

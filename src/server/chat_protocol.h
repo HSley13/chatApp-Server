@@ -31,6 +31,8 @@ public:
         client_new_name,
         client_disconnected,
 
+        client_connected,
+
         log_in,
         added_you,
         lookup_friend,
@@ -60,12 +62,16 @@ public:
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
-    QByteArray set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list);
+    QByteArray set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
     QByteArray set_added_you_message(int conversation_ID, QString name, QString ID, QString receiver);
 
     QByteArray set_lookup_friend_message(int conversation_ID, QString ID);
 
     QByteArray set_audio_message(QString sender, QString audio_name, QByteArray audio_data);
+
+    QByteArray set_client_connected_message(QString client_name);
+
+    QByteArray set_online_client_message(QList<QString> names);
 
     void load_data(QByteArray data);
 

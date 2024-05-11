@@ -153,14 +153,19 @@ QByteArray chat_protocol::set_client_disconnected_message(QString client_name)
     return get_data(client_disconnected, client_name);
 }
 
-QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list)
+QByteArray chat_protocol::set_client_connected_message(QString client_name)
+{
+    return get_data(client_connected, client_name);
+}
+
+QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << log_in << full_name << port << friend_list;
+    out << log_in << full_name << port << friend_list << online_friends;
 
     return byte;
 }

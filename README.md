@@ -21,10 +21,7 @@
     ------
 
     TO DO
-    --- On/Offline Status
     --- Group Chats.
-    --- Finish the database's configuration.
-    --- 
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
 
