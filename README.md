@@ -11,7 +11,7 @@
     ------ Clients are bestowed minimal access to the Database for Security's sake. The server handles quasi every Database related query.
     ------ Swipe left to go back Implementation by overriding these 2 functions: mousePressEvent and mouseMoveEvent.
     ------ Voice Notes Feature implemented using QMediaRecorder (class within QtMultimedia).
-    ------
+    ------ On/Offline Status implemented using a green and red dot. 
     ------
     ------
     ------
@@ -66,7 +66,7 @@
                 sender_ID INT,
                 receiver_ID INT,
                 content TEXT,
-                message_type TEXT, 
+                message_type VARCHAR(25) DEFAULT 'text', 
                 date_time DATETIME DEFAULT CURRENT_TIMESTAMP
             )AUTO_INCREMENT = 1;
 

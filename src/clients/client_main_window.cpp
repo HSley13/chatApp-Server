@@ -1,7 +1,6 @@
 #include "client_main_window.h"
 
 QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
-QHash<QString, int> client_main_window::_phone_list = QHash<QString, int>();
 
 client_chat_window *client_main_window::_server_wid = nullptr;
 class separator_delegate : public QStyledItemDelegate
@@ -196,7 +195,6 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
 client_main_window::~client_main_window()
 {
     _window_map = QHash<QString, QWidget *>();
-    _phone_list = QHash<QString, int>();
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -396,8 +394,6 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, 
 
                 _list->addItem(item);
             }
-
-            _phone_list.insert(name, conversation_ID);
         }
     }
 }
@@ -479,7 +475,6 @@ void client_main_window::on_text_message_received(QString sender, QString review
     if (win)
     {
         int index = _friend_list->findText(sender, Qt::MatchExactly);
-        qDebug() << "Index: " << index;
         if (index == -1)
             _friend_list->addItem(sender);
 
@@ -564,8 +559,6 @@ void client_main_window::on_lookup_friend_result(int conversation_ID, QString na
         _stack->addWidget(wid);
 
         _window_map.insert(name, wid);
-
-        _phone_list.insert(name, conversation_ID);
     }
     else
         _status_bar->showMessage(QString("%1 known as %2 is already in your friend_list").arg(_search_phone_number->text(), name), 5000);
@@ -606,8 +599,6 @@ void client_main_window::on_client_added_you(int conversation_ID, QString name, 
         _stack->addWidget(wid);
 
         _window_map.insert(name, wid);
-
-        _phone_list.insert(name, conversation_ID);
 
         _status_bar->showMessage(QString("%1 added You").arg(name), 5000);
     }

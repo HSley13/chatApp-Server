@@ -36,22 +36,19 @@ signals:
     void is_typing_received(QString sender, QString receiver);
 
     void text_for_other_client(QString sender, QString receiver, QString message);
-
     void file_for_other_client(QString sender, QString receiver, QString file_name);
 
     void reject_receiving_file_for_other_clients(QString sender, QString receiver);
 
 private slots:
+    void on_client_name_changed(QString original_name, QString old_name, QString name);
+
     void send_message();
 
     void folder();
     void send_file();
-
-    void on_text_message_received(QString message);
-
     void on_init_receiving_file(QString sender, QString file_name, qint64 file_size);
 
+    void on_text_message_received(QString message);
     void on_file_saved(QString path);
-
-    void on_client_name_changed(QString original_name, QString old_name, QString name);
 };

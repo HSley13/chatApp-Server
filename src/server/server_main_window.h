@@ -14,9 +14,9 @@ public:
     server_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
     ~server_main_window();
 
+private:
     sql::Connection *_db_connection;
 
-private:
     QListWidget *_list;
     QTabWidget *_tabs;
 

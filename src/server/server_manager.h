@@ -50,14 +50,11 @@ public:
 
     void login(QString ID);
 
+    void create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
+    void save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content);
     void lookup_friend(QString ID);
 
-    void create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
-
-    void save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content);
-
     void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data);
-
     void save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type);
 
 private:

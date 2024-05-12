@@ -82,20 +82,18 @@ signals:
     void file_accepted();
     void file_accepted_client();
 
-    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
-
-    void client_added_you(int conversation_ID, QString name, QString ID);
-
-    void lookup_friend_result(int conversation_ID, QString name);
-
     void audio_received(QString sender, QString path);
 
+    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
+    void client_added_you(int conversation_ID, QString name, QString ID);
+    void lookup_friend_result(int conversation_ID, QString name);
+
 private slots:
+    void on_new_connection();
+
     void on_disconnected();
 
     void on_ready_read();
 
     void file_connect();
-
-    void on_new_connection();
 };

@@ -14,12 +14,6 @@ public:
     client_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
     ~client_main_window();
 
-    void add_on_top(const QString &client_name);
-
-    sql::Connection *_db_connection;
-
-    QIcon create_dot_icon(const QColor &color, int size);
-
 private:
     QStackedWidget *_stack;
 
@@ -27,12 +21,13 @@ private:
 
     QTabWidget *_tabs;
 
+    sql::Connection *_db_connection;
+
     QPoint drag_start_position;
     bool dragging = false;
 
     static client_chat_window *_server_wid;
     static QHash<QString, QWidget *> _window_map;
-    static QHash<QString, int> _phone_list;
 
     QLineEdit *_name;
     QLineEdit *_user_phone_number;
@@ -51,6 +46,9 @@ private:
 
     QComboBox *_friend_list;
 
+    void add_on_top(const QString &client_name);
+    QIcon create_dot_icon(const QColor &color, int size);
+
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
@@ -58,6 +56,9 @@ signals:
     void swipe_right();
 
 private slots:
+    void on_swipe_right();
+
+    void on_sign_in();
     void on_log_in();
 
     void on_client_name_changed(QString old_name, QString client_name);
@@ -69,20 +70,12 @@ private slots:
     void on_name_changed();
 
     void on_item_clicked(QListWidgetItem *item);
-
-    void on_swipe_right();
-
     void new_conversation(const QString &name);
 
-    void on_sign_in();
-
     void on_client_added_you(int conversation_ID, QString name, QString ID);
-
     void on_friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
-
     void on_lookup_friend_result(int conversation_ID, QString full_name);
 
     void on_audio_received(QString sender, QString path);
-
     void on_file_saved(QString sender, QString path);
 };

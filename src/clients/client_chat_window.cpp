@@ -137,7 +137,7 @@ void client_chat_window::ask_microphone_permission()
         connect(_recorder, &QMediaRecorder::durationChanged, this, &client_chat_window::on_duration_changed);
         _session->setRecorder(_recorder);
 
-        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/" + QTime::currentTime().toString("yyyyMMdd_HHmmss") + "_audio.m4a"));
+        _recorder->setOutputLocation(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/" + QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss") + "_audio.m4a"));
         _recorder->setQuality(QMediaRecorder::VeryHighQuality);
         _recorder->setEncodingMode(QMediaRecorder::ConstantQualityEncoding);
 
@@ -320,7 +320,7 @@ void client_chat_window::send_file_client()
 
         connect(_client, &client_manager::file_accepted_client, this, [=]()
                 { add_file(QFileInfo(file_name).absoluteFilePath(), true);
-            _client->send_save_data_message(_conversation_ID, _client->_my_ID, _destinator, "file"); });
+                    _client->send_save_data_message(_conversation_ID, _client->_my_ID, _destinator, "file"); });
 
         file_name.clear();
     }
@@ -438,6 +438,8 @@ QString client_chat_window::my_name()
 void client_chat_window::set_name(QString insert_name)
 {
     _insert_name = insert_name;
+
+    _client->_my_name = insert_name;
 
     _client->send_name(insert_name);
 }

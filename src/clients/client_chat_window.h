@@ -14,30 +14,15 @@ public:
     client_chat_window(QString my_ID, QWidget *parent = nullptr);
     client_chat_window(int conversation_ID, QString destinator, QString name, QWidget *parent = nullptr);
 
-    void window_name(QString name);
-
-    QString my_name();
     void set_name(QString insert_name);
 
-    void set_up_window();
-
+    void window_name(QString name);
     void message_received(QString message);
-
-    void add_file(QString path, bool is_mine = false, QString date_time = "");
-
-    void add_audio(const QUrl &source, bool is_mine = false, QString date_time = "");
-
-    void add_friend(QString ID);
-
     void retrieve_conversation(QVector<QString> &messages, QHash<QString, QByteArray> &binary_data);
 
-    void ask_microphone_permission();
-
-    bool is_recording = false;
-
-    bool is_playing = false;
-
-    int paused_position = 0;
+    void add_file(QString path, bool is_mine = false, QString date_time = "");
+    void add_audio(const QUrl &source, bool is_mine = false, QString date_time = "");
+    void add_friend(QString ID);
 
 private:
     QStatusBar *_status_bar;
@@ -45,10 +30,10 @@ private:
     static client_manager *_client;
 
     QString _destinator_name;
-    int _conversation_ID;
-
     QString _destinator = "Server";
     QString _window_name = "Server";
+
+    int _conversation_ID;
 
     QString _my_ID;
 
@@ -78,14 +63,28 @@ private:
     QMediaPlayer *_player;
     QAudioOutput *_audio_output;
 
+    bool is_recording = false;
+
+    bool is_playing = false;
+
+    int paused_position = 0;
+
+    void ask_microphone_permission();
+
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
+    QString my_name();
+
+    void set_up_window();
+
 signals:
+    void swipe_right();
+
     void client_name_changed(QString old_name, QString client_name);
-    void client_disconnected(QString client_name);
 
     void client_connected(QString client_name);
+    void client_disconnected(QString client_name);
 
     void text_message_received(QString sender, QString message);
     void is_typing_received(QString sender);
@@ -96,16 +95,11 @@ signals:
 
     void data_received_sent(QString client_name);
 
-    void swipe_right();
-
     void client_added_you(int conversation_ID, QString name, QString ID);
-
     void lookup_friend_result(int conversation_ID, QString name);
-
     void friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
 
     void audio_received(QString sender, QString path);
-
     void file_saved(QString sender, QString path);
 
 private slots:
@@ -115,15 +109,12 @@ private slots:
     void send_file_client();
 
     void folder();
+    void on_file_saved(QString path);
 
     void on_init_receiving_file(QString file_name, qint64 file_size);
     void on_init_receiving_file_client(QString sender, QString ID, QString file_name, qint64 file_size);
 
-    void on_file_saved(QString path);
-
     void start_recording();
-
     void on_duration_changed(qint64 duration);
-
     void play_audio(const QUrl &source, QPushButton *audio, QSlider *slider);
 };

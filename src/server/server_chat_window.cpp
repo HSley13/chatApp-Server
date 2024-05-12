@@ -52,10 +52,10 @@ server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
     connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
     connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
 
-    connect(_client, &server_manager::is_typing_received, this, [=](QString sender, QString receiver)
+    connect(_client, &server_manager::is_typing_received, this, [&](QString sender, QString receiver)
             { emit is_typing_received(sender, receiver); });
 
-    connect(_client, &server_manager::reject_receiving_file, this, [=](QString sender)
+    connect(_client, &server_manager::reject_receiving_file, this, [&](QString sender)
             { QMessageBox::critical(this, "Rejection", QString("%1 has Rejected Your request to send a file").arg(sender)); });
 }
 
@@ -130,7 +130,7 @@ void server_chat_window::send_file()
     {
         _client->send_init_sending_file(file_name);
 
-        connect(_client, &server_manager::file_accepted, this, [=]()
+        connect(_client, &server_manager::file_accepted, this, [&]()
                 { add_file(QFileInfo(file_name).absoluteFilePath()); });
 
         file_name.clear();
@@ -166,7 +166,7 @@ void server_chat_window::add_file(QString path, bool is_mine)
     file->setIconSize(QSize(60, 60));
     file->setFixedSize(QSize(60, 60));
     file->setStyleSheet("border: none");
-    file->connect(file, &QPushButton::clicked, this, [=]()
+    file->connect(file, &QPushButton::clicked, this, [&]()
                   { QDesktopServices::openUrl(QUrl::fromLocalFile(path)); });
 
     QListWidgetItem *item = new QListWidgetItem(_list);
