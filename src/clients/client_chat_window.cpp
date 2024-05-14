@@ -6,28 +6,6 @@ QString client_chat_window::_insert_name = nullptr;
 
 client_manager *client_chat_window::_client = nullptr;
 
-class separator_delegate : public QStyledItemDelegate
-{
-private:
-    QListWidget *m_parent;
-
-public:
-    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
-
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
-    {
-        QStyledItemDelegate::paint(painter, option, index);
-
-        if (index.row() != m_parent->count() - 1)
-        {
-            painter->save();
-            painter->setPen(Qt::white);
-            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
-            painter->restore();
-        }
-    }
-};
-
 client_chat_window::client_chat_window(QString my_ID, QWidget *parent)
     : QMainWindow(parent), _my_ID(my_ID)
 {
@@ -65,6 +43,10 @@ client_chat_window::client_chat_window(int conversation_ID, QString destinator, 
     _client->send_create_conversation_message(_conversation_ID, _client->_my_name, _client->_my_ID.toInt(), _destinator_name, _destinator.toInt());
 
     connect(_send_file_button, &QPushButton::clicked, this, &client_chat_window::send_file_client);
+}
+
+void client_chat_window::on_item_deleted(QListWidgetItem *item)
+{
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -268,7 +250,7 @@ void client_chat_window::send_message()
     QListWidgetItem *line = new QListWidgetItem(_list);
     line->setSizeHint(QSize(0, 60));
 
-    line->setBackground(QBrush(QColorConstants::Svg::lightblue));
+    line->setBackground(QBrush(QColorConstants::Svg::lightskyblue));
 
     _list->setItemWidget(line, wid);
 
@@ -288,7 +270,7 @@ void client_chat_window::message_received(QString message)
     wid->setStyleSheet("color: black;");
 
     QListWidgetItem *line = new QListWidgetItem();
-    line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    line->setBackground(QBrush(QColorConstants::Svg::gray));
     line->setSizeHint(QSize(0, 60));
 
     _list->addItem(line);
@@ -348,7 +330,7 @@ void client_chat_window::set_up_window()
     connect(this, &client_chat_window::update_button_file, this, [=]()
             { button_file->setText(QString("%1's Conversation").arg(_window_name)); });
 
-    _list = new QListWidget(this);
+    _list = new Swipeable_list_widget(this);
     _list->setItemDelegate(new separator_delegate(_list));
 
     _send_file_button = new QPushButton("...", this);
@@ -509,7 +491,7 @@ void client_chat_window::add_file(QString path, bool is_mine, QString date_time)
     QListWidgetItem *line = new QListWidgetItem(_list);
     line->setSizeHint(QSize(0, 68));
 
-    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightblue)) : line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightskyblue)) : line->setBackground(QBrush(QColorConstants::Svg::gray));
 
     _list->setItemWidget(line, wid);
 }
@@ -544,7 +526,7 @@ void client_chat_window::add_audio(const QUrl &source, bool is_mine, QString dat
     QListWidgetItem *line = new QListWidgetItem(_list);
     line->setSizeHint(QSize(0, 80));
 
-    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightblue)) : line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    (is_mine) ? line->setBackground(QBrush(QColorConstants::Svg::lightskyblue)) : line->setBackground(QBrush(QColorConstants::Svg::gray));
 
     _list->setItemWidget(line, wid);
 }
@@ -598,7 +580,7 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
             wid->setStyleSheet("color: black;");
 
             QListWidgetItem *line = new QListWidgetItem(_list);
-            line->setBackground(QBrush(QColorConstants::Svg::lightblue));
+            line->setBackground(QBrush(QColorConstants::Svg::blue));
             line->setSizeHint(QSize(0, 60));
 
             _list->setItemWidget(line, wid);
@@ -636,7 +618,7 @@ void client_chat_window::retrieve_conversation(QVector<QString> &messages, QHash
             wid->setStyleSheet("color: black;");
 
             QListWidgetItem *line = new QListWidgetItem(_list);
-            line->setBackground(QBrush(QColorConstants::Svg::lightgray));
+            line->setBackground(QBrush(QColorConstants::Svg::gray));
             line->setSizeHint(QSize(0, 60));
 
             _list->setItemWidget(line, wid);

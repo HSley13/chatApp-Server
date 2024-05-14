@@ -42,7 +42,7 @@ private:
     QLineEdit *_insert_secret_question;
     QLineEdit *_insert_secret_answer;
 
-    QListWidget *_list;
+    Swipeable_list_widget *_list;
 
     QComboBox *_friend_list;
 
@@ -78,4 +78,6 @@ private slots:
 
     void on_audio_received(QString sender, QString path);
     void on_file_saved(QString sender, QString path);
+
+    void on_item_deleted(QListWidgetItem *item);
 };

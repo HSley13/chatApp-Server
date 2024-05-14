@@ -7,6 +7,62 @@
 #include <QtCore>
 #include <QtMultimedia>
 
+class separator_delegate : public QStyledItemDelegate
+{
+private:
+    QListWidget *m_parent;
+
+public:
+    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        QStyledItemDelegate::paint(painter, option, index);
+
+        if (index.row() != m_parent->count() - 1)
+        {
+            painter->save();
+            painter->setPen(Qt::green);
+            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
+            painter->restore();
+        }
+    }
+};
+
+class Swipeable_list_widget : public QListWidget
+{
+
+private:
+    QPoint drag_start_position;
+
+public:
+    Swipeable_list_widget(QWidget *parent = nullptr) : QListWidget(parent) {}
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override
+    {
+        if (event->button() == Qt::LeftButton)
+            drag_start_position = event->pos();
+
+        QListWidget::mousePressEvent(event);
+    }
+
+    void mouseReleaseEvent(QMouseEvent *event) override
+    {
+        if (event->button() == Qt::LeftButton)
+        {
+            int distance = event->pos().x() - drag_start_position.x();
+            if (distance < -50)
+            {
+                QListWidgetItem *item = itemAt(drag_start_position);
+                if (item)
+                    delete item;
+            }
+        }
+        QListWidget::mouseReleaseEvent(event);
+    }
+};
+
 class client_chat_window : public QMainWindow
 {
     Q_OBJECT
@@ -51,7 +107,7 @@ private:
 
     std::vector<int> _conversation_list;
 
-    QListWidget *_list;
+    Swipeable_list_widget *_list;
 
     QHBoxLayout *_hbox;
     QDir _dir;
@@ -102,6 +158,8 @@ signals:
     void audio_received(QString sender, QString path);
     void file_saved(QString sender, QString path);
 
+    void item_deleted(QListWidgetItem *item);
+
 private slots:
     void send_message();
 
@@ -117,4 +175,6 @@ private slots:
     void start_recording();
     void on_duration_changed(qint64 duration);
     void play_audio(const QUrl &source, QPushButton *audio, QSlider *slider);
+
+    void on_item_deleted(QListWidgetItem *item);
 };

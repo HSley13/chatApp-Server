@@ -3,27 +3,6 @@
 QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidget *>();
 
 client_chat_window *client_main_window::_server_wid = nullptr;
-class separator_delegate : public QStyledItemDelegate
-{
-private:
-    QListWidget *m_parent;
-
-public:
-    separator_delegate(QListWidget *parent) : QStyledItemDelegate(parent), m_parent(parent) {}
-
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
-    {
-        QStyledItemDelegate::paint(painter, option, index);
-
-        if (index.row() != m_parent->count() - 1)
-        {
-            painter->save();
-            painter->setPen(Qt::white);
-            painter->drawLine(option.rect.bottomLeft(), option.rect.bottomRight());
-            painter->restore();
-        }
-    }
-};
 
 client_main_window::client_main_window(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
@@ -37,6 +16,11 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     setStatusBar(_status_bar);
 
     connect(this, &client_main_window::swipe_right, this, &client_main_window::on_swipe_right);
+
+    QFile style_file(":/images/style.css");
+    style_file.open(QFile::ReadOnly);
+    QString style_sheet = QLatin1String(style_file.readAll());
+    setStyleSheet(style_sheet);
 
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -58,6 +42,11 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     hbox_1->addWidget(_user_password);
 
     QPushButton *log_in = new QPushButton("Log In", login_widget);
+    log_in->setStyleSheet("background-color: #0077CC;"
+                          "color: white;"
+                          "border: 1px solid #0055AA;"
+                          "border-radius: 5px;"
+                          "padding: 5px 10px;");
     connect(log_in, &QPushButton::clicked, this, &client_main_window::on_log_in);
 
     QVBoxLayout *VBOX = new QVBoxLayout();
@@ -65,10 +54,15 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     VBOX->addLayout(hbox_1);
     VBOX->addWidget(log_in);
 
-    QGroupBox *group_box = new QGroupBox("Log In System");
+    QGroupBox *group_box = new QGroupBox();
     group_box->setLayout(VBOX);
 
     QPushButton *sign_in = new QPushButton("Sign In", this);
+    sign_in->setStyleSheet("background-color: #0077CC;"
+                           "color: white;"
+                           "border: 1px solid #0055AA;"
+                           "border-radius: 5px;"
+                           "padding: 5px 10px;");
     connect(sign_in, &QPushButton::clicked, this, [=]()
             { _stack->setCurrentIndex(1); });
 
@@ -79,6 +73,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     /*-----------------------------------¬------------------------------------------------------------------------------------------------------------------------------------*/
 
     QWidget *sign_in_widget = new QWidget();
+    sign_in_widget->setWindowIconText("Sign In");
 
     QLabel *first_name_label = new QLabel("First Name: ", this);
     _insert_first_name = new QLineEdit(this);
@@ -125,6 +120,11 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     secret_answer_layout->addWidget(_insert_secret_answer);
 
     QPushButton *sign_in_button = new QPushButton("Sign In", this);
+    sign_in_button->setStyleSheet("background-color: #0077CC;"
+                                  "color: white;"
+                                  "border: 1px solid #0055AA;"
+                                  "border-radius: 5px;"
+                                  "padding: 5px 10px;");
     connect(sign_in_button, &QPushButton::clicked, this, &client_main_window::on_sign_in);
 
     QVBoxLayout *sign_in_layout = new QVBoxLayout();
@@ -137,7 +137,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     sign_in_layout->addLayout(secret_answer_layout);
     sign_in_layout->addWidget(sign_in_button);
 
-    QGroupBox *group_box_2 = new QGroupBox("Sign In System");
+    QGroupBox *group_box_2 = new QGroupBox();
     group_box_2->setLayout(sign_in_layout);
 
     QGridLayout *sign_in_grid = new QGridLayout(sign_in_widget);
@@ -156,7 +156,7 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
     hbox_2->addWidget(name);
     hbox_2->addWidget(_name);
 
-    _list = new QListWidget(chat_widget);
+    _list = new Swipeable_list_widget(chat_widget);
     _list->setSelectionMode(QAbstractItemView::SingleSelection);
     _list->setMinimumWidth(200);
     _list->setFont(QFont("Arial", 20));
@@ -474,9 +474,12 @@ void client_main_window::on_text_message_received(QString sender, QString review
     QWidget *win = _window_map.value(sender);
     if (win)
     {
-        int index = _friend_list->findText(sender, Qt::MatchExactly);
-        if (index == -1)
-            _friend_list->addItem(sender);
+        if (sender.compare("Server"))
+        {
+            int index = _friend_list->findText(sender, Qt::MatchExactly);
+            if (index == -1)
+                _friend_list->addItem(sender);
+        }
 
         client_chat_window *wid = qobject_cast<client_chat_window *>(win);
         if (wid)
@@ -634,6 +637,10 @@ void client_main_window::on_file_saved(QString sender, QString path)
         else
             qDebug() << "client_main_window ---> on_text_message_received() --> ERROR CASTING THE WIDGET:";
     }
+}
+
+void client_main_window::on_item_deleted(QListWidgetItem *item)
+{
 }
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
 
