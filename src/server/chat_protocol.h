@@ -2,8 +2,6 @@
 
 #include <QtWidgets>
 #include <QtCore>
-#include <QtMultimedia>
-
 class chat_protocol : public QMainWindow
 {
     Q_OBJECT
@@ -40,7 +38,9 @@ public:
         save_message,
 
         audio,
-        save_data
+        save_data,
+        sign_in,
+        login_request
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -62,7 +62,7 @@ public:
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
 
-    QByteArray set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
+    QByteArray set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
     QByteArray set_added_you_message(int conversation_ID, QString name, QString ID, QString receiver);
 
     QByteArray set_lookup_friend_message(int conversation_ID, QString ID);
@@ -72,6 +72,8 @@ public:
     QByteArray set_client_connected_message(QString client_name);
 
     QByteArray set_online_client_message(QList<QString> names);
+
+    QByteArray set_login_message(QString hashed_password, bool true_or_false);
 
     void load_data(QByteArray data);
 
@@ -111,6 +113,12 @@ public:
     const QString &data_type() const;
     const QByteArray &audio_data() const;
 
+    const QString &last_name() const;
+    const QString &first_name() const;
+    const QString &password() const;
+    const QString &secret_question() const;
+    const QString &secret_answer() const;
+
 private:
     QByteArray get_data(message_type type, QString data);
 
@@ -149,4 +157,10 @@ private:
     QString _audio_receiver;
     QByteArray _audio_data;
     QString _data_type;
+
+    QString _last_name;
+    QString _first_name;
+    QString _password;
+    QString _secret_question;
+    QString _secret_answer;
 };

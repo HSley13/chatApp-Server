@@ -2,8 +2,6 @@
 
 #include <QtWidgets>
 #include <QtCore>
-#include <QtMultimedia>
-
 class chat_line : public QMainWindow
 {
     Q_OBJECT

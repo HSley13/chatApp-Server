@@ -161,6 +161,16 @@ void server_manager::on_ready_read()
 
         break;
 
+    case chat_protocol::sign_in:
+        sign_in(_protocol->clients_ID(), _protocol->first_name(), _protocol->last_name(), _protocol->password(), _protocol->secret_question(), _protocol->secret_answer());
+
+        break;
+
+    case chat_protocol::login_request:
+        login_request(_protocol->clients_ID(), _protocol->password());
+
+        break;
+
     default:
         break;
     }
@@ -331,6 +341,9 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
 
 void server_manager::login(QString ID)
 {
+    if (ID.isEmpty())
+        return;
+
     QString old_name = _socket->property("client_name").toString();
     _clients.remove(_clients.key(_socket));
 
@@ -365,7 +378,11 @@ void server_manager::login(QString ID)
         }
     }
 
-    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list, online_friends));
+    QVector<QString> messages = Account::retrieve_conversation(_db_connection, ID.toInt());
+
+    QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, ID.toInt());
+
+    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list, online_friends, messages, binary_data));
 }
 
 void server_manager::lookup_friend(QString ID)
@@ -403,4 +420,18 @@ void server_manager::save_conversation_message(int conversation_ID, QString send
 void server_manager::save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type)
 {
     Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString());
+}
+
+void server_manager::sign_in(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
+{
+    Account::create_account(_db_connection, phone_number.toInt(), first_name.toStdString(), last_name.toStdString(), password.toStdString(), secret_question.toStdString(), secret_answer.toStdString());
+}
+
+void server_manager::login_request(QString phone_number, QString password)
+{
+    std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
+
+    bool true_or_false = Security::verifying_password(password.toStdString(), hashed_password);
+
+    _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false));
 }

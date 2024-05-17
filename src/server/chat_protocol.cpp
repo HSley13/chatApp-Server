@@ -158,14 +158,15 @@ QByteArray chat_protocol::set_client_connected_message(QString client_name)
     return get_data(client_connected, client_name);
 }
 
-QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends)
+QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << log_in << full_name << port << friend_list << online_friends;
+    out << log_in << full_name << port << friend_list << online_friends << messages << binary_data;
+    qDebug() << "Server : Login Friendlist etc sent";
 
     return byte;
 }
@@ -202,6 +203,19 @@ QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, 
     out.setVersion(QDataStream::Qt_6_0);
 
     out << audio << sender << audio_name << audio_data;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << login_request << hashed_password << true_or_false;
+    qDebug() << "Server : Login message sent";
 
     return byte;
 }
@@ -285,6 +299,17 @@ void chat_protocol::load_data(QByteArray data)
 
     case save_data:
         in >> _conversation_ID >> _sender >> _receiver >> _file_name_client >> _file_data >> _data_type;
+
+        break;
+
+    case sign_in:
+        in >> _client_ID >> _first_name >> _last_name >> _password >> _secret_question >> _secret_answer;
+
+        break;
+
+    case login_request:
+        in >> _client_ID << _password;
+        qDebug() << "Login request received";
 
         break;
 
@@ -422,4 +447,29 @@ const QString &chat_protocol::audio_receiver() const
 const QString &chat_protocol::data_type() const
 {
     return _data_type;
+}
+
+const QString &chat_protocol::last_name() const
+{
+    return _last_name;
+}
+
+const QString &chat_protocol::first_name() const
+{
+    return _first_name;
+}
+
+const QString &chat_protocol::password() const
+{
+    return _password;
+}
+
+const QString &chat_protocol::secret_question() const
+{
+    return _secret_question;
+}
+
+const QString &chat_protocol::secret_answer() const
+{
+    return _secret_answer;
 }

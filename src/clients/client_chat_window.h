@@ -2,11 +2,6 @@
 
 #include "client_manager.h"
 #include "chat_line.h"
-
-#include <QtWidgets>
-#include <QtCore>
-#include <QtMultimedia>
-
 class separator_delegate : public QStyledItemDelegate
 {
 private:
@@ -80,10 +75,10 @@ public:
     void add_audio(const QUrl &source, bool is_mine = false, QString date_time = "");
     void add_friend(QString ID);
 
+    static client_manager *_client;
+
 private:
     QStatusBar *_status_bar;
-
-    static client_manager *_client;
 
     QString _destinator_name;
     QString _destinator = "Server";
@@ -153,12 +148,14 @@ signals:
 
     void client_added_you(int conversation_ID, QString name, QString ID);
     void lookup_friend_result(int conversation_ID, QString name);
-    void friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
+    void friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
 
     void audio_received(QString sender, QString path);
     void file_saved(QString sender, QString path);
 
     void item_deleted(QListWidgetItem *item);
+
+    void login_request(QString hashed_password, bool true_or_false);
 
 private slots:
     void send_message();

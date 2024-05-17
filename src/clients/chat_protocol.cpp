@@ -208,6 +208,31 @@ QByteArray chat_protocol::set_save_message_message(int conversation_ID, QString 
     return byte;
 }
 
+QByteArray chat_protocol::set_sign_in_message(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << sign_in << phone_number << first_name << last_name << password << secret_question << secret_answer;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_login_request_message(QString phone_number, QString password)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+
+    out << login_request << phone_number << password;
+    qDebug() << "Login request sent";
+
+    return byte;
+}
+
 QByteArray chat_protocol::set_save_data_message(int conversation_ID, QString sender, QString receiver, QString file_name, QString type)
 {
 
@@ -306,7 +331,8 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case log_in:
-        in >> _my_name >> _port >> _friend_list >> _online_friends;
+        in >> _my_name >> _port >> _friend_list >> _online_friends >> _messages >> _binary_data;
+        qDebug() << "Client : Login Friendlist etc received";
 
         break;
 
@@ -317,6 +343,12 @@ void chat_protocol::load_data(QByteArray data)
 
     case audio:
         in >> _audio_sender >> _audio_name >> _audio_data;
+
+        break;
+
+    case login_request:
+        in >> _hashed_password >> _true_or_false;
+        qDebug() << "Client : Login message received";
 
         break;
 
@@ -425,6 +457,16 @@ const QHash<int, QHash<QString, int>> &chat_protocol::friend_list() const
     return _friend_list;
 }
 
+const QVector<QString> &chat_protocol::messages() const
+{
+    return _messages;
+}
+
+const QHash<QString, QByteArray> &chat_protocol::binary_data() const
+{
+    return _binary_data;
+}
+
 const int &chat_protocol::conversation_ID() const
 {
     return _conversation_ID;
@@ -448,4 +490,14 @@ const QString &chat_protocol::audio_sender() const
 const QList<QString> &chat_protocol::online_friends() const
 {
     return _online_friends;
+}
+
+const QString &chat_protocol::hashed_password() const
+{
+    return _hashed_password;
+}
+
+const bool &chat_protocol::true_or_false() const
+{
+    return _true_or_false;
 }

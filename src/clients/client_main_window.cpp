@@ -4,8 +4,8 @@ QHash<QString, QWidget *> client_main_window::_window_map = QHash<QString, QWidg
 
 client_chat_window *client_main_window::_server_wid = nullptr;
 
-client_main_window::client_main_window(sql::Connection *db_connection, QWidget *parent)
-    : QMainWindow(parent), _db_connection(db_connection)
+client_main_window::client_main_window(QWidget *parent)
+    : QMainWindow(parent)
 {
     _stack = new QStackedWidget(this);
 
@@ -47,7 +47,11 @@ client_main_window::client_main_window(sql::Connection *db_connection, QWidget *
                           "border: 1px solid #0055AA;"
                           "border-radius: 5px;"
                           "padding: 5px 10px;");
-    connect(log_in, &QPushButton::clicked, this, &client_main_window::on_log_in);
+    connect(log_in, &QPushButton::clicked, this, [=]()
+            {     if (!_server_wid)
+                _server_wid = new client_chat_window(_user_phone_number->text(), this); 
+                connect(_server_wid, &client_chat_window::login_request, this, &client_main_window::on_login_request);
+                _server_wid->_client->send_login_request_message(_user_phone_number->text(), _user_password->text()); });
 
     QVBoxLayout *VBOX = new QVBoxLayout();
     VBOX->addLayout(hbox);
@@ -270,9 +274,10 @@ void client_main_window::on_sign_in()
     if (result == QMessageBox::Cancel)
         return;
 
-    std::string hash_password = Security::hashing_password(_insert_password->text().toStdString());
+    if (!_server_wid)
+        _server_wid = new client_chat_window(_user_phone_number->text(), this);
 
-    Account::create_account(_db_connection, _insert_phone_number->text().toInt(), _insert_first_name->text().toStdString(), _insert_last_name->text().toStdString(), _insert_secret_question->text().toStdString(), _insert_secret_answer->text().toStdString(), hash_password);
+    _server_wid->_client->send_sign_in_message(_insert_phone_number->text(), _insert_first_name->text(), _insert_last_name->text(), _insert_password->text(), _insert_secret_question->text(), _insert_secret_answer->text());
 
     _insert_phone_number->clear();
     _insert_first_name->clear();
@@ -283,10 +288,8 @@ void client_main_window::on_sign_in()
     _insert_secret_answer->clear();
 }
 
-void client_main_window::on_log_in()
+void client_main_window::on_login_request(QString hashed_password, bool true_or_false)
 {
-    std::string hashed_password = Security::retrieve_hashed_password(_db_connection, _user_phone_number->text().toInt());
-
     if (hashed_password == "")
     {
         _user_phone_number->setStyleSheet("border: 1px solid red");
@@ -296,7 +299,7 @@ void client_main_window::on_log_in()
 
     _user_phone_number->setStyleSheet("border: 1px solid gray");
 
-    if (!Security::verifying_password(_user_password->text().toStdString(), hashed_password))
+    if (!true_or_false)
     {
         _user_password->setStyleSheet("border: 1px solid red");
 
@@ -309,10 +312,9 @@ void client_main_window::on_log_in()
 
     _stack->setCurrentIndex(2);
 
-    if (!_server_wid)
+    QWidget *wid = _window_map.value("Server");
+    if (!wid)
     {
-        _server_wid = new client_chat_window(_user_phone_number->text(), this);
-
         _list->addItem("Server");
 
         _server_wid->setObjectName("Server");
@@ -347,7 +349,7 @@ void client_main_window::on_log_in()
     _user_password->clear();
 }
 
-void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends)
+void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
 {
     if (list_g.isEmpty())
         return;
@@ -358,10 +360,6 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, 
     for (int conversation_ID : list_g.keys())
     {
         const QHash<QString, int> &list = list_g.value(conversation_ID);
-
-        QVector<QString> messages = Account::retrieve_conversation(_db_connection, conversation_ID);
-
-        QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, conversation_ID);
 
         for (const QString &name : list.keys())
         {

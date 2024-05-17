@@ -104,7 +104,7 @@ void client_manager::on_ready_read()
 
     case chat_protocol::log_in:
     {
-        emit friend_list(_protocol->friend_list(), _protocol->online_friends());
+        emit friend_list(_protocol->friend_list(), _protocol->online_friends(), _protocol->messages(), _protocol->binary_data());
 
         _my_name = _protocol->my_name();
     }
@@ -118,6 +118,11 @@ void client_manager::on_ready_read()
 
     case chat_protocol::audio:
         save_audio(_protocol->audio_sender(), _protocol->audio_name(), _protocol->audio_data(), QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss"));
+
+        break;
+
+    case chat_protocol::login_request:
+        emit login_request(_protocol->hashed_password(), _protocol->true_or_false());
 
         break;
 
@@ -314,4 +319,14 @@ void client_manager::send_create_conversation_message(int conversation_ID, QStri
 void client_manager::send_save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content)
 {
     _socket->write(_protocol->set_save_message_message(conversation_ID, sender, receiver, content));
+}
+
+void client_manager::send_sign_in_message(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
+{
+    _socket->write(_protocol->set_sign_in_message(phone_number, first_name, last_name, password, secret_question, secret_answer));
+}
+
+void client_manager::send_login_request_message(QString phone_number, QString password)
+{
+    _socket->write(_protocol->set_login_request_message(phone_number, password));
 }

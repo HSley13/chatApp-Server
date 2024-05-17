@@ -1,12 +1,10 @@
 #pragma once
 
 #include "chat_protocol.h"
-#include "database.h"
-
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
-
+#include <QWebSocket>
 class client_manager : public QMainWindow
 {
     Q_OBJECT
@@ -46,6 +44,10 @@ public:
 
     void send_save_audio_message(int conversation_ID, QString sender, QString receiver, QString audio_name, QString type);
 
+    void send_sign_in_message(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
+
+    void send_login_request_message(QString phone_number, QString password);
+
     static QString _my_ID;
     static QString _my_name;
     QString _file_name;
@@ -84,9 +86,11 @@ signals:
 
     void audio_received(QString sender, QString path);
 
-    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends);
+    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
     void client_added_you(int conversation_ID, QString name, QString ID);
     void lookup_friend_result(int conversation_ID, QString name);
+
+    void login_request(QString hashed_password, bool true_or_false);
 
 private slots:
     void on_new_connection();

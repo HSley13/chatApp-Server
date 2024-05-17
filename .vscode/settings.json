@@ -98,6 +98,8 @@
         "chrono": "cpp",
         "stdfloat": "cpp",
         "qmessagebox": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "qtmultimedia": "cpp",
+        "qwebsocket": "cpp"
     }
 }

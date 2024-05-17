@@ -1,17 +1,15 @@
 #pragma once
 
-#include "database.h"
 #include "client_chat_window.h"
-
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
-
+#include <QWebSocket>
 class client_main_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    client_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
+    client_main_window(QWidget *parent = nullptr);
     ~client_main_window();
 
 private:
@@ -20,8 +18,6 @@ private:
     QStatusBar *_status_bar;
 
     QTabWidget *_tabs;
-
-    sql::Connection *_db_connection;
 
     QPoint drag_start_position;
     bool dragging = false;
@@ -59,7 +55,7 @@ private slots:
     void on_swipe_right();
 
     void on_sign_in();
-    void on_log_in();
+    void on_login_request(QString hashed_password, bool true_or_false);
 
     void on_client_name_changed(QString old_name, QString client_name);
     void on_client_disconnected(QString client_name);
@@ -73,7 +69,7 @@ private slots:
     void new_conversation(const QString &name);
 
     void on_client_added_you(int conversation_ID, QString name, QString ID);
-    void on_friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends);
+    void on_friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
     void on_lookup_friend_result(int conversation_ID, QString full_name);
 
     void on_audio_received(QString sender, QString path);

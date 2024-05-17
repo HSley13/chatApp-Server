@@ -3,6 +3,7 @@
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
+#include <QWebSocket>
 
 class chat_protocol : public QMainWindow
 {
@@ -40,7 +41,11 @@ public:
         save_message,
 
         audio,
-        save_data
+        save_data,
+
+        sign_in,
+
+        login_request
     };
 
     QByteArray set_text_message(QString sender, QString receiver, QString message);
@@ -68,6 +73,10 @@ public:
     QByteArray set_audio_message(QString sender, QString receiver, QString audio_name);
 
     QByteArray set_save_data_message(int conversation_ID, QString sender, QString receiver, QString file_name, QString type);
+
+    QByteArray set_sign_in_message(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
+
+    QByteArray set_login_request_message(QString phone_number, QString password);
 
     void load_data(QByteArray data);
 
@@ -110,6 +119,12 @@ public:
 
     const QList<QString> &online_friends() const;
 
+    const QVector<QString> &messages() const;
+    const QHash<QString, QByteArray> &binary_data() const;
+
+    const QString &hashed_password() const;
+    const bool &true_or_false() const;
+
 private:
     QByteArray get_data(message_type type, QString data);
 
@@ -139,6 +154,8 @@ private:
 
     QString _my_ID;
     QHash<int, QHash<QString, int>> _friend_list;
+    QVector<QString> _messages;
+    QHash<QString, QByteArray> _binary_data;
 
     QString _client_ID;
 
@@ -149,4 +166,7 @@ private:
     QByteArray _audio_data;
 
     QList<QString> _online_friends;
+
+    QString _hashed_password;
+    bool _true_or_false;
 };

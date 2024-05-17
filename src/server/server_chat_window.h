@@ -3,11 +3,6 @@
 #include "chat_protocol.h"
 #include "server_manager.h"
 #include "chat_line.h"
-
-#include <QtWidgets>
-#include <QtCore>
-#include <QtMultimedia>
-
 class server_chat_window : public QMainWindow
 {
     Q_OBJECT
