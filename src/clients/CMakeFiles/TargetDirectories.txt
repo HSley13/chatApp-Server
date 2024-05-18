@@ -1,5 +1,0 @@
-/Users/test/Documents/client---server---client_chat_application/src/clients/CMakeFiles/client.dir
-/Users/test/Documents/client---server---client_chat_application/src/clients/CMakeFiles/edit_cache.dir
-/Users/test/Documents/client---server---client_chat_application/src/clients/CMakeFiles/rebuild_cache.dir
-/Users/test/Documents/client---server---client_chat_application/src/clients/CMakeFiles/client_autogen_timestamp_deps.dir
-/Users/test/Documents/client---server---client_chat_application/src/clients/CMakeFiles/client_autogen.dir
