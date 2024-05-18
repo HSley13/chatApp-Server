@@ -7,7 +7,7 @@ class server_manager : public QMainWindow
     Q_OBJECT
 public:
     server_manager(sql::Connection *db_connection, QWidget *parent = nullptr);
-    server_manager(QTcpSocket *client, QWidget *parent = nullptr);
+    server_manager(QWebSocket *client, QWidget *parent = nullptr);
 
     static sql::Connection *_db_connection;
 
@@ -36,7 +36,7 @@ public:
 
     QString name() const;
 
-    static QHash<QString, QTcpSocket *> _clients;
+    static QHash<QString, QWebSocket *> _clients;
     static QHash<QString, QString> _names;
 
     void create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
@@ -53,10 +53,10 @@ public:
 private:
     QWidget *central_widget;
 
-    QTcpServer *_server;
+    QWebSocketServer *_server;
     chat_protocol *_protocol;
 
-    QTcpSocket *_socket;
+    QWebSocket *_socket;
 
     QString _file_name;
 
@@ -64,8 +64,8 @@ private:
     int _port = 12345;
 
 signals:
-    void new_client_connected(QTcpSocket *client);
-    void new_client_disconnected(QTcpSocket *client);
+    void new_client_connected(QWebSocket *client);
+    void new_client_disconnected(QWebSocket *client);
 
     void text_message_received(QString message);
     void client_name_changed(QString original_name, QString old_name, QString name);
@@ -85,7 +85,7 @@ private slots:
     void on_new_connection();
     void on_client_disconnected();
 
-    void on_ready_read();
+    void on_binary_message_received(const QByteArray &message);
 
     void message_received(QString sender, QString receiver, QString message);
 };

@@ -1,6 +1,6 @@
 #include "server_chat_window.h"
 
-server_chat_window::server_chat_window(QTcpSocket *client, QWidget *parent)
+server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
     : QMainWindow(parent)
 {
     QWidget *central_widget = new QWidget();

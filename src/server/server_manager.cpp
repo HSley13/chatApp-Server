@@ -1,6 +1,6 @@
 #include "server_manager.h"
 
-QHash<QString, QTcpSocket *> server_manager::_clients = QHash<QString, QTcpSocket *>();
+QHash<QString, QWebSocket *> server_manager::_clients = QHash<QString, QWebSocket *>();
 
 QHash<QString, QString> server_manager::_names = QHash<QString, QString>();
 
@@ -9,30 +9,30 @@ sql::Connection *server_manager::_db_connection = nullptr;
 server_manager::server_manager(sql::Connection *db_connection, QWidget *parent)
     : QMainWindow(parent)
 {
-    _server = new QTcpServer(this);
-    connect(_server, &QTcpServer::newConnection, this, &server_manager::on_new_connection);
+    _server = new QWebSocketServer(QString("ChatApp Server"), QWebSocketServer::NonSecureMode, this);
+    connect(_server, &QWebSocketServer::newConnection, this, &server_manager::on_new_connection);
 
     _server->listen(_ip, _port);
 
-    _socket = new QTcpSocket(this);
+    _socket = new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this);
 
     if (!_db_connection)
         _db_connection = db_connection;
 }
 
-server_manager::server_manager(QTcpSocket *client, QWidget *parent)
+server_manager::server_manager(QWebSocket *client, QWidget *parent)
     : QMainWindow(parent), _socket(client)
 {
     _protocol = new chat_protocol(this);
 
-    connect(_socket, &QTcpSocket::readyRead, this, &server_manager::on_ready_read);
+    connect(_socket, &QWebSocket::binaryMessageReceived, this, &server_manager::on_binary_message_received);
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
 void server_manager::on_new_connection()
 {
-    QTcpSocket *client = _server->nextPendingConnection();
+    QWebSocket *client = _server->nextPendingConnection();
 
     int id = _clients.count() + 1;
     client->setProperty("id", id);
@@ -42,13 +42,13 @@ void server_manager::on_new_connection()
     client->setProperty("client_name", client_name);
     _clients.insert(client_name, client);
 
-    connect(client, &QTcpSocket::disconnected, this, &server_manager::on_client_disconnected);
+    connect(client, &QWebSocket::disconnected, this, &server_manager::on_client_disconnected);
     emit new_client_connected(client);
 }
 
 void server_manager::on_client_disconnected()
 {
-    QTcpSocket *client = qobject_cast<QTcpSocket *>(sender());
+    QWebSocket *client = qobject_cast<QWebSocket *>(sender());
 
     QString client_name = client->property("client_name").toString();
 
@@ -56,8 +56,8 @@ void server_manager::on_client_disconnected()
 
     if (!_clients.isEmpty())
     {
-        for (QTcpSocket *cl : _clients)
-            cl->write(message);
+        for (QWebSocket *cl : _clients)
+            cl->sendBinaryMessage(message);
     }
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
@@ -65,11 +65,9 @@ void server_manager::on_client_disconnected()
     emit new_client_disconnected(client);
 }
 
-void server_manager::on_ready_read()
+void server_manager::on_binary_message_received(const QByteArray &message)
 {
-    QByteArray data = _socket->readAll();
-
-    _protocol->load_data(data);
+    _protocol->load_data(message);
 
     switch (_protocol->type())
     {
@@ -177,9 +175,9 @@ void server_manager::message_received(QString sender, QString receiver, QString 
         emit text_message_received(message);
     else
     {
-        QTcpSocket *client = _clients.value(receiver);
+        QWebSocket *client = _clients.value(receiver);
         if (client)
-            client->write(_protocol->set_text_message(sender, "", message));
+            client->sendBinaryMessage(_protocol->set_text_message(sender, "", message));
         else
             qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
     }
@@ -187,9 +185,9 @@ void server_manager::message_received(QString sender, QString receiver, QString 
 
 void server_manager::audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data)
 {
-    QTcpSocket *client = _clients.value(receiver);
+    QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_audio_message(sender, audio_name, audio_data));
+        client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data));
     else
         qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
@@ -200,8 +198,8 @@ void server_manager::disconnect_all_clients()
 {
     if (!_clients.isEmpty())
     {
-        for (QTcpSocket *client : _clients)
-            client->disconnectFromHost();
+        for (QWebSocket *client : _clients)
+            client->close();
     }
     else
         qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't disconnect any clients";
@@ -209,49 +207,49 @@ void server_manager::disconnect_all_clients()
 
 void server_manager::disconnect_from_host()
 {
-    _socket->disconnectFromHost();
+    _socket->close();
 }
 
 void server_manager::send_text(QString text)
 {
-    _socket->write(_protocol->set_text_message("Server", name(), text));
+    _socket->sendBinaryMessage(_protocol->set_text_message("Server", name(), text));
 }
 
 void server_manager::send_is_typing(QString sender)
 {
     sender = "Server";
-    _socket->write(_protocol->set_is_typing_message(sender, ""));
+    _socket->sendBinaryMessage(_protocol->set_is_typing_message(sender, ""));
 }
 
 void server_manager::send_init_sending_file(QString filename)
 {
     _file_name = filename;
 
-    _socket->write(_protocol->set_init_sending_file_message(filename));
+    _socket->sendBinaryMessage(_protocol->set_init_sending_file_message(filename));
 }
 
 void server_manager::send_accept_file()
 {
-    _socket->write(_protocol->set_accept_file_message());
+    _socket->sendBinaryMessage(_protocol->set_accept_file_message());
 }
 
 void server_manager::send_reject_file()
 {
-    _socket->write(_protocol->set_reject_file_message());
+    _socket->sendBinaryMessage(_protocol->set_reject_file_message());
 }
 
 void server_manager::send_file()
 {
     emit file_accepted();
 
-    _socket->write(_protocol->set_file_message(_file_name));
+    _socket->sendBinaryMessage(_protocol->set_file_message(_file_name));
 }
 
 void server_manager::send_accept_file_client(QString receiver, int port)
 {
-    QTcpSocket *client = _clients.value(receiver);
+    QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_accept_file_message_client(port));
+        client->sendBinaryMessage(_protocol->set_accept_file_message_client(port));
     else
         qDebug() << "server_manager--> send_accept_file_client()--> receiver not FOUND: " << receiver;
 }
@@ -290,16 +288,16 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
 
     if (!_clients.isEmpty())
     {
-        for (QTcpSocket *cl : _clients)
+        for (QWebSocket *cl : _clients)
         {
             QString client_name = cl->property("client_name").toString();
 
             if (client_name.compare(new_name))
             {
                 if (!old_name.compare(""))
-                    cl->write(message_2);
+                    cl->sendBinaryMessage(message_2);
                 else
-                    cl->write(message_1);
+                    cl->sendBinaryMessage(message_1);
             }
         }
     }
@@ -309,27 +307,27 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
 
 void server_manager::file_for_other_clients(QString sender, QString ID, QString receiver, QString file_name, qint64 file_size)
 {
-    QTcpSocket *client = _clients.value(receiver);
+    QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_init_sending_file_message_client(sender, ID, file_name, file_size));
+        client->sendBinaryMessage(_protocol->set_init_sending_file_message_client(sender, ID, file_name, file_size));
     else
         qDebug() << "server_manager -->  file_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::reject_receiving_file_clients(QString sender, QString receiver)
 {
-    QTcpSocket *client = _clients.value(receiver);
+    QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_reject_file_message_client(sender, receiver));
+        client->sendBinaryMessage(_protocol->set_reject_file_message_client(sender, receiver));
     else
         qDebug() << "server_manager --> on_reject_receiving_file_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(QString sender, QString receiver)
 {
-    QTcpSocket *client = _clients.value(receiver);
+    QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->write(_protocol->set_is_typing_message(sender, ""));
+        client->sendBinaryMessage(_protocol->set_is_typing_message(sender, ""));
     else
         qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
 }
@@ -345,15 +343,15 @@ void server_manager::lookup_friend(QString ID)
 
     QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
 
-    _socket->write(_protocol->set_lookup_friend_message(conversation_ID, name_and_port.split("/").first()));
+    _socket->sendBinaryMessage(_protocol->set_lookup_friend_message(conversation_ID, name_and_port.split("/").first()));
 
     QString ID_2 = _clients.key(_socket);
 
     name_and_port = Account::retrieve_name_and_port(_db_connection, ID_2.toInt());
 
-    QTcpSocket *client = _clients.value(ID);
+    QWebSocket *client = _clients.value(ID);
     if (client)
-        client->write(_protocol->set_added_you_message(conversation_ID, name_and_port.split("/").first(), ID_2, ""));
+        client->sendBinaryMessage(_protocol->set_added_you_message(conversation_ID, name_and_port.split("/").first(), ID_2, ""));
 }
 
 void server_manager::create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID)
@@ -403,8 +401,6 @@ void server_manager::login_request(QString phone_number, QString password)
 
     std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
 
-    bool true_or_false = Security::verifying_password(password.toStdString(), hashed_password);
-
     QHash<int, QHash<QString, int>> friend_list;
 
     QList<QString> online_friends;
@@ -413,7 +409,7 @@ void server_manager::login_request(QString phone_number, QString password)
 
     QHash<int, QHash<QString, QByteArray>> binary_data;
 
-    if (true_or_false)
+    if (Security::verifying_password(password.toStdString(), hashed_password))
     {
         friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
 
@@ -432,13 +428,14 @@ void server_manager::login_request(QString phone_number, QString password)
             binary_data[friend_list.key(info)] = Account::retrieve_binary_data(_db_connection, friend_list.key(info));
         }
 
-        _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, port.toInt(), friend_list, online_friends, messages, binary_data));
         notify_other_clients("", name);
     }
     else
     {
-        _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
         _clients.remove(name);
         _names.remove(name);
+        _socket->close();
     }
 }

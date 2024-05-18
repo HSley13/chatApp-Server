@@ -289,7 +289,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case login_request:
-        in >> _client_ID << _password;
+        in >> _client_ID >> _password;
 
         break;
 

@@ -15,6 +15,7 @@
 #include <QtCore>
 #include <QtMultimedia>
 #include <QWebSocket>
+#include <QWebSocketServer>
 
 class connection_details
 {

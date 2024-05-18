@@ -25,8 +25,8 @@ private:
     static QHash<QString, QWidget *> _window_map;
 
 private slots:
-    void on_new_client_connected(QTcpSocket *client);
-    void on_new_client_disconnected(QTcpSocket *client);
+    void on_new_client_connected(QWebSocket *client);
+    void on_new_client_disconnected(QWebSocket *client);
 
     void on_client_name_changed(QString original_name, QString old_name, QString name);
 

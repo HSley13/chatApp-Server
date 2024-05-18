@@ -74,7 +74,7 @@ server_main_window::~server_main_window()
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
-void server_main_window::on_new_client_connected(QTcpSocket *client)
+void server_main_window::on_new_client_connected(QWebSocket *client)
 {
     QString client_name = client->property("client_name").toString();
 
@@ -89,7 +89,7 @@ void server_main_window::on_new_client_connected(QTcpSocket *client)
     connect(wid, &server_chat_window::is_typing_received, this, &server_main_window::on_is_typing_received);
 }
 
-void server_main_window::on_new_client_disconnected(QTcpSocket *client)
+void server_main_window::on_new_client_disconnected(QWebSocket *client)
 {
     QString client_name = client->property("client_name").toString();
 

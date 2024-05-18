@@ -13832,6 +13832,150 @@ function _emscripten_webgl_make_context_current(contextHandle) {
  return success ? 0 : -5;
 }
 
+var WS = {
+ sockets: [ null ],
+ socketEvent: null
+};
+
+function _emscripten_websocket_close(socketId, code, reason) {
+ reason >>>= 0;
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ var reasonStr = reason ? UTF8ToString(reason) : undefined;
+ if (reason) socket.close(code || undefined, UTF8ToString(reason)); else if (code) socket.close(code); else socket.close();
+ return 0;
+}
+
+var _emscripten_websocket_delete = socketId => {
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.onopen = socket.onerror = socket.onclose = socket.onmessage = null;
+ delete WS.sockets[socketId];
+ return 0;
+};
+
+function _emscripten_websocket_get_ready_state(socketId, readyState) {
+ readyState >>>= 0;
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ HEAP16[((readyState) >>> 1) >>> 0] = socket.readyState;
+ return 0;
+}
+
+function _emscripten_websocket_new(createAttributes) {
+ createAttributes >>>= 0;
+ if (typeof WebSocket == "undefined") {
+  return -1;
+ }
+ if (!createAttributes) {
+  return -5;
+ }
+ var createAttrs = createAttributes >> 2;
+ var url = UTF8ToString(HEAP32[createAttrs >>> 0]);
+ var protocols = HEAP32[createAttrs + 1 >>> 0];
+ var socket = protocols ? new WebSocket(url, UTF8ToString(protocols).split(",")) : new WebSocket(url);
+ socket.binaryType = "arraybuffer";
+ var socketId = WS.sockets.length;
+ WS.sockets[socketId] = socket;
+ return socketId;
+}
+
+function _emscripten_websocket_send_binary(socketId, binaryData, dataLength) {
+ binaryData >>>= 0;
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.send(HEAPU8.subarray((binaryData) >>> 0, (binaryData + dataLength) >>> 0));
+ return 0;
+}
+
+function _emscripten_websocket_set_onclose_callback_on_thread(socketId, userData, callbackFunc, thread) {
+ userData >>>= 0;
+ callbackFunc >>>= 0;
+ thread >>>= 0;
+ if (!WS.socketEvent) WS.socketEvent = _malloc(1024);
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.onclose = function(e) {
+  HEAPU32[WS.socketEvent >>> 2] = socketId;
+  HEAPU32[(WS.socketEvent + 4) >>> 2] = e.wasClean;
+  HEAPU32[(WS.socketEvent + 8) >>> 2] = e.code;
+  stringToUTF8(e.reason, WS.socketEvent + 10, 512);
+  getWasmTableEntry(callbackFunc)(0, /*TODO*/ WS.socketEvent, userData);
+ };
+ return 0;
+}
+
+function _emscripten_websocket_set_onerror_callback_on_thread(socketId, userData, callbackFunc, thread) {
+ userData >>>= 0;
+ callbackFunc >>>= 0;
+ thread >>>= 0;
+ if (!WS.socketEvent) WS.socketEvent = _malloc(1024);
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.onerror = function(e) {
+  HEAPU32[WS.socketEvent >>> 2] = socketId;
+  getWasmTableEntry(callbackFunc)(0, /*TODO*/ WS.socketEvent, userData);
+ };
+ return 0;
+}
+
+function _emscripten_websocket_set_onmessage_callback_on_thread(socketId, userData, callbackFunc, thread) {
+ userData >>>= 0;
+ callbackFunc >>>= 0;
+ thread >>>= 0;
+ if (!WS.socketEvent) WS.socketEvent = _malloc(1024);
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.onmessage = function(e) {
+  HEAPU32[WS.socketEvent >>> 2] = socketId;
+  if (typeof e.data == "string") {
+   var buf = stringToNewUTF8(e.data);
+   var len = lengthBytesUTF8(e.data) + 1;
+   HEAPU32[(WS.socketEvent + 12) >>> 2] = 1;
+  } else  {
+   var len = e.data.byteLength;
+   var buf = _malloc(len);
+   HEAP8.set(new Uint8Array(e.data), buf >>> 0);
+   HEAPU32[(WS.socketEvent + 12) >>> 2] = 0;
+  }
+  HEAPU32[(WS.socketEvent + 4) >>> 2] = buf;
+  HEAPU32[(WS.socketEvent + 8) >>> 2] = len;
+  getWasmTableEntry(callbackFunc)(0, /*TODO*/ WS.socketEvent, userData);
+  _free(buf);
+ };
+ return 0;
+}
+
+function _emscripten_websocket_set_onopen_callback_on_thread(socketId, userData, callbackFunc, thread) {
+ userData >>>= 0;
+ callbackFunc >>>= 0;
+ thread >>>= 0;
+ if (!WS.socketEvent) WS.socketEvent = _malloc(1024);
+ var socket = WS.sockets[socketId];
+ if (!socket) {
+  return -3;
+ }
+ socket.onopen = function(e) {
+  HEAPU32[WS.socketEvent >>> 2] = socketId;
+  getWasmTableEntry(callbackFunc)(0, /*TODO*/ WS.socketEvent, userData);
+ };
+ return 0;
+}
+
 var ENV = {};
 
 var getExecutableName = () => thisProgram || "./this.program";
@@ -14944,6 +15088,15 @@ var wasmImports = {
  /** @export */ emscripten_webgl_get_context_attributes: _emscripten_webgl_get_context_attributes,
  /** @export */ emscripten_webgl_init_context_attributes: _emscripten_webgl_init_context_attributes,
  /** @export */ emscripten_webgl_make_context_current: _emscripten_webgl_make_context_current,
+ /** @export */ emscripten_websocket_close: _emscripten_websocket_close,
+ /** @export */ emscripten_websocket_delete: _emscripten_websocket_delete,
+ /** @export */ emscripten_websocket_get_ready_state: _emscripten_websocket_get_ready_state,
+ /** @export */ emscripten_websocket_new: _emscripten_websocket_new,
+ /** @export */ emscripten_websocket_send_binary: _emscripten_websocket_send_binary,
+ /** @export */ emscripten_websocket_set_onclose_callback_on_thread: _emscripten_websocket_set_onclose_callback_on_thread,
+ /** @export */ emscripten_websocket_set_onerror_callback_on_thread: _emscripten_websocket_set_onerror_callback_on_thread,
+ /** @export */ emscripten_websocket_set_onmessage_callback_on_thread: _emscripten_websocket_set_onmessage_callback_on_thread,
+ /** @export */ emscripten_websocket_set_onopen_callback_on_thread: _emscripten_websocket_set_onopen_callback_on_thread,
  /** @export */ environ_get: _environ_get,
  /** @export */ environ_sizes_get: _environ_sizes_get,
  /** @export */ exit: _exit,
@@ -15081,9 +15234,9 @@ var ___cxa_can_catch = createExportWrapper("__cxa_can_catch");
 
 var ___cxa_is_pointer_type = createExportWrapper("__cxa_is_pointer_type");
 
-var ___start_em_js = Module["___start_em_js"] = 9344512;
+var ___start_em_js = Module["___start_em_js"] = 9358256;
 
-var ___stop_em_js = Module["___stop_em_js"] = 9345602;
+var ___stop_em_js = Module["___stop_em_js"] = 9359346;
 
 function invoke_viiii(index, a1, a2, a3, a4) {
  var sp = stackSave();

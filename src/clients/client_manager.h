@@ -5,6 +5,7 @@
 #include <QtCore>
 #include <QtMultimedia>
 #include <QWebSocket>
+#include <QWebSocketServer>
 class client_manager : public QMainWindow
 {
     Q_OBJECT
@@ -52,14 +53,14 @@ public:
     QString _file_name_client;
 
 private:
-    static QTcpSocket *_socket;
+    static QWebSocket *_socket;
     QHostAddress _ip = QHostAddress::LocalHost;
     int _port = 12345;
 
     static chat_protocol *_protocol;
 
-    static QTcpServer *_file_server;
-    QTcpSocket *_file_socket;
+    static QWebSocketServer *_file_server;
+    QWebSocket *_file_socket;
 
 signals:
     void text_message_received(QString sender, QString message);
@@ -94,7 +95,7 @@ private slots:
 
     void on_disconnected();
 
-    void on_ready_read();
+    void on_binary_message_received(const QByteArray &message);
 
-    void file_connect();
+    void file_connect(const QByteArray &message);
 };

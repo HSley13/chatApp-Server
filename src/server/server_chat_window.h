@@ -7,7 +7,7 @@ class server_chat_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    server_chat_window(QTcpSocket *client, QWidget *parent = nullptr);
+    server_chat_window(QWebSocket *client, QWidget *parent = nullptr);
 
     void disconnect_from_host();
 
