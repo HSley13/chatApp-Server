@@ -116,8 +116,8 @@ public:
 
     const QList<QString> &online_friends() const;
 
-    const QVector<QString> &messages() const;
-    const QHash<QString, QByteArray> &binary_data() const;
+    const QHash<int, QVector<QString>> &messages() const;
+    const QHash<int, QHash<QString, QByteArray>> &binary_data() const;
 
     const QString &hashed_password() const;
     const bool &true_or_false() const;
@@ -151,8 +151,8 @@ private:
 
     QString _my_ID;
     QHash<int, QHash<QString, int>> _friend_list;
-    QVector<QString> _messages;
-    QHash<QString, QByteArray> _binary_data;
+    QHash<int, QVector<QString>> _messages;
+    QHash<int, QHash<QString, QByteArray>> _binary_data;
 
     QString _client_ID;
 

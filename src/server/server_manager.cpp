@@ -388,6 +388,10 @@ void server_manager::login_request(QString phone_number, QString password)
 
     QString name_and_port = Account::retrieve_name_and_port(_db_connection, phone_number.toInt());
 
+    if (!name_and_port.compare(""))
+        return;
+    // Correct the line above
+
     QString name = name_and_port.split("/").first();
     _socket->setProperty("client_name", name);
 
@@ -398,41 +402,43 @@ void server_manager::login_request(QString phone_number, QString password)
     emit client_name_changed(phone_number, old_name, name);
 
     std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
-    (hashed_password.compare("")) ? qDebug() << "Hashed Password is not empty" : qDebug() << "Hashed Password is empty";
 
     bool true_or_false = Security::verifying_password(password.toStdString(), hashed_password);
-    (true_or_false) ? qDebug() << "Password Correct" : qDebug() << "Password Incorrect";
 
-    QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
+    QHash<int, QHash<QString, int>> friend_list;
 
     QList<QString> online_friends;
 
-    for (QHash<QString, int> &info : friend_list)
+    QHash<int, QVector<QString>> messages;
+
+    QHash<int, QHash<QString, QByteArray>> binary_data;
+
+    if (true_or_false)
     {
-        for (int friend_id : info.values())
+        friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
+
+        for (QHash<QString, int> &info : friend_list)
         {
-            if (_clients.contains(QString::number(friend_id)))
+            for (int friend_id : info.values())
             {
-                QString friend_name = _names.value(QString::number(friend_id));
-                online_friends << friend_name;
+                if (_clients.contains(QString::number(friend_id)))
+                {
+                    QString friend_name = _names.value(QString::number(friend_id));
+                    online_friends << friend_name;
+                }
             }
+
+            messages[friend_list.key(info)] = Account::retrieve_conversation(_db_connection, friend_list.key(info));
+            binary_data[friend_list.key(info)] = Account::retrieve_binary_data(_db_connection, friend_list.key(info));
         }
+
+        _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
+        notify_other_clients("", name);
     }
-
-    QVector<QString> messages = Account::retrieve_conversation(_db_connection, phone_number.toInt());
-
-    QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, phone_number.toInt());
-
-    _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
-    notify_other_clients("", name);
-
-    // if (!hashed_password.compare("") && !true_or_false)
-    // {
-    // }
-    // else
-    // {
-    //     // _socket->write(_protocol->)
-    //     _clients.remove(name);
-    //     _names.remove(name);
-    // }
+    else
+    {
+        _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
+        _clients.remove(name);
+        _names.remove(name);
+    }
 }

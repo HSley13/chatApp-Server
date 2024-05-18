@@ -288,9 +288,9 @@ void client_main_window::on_sign_in()
     _insert_secret_answer->clear();
 }
 
-void client_main_window::on_login_request(QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
+void client_main_window::on_login_request(QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_datas)
 {
-    if (hashed_password == "")
+    if (!hashed_password.compare(""))
     {
         _user_phone_number->setStyleSheet("border: 1px solid red");
 
@@ -301,6 +301,92 @@ void client_main_window::on_login_request(QString hashed_password, bool true_or_
 
     if (true_or_false)
     {
+        _stack->setCurrentIndex(2);
+
+        QWidget *wid = _window_map.value("Server");
+        if (!wid)
+        {
+            _list->addItem("Server");
+
+            _server_wid->setObjectName("Server");
+            _stack->addWidget(_server_wid);
+
+            _window_map.insert("Server", _server_wid);
+
+            _status_bar->showMessage("Connected to the Server", 1000);
+        }
+
+        connect(_server_wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
+        connect(_server_wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
+        connect(_server_wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
+        connect(_server_wid, &client_chat_window::client_added_you, this, &client_main_window::on_client_added_you);
+        connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
+        connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
+        connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
+        connect(_server_wid, &client_chat_window::audio_received, this, &client_main_window::on_audio_received);
+        connect(_server_wid, &client_chat_window::file_saved, this, &client_main_window::on_file_saved);
+
+        connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
+                { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
+
+        connect(_server_wid, &client_chat_window::socket_disconnected, this, [=]()
+                { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
+
+        connect(_server_wid, &client_chat_window::data_received_sent, this, [=](QString client_name)
+                { add_on_top(client_name); });
+
+        if (list_g.isEmpty())
+            return;
+
+        QIcon offline_icon = create_dot_icon(Qt::red, 10);
+        QIcon online_icon = create_dot_icon(Qt::green, 10);
+
+        for (int conversation_ID : list_g.keys())
+        {
+            const QHash<QString, int> &list = list_g.value(conversation_ID);
+
+            QVector<QString> message = messages.value(conversation_ID);
+
+            QHash<QString, QByteArray> binary_data = binary_datas.value(conversation_ID);
+
+            for (const QString &name : list.keys())
+            {
+                _friend_list->addItem(name);
+
+                QIcon valid_icon = online_friends.contains(name) ? online_icon : offline_icon;
+
+                _friend_list->setItemIcon(_friend_list->count() - 1, valid_icon);
+
+                if (_window_map.contains(name))
+                    continue;
+
+                client_chat_window *wid = new client_chat_window(conversation_ID, QString::number(list.value(name)), name, this);
+                wid->retrieve_conversation(message, binary_data);
+
+                connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
+                connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
+                        { add_on_top(first_name); });
+
+                wid->window_name(name);
+
+                _window_map.insert(name, wid);
+
+                _stack->addWidget(wid);
+
+                if (!messages.isEmpty())
+                {
+                    QListWidgetItem *item = new QListWidgetItem(name);
+                    item->setIcon(valid_icon);
+
+                    _list->addItem(item);
+                }
+            }
+        }
+        _user_phone_number->clear();
+        _user_password->clear();
+    }
+    else
+    {
         _user_password->setStyleSheet("border: 1px solid red");
 
         QMessageBox::warning(nullptr, "!!!", "Password Incorrect");
@@ -309,86 +395,6 @@ void client_main_window::on_login_request(QString hashed_password, bool true_or_
     }
 
     _user_password->setStyleSheet("border: 1px solid gray");
-
-    _stack->setCurrentIndex(2);
-
-    QWidget *wid = _window_map.value("Server");
-    if (!wid)
-    {
-        _list->addItem("Server");
-
-        _server_wid->setObjectName("Server");
-        _stack->addWidget(_server_wid);
-
-        _window_map.insert("Server", _server_wid);
-
-        _status_bar->showMessage("Connected to the Server", 1000);
-    }
-
-    connect(_server_wid, &client_chat_window::client_name_changed, this, &client_main_window::on_client_name_changed);
-    connect(_server_wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
-    connect(_server_wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-    connect(_server_wid, &client_chat_window::client_added_you, this, &client_main_window::on_client_added_you);
-    connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
-    connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
-    connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
-    connect(_server_wid, &client_chat_window::audio_received, this, &client_main_window::on_audio_received);
-    connect(_server_wid, &client_chat_window::file_saved, this, &client_main_window::on_file_saved);
-
-    connect(_server_wid, &client_chat_window::is_typing_received, this, [=](QString sender)
-            { _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000); });
-
-    connect(_server_wid, &client_chat_window::socket_disconnected, this, [=]()
-            { _stack->setDisabled(true); _status_bar->showMessage("SERVER DISCONNECTED YOU", 999999); });
-
-    connect(_server_wid, &client_chat_window::data_received_sent, this, [=](QString client_name)
-            { add_on_top(client_name); });
-
-    if (list_g.isEmpty())
-        return;
-
-    QIcon offline_icon = create_dot_icon(Qt::red, 10);
-    QIcon online_icon = create_dot_icon(Qt::green, 10);
-
-    for (int conversation_ID : list_g.keys())
-    {
-        const QHash<QString, int> &list = list_g.value(conversation_ID);
-
-        for (const QString &name : list.keys())
-        {
-            _friend_list->addItem(name);
-
-            QIcon valid_icon = online_friends.contains(name) ? online_icon : offline_icon;
-
-            _friend_list->setItemIcon(_friend_list->count() - 1, valid_icon);
-
-            if (_window_map.contains(name))
-                continue;
-
-            client_chat_window *wid = new client_chat_window(conversation_ID, QString::number(list.value(name)), name, this);
-            wid->retrieve_conversation(messages, binary_data);
-
-            connect(wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
-            connect(wid, &client_chat_window::data_received_sent, this, [=](QString first_name)
-                    { add_on_top(first_name); });
-
-            wid->window_name(name);
-
-            _window_map.insert(name, wid);
-
-            _stack->addWidget(wid);
-
-            if (!messages.isEmpty())
-            {
-                QListWidgetItem *item = new QListWidgetItem(name);
-                item->setIcon(valid_icon);
-
-                _list->addItem(item);
-            }
-        }
-    }
-    _user_phone_number->clear();
-    _user_password->clear();
 }
 
 void client_main_window::on_name_changed()

@@ -132,11 +132,7 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
         std::unique_ptr<sql::ResultSet> result(prep_statement->executeQuery());
 
         if (!result->next())
-        {
-            QMessageBox::warning(nullptr, "Warning!", "Error Retrieving hash password! The Account entered doesn't exist in our database, Check and try again");
-
             return "";
-        }
 
         std::string hashed_password = result->getString("hashed_password");
 
@@ -180,8 +176,6 @@ void Account::create_account(sql::Connection *connection, const int phone_number
         prepared_statement->setString(4, secret_answer);
 
         prepared_statement->executeUpdate();
-
-        QMessageBox::information(nullptr, "New Account", "Account Created Successfully");
     }
     catch (const sql::SQLException &e)
     {
@@ -213,13 +207,8 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
                                   .arg(result->getString("date_time").c_str())
                                   .arg(result->getString("message_type").c_str());
 
-            qDebug() << "Inside the while loop result";
-
             messages.push_back(message);
         }
-
-        if (messages.isEmpty())
-            qDebug() << "Messages is Empty";
 
         return messages;
     }
@@ -331,7 +320,7 @@ QString Account::retrieve_name_and_port(sql::Connection *connection, const int p
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
         if (!result->next())
-            QMessageBox::warning(nullptr, "Phone Number XXX", "The entered Phone Number doesn't exist in our database, Check and try again");
+            return "";
 
         std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
 
@@ -425,12 +414,7 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
             binary_data.insert(date_time, file_data);
-
-            qDebug() << "Inside the while loop result";
         }
-
-        if (binary_data.isEmpty())
-            qDebug() << "binary_data is Empty";
 
         return binary_data;
     }

@@ -443,12 +443,12 @@ const QHash<int, QHash<QString, int>> &chat_protocol::friend_list() const
     return _friend_list;
 }
 
-const QVector<QString> &chat_protocol::messages() const
+const QHash<int, QVector<QString>> &chat_protocol::messages() const
 {
     return _messages;
 }
 
-const QHash<QString, QByteArray> &chat_protocol::binary_data() const
+const QHash<int, QHash<QString, QByteArray>> &chat_protocol::binary_data() const
 {
     return _binary_data;
 }

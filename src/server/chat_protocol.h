@@ -71,7 +71,7 @@ public:
 
     QByteArray set_online_client_message(QList<QString> names);
 
-    QByteArray set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
+    QByteArray set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data);
 
     void load_data(QByteArray data);
 

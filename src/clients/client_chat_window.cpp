@@ -400,7 +400,7 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::file_saved, this, [=](QString sender, QString path)
                 { emit file_saved(sender, path); });
 
-        connect(_client, &client_manager::login_request, this, [=](QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
+        connect(_client, &client_manager::login_request, this, [=](QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data)
                 { emit login_request(hashed_password, true_or_false, friend_list, online_friends, messages, binary_data); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);

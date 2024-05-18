@@ -194,7 +194,7 @@ QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, 
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
+QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data)
 {
     QByteArray byte;
 
