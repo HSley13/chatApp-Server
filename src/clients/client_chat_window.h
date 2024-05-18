@@ -148,14 +148,13 @@ signals:
 
     void client_added_you(int conversation_ID, QString name, QString ID);
     void lookup_friend_result(int conversation_ID, QString name);
-    void friend_list(QHash<int, QHash<QString, int>> list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
 
     void audio_received(QString sender, QString path);
     void file_saved(QString sender, QString path);
 
     void item_deleted(QListWidgetItem *item);
 
-    void login_request(QString hashed_password, bool true_or_false);
+    void login_request(QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
 
 private slots:
     void send_message();

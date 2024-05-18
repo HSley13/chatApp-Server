@@ -34,7 +34,6 @@ public:
 
         client_connected,
 
-        log_in,
         added_you,
         lookup_friend,
         create_conversation,
@@ -62,8 +61,6 @@ public:
 
     QByteArray set_file_message(QString filename);
     QByteArray set_file_message_client(QString filename, QString sender);
-
-    QByteArray set_login_message(QString ID);
 
     QByteArray set_lookup_friend_message(QString ID);
 

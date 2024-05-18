@@ -102,15 +102,6 @@ void client_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::log_in:
-    {
-        emit friend_list(_protocol->friend_list(), _protocol->online_friends(), _protocol->messages(), _protocol->binary_data());
-
-        _my_name = _protocol->my_name();
-    }
-
-    break;
-
     case chat_protocol::lookup_friend:
         emit lookup_friend_result(_protocol->conversation_ID(), _protocol->client_name());
 
@@ -122,9 +113,13 @@ void client_manager::on_ready_read()
         break;
 
     case chat_protocol::login_request:
-        emit login_request(_protocol->hashed_password(), _protocol->true_or_false());
+    {
+        emit login_request(_protocol->hashed_password(), _protocol->true_or_false(), _protocol->friend_list(), _protocol->online_friends(), _protocol->messages(), _protocol->binary_data());
 
-        break;
+        _my_name = _protocol->my_name();
+    }
+
+    break;
 
     default:
         break;
@@ -226,12 +221,6 @@ void client_manager::send_file_client(int port_transfer)
     temp->write(_protocol->set_file_message_client(_file_name_client, _protocol->my_name()));
 }
 
-void client_manager::log_in(QString ID)
-{
-    _my_ID = ID;
-    _socket->write(_protocol->set_login_message(ID));
-}
-
 void client_manager::save_file(QString date_time)
 {
     QDir dir;
@@ -328,5 +317,6 @@ void client_manager::send_sign_in_message(QString phone_number, QString first_na
 
 void client_manager::send_login_request_message(QString phone_number, QString password)
 {
+    _my_ID = phone_number;
     _socket->write(_protocol->set_login_request_message(phone_number, password));
 }

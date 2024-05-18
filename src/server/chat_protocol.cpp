@@ -158,19 +158,6 @@ QByteArray chat_protocol::set_client_connected_message(QString client_name)
     return get_data(client_connected, client_name);
 }
 
-QByteArray chat_protocol::set_login_message(QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-
-    out << log_in << full_name << port << friend_list << online_friends << messages << binary_data;
-    qDebug() << "Server : Login Friendlist etc sent";
-
-    return byte;
-}
-
 QByteArray chat_protocol::set_added_you_message(int conversation_ID, QString name, QString ID, QString receiver)
 {
     QByteArray byte;
@@ -207,15 +194,14 @@ QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, 
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false)
+QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << login_request << hashed_password << true_or_false;
-    qDebug() << "Server : Login message sent";
+    out << login_request << hashed_password << true_or_false << full_name << port << friend_list << online_friends << messages << binary_data;
 
     return byte;
 }
@@ -272,11 +258,6 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case log_in:
-        in >> _client_ID;
-
-        break;
-
     case lookup_friend:
         in >> _client_ID;
 
@@ -309,7 +290,6 @@ void chat_protocol::load_data(QByteArray data)
 
     case login_request:
         in >> _client_ID << _password;
-        qDebug() << "Login request received";
 
         break;
 

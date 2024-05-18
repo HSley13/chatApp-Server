@@ -1,2 +1,2 @@
 SELECT *
-FROM binary_data;
+FROM messages;

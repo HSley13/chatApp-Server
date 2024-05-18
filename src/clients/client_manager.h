@@ -32,8 +32,6 @@ public:
     void save_audio(QString sender, QString file_name, QByteArray file_data, QString date_time);
     void send_audio_message(QString sender, QString receiver, QString audio_name);
 
-    void log_in(QString ID);
-
     void send_lookup_friend(QString ID);
 
     void send_create_conversation_message(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
@@ -86,11 +84,10 @@ signals:
 
     void audio_received(QString sender, QString path);
 
-    void friend_list(QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
     void client_added_you(int conversation_ID, QString name, QString ID);
     void lookup_friend_result(int conversation_ID, QString name);
 
-    void login_request(QString hashed_password, bool true_or_false);
+    void login_request(QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data);
 
 private slots:
     void on_new_connection();

@@ -49,7 +49,7 @@ client_main_window::client_main_window(QWidget *parent)
                           "padding: 5px 10px;");
     connect(log_in, &QPushButton::clicked, this, [=]()
             {     if (!_server_wid)
-                _server_wid = new client_chat_window(_user_phone_number->text(), this); 
+                _server_wid = new client_chat_window(_user_phone_number->text(), this);
                 connect(_server_wid, &client_chat_window::login_request, this, &client_main_window::on_login_request);
                 _server_wid->_client->send_login_request_message(_user_phone_number->text(), _user_password->text()); });
 
@@ -288,7 +288,7 @@ void client_main_window::on_sign_in()
     _insert_secret_answer->clear();
 }
 
-void client_main_window::on_login_request(QString hashed_password, bool true_or_false)
+void client_main_window::on_login_request(QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
 {
     if (hashed_password == "")
     {
@@ -299,7 +299,7 @@ void client_main_window::on_login_request(QString hashed_password, bool true_or_
 
     _user_phone_number->setStyleSheet("border: 1px solid gray");
 
-    if (!true_or_false)
+    if (true_or_false)
     {
         _user_password->setStyleSheet("border: 1px solid red");
 
@@ -329,7 +329,6 @@ void client_main_window::on_login_request(QString hashed_password, bool true_or_
     connect(_server_wid, &client_chat_window::text_message_received, this, &client_main_window::on_text_message_received);
     connect(_server_wid, &client_chat_window::swipe_right, this, &client_main_window::on_swipe_right);
     connect(_server_wid, &client_chat_window::client_added_you, this, &client_main_window::on_client_added_you);
-    connect(_server_wid, &client_chat_window::friend_list, this, &client_main_window::on_friend_list);
     connect(_server_wid, &client_chat_window::lookup_friend_result, this, &client_main_window::on_lookup_friend_result);
     connect(_server_wid, &client_chat_window::client_disconnected, this, &client_main_window::on_client_disconnected);
     connect(_server_wid, &client_chat_window::client_connected, this, &client_main_window::on_client_connected);
@@ -345,12 +344,6 @@ void client_main_window::on_login_request(QString hashed_password, bool true_or_
     connect(_server_wid, &client_chat_window::data_received_sent, this, [=](QString client_name)
             { add_on_top(client_name); });
 
-    _user_phone_number->clear();
-    _user_password->clear();
-}
-
-void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
-{
     if (list_g.isEmpty())
         return;
 
@@ -394,6 +387,8 @@ void client_main_window::on_friend_list(QHash<int, QHash<QString, int>> list_g, 
             }
         }
     }
+    _user_phone_number->clear();
+    _user_password->clear();
 }
 
 void client_main_window::on_name_changed()

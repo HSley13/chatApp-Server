@@ -1,0 +1,194 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src/server",
+					"jsonFile" : "directory-src.server-RelWithDebInfo-ed01e06ea8a73e000890.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/server",
+					"targetIndexes" : 
+					[
+						6,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "src/clients",
+					"jsonFile" : "directory-src.clients-RelWithDebInfo-2765ed17c977525481e6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "src/clients",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "src/database",
+					"jsonFile" : "directory-src.database-RelWithDebInfo-bc47545b602a2b73f466.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/database",
+					"targetIndexes" : 
+					[
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						3
+					],
+					"name" : "server_app",
+					"targetIndexes" : 
+					[
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "client_app",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "client::@9e041423fa8cb161f775",
+					"jsonFile" : "target-client-RelWithDebInfo-c7b02f7d1e962c8f1870.json",
+					"name" : "client",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "client_autogen::@9e041423fa8cb161f775",
+					"jsonFile" : "target-client_autogen-RelWithDebInfo-5379d7bfe9581ef095e6.json",
+					"name" : "client_autogen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "client_autogen_timestamp_deps::@9e041423fa8cb161f775",
+					"jsonFile" : "target-client_autogen_timestamp_deps-RelWithDebInfo-8ec0d11eaff16e3fe8c1.json",
+					"name" : "client_autogen_timestamp_deps",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "database_library::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library-RelWithDebInfo-5171af4b0af141546729.json",
+					"name" : "database_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "database_library_autogen::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library_autogen-RelWithDebInfo-f67de41f80c7b8454814.json",
+					"name" : "database_library_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "database_library_autogen_timestamp_deps::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library_autogen_timestamp_deps-RelWithDebInfo-8ff01eab22a405cd7cdc.json",
+					"name" : "database_library_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server-RelWithDebInfo-be55c99ab3e8a5ed6919.json",
+					"name" : "server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server_autogen::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server_autogen-RelWithDebInfo-ad9a47cf3616983453d4.json",
+					"name" : "server_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server_autogen_timestamp_deps::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server_autogen_timestamp_deps-RelWithDebInfo-981d2ec06b72d582e985.json",
+					"name" : "server_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/test/Documents/client---server---client_chat_application/build",
+		"source" : "/Users/test/Documents/client---server---client_chat_application"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

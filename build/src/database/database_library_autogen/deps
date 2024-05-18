@@ -1,0 +1,5 @@
+database_library_autogen/timestamp: \
+	/Users/test/Documents/client---server---client_chat_application/src/database/CMakeLists.txt \
+	/Users/test/Documents/client---server---client_chat_application/src/database/database.cpp \
+	/Users/test/Documents/client---server---client_chat_application/src/database/database.h \
+	/opt/homebrew/Cellar/cmake/3.29.3/bin/cmake

@@ -1,0 +1,17 @@
+/Users/test/Documents/client---server---client_chat_application/build/CMakeFiles/edit_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/CMakeFiles/rebuild_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/server/CMakeFiles/server.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/server/CMakeFiles/edit_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/server/CMakeFiles/rebuild_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/server/CMakeFiles/server_autogen_timestamp_deps.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/server/CMakeFiles/server_autogen.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/clients/CMakeFiles/client.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/clients/CMakeFiles/edit_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/clients/CMakeFiles/rebuild_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/clients/CMakeFiles/client_autogen_timestamp_deps.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/clients/CMakeFiles/client_autogen.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/database/CMakeFiles/database_library.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/database/CMakeFiles/edit_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/database/CMakeFiles/rebuild_cache.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/database/CMakeFiles/database_library_autogen_timestamp_deps.dir
+/Users/test/Documents/client---server---client_chat_application/build/src/database/CMakeFiles/database_library_autogen.dir

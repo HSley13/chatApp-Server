@@ -131,11 +131,6 @@ void server_manager::on_ready_read()
 
         break;
 
-    case chat_protocol::log_in:
-        login(_protocol->clients_ID());
-
-        break;
-
     case chat_protocol::lookup_friend:
         lookup_friend(_protocol->clients_ID());
 
@@ -339,52 +334,6 @@ void server_manager::is_typing_for_other_clients(QString sender, QString receive
         qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
-void server_manager::login(QString ID)
-{
-    if (ID.isEmpty())
-        return;
-
-    QString old_name = _socket->property("client_name").toString();
-    _clients.remove(_clients.key(_socket));
-
-    _clients.insert(ID, _socket);
-
-    QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
-
-    QString name = name_and_port.split("/").first();
-    _socket->setProperty("client_name", name);
-
-    _names.insert(ID, name);
-
-    emit client_name_changed(ID, old_name, name);
-
-    notify_other_clients("", name);
-
-    QString port = name_and_port.split("/").last();
-
-    QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, ID.toInt());
-
-    QList<QString> online_friends;
-
-    for (QHash<QString, int> &info : friend_list)
-    {
-        for (int friend_id : info.values())
-        {
-            if (_clients.contains(QString::number(friend_id)))
-            {
-                QString friend_name = _names.value(QString::number(friend_id));
-                online_friends << friend_name;
-            }
-        }
-    }
-
-    QVector<QString> messages = Account::retrieve_conversation(_db_connection, ID.toInt());
-
-    QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, ID.toInt());
-
-    _socket->write(_protocol->set_login_message(name, port.toInt(), friend_list, online_friends, messages, binary_data));
-}
-
 void server_manager::lookup_friend(QString ID)
 {
     std::random_device rd;
@@ -429,9 +378,61 @@ void server_manager::sign_in(QString phone_number, QString first_name, QString l
 
 void server_manager::login_request(QString phone_number, QString password)
 {
+    if (phone_number.isEmpty())
+        return;
+
+    QString old_name = _socket->property("client_name").toString();
+    _clients.remove(_clients.key(_socket));
+
+    _clients.insert(phone_number, _socket);
+
+    QString name_and_port = Account::retrieve_name_and_port(_db_connection, phone_number.toInt());
+
+    QString name = name_and_port.split("/").first();
+    _socket->setProperty("client_name", name);
+
+    QString port = name_and_port.split("/").last();
+
+    _names.insert(phone_number, name);
+
+    emit client_name_changed(phone_number, old_name, name);
+
     std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
+    (hashed_password.compare("")) ? qDebug() << "Hashed Password is not empty" : qDebug() << "Hashed Password is empty";
 
     bool true_or_false = Security::verifying_password(password.toStdString(), hashed_password);
+    (true_or_false) ? qDebug() << "Password Correct" : qDebug() << "Password Incorrect";
 
-    _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false));
+    QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
+
+    QList<QString> online_friends;
+
+    for (QHash<QString, int> &info : friend_list)
+    {
+        for (int friend_id : info.values())
+        {
+            if (_clients.contains(QString::number(friend_id)))
+            {
+                QString friend_name = _names.value(QString::number(friend_id));
+                online_friends << friend_name;
+            }
+        }
+    }
+
+    QVector<QString> messages = Account::retrieve_conversation(_db_connection, phone_number.toInt());
+
+    QHash<QString, QByteArray> binary_data = Account::retrieve_binary_data(_db_connection, phone_number.toInt());
+
+    _socket->write(_protocol->set_login_message(QString::fromStdString(hashed_password), true_or_false, name, port.toInt(), friend_list, online_friends, messages, binary_data));
+    notify_other_clients("", name);
+
+    // if (!hashed_password.compare("") && !true_or_false)
+    // {
+    // }
+    // else
+    // {
+    //     // _socket->write(_protocol->)
+    //     _clients.remove(name);
+    //     _names.remove(name);
+    // }
 }

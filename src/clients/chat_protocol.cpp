@@ -152,11 +152,6 @@ QByteArray chat_protocol::set_file_message_client(QString filename, QString send
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(QString ID)
-{
-    return get_data(log_in, ID);
-}
-
 QByteArray chat_protocol::set_lookup_friend_message(QString ID)
 {
     return get_data(lookup_friend, ID);
@@ -228,14 +223,12 @@ QByteArray chat_protocol::set_login_request_message(QString phone_number, QStrin
     out.setVersion(QDataStream::Qt_6_0);
 
     out << login_request << phone_number << password;
-    qDebug() << "Login request sent";
 
     return byte;
 }
 
 QByteArray chat_protocol::set_save_data_message(int conversation_ID, QString sender, QString receiver, QString file_name, QString type)
 {
-
     QByteArray byte;
 
     QFile file(file_name);
@@ -330,12 +323,6 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case log_in:
-        in >> _my_name >> _port >> _friend_list >> _online_friends >> _messages >> _binary_data;
-        qDebug() << "Client : Login Friendlist etc received";
-
-        break;
-
     case lookup_friend:
         in >> _conversation_ID >> _client_name;
 
@@ -347,8 +334,7 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case login_request:
-        in >> _hashed_password >> _true_or_false;
-        qDebug() << "Client : Login message received";
+        in >> _hashed_password >> _true_or_false >> _my_name >> _port >> _friend_list >> _online_friends >> _messages >> _binary_data;
 
         break;
 

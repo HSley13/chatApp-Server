@@ -213,8 +213,13 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
                                   .arg(result->getString("date_time").c_str())
                                   .arg(result->getString("message_type").c_str());
 
+            qDebug() << "Inside the while loop result";
+
             messages.push_back(message);
         }
+
+        if (messages.isEmpty())
+            qDebug() << "Messages is Empty";
 
         return messages;
     }
@@ -420,7 +425,12 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
             binary_data.insert(date_time, file_data);
+
+            qDebug() << "Inside the while loop result";
         }
+
+        if (binary_data.isEmpty())
+            qDebug() << "binary_data is Empty";
 
         return binary_data;
     }

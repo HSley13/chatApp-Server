@@ -394,22 +394,17 @@ void client_chat_window::set_up_window()
         connect(_client, &client_manager::lookup_friend_result, this, [=](int conversation_ID, QString name)
                 { emit lookup_friend_result(conversation_ID, name); });
 
-        connect(_client, &client_manager::friend_list, this, [=](QHash<int, QHash<QString, int>> list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
-                { emit friend_list(list, online_friends, messages, binary_data); });
-
         connect(_client, &client_manager::audio_received, this, [=](QString sender, QString path)
                 { emit audio_received(sender, path); });
 
         connect(_client, &client_manager::file_saved, this, [=](QString sender, QString path)
                 { emit file_saved(sender, path); });
 
-        connect(_client, &client_manager::login_request, this, [=](QString hashed_password, bool true_or_false)
-                { emit login_request(hashed_password, true_or_false); });
+        connect(_client, &client_manager::login_request, this, [=](QString hashed_password, bool true_or_false, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QVector<QString> messages, QHash<QString, QByteArray> binary_data)
+                { emit login_request(hashed_password, true_or_false, friend_list, online_friends, messages, binary_data); });
 
         connect(_client, &client_manager::init_receiving_file, this, &client_chat_window::on_init_receiving_file);
         connect(_client, &client_manager::init_receiving_file_client, this, &client_chat_window::on_init_receiving_file_client);
-
-        _client->log_in(_my_ID);
     }
 }
 
