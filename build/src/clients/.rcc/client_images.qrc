@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="/images">
-    <file alias="send_icon.png">/Users/test/Documents/client---server---client_chat_application/src/clients/send_icon.png</file>
-    <file alias="file_icon.webp">/Users/test/Documents/client---server---client_chat_application/src/clients/file_icon.webp</file>
-    <file alias="record_icon.png">/Users/test/Documents/client---server---client_chat_application/src/clients/record_icon.png</file>
-    <file alias="style.css">/Users/test/Documents/client---server---client_chat_application/src/clients/style.css</file>
-  </qresource>
-</RCC>
-
