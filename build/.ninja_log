@@ -1,0 +1,23 @@
+# ninja log v6
+3	36	1716103878769137423	src/database/database_library_autogen/timestamp	8b16547ac383142d
+3	36	1716103878769137423	/Users/test/Documents/server_app/build/src/database/database_library_autogen/mocs_compilation.cpp	8b16547ac383142d
+2026	5748	1716260297195484093	src/server/CMakeFiles/server.dir/server_chat_window.cpp.o	f4a4b24f50333457
+3	36	1716103878769137423	src/database/database_library_autogen/mocs_compilation.cpp	8b16547ac383142d
+55	2023	1716260297178812000	src/server/server_autogen/timestamp	39620be3a530485d
+3	36	1716103878769137423	/Users/test/Documents/server_app/build/src/database/database_library_autogen/timestamp	8b16547ac383142d
+36	54	1716103878774011843	src/database/CMakeFiles/database_library.dir/database_library_autogen/mocs_compilation.cpp.o	49ee116edfdc8243
+1962	1988	1716103880700391479	src/database/libdatabase_library.a	bf08284a1265bb6d
+36	1957	1716103878774205130	src/database/CMakeFiles/database_library.dir/database.cpp.o	399809435a034979
+2025	5654	1716260297194022738	src/server/CMakeFiles/server.dir/server_main_window.cpp.o	e815bd46c3ce30f7
+55	2023	1716260297178812000	src/server/server_autogen/mocs_compilation.cpp	39620be3a530485d
+55	2023	1716260297178812000	/Users/test/Documents/server_app/build/src/server/server_autogen/timestamp	39620be3a530485d
+2024	5764	1716260297193582786	src/server/CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o	828ef0881fadbe66
+4318	4336	1716103883073586214	src/server/.rcc/qrc_images.cpp	829c09b21743f6ea
+4318	4336	1716103883073586214	/Users/test/Documents/server_app/build/src/server/.rcc/qrc_images.cpp	829c09b21743f6ea
+4338	7111	1716103883075931614	src/server/CMakeFiles/server.dir/chat_protocol.cpp.o	f26afd84776f81f3
+4339	4459	1716103883077005920	src/server/CMakeFiles/server.dir/.rcc/qrc_images.cpp.o	af9375c101263d4
+5848	7592	1716260301017297120	src/server/server.app/Contents/MacOS/server	687cf9b3a5bcb654
+2025	5558	1716260297193872199	src/server/CMakeFiles/server.dir/server_main.cpp.o	efe58c699ee2d77f
+2025	5848	1716260297194147403	src/server/CMakeFiles/server.dir/server_manager.cpp.o	402e350b31436cfa
+55	2023	1716260297178812000	/Users/test/Documents/server_app/build/src/server/server_autogen/mocs_compilation.cpp	39620be3a530485d
+4337	7017	1716103883075568331	src/server/CMakeFiles/server.dir/chat_line.cpp.o	a3a9e4c996bef278

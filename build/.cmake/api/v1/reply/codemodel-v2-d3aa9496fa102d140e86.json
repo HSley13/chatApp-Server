@@ -1,0 +1,137 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src/server",
+					"jsonFile" : "directory-src.server-Debug-ed01e06ea8a73e000890.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/server",
+					"targetIndexes" : 
+					[
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "src/database",
+					"jsonFile" : "directory-src.database-Debug-bc47545b602a2b73f466.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/database",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "server_app",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "database_library::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library-Debug-1241e7dc977140249a01.json",
+					"name" : "database_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "database_library_autogen::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library_autogen-Debug-f67de41f80c7b8454814.json",
+					"name" : "database_library_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "database_library_autogen_timestamp_deps::@f1aa34bc7b1afc1810b8",
+					"jsonFile" : "target-database_library_autogen_timestamp_deps-Debug-8ff01eab22a405cd7cdc.json",
+					"name" : "database_library_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server-Debug-e2f75dc81980e593cc9d.json",
+					"name" : "server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server_autogen::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server_autogen-Debug-ad9a47cf3616983453d4.json",
+					"name" : "server_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "server_autogen_timestamp_deps::@2804e40980a64c7d7ad1",
+					"jsonFile" : "target-server_autogen_timestamp_deps-Debug-981d2ec06b72d582e985.json",
+					"name" : "server_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/test/Documents/server_app/build",
+		"source" : "/Users/test/Documents/server_app"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

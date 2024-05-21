@@ -102,5 +102,6 @@
         "qtmultimedia": "cpp",
         "qwebsocket": "cpp",
         "qwebsocketserver": "cpp"
-    }
+    },
+    "liveServer.settings.port": 5501
 }
