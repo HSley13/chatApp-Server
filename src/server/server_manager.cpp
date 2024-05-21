@@ -154,8 +154,8 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
-    case chat_protocol::sign_in:
-        sign_in(_protocol->clients_ID(), _protocol->first_name(), _protocol->last_name(), _protocol->password(), _protocol->secret_question(), _protocol->secret_answer());
+    case chat_protocol::sign_up:
+        sign_up(_protocol->clients_ID(), _protocol->first_name(), _protocol->last_name(), _protocol->password(), _protocol->secret_question(), _protocol->secret_answer());
 
         break;
 
@@ -343,7 +343,11 @@ void server_manager::lookup_friend(QString ID)
 
     QString name_and_port = Account::retrieve_name_and_port(_db_connection, ID.toInt());
 
-    _socket->sendBinaryMessage(_protocol->set_lookup_friend_message(conversation_ID, name_and_port.split("/").first()));
+    bool true_or_false = (_clients.contains(ID)) ? true : false;
+    qDebug() << "true_or_false 1:" << true_or_false;
+
+    _socket->sendBinaryMessage(_protocol->set_lookup_friend_message(conversation_ID, name_and_port.split("/").first(), true_or_false));
+    qDebug() << "true_or_false 2:" << true_or_false;
 
     QString ID_2 = _clients.key(_socket);
 
@@ -369,9 +373,9 @@ void server_manager::save_data_client(int conversation_ID, QString sender, QStri
     Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString());
 }
 
-void server_manager::sign_in(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
+void server_manager::sign_up(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
 {
-    Account::create_account(_db_connection, phone_number.toInt(), first_name.toStdString(), last_name.toStdString(), password.toStdString(), secret_question.toStdString(), secret_answer.toStdString());
+    Account::create_account(_db_connection, phone_number.toInt(), first_name.toStdString(), last_name.toStdString(), secret_question.toStdString(), secret_answer.toStdString(), password.toStdString());
 }
 
 void server_manager::login_request(QString phone_number, QString password)

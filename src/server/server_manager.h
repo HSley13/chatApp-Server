@@ -46,7 +46,7 @@ public:
     void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data);
     void save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type);
 
-    void sign_in(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
+    void sign_up(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
 
     void login_request(QString phone_number, QString password);
 

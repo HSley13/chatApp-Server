@@ -170,14 +170,15 @@ QByteArray chat_protocol::set_added_you_message(int conversation_ID, QString nam
     return byte;
 }
 
-QByteArray chat_protocol::set_lookup_friend_message(int conversation_ID, QString ID)
+QByteArray chat_protocol::set_lookup_friend_message(int conversation_ID, QString ID, bool true_or_false)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
 
-    out << lookup_friend << conversation_ID << ID;
+    out << lookup_friend << conversation_ID << ID << true_or_false;
+    qDebug() << "True or false sent: " << true_or_false;
 
     return byte;
 }
@@ -283,7 +284,7 @@ void chat_protocol::load_data(QByteArray data)
 
         break;
 
-    case sign_in:
+    case sign_up:
         in >> _client_ID >> _first_name >> _last_name >> _password >> _secret_question >> _secret_answer;
 
         break;

@@ -152,7 +152,7 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
     }
 }
 
-void Account::create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &hashed_password)
+void Account::create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &password)
 {
     try
     {
@@ -168,6 +168,8 @@ void Account::create_account(sql::Connection *connection, const int phone_number
         prepared_statement->setInt(4, distribution(generator));
 
         prepared_statement->executeUpdate();
+
+        std::string hashed_password = Security::hashing_password(password);
 
         prepared_statement = std::unique_ptr<sql::PreparedStatement>(connection->prepareStatement("INSERT INTO password_security VALUES(?, ?, ?, ?);"));
         prepared_statement->setInt(1, phone_number);

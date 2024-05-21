@@ -38,7 +38,7 @@ public:
 
         audio,
         save_data,
-        sign_in,
+        sign_up,
         login_request
     };
 
@@ -63,7 +63,7 @@ public:
 
     QByteArray set_added_you_message(int conversation_ID, QString name, QString ID, QString receiver);
 
-    QByteArray set_lookup_friend_message(int conversation_ID, QString ID);
+    QByteArray set_lookup_friend_message(int conversation_ID, QString ID, bool true_or_false);
 
     QByteArray set_audio_message(QString sender, QString audio_name, QByteArray audio_data);
 
