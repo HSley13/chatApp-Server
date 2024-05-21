@@ -294,7 +294,7 @@ void server_manager::notify_other_clients(QString old_name, QString new_name)
 
             if (client_name.compare(new_name))
             {
-                if (!old_name.compare(""))
+                if (old_name.isEmpty())
                     cl->sendBinaryMessage(message_2);
                 else
                     cl->sendBinaryMessage(message_1);
@@ -390,7 +390,7 @@ void server_manager::login_request(QString phone_number, QString password)
 
     QString name_and_port = Account::retrieve_name_and_port(_db_connection, phone_number.toInt());
 
-    if (!name_and_port.compare(""))
+    if (name_and_port.isEmpty())
         return;
     // Correct the line above
 

@@ -48,7 +48,7 @@ std::string Security::generate_random_salt(std::size_t len)
     {
         std::cerr << e.what() << std::endl;
 
-        return "";
+        return std::string();
     }
 }
 
@@ -74,7 +74,7 @@ std::string Security::hashing_password(const std::string password)
         {
             std::cout << "Error Hashing Password" << std::endl;
 
-            return "";
+            return std::string();
         }
 
         std::string hashed_password = salt + hash;
@@ -85,7 +85,7 @@ std::string Security::hashing_password(const std::string password)
     {
         std::cerr << e.what() << std::endl;
 
-        return "";
+        return std::string();
     }
 }
 
@@ -132,7 +132,7 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
         std::unique_ptr<sql::ResultSet> result(prep_statement->executeQuery());
 
         if (!result->next())
-            return "";
+            return std::string();
 
         std::string hashed_password = result->getString("hashed_password");
 
@@ -142,13 +142,13 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
     {
         std::cerr << "retrieve_hashed_password() ---> SQL ERROR: " << e.what() << std::endl;
 
-        return "";
+        return std::string();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
 
-        return "";
+        return std::string();
     }
 }
 
@@ -322,7 +322,7 @@ QString Account::retrieve_name_and_port(sql::Connection *connection, const int p
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
         if (!result->next())
-            return "";
+            return QString();
 
         std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
 
@@ -331,12 +331,12 @@ QString Account::retrieve_name_and_port(sql::Connection *connection, const int p
     catch (const sql::SQLException &e)
     {
         std::cerr << "retrieve_name_and_port() ---> SQL ERROR: " << e.what() << std::endl;
-        return "";
+        return QString();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        return "";
+        return QString();
     }
 }
 

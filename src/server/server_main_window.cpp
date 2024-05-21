@@ -33,7 +33,7 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     QWidget *central_widget = new QWidget();
     setCentralWidget(central_widget);
 
-    resize(400, 400);
+    resize(800, 100);
 
     _tabs = new QTabWidget(this);
     _tabs->setTabsClosable(true);
