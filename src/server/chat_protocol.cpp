@@ -234,8 +234,6 @@ void chat_protocol::load_data(QByteArray data)
     case save_data:
         in >> _conversation_ID >> _sender >> _receiver >> _file_name >> _file_data >> _data_type;
 
-        qDebug() << "file received to save";
-
         break;
 
     case sign_up:

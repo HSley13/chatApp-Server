@@ -384,8 +384,6 @@ void Account::save_binary_data(sql::Connection *connection, const int conversati
         prepared_statement->setBlob(5, &blob_stream);
         prepared_statement->setString(6, type);
 
-        qDebug() << "saving file";
-
         prepared_statement->executeUpdate();
     }
     catch (const sql::SQLException &e)
