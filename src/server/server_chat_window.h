@@ -11,7 +11,7 @@ public:
 
     void disconnect_from_host();
 
-    void add_file(QString path, bool is_mine = true);
+    void add_file(QString path);
 
 private:
     QListWidget *_list;
@@ -41,8 +41,6 @@ private slots:
     void send_message();
 
     void folder();
-    void send_file();
-    void on_init_receiving_file(QString sender, QString file_name, qint64 file_size);
 
     void on_text_message_received(QString message);
     void on_file_saved(QString path);

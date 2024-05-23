@@ -30,12 +30,8 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
     _file = new QPushButton("Open Client Directory", this);
     connect(_file, &QPushButton::clicked, this, &server_chat_window::folder);
 
-    QPushButton *send_file = new QPushButton("...", this);
-    connect(send_file, &QPushButton::clicked, this, &server_chat_window::send_file);
-
     QHBoxLayout *hbox_2 = new QHBoxLayout();
-    hbox_2->addWidget(_file, 7);
-    hbox_2->addWidget(send_file, 3);
+    hbox_2->addWidget(_file);
 
     QVBoxLayout *VBOX = new QVBoxLayout(central_widget);
     VBOX->addWidget(_list);
@@ -49,16 +45,9 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
 
-    connect(_client, &server_manager::init_receiving_file, this, &server_chat_window::on_init_receiving_file);
-    connect(_client, &server_manager::file_saved, this, &server_chat_window::on_file_saved);
-
     connect(_client, &server_manager::is_typing_received, this, [&](QString sender, QString receiver)
             { emit is_typing_received(sender, receiver); });
-
-    connect(_client, &server_manager::reject_receiving_file, this, [&](QString sender)
-            { QMessageBox::critical(this, "Rejection", QString("%1 has Rejected Your request to send a file").arg(sender)); });
 }
-
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
 void server_chat_window::on_text_message_received(QString message)
@@ -73,17 +62,6 @@ void server_chat_window::on_text_message_received(QString message)
     line->setSizeHint(QSize(0, 60));
 
     _list->setItemWidget(line, wid);
-}
-
-void server_chat_window::on_init_receiving_file(QString sender, QString file_name, qint64 file_size)
-{
-    QString message = QString("%1 wants to send a File. Willing to accept it or not?\n File Name: %2\n File Size: %3 bytes").arg(sender, file_name).arg(file_size);
-
-    QMessageBox::StandardButton result = QMessageBox::question(this, "Receiving File", message);
-    if (result == QMessageBox::Yes)
-        _client->send_accept_file();
-    else
-        _client->send_reject_file();
 }
 
 void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
@@ -101,7 +79,7 @@ void server_chat_window::on_file_saved(QString path)
 
     QMessageBox::information(this, "File Saved", message);
 
-    add_file(path, false);
+    add_file(path);
 }
 
 void server_chat_window::send_message()
@@ -123,20 +101,6 @@ void server_chat_window::send_message()
     _insert_message->clear();
 }
 
-void server_chat_window::send_file()
-{
-    QString file_name = QFileDialog::getOpenFileName(this, "Select a File", "/home");
-    if (!file_name.isEmpty())
-    {
-        _client->send_init_sending_file(file_name);
-
-        connect(_client, &server_manager::file_accepted, this, [&]()
-                { add_file(QFileInfo(file_name).absoluteFilePath()); });
-
-        file_name.clear();
-    }
-}
-
 void server_chat_window::folder()
 {
     QString executable_directory = QApplication::applicationDirPath();
@@ -155,7 +119,7 @@ void server_chat_window::disconnect_from_host()
     _client->disconnect_from_host();
 }
 
-void server_chat_window::add_file(QString path, bool is_mine)
+void server_chat_window::add_file(QString path)
 {
     QPixmap image(":/images/file_icon.webp");
     if (!image)
@@ -172,7 +136,7 @@ void server_chat_window::add_file(QString path, bool is_mine)
     QListWidgetItem *item = new QListWidgetItem(_list);
     item->setSizeHint(QSize(0, 60));
 
-    (is_mine) ? item->setBackground(QBrush(QColorConstants::Svg::lightblue)) : item->setBackground(QBrush(QColorConstants::Svg::lightgray));
+    item->setBackground(QBrush(QColorConstants::Svg::lightgray));
 
     _list->setItemWidget(item, file);
 }

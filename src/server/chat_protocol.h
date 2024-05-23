@@ -14,21 +14,13 @@ public:
         is_typing,
         set_name,
 
-        init_sending_file,
-        init_sending_file_client,
-
-        accept_sending_file,
-        accept_sending_file_client,
-
-        reject_sending_file,
-        reject_sending_file_client,
-
-        send_file,
-        send_file_client,
+        init_send_file,
+        file_accepted,
+        file_rejected,
+        file,
 
         client_new_name,
         client_disconnected,
-
         client_connected,
 
         added_you,
@@ -38,6 +30,7 @@ public:
 
         audio,
         save_data,
+
         sign_up,
         login_request
     };
@@ -46,17 +39,11 @@ public:
     QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
 
-    QByteArray set_init_sending_file_message(QString filename);
-    QByteArray set_init_sending_file_message_client(QString sender, QString ID, QString filename, qint64 file_size);
+    QByteArray set_init_send_file_message(QString sender, QString sender_ID, QString filename, qint64 file_size);
+    QByteArray set_file_accepted_message(QString sender);
+    QByteArray set_file_rejected_message(QString sender);
 
-    QByteArray set_accept_file_message();
-    QByteArray set_accept_file_message_client(int port);
-
-    QByteArray set_reject_file_message();
-    QByteArray set_reject_file_message_client(QString sender, QString receiver);
-
-    QByteArray set_file_message(QString filename);
-    QByteArray set_file_message_client(int port);
+    QByteArray set_file_message(QString sender, QString file_name, QByteArray file_data);
 
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
@@ -71,19 +58,22 @@ public:
 
     QByteArray set_online_client_message(QList<QString> names);
 
-    QByteArray set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data);
+    QByteArray set_login_message(QString hashed_password, bool true_or_false, QString full_name, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data);
 
     void load_data(QByteArray data);
 
     message_type type() const;
+
     const QString &message() const;
     const QString &name() const;
+
     const QString &original_name() const;
+
     const QString &file_name() const;
-    const QString &file_name_client() const;
     const qint64 &file_size() const;
-    const qint64 &file_size_client() const;
     const QByteArray &file_data() const;
+    const QString &file_sender() const;
+    const QString &file_receiver() const;
 
     const QString &client_name() const;
     const QHash<QString, QString> &other_clients() const;
@@ -93,8 +83,6 @@ public:
 
     const QString &receiver_typing() const;
     const QString &sender_typing() const;
-
-    const int &port() const;
 
     const QString &clients_ID() const;
 
@@ -128,16 +116,18 @@ private:
     int _port;
 
     QString _file_name;
-    QString _file_name_client;
     qint64 _file_size;
-    qint64 _file_size_client;
     QByteArray _file_data;
+    QString _file_sender;
+    QString _file_receiver;
 
     QString _client_name;
     QString _receiver;
     QString _sender;
+
     QString _receiver_typing;
     QString _sender_typing;
+
     QString _original_name;
     QHash<QString, QString> _other_clients;
 

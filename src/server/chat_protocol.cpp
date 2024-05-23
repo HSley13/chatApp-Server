@@ -8,7 +8,7 @@ QByteArray chat_protocol::get_data(message_type type, QString data)
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << type << data;
 
@@ -20,7 +20,7 @@ QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QSt
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << text << sender << receiver << message;
 
@@ -32,7 +32,7 @@ QByteArray chat_protocol::set_is_typing_message(QString sender, QString receiver
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << is_typing << sender << receiver;
 
@@ -44,94 +44,50 @@ QByteArray chat_protocol::set_name_message(QString name)
     return get_data(set_name, name);
 }
 
-QByteArray chat_protocol::set_init_sending_file_message(QString file_name)
+QByteArray chat_protocol::set_init_send_file_message(QString sender, QString sender_ID, QString file_name, qint64 file_size)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    QFileInfo info(file_name);
-
-    out << init_sending_file << info.fileName() << info.size();
+    out << init_send_file << sender << sender_ID << file_name << file_size;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_init_sending_file_message_client(QString sender, QString ID, QString file_name, qint64 file_size)
+QByteArray chat_protocol::set_file_accepted_message(QString sender)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    out << init_sending_file_client << sender << ID << file_name << file_size;
+    out << file_accepted << sender;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_accept_file_message()
-{
-    return get_data(accept_sending_file, "");
-}
-
-QByteArray chat_protocol::set_accept_file_message_client(int port)
+QByteArray chat_protocol::set_file_rejected_message(QString sender)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    out << accept_sending_file_client << port;
+    out << file_rejected << sender;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_reject_file_message()
-{
-    return get_data(reject_sending_file, "");
-}
-
-QByteArray chat_protocol::set_reject_file_message_client(QString sender, QString receiver)
+QByteArray chat_protocol::set_file_message(QString sender, QString file_name, QByteArray file_data)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    out << reject_sending_file_client << sender << receiver;
-
-    return byte;
-}
-
-QByteArray chat_protocol::set_file_message(QString filename)
-{
-    QByteArray byte;
-
-    QFile file(filename);
-    if (file.open(QIODevice::ReadOnly))
-    {
-        QDataStream out(&byte, QIODevice::WriteOnly);
-        out.setVersion(QDataStream::Qt_6_0);
-
-        QFileInfo info(filename);
-
-        out << send_file << info.fileName() << info.size() << file.readAll();
-
-        file.close();
-    }
-
-    return byte;
-}
-
-QByteArray chat_protocol::set_file_message_client(int port)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-
-    out << send_file_client << port;
+    out << file << sender << file_name << file_data;
 
     return byte;
 }
@@ -141,7 +97,7 @@ QByteArray chat_protocol::set_client_name_message(QString old_name, QString clie
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << client_new_name << old_name << client_name;
 
@@ -163,7 +119,7 @@ QByteArray chat_protocol::set_added_you_message(int conversation_ID, QString nam
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << added_you << conversation_ID << name << ID << receiver;
 
@@ -175,10 +131,9 @@ QByteArray chat_protocol::set_lookup_friend_message(int conversation_ID, QString
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << lookup_friend << conversation_ID << ID << true_or_false;
-    qDebug() << "True or false sent: " << true_or_false;
 
     return byte;
 }
@@ -188,21 +143,21 @@ QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, 
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
     out << audio << sender << audio_name << audio_data;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false, QString full_name, int port, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data)
+QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_or_false, QString full_name, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    out << login_request << hashed_password << true_or_false << full_name << port << friend_list << online_friends << messages << binary_data;
+    out << login_request << hashed_password << true_or_false << full_name << friend_list << online_friends << messages << binary_data;
 
     return byte;
 }
@@ -210,7 +165,7 @@ QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_o
 void chat_protocol::load_data(QByteArray data)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
-    in.setVersion(QDataStream::Qt_6_0);
+    in.setVersion(QDataStream::Qt_6_7);
 
     in >> _type;
 
@@ -229,28 +184,25 @@ void chat_protocol::load_data(QByteArray data)
     case is_typing:
         in >> _sender_typing >> _receiver_typing;
 
-    case init_sending_file:
-        in >> _file_name >> _file_size;
+        break;
+
+    case init_send_file:
+        in >> _file_sender >> _client_ID >> _file_receiver >> _file_name >> _file_size;
 
         break;
 
-    case send_file:
-        in >> _file_name >> _file_size >> _file_data;
+    case file_accepted:
+        in >> _file_sender >> _file_receiver;
 
         break;
 
-    case init_sending_file_client:
-        in >> _sender >> _client_ID >> _receiver >> _file_name_client >> _file_size_client;
+    case file_rejected:
+        in >> _file_sender >> _file_receiver;
 
         break;
 
-    case accept_sending_file_client:
-        in >> _receiver >> _port;
-
-        break;
-
-    case reject_sending_file_client:
-        in >> _sender >> _receiver;
+    case file:
+        in >> _file_sender >> _file_receiver >> _file_name >> _file_data;
 
         break;
 
@@ -280,7 +232,9 @@ void chat_protocol::load_data(QByteArray data)
         break;
 
     case save_data:
-        in >> _conversation_ID >> _sender >> _receiver >> _file_name_client >> _file_data >> _data_type;
+        in >> _conversation_ID >> _sender >> _receiver >> _file_name >> _file_data >> _data_type;
+
+        qDebug() << "file received to save";
 
         break;
 
@@ -324,19 +278,9 @@ const QString &chat_protocol::file_name() const
     return _file_name;
 }
 
-const QString &chat_protocol::file_name_client() const
-{
-    return _file_name_client;
-}
-
 const qint64 &chat_protocol::file_size() const
 {
     return _file_size;
-}
-
-const qint64 &chat_protocol::file_size_client() const
-{
-    return _file_size_client;
 }
 
 const QByteArray &chat_protocol::file_data() const
@@ -363,6 +307,17 @@ const QString &chat_protocol::sender() const
 {
     return _sender;
 }
+
+const QString &chat_protocol::file_receiver() const
+{
+    return _file_receiver;
+}
+
+const QString &chat_protocol::file_sender() const
+{
+    return _file_sender;
+}
+
 const QString &chat_protocol::receiver_typing() const
 {
     return _receiver_typing;
@@ -371,11 +326,6 @@ const QString &chat_protocol::receiver_typing() const
 const QString &chat_protocol::sender_typing() const
 {
     return _sender_typing;
-}
-
-const int &chat_protocol::port() const
-{
-    return _port;
 }
 
 const QString &chat_protocol::clients_ID() const

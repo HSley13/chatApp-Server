@@ -19,20 +19,12 @@ public:
     void send_text(QString text);
     void send_is_typing(QString sender);
 
-    void send_init_sending_file(QString filename);
-    void send_accept_file();
-    void send_reject_file();
-
-    void send_accept_file_client(QString receiver, int port);
-    void send_reject_file_client(QString sender, QString receiver);
-
     void notify_other_clients(QString old_name, QString client_name);
 
-    void send_file();
-    void save_file();
-
-    void file_for_other_clients(QString sender, QString ID, QString receiver, QString file_name, qint64 file_size);
-    void reject_receiving_file_clients(QString sender, QString receiver);
+    void init_send_file_received(QString sender, QString sender_ID, QString receiver, QString file_name, qint64 file_size);
+    void file_accepted(QString sender, QString receiver);
+    void file_rejected(QString sender, QString receiver);
+    void file_received(QString sender, QString receiver, QString file_name, QByteArray file_data);
 
     QString name() const;
 
@@ -44,7 +36,7 @@ public:
     void lookup_friend(QString ID);
 
     void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data);
-    void save_data_client(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type);
+    void save_data(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type);
 
     void sign_up(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
 
@@ -70,14 +62,6 @@ signals:
     void text_message_received(QString message);
     void client_name_changed(QString original_name, QString old_name, QString name);
     void is_typing_received(QString sender, QString receiver);
-
-    void init_receiving_file(QString sender, QString file_name, qint64 file_size);
-    void init_receiving_file_client(QString sender, QString receiver, QString file_name);
-
-    void file_saved(QString path);
-
-    void reject_receiving_file(QString sender);
-    void file_accepted();
 
     void after_login(QString old_name, QString name);
 

@@ -312,11 +312,11 @@ void Account::create_conversation(sql::Connection *connection, const int convers
     }
 }
 
-QString Account::retrieve_name_and_port(sql::Connection *connection, const int phone_number)
+QString Account::retrieve_alias(sql::Connection *connection, const int phone_number)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT alias, port FROM accounts WHERE phone_number = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT alias FROM accounts WHERE phone_number = ?;"));
         prepared_statement->setInt(1, phone_number);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
@@ -324,7 +324,7 @@ QString Account::retrieve_name_and_port(sql::Connection *connection, const int p
         if (!result->next())
             return QString();
 
-        std::string name = result->getString("alias") + "/" + std::to_string(result->getInt("port"));
+        std::string name = result->getString("alias");
 
         return QString::fromStdString(name);
     }
@@ -383,6 +383,8 @@ void Account::save_binary_data(sql::Connection *connection, const int conversati
         prepared_statement->setString(4, file_name);
         prepared_statement->setBlob(5, &blob_stream);
         prepared_statement->setString(6, type);
+
+        qDebug() << "saving file";
 
         prepared_statement->executeUpdate();
     }

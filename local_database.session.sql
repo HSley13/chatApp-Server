@@ -1,2 +1,2 @@
 SELECT *
-FROM accounts;
+FROM messages;

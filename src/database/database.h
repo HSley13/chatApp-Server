@@ -47,7 +47,7 @@ public:
 
     static QHash<int, QHash<QString, int>> retrieve_friend_list(sql::Connection *connection, const int phone_number);
 
-    static QString retrieve_name_and_port(sql::Connection *connection, const int phone_number);
+    static QString retrieve_alias(sql::Connection *connection, const int phone_number);
 
     static void update_alias(sql::Connection *connection, const int phone_number, const std::string name);
 
