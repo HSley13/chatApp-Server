@@ -13,7 +13,7 @@
     ------ Voice Notes Feature implemented using QMediaRecorder (class within QtMultimedia).
     ------ On/Offline Status implemented using a green and red dot. 
     ------ Using WebAssembly, it's both a Desktop app and WebApp.
-    ------
+    ------ Store Data using emscripten's IDBFS, then sync it with indexed_DB to make Data consistent. File and Audio retrieval can be done without requesting it from the server.
     ------
     ------
     ------
@@ -21,6 +21,7 @@
     ------
 
     TO DO
+    --- Message Deletion for both user.
     --- Group Chats.
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
@@ -55,32 +56,32 @@
                 participant1_ID INT,
                 participant2 VARCHAR(50),
                 participant2_ID INT,
-                start_time DATETIME DEFAULT CURRENT_TIMESTAMP
+                start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
             -------messages
             CREATE TABLE messages 
             (
-                message_id INT AUTO_INCREMENT PRIMARY KEY,
+                date_time TIMESTAMP PRIMARY KEY,
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
                 content TEXT,
-                message_type VARCHAR(25) DEFAULT 'text', 
-                date_time DATETIME DEFAULT CURRENT_TIMESTAMP
-            )AUTO_INCREMENT = 1;
+                message_type VARCHAR(25) DEFAULT 'text'
+            );
 
 
-            -------files
+            -------binary_data
             CREATE TABLE binary_data 
             (
-                file_ID INT AUTO_INCREMENT PRIMARY KEY,
+                date_time TIMESTAMP PRIMARY KEY,
                 conversation_ID INT,
+                sender_ID INT,
+                receiver_ID INT,
                 file_name VARCHAR(255),
                 file_data MEDIUMBLOB,
-                data_type TEXT,
-                date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            ) AUTO_INCREMENT = 1;
+                data_type TEXT
+            );
 
 
             *************** ALL THE TRIGGERS ***************
@@ -95,9 +96,9 @@
                 END;
 
             -------add_file_message
-            CREATE TRIGGER add_file_message AFTER INSERT ON files 
+            CREATE TRIGGER add_file_message AFTER INSERT ON binary_data 
             FOR EACH ROW 
                 BEGIN
-                    INSERT INTO messages (conversation_ID, sender_ID, receiver_ID, content, message_type)
-                    VALUES ( NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, data_type);
+                    INSERT INTO messages (date_time, conversation_ID, sender_ID, receiver_ID, content,  message_type)
+                    VALUES (NEW.date_time, NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, data_type);
                 END;

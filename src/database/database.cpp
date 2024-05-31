@@ -52,7 +52,7 @@ std::string Security::generate_random_salt(std::size_t len)
     }
 }
 
-std::string Security::hashing_password(const std::string password)
+std::string Security::hashing_password(const std::string &password)
 {
     try
     {
@@ -89,7 +89,7 @@ std::string Security::hashing_password(const std::string password)
     }
 }
 
-bool Security::verifying_password(const std::string password, const std::string &hashed_password)
+bool Security::verifying_password(const std::string &password, const std::string &hashed_password)
 {
     try
     {
@@ -122,7 +122,7 @@ bool Security::verifying_password(const std::string password, const std::string 
     }
 }
 
-std::string Security::retrieve_hashed_password(sql::Connection *connection, const int phone_number)
+std::string Security::retrieve_hashed_password(sql::Connection *connection, const int &phone_number)
 {
     try
     {
@@ -152,7 +152,7 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
     }
 }
 
-void Account::create_account(sql::Connection *connection, const int phone_number, const std::string first_name, const std::string last_name, const std::string secret_question, const std::string secret_answer, const std::string &password)
+void Account::create_account(sql::Connection *connection, const int &phone_number, const std::string &first_name, const std::string &last_name, const std::string &secret_question, const std::string &secret_answer, const std::string &password)
 {
     try
     {
@@ -189,7 +189,7 @@ void Account::create_account(sql::Connection *connection, const int phone_number
     }
 }
 
-QVector<QString> Account::retrieve_conversation(sql::Connection *connection, const int conversation_ID)
+QVector<QString> Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID)
 {
     try
     {
@@ -226,7 +226,7 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
     }
 }
 
-QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *connection, const int phone_number)
+QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *connection, const int &phone_number)
 {
     try
     {
@@ -267,15 +267,18 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
     }
 }
 
-void Account::save_text_message(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, const std::string content)
+void Account::save_text_message(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &content, const std::string &time)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (conversation_ID, sender_ID, receiver_ID, content) VALUES (?,?,?,?);"));
+        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (conversation_ID, sender_ID, receiver_ID, content, date_time) VALUES (?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
         prepared_statement->setString(4, content);
+        prepared_statement->setString(5, date_time.toStdString());
 
         prepared_statement->executeUpdate();
     }
@@ -289,7 +292,7 @@ void Account::save_text_message(sql::Connection *connection, const int conversat
     }
 }
 
-void Account::create_conversation(sql::Connection *connection, const int conversation_ID, std::string participant1, const int participant1_ID, std::string participant2, const int participant2_ID)
+void Account::create_conversation(sql::Connection *connection, const int &conversation_ID, const std::string &participant1, const int &participant1_ID, const std::string &participant2, const int &participant2_ID)
 {
     try
     {
@@ -312,7 +315,7 @@ void Account::create_conversation(sql::Connection *connection, const int convers
     }
 }
 
-QString Account::retrieve_alias(sql::Connection *connection, const int phone_number)
+QString Account::retrieve_alias(sql::Connection *connection, const int &phone_number)
 {
     try
     {
@@ -340,7 +343,7 @@ QString Account::retrieve_alias(sql::Connection *connection, const int phone_num
     }
 }
 
-void Account::update_alias(sql::Connection *connection, const int phone_number, const std::string name)
+void Account::update_alias(sql::Connection *connection, const int &phone_number, const std::string &name)
 {
     try
     {
@@ -370,19 +373,22 @@ void Account::update_alias(sql::Connection *connection, const int phone_number, 
     }
 }
 
-void Account::save_binary_data(sql::Connection *connection, const int conversation_ID, const int sender_ID, const int receiver_ID, std::string file_name, const char *file_data, const int file_size, std::string type)
+void Account::save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time)
 {
     try
     {
         std::istringstream blob_stream(std::string(file_data, file_size));
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type) VALUES (?,?,?,?,?,?);"));
+        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
         prepared_statement->setString(4, file_name);
         prepared_statement->setBlob(5, &blob_stream);
         prepared_statement->setString(6, type);
+        prepared_statement->setString(7, date_time.toStdString());
 
         prepared_statement->executeUpdate();
     }
@@ -396,7 +402,7 @@ void Account::save_binary_data(sql::Connection *connection, const int conversati
     }
 }
 
-QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connection, const int conversation_ID)
+QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connection, const int &conversation_ID)
 {
     try
     {
@@ -429,5 +435,29 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
     {
         std::cerr << e.what() << std::endl;
         return QHash<QString, QByteArray>();
+    }
+}
+
+void Account::delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time)
+{
+    try
+    {
+        QString date_time;
+
+        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM binary_data WHERE conversation_ID = ? AND date_time = ?;"));
+        prepared_statement->setInt(1, conversation_ID);
+        prepared_statement->setString(2, date_time.toStdString());
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "delete_message() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 }

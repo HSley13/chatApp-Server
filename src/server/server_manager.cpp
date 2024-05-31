@@ -29,42 +29,6 @@ server_manager::server_manager(QWebSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
-
-void server_manager::on_new_connection()
-{
-    QWebSocket *client = _server->nextPendingConnection();
-
-    int id = _clients.count() + 1;
-    client->setProperty("id", id);
-
-    QString client_name = QString("client %1").arg(id);
-
-    client->setProperty("client_name", client_name);
-    _clients.insert(client_name, client);
-
-    connect(client, &QWebSocket::disconnected, this, &server_manager::on_client_disconnected);
-    emit new_client_connected(client);
-}
-
-void server_manager::on_client_disconnected()
-{
-    QWebSocket *client = qobject_cast<QWebSocket *>(sender());
-
-    QString client_name = client->property("client_name").toString();
-
-    QByteArray message = _protocol->set_client_disconnected_message(client_name);
-
-    if (!_clients.isEmpty())
-    {
-        for (QWebSocket *cl : _clients)
-            cl->sendBinaryMessage(message);
-    }
-    else
-        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
-
-    emit new_client_disconnected(client);
-}
-
 void server_manager::on_binary_message_received(const QByteArray &message)
 {
     _protocol->load_data(message);
@@ -72,7 +36,7 @@ void server_manager::on_binary_message_received(const QByteArray &message)
     switch (_protocol->type())
     {
     case chat_protocol::text:
-        message_received(_protocol->sender(), _protocol->receiver(), _protocol->message());
+        message_received(_protocol->sender(), _protocol->receiver(), _protocol->message(), _protocol->time());
 
         break;
 
@@ -110,7 +74,7 @@ void server_manager::on_binary_message_received(const QByteArray &message)
         break;
 
     case chat_protocol::file:
-        file_received(_protocol->file_sender(), _protocol->file_receiver(), _protocol->file_name(), _protocol->file_data());
+        file_received(_protocol->file_sender(), _protocol->file_receiver(), _protocol->file_name(), _protocol->file_data(), _protocol->time());
 
         break;
 
@@ -125,17 +89,17 @@ void server_manager::on_binary_message_received(const QByteArray &message)
         break;
 
     case chat_protocol::save_message:
-        save_conversation_message(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->message());
+        save_conversation_message(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->message(), _protocol->time());
 
         break;
 
     case chat_protocol::audio:
-        audio_received(_protocol->audio_sender(), _protocol->audio_receiver(), _protocol->audio_name(), _protocol->audio_data());
+        audio_received(_protocol->audio_sender(), _protocol->audio_receiver(), _protocol->audio_name(), _protocol->audio_data(), _protocol->time());
 
         break;
 
     case chat_protocol::save_data:
-        save_data(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->file_name(), _protocol->file_data(), _protocol->data_type());
+        save_data(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->file_name(), _protocol->file_data(), _protocol->data_type(), _protocol->time());
 
         break;
 
@@ -149,30 +113,70 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::delete_message:
+        delete_message(_protocol->conversation_ID(), _protocol->sender(), _protocol->receiver(), _protocol->time());
+
+        break;
+
     default:
         break;
     }
 }
 
-void server_manager::message_received(QString sender, QString receiver, QString message)
+void server_manager::on_new_connection()
+{
+    QWebSocket *client = _server->nextPendingConnection();
+
+    int id = _clients.count() + 1;
+    client->setProperty("id", id);
+
+    QString client_name = QString("client %1").arg(id);
+
+    client->setProperty("client_name", client_name);
+    _clients.insert(client_name, client);
+
+    connect(client, &QWebSocket::disconnected, this, &server_manager::on_client_disconnected);
+    emit new_client_connected(client);
+}
+
+void server_manager::on_client_disconnected()
+{
+    QWebSocket *client = qobject_cast<QWebSocket *>(sender());
+
+    QString client_name = client->property("client_name").toString();
+
+    QByteArray message = _protocol->set_client_disconnected_message(client_name);
+
+    if (!_clients.isEmpty())
+    {
+        for (QWebSocket *cl : _clients)
+            cl->sendBinaryMessage(message);
+    }
+    else
+        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
+
+    emit new_client_disconnected(client);
+}
+
+void server_manager::message_received(QString sender, QString receiver, QString message, QString time)
 {
     if (!receiver.compare("Server"))
-        emit text_message_received(message);
+        emit text_message_received(message, time);
     else
     {
         QWebSocket *client = _clients.value(receiver);
         if (client)
-            client->sendBinaryMessage(_protocol->set_text_message(sender, "", message));
+            client->sendBinaryMessage(_protocol->set_text_message(sender, "", message, time));
         else
             qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
     }
 }
 
-void server_manager::audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data)
+void server_manager::audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data, QString time)
 {
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data));
+        client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data, time));
     else
         qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
@@ -195,9 +199,9 @@ void server_manager::disconnect_from_host()
     _socket->close();
 }
 
-void server_manager::send_text(QString text)
+void server_manager::send_text(QString text, QString time)
 {
-    _socket->sendBinaryMessage(_protocol->set_text_message("Server", name(), text));
+    _socket->sendBinaryMessage(_protocol->set_text_message("Server", name(), text, time));
 }
 
 void server_manager::send_is_typing(QString sender)
@@ -233,11 +237,11 @@ void server_manager::file_rejected(QString sender, QString receiver)
         qDebug() << "server_manager --> file_rejected() --> receiver not FOUND" << receiver;
 }
 
-void server_manager::file_received(QString sender, QString receiver, QString file_name, QByteArray file_data)
+void server_manager::file_received(QString sender, QString receiver, QString file_name, QByteArray file_data, QString time)
 {
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data));
+        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, time));
     else
         qDebug() << "server_manager --> file_received() --> receiver not FOUND" << receiver;
 }
@@ -312,14 +316,14 @@ void server_manager::create_conversation(int conversation_ID, QString participan
     Account::create_conversation(_db_connection, conversation_ID, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID);
 }
 
-void server_manager::save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content)
+void server_manager::save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content, QString time)
 {
-    Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString());
+    Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString(), time.toStdString());
 }
 
-void server_manager::save_data(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type)
+void server_manager::save_data(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type, QString time)
 {
-    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString());
+    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString(), time.toStdString());
 }
 
 void server_manager::sign_up(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer)
@@ -389,4 +393,15 @@ void server_manager::login_request(QString phone_number, QString password)
         _names.remove(name);
         _socket->close();
     }
+}
+
+void server_manager::delete_message(const int conversation_ID, const QString &sender, const QString &receiver, const QString &time)
+{
+    Account::delete_message(_db_connection, conversation_ID, time.toStdString());
+
+    QWebSocket *client = _clients.value(receiver);
+    if (client)
+        client->sendBinaryMessage(_protocol->set_delete_message(conversation_ID, sender, time));
+    else
+        qDebug() << "server_manager --> delete_message() --> receiver not FOUND" << receiver;
 }

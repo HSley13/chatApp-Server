@@ -32,10 +32,12 @@ public:
         save_data,
 
         sign_up,
-        login_request
+        login_request,
+
+        delete_message
     };
 
-    QByteArray set_text_message(QString sender, QString receiver, QString message);
+    QByteArray set_text_message(QString sender, QString receiver, QString message, QString time);
     QByteArray set_is_typing_message(QString sender, QString receiver);
     QByteArray set_name_message(QString name);
 
@@ -43,7 +45,8 @@ public:
     QByteArray set_file_accepted_message(QString sender);
     QByteArray set_file_rejected_message(QString sender);
 
-    QByteArray set_file_message(QString sender, QString file_name, QByteArray file_data);
+    QByteArray set_file_message(QString sender, QString file_name, QByteArray file_data, QString time);
+    QByteArray set_audio_message(QString sender, QString audio_name, QByteArray audio_data, QString time);
 
     QByteArray set_client_name_message(QString old_name, QString client_name);
     QByteArray set_client_disconnected_message(QString client_name);
@@ -52,13 +55,13 @@ public:
 
     QByteArray set_lookup_friend_message(int conversation_ID, QString ID, bool true_or_false);
 
-    QByteArray set_audio_message(QString sender, QString audio_name, QByteArray audio_data);
-
     QByteArray set_client_connected_message(QString client_name);
 
     QByteArray set_online_client_message(QList<QString> names);
 
     QByteArray set_login_message(QString hashed_password, bool true_or_false, QString full_name, QHash<int, QHash<QString, int>> friend_list, QList<QString> online_friends, QHash<int, QVector<QString>> messages, QHash<int, QHash<QString, QByteArray>> binary_data);
+
+    QByteArray set_delete_message(const int &conversation_ID, const QString &sender, const QString &time);
 
     void load_data(QByteArray data);
 
@@ -104,6 +107,8 @@ public:
     const QString &password() const;
     const QString &secret_question() const;
     const QString &secret_answer() const;
+
+    const QString &time() const;
 
 private:
     QByteArray get_data(message_type type, QString data);
@@ -151,4 +156,6 @@ private:
     QString _password;
     QString _secret_question;
     QString _secret_answer;
+
+    QString _time;
 };

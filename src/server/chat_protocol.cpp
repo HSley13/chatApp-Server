@@ -3,6 +3,100 @@
 chat_protocol::chat_protocol(QWidget *parent)
     : QMainWindow(parent) {}
 
+void chat_protocol::load_data(QByteArray data)
+{
+    QDataStream in(&data, QIODevice::ReadOnly);
+    in.setVersion(QDataStream::Qt_6_7);
+
+    in >> _type;
+
+    switch (_type)
+    {
+    case text:
+        in >> _sender >> _receiver >> _message >> _time;
+
+        break;
+
+    case set_name:
+        in >> _original_name >> _name;
+
+        break;
+
+    case is_typing:
+        in >> _sender_typing >> _receiver_typing;
+
+        break;
+
+    case init_send_file:
+        in >> _file_sender >> _client_ID >> _file_receiver >> _file_name >> _file_size;
+
+        break;
+
+    case file_accepted:
+        in >> _file_sender >> _file_receiver;
+
+        break;
+
+    case file_rejected:
+        in >> _file_sender >> _file_receiver;
+
+        break;
+
+    case file:
+        in >> _file_sender >> _file_receiver >> _file_name >> _file_data >> _time;
+
+        break;
+
+    case added_you:
+        in >> _client_name >> _client_ID >> _receiver;
+
+        break;
+
+    case lookup_friend:
+        in >> _client_ID;
+
+        break;
+
+    case create_conversation:
+        in >> _conversation_ID >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID;
+
+        break;
+
+    case save_message:
+        in >> _conversation_ID >> _sender >> _receiver >> _message >> _time;
+
+        break;
+
+    case audio:
+        in >> _audio_sender >> _audio_receiver >> _audio_name >> _audio_data >> _time;
+
+        break;
+
+    case save_data:
+        in >> _conversation_ID >> _sender >> _receiver >> _file_name >> _file_data >> _data_type >> _time;
+
+        break;
+
+    case sign_up:
+        in >> _client_ID >> _first_name >> _last_name >> _password >> _secret_question >> _secret_answer;
+
+        break;
+
+    case login_request:
+        in >> _client_ID >> _password;
+
+        break;
+
+    case delete_message:
+        in >> _conversation_ID >> _sender >> _receiver >> _time;
+
+        break;
+
+    default:
+        break;
+    }
+}
+
 QByteArray chat_protocol::get_data(message_type type, QString data)
 {
     QByteArray byte;
@@ -15,14 +109,14 @@ QByteArray chat_protocol::get_data(message_type type, QString data)
     return byte;
 }
 
-QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QString message)
+QByteArray chat_protocol::set_text_message(QString sender, QString receiver, QString message, QString time)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << text << sender << receiver << message;
+    out << text << sender << receiver << message << time;
 
     return byte;
 }
@@ -80,14 +174,14 @@ QByteArray chat_protocol::set_file_rejected_message(QString sender)
     return byte;
 }
 
-QByteArray chat_protocol::set_file_message(QString sender, QString file_name, QByteArray file_data)
+QByteArray chat_protocol::set_file_message(QString sender, QString file_name, QByteArray file_data, QString time)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << file << sender << file_name << file_data;
+    out << file << sender << file_name << file_data << time;
 
     return byte;
 }
@@ -138,14 +232,14 @@ QByteArray chat_protocol::set_lookup_friend_message(int conversation_ID, QString
     return byte;
 }
 
-QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, QByteArray audio_data)
+QByteArray chat_protocol::set_audio_message(QString sender, QString audio_name, QByteArray audio_data, QString time)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << audio << sender << audio_name << audio_data;
+    out << audio << sender << audio_name << audio_data << time;
 
     return byte;
 }
@@ -162,93 +256,16 @@ QByteArray chat_protocol::set_login_message(QString hashed_password, bool true_o
     return byte;
 }
 
-void chat_protocol::load_data(QByteArray data)
+QByteArray chat_protocol::set_delete_message(const int &conversation_ID, const QString &sender, const QString &time)
 {
-    QDataStream in(&data, QIODevice::ReadOnly);
-    in.setVersion(QDataStream::Qt_6_7);
+    QByteArray byte;
 
-    in >> _type;
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
 
-    switch (_type)
-    {
-    case text:
-        in >> _sender >> _receiver >> _message;
+    out << delete_message << sender << time;
 
-        break;
-
-    case set_name:
-        in >> _original_name >> _name;
-
-        break;
-
-    case is_typing:
-        in >> _sender_typing >> _receiver_typing;
-
-        break;
-
-    case init_send_file:
-        in >> _file_sender >> _client_ID >> _file_receiver >> _file_name >> _file_size;
-
-        break;
-
-    case file_accepted:
-        in >> _file_sender >> _file_receiver;
-
-        break;
-
-    case file_rejected:
-        in >> _file_sender >> _file_receiver;
-
-        break;
-
-    case file:
-        in >> _file_sender >> _file_receiver >> _file_name >> _file_data;
-
-        break;
-
-    case added_you:
-        in >> _client_name >> _client_ID >> _receiver;
-
-        break;
-
-    case lookup_friend:
-        in >> _client_ID;
-
-        break;
-
-    case create_conversation:
-        in >> _conversation_ID >> _participant1 >> _participant1_ID >> _participant2 >> _participant2_ID;
-
-        break;
-
-    case save_message:
-        in >> _conversation_ID >> _sender >> _receiver >> _message;
-
-        break;
-
-    case audio:
-        in >> _audio_sender >> _audio_receiver >> _audio_name >> _audio_data;
-
-        break;
-
-    case save_data:
-        in >> _conversation_ID >> _sender >> _receiver >> _file_name >> _file_data >> _data_type;
-
-        break;
-
-    case sign_up:
-        in >> _client_ID >> _first_name >> _last_name >> _password >> _secret_question >> _secret_answer;
-
-        break;
-
-    case login_request:
-        in >> _client_ID >> _password;
-
-        break;
-
-    default:
-        break;
-    }
+    return byte;
 }
 
 chat_protocol::message_type chat_protocol::type() const
@@ -401,4 +418,9 @@ const QString &chat_protocol::secret_question() const
 const QString &chat_protocol::secret_answer() const
 {
     return _secret_answer;
+}
+
+const QString &chat_protocol::time() const
+{
+    return _time;
 }

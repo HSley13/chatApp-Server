@@ -50,11 +50,11 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 }
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
-void server_chat_window::on_text_message_received(QString message)
+void server_chat_window::on_text_message_received(QString message, QString time)
 {
 
     chat_line *wid = new chat_line(this);
-    wid->set_message(message);
+    wid->set_message(message, false, time);
     wid->setStyleSheet("color: black;");
 
     QListWidgetItem *line = new QListWidgetItem(_list);
@@ -86,10 +86,12 @@ void server_chat_window::send_message()
 {
     QString message = _insert_message->text();
 
-    _client->send_text(message);
+    QString current_time = QTime::currentTime().toString();
+
+    _client->send_text(message, current_time);
 
     chat_line *wid = new chat_line(this);
-    wid->set_message(message, true);
+    wid->set_message(message, true, current_time);
     wid->setStyleSheet("color: black;");
 
     QListWidgetItem *line = new QListWidgetItem(_list);

@@ -101,7 +101,11 @@
         "thread": "cpp",
         "qtmultimedia": "cpp",
         "qwebsocket": "cpp",
-        "qwebsocketserver": "cpp"
+        "qwebsocketserver": "cpp",
+        "format": "cpp",
+        "stop_token": "cpp",
+        "text_encoding": "cpp",
+        "cinttypes": "cpp"
     },
     "liveServer.settings.port": 5501
 }

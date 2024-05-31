@@ -12,10 +12,10 @@ chat_line::chat_line(QWidget *parent)
     VBOX = new QVBoxLayout(central_widget);
 }
 
-void chat_line::set_message(QString message, bool is_mine)
+void chat_line::set_message(QString message, bool is_mine, QString time)
 {
     QLabel *msg_label = new QLabel(message, this);
-    QLabel *time_label = new QLabel(QTime::currentTime().toString(), this);
+    QLabel *time_label = new QLabel(time, this);
 
     if (is_mine)
     {
