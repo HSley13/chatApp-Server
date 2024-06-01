@@ -98,7 +98,7 @@ void server_main_window::on_new_client_disconnected(QWebSocket *client)
     _list->addItem(QString("%1 is disconnected").arg(client_name));
 }
 
-void server_main_window::on_client_name_changed(QString original_name, QString old_name, QString client_name)
+void server_main_window::on_client_name_changed(const QString &original_name, const QString &old_name, const QString &client_name)
 {
     QWidget *wid = qobject_cast<QWidget *>(sender());
     int index = _tabs->indexOf(wid);
@@ -113,7 +113,7 @@ void server_main_window::on_client_name_changed(QString original_name, QString o
     _window_map.insert(client_name, wid);
 }
 
-void server_main_window::on_is_typing_received(QString sender, QString receiver)
+void server_main_window::on_is_typing_received(const QString &sender, const QString &receiver)
 {
     if (!receiver.compare("Server"))
         _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);

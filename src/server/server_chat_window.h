@@ -11,7 +11,7 @@ public:
 
     void disconnect_from_host();
 
-    void add_file(QString path);
+    void add_file(const QString &path);
 
 private:
     QListWidget *_list;
@@ -27,21 +27,21 @@ private:
     QDir dir;
 
 signals:
-    void client_name_changed(QString original_name, QString old_name, QString name);
-    void is_typing_received(QString sender, QString receiver);
+    void client_name_changed(const QString &original_name, const QString &old_name, const QString &name);
+    void is_typing_received(const QString &sender, const QString &receiver);
 
-    void text_for_other_client(QString sender, QString receiver, QString message);
-    void file_for_other_client(QString sender, QString receiver, QString file_name);
+    void text_for_other_client(const QString &sender, const QString &receiver, const QString &message);
+    void file_for_other_client(const QString &sender, const QString &receiver, const QString &file_name);
 
-    void reject_receiving_file_for_other_clients(QString sender, QString receiver);
+    void reject_receiving_file_for_other_clients(const QString &sender, const QString &receiver);
 
 private slots:
-    void on_client_name_changed(QString original_name, QString old_name, QString name);
+    void on_client_name_changed(const QString &original_name, const QString &old_name, const QString &name);
 
     void send_message();
 
     void folder();
 
-    void on_text_message_received(QString message, QString time);
-    void on_file_saved(QString path);
+    void on_text_message_received(const QString &message, const QString &time);
+    void on_file_saved(const QString &path);
 };

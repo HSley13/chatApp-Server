@@ -446,7 +446,7 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
 
         (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM binary_data WHERE conversation_ID = ? AND date_time = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM messages WHERE conversation_ID = ? AND date_time = ?;"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setString(2, date_time.toStdString());
 

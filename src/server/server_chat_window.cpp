@@ -45,12 +45,12 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
 
-    connect(_client, &server_manager::is_typing_received, this, [&](QString sender, QString receiver)
+    connect(_client, &server_manager::is_typing_received, this, [=](const QString &sender, const QString &receiver)
             { emit is_typing_received(sender, receiver); });
 }
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
 
-void server_chat_window::on_text_message_received(QString message, QString time)
+void server_chat_window::on_text_message_received(const QString &message, const QString &time)
 {
 
     chat_line *wid = new chat_line(this);
@@ -64,7 +64,7 @@ void server_chat_window::on_text_message_received(QString message, QString time)
     _list->setItemWidget(line, wid);
 }
 
-void server_chat_window::on_client_name_changed(QString original_name, QString old_name, QString name)
+void server_chat_window::on_client_name_changed(const QString &original_name, const QString &old_name, const QString &name)
 {
     QFile::rename(dir.canonicalPath(), name);
 
@@ -73,7 +73,7 @@ void server_chat_window::on_client_name_changed(QString original_name, QString o
     emit client_name_changed(original_name, old_name, name);
 }
 
-void server_chat_window::on_file_saved(QString path)
+void server_chat_window::on_file_saved(const QString &path)
 {
     QString message = QString("File save at: %1").arg(path);
 
@@ -121,7 +121,7 @@ void server_chat_window::disconnect_from_host()
     _client->disconnect_from_host();
 }
 
-void server_chat_window::add_file(QString path)
+void server_chat_window::add_file(const QString &path)
 {
     QPixmap image(":/images/file_icon.webp");
     if (!image)

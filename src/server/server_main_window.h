@@ -28,9 +28,9 @@ private slots:
     void on_new_client_connected(QWebSocket *client);
     void on_new_client_disconnected(QWebSocket *client);
 
-    void on_client_name_changed(QString original_name, QString old_name, QString name);
+    void on_client_name_changed(const QString &original_name, const QString &old_name, const QString &name);
 
-    void on_is_typing_received(QString sender, QString receiver);
+    void on_is_typing_received(const QString &sender, const QString &receiver);
 
     void close_tabs(int index);
 };

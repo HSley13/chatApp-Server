@@ -14,35 +14,35 @@ public:
     void disconnect_from_host();
     void disconnect_all_clients();
 
-    void is_typing_for_other_clients(QString sender, QString receiver);
+    void is_typing_for_other_clients(const QString &sender, const QString &receiver);
 
-    void send_text(QString text, QString time);
-    void send_is_typing(QString sender);
+    void send_text(const QString &text, const QString &time);
+    void send_is_typing(const QString &sender);
 
-    void notify_other_clients(QString old_name, QString client_name);
+    void notify_other_clients(const QString &old_name, const QString &client_name);
 
-    void init_send_file_received(QString sender, QString sender_ID, QString receiver, QString file_name, qint64 file_size);
-    void file_accepted(QString sender, QString receiver);
-    void file_rejected(QString sender, QString receiver);
-    void file_received(QString sender, QString receiver, QString file_name, QByteArray file_data, QString time);
+    void init_send_file_received(const QString &sender, const QString &sender_ID, const QString &receiver, const QString &file_name, const qint64 &file_size);
+    void file_accepted(const QString &sender, const QString &receiver);
+    void file_rejected(const QString &sender, const QString &receiver);
+    void file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time);
 
     QString name() const;
 
     static QHash<QString, QWebSocket *> _clients;
     static QHash<QString, QString> _names;
 
-    void create_conversation(int conversation_ID, QString participant1, int participant1_ID, QString participant2, int participant2_ID);
-    void save_conversation_message(int conversation_ID, QString sender, QString receiver, QString content, QString time);
-    void lookup_friend(QString ID);
+    void create_conversation(const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID);
+    void save_conversation_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &content, const QString &time);
+    void lookup_friend(const QString &ID);
 
-    void audio_received(QString sender, QString receiver, QString audio_name, QByteArray audio_data, QString time);
-    void save_data(int conversation_ID, QString sender, QString receiver, QString file_name, QByteArray file_data, QString data_type, QString time);
+    void audio_received(const QString &sender, const QString &receiver, const QString &audio_name, const QByteArray &audio_data, const QString &time);
+    void save_data(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &data_type, const QString &time);
 
-    void sign_up(QString phone_number, QString first_name, QString last_name, QString password, QString secret_question, QString secret_answer);
+    void sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer);
 
-    void login_request(QString phone_number, QString password);
+    void login_request(const QString &phone_number, const QString &password);
 
-    void delete_message(const int conversation_ID, const QString &sender, const QString &receiver, const QString &time);
+    void delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time);
 
 private:
     QWidget *central_widget;
@@ -61,11 +61,11 @@ signals:
     void new_client_connected(QWebSocket *client);
     void new_client_disconnected(QWebSocket *client);
 
-    void text_message_received(QString message, QString time);
-    void client_name_changed(QString original_name, QString old_name, QString name);
-    void is_typing_received(QString sender, QString receiver);
+    void text_message_received(const QString &message, const QString &time);
+    void client_name_changed(const QString &original_name, const QString &old_name, const QString &name);
+    void is_typing_received(const QString &sender, const QString &receiver);
 
-    void after_login(QString old_name, QString name);
+    void after_login(const QString &old_name, const QString &name);
 
 private slots:
     void on_new_connection();
@@ -73,5 +73,5 @@ private slots:
 
     void on_binary_message_received(const QByteArray &message);
 
-    void message_received(QString sender, QString receiver, QString message, QString time);
+    void message_received(const QString &sender, const QString &receiver, const QString &message, const QString &time);
 };

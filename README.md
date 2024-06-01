@@ -21,7 +21,6 @@
     ------
 
     TO DO
-    --- Message Deletion for both user.
     --- Group Chats.
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
@@ -100,5 +99,12 @@
             FOR EACH ROW 
                 BEGIN
                     INSERT INTO messages (date_time, conversation_ID, sender_ID, receiver_ID, content, message_type)
-                    VALUES (NEW.date_time, NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, data_type);
+                    VALUES (NEW.date_time, NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, NEW.data_type);
+                END;
+
+            -------add_file_message
+            CREATE TRIGGER update_message_deletion AFTER DELETE ON messages 
+            FOR EACH ROW 
+                BEGIN
+                    DELETE FROM binary_data WHERE date_time = OLD.date_time AND conversation_ID = OLD.conversation_ID;
                 END;
