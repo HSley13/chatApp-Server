@@ -143,6 +143,8 @@ void server_manager::on_client_disconnected()
 {
     QWebSocket *client = qobject_cast<QWebSocket *>(sender());
 
+    _clients.remove(_clients.key(client));
+
     QString client_name = client->property("client_name").toString();
 
     QByteArray message = _protocol->set_client_disconnected_message(client_name);
