@@ -118,6 +118,11 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::new_group:
+        create_new_group(_protocol->adm(), _protocol->members(), _protocol->group_name());
+
+        break;
+
     default:
         break;
     }
@@ -154,8 +159,6 @@ void server_manager::on_client_disconnected()
         for (QWebSocket *cl : _clients)
             cl->sendBinaryMessage(message);
     }
-    else
-        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't send message to other clients";
 
     emit new_client_disconnected(client);
 }
@@ -192,8 +195,6 @@ void server_manager::disconnect_all_clients()
         for (QWebSocket *client : _clients)
             client->close();
     }
-    else
-        qDebug() << "server_manager--> client_disconnected() --> _clients is empty, can't disconnect any clients";
 }
 
 void server_manager::disconnect_from_host()
@@ -284,8 +285,6 @@ void server_manager::notify_other_clients(const QString &old_name, const QString
             }
         }
     }
-    else
-        qDebug() << "server_manager--> notify_other_clients()--> _clients is empty, can't send message to other clients";
 }
 
 void server_manager::lookup_friend(const QString &ID)
@@ -405,4 +404,30 @@ void server_manager::delete_message(const int &conversation_ID, const QString &s
         client->sendBinaryMessage(_protocol->set_delete_message(conversation_ID, sender, time));
     else
         qDebug() << "server_manager --> delete_message() --> receiver not FOUND" << receiver;
+}
+
+void server_manager::create_new_group(const QString &adm, const QStringList &members, const QString &group_name)
+{
+    std::random_device rd;
+    std::mt19937 generator(rd());
+
+    std::uniform_int_distribution<int> distribution(1024, 49151);
+
+    int group_ID = distribution(generator);
+
+    _socket->sendBinaryMessage(_protocol->set_new_group_message(group_ID));
+
+    for (QString ID : members)
+    {
+        Account::add_to_group(_db_connection, group_ID, ID.toInt());
+
+        if (ID.compare(_clients.key(_socket)))
+        {
+            QWebSocket *client = _clients.value(ID);
+            if (client)
+                client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, _clients.key(_socket).toInt(), members, group_name));
+        }
+
+        qDebug() << "ID's value : " << ID;
+    }
 }

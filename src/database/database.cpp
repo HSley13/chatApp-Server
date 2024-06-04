@@ -461,3 +461,23 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
         std::cerr << e.what() << std::endl;
     }
 }
+
+void Account::add_to_group(sql::Connection *connection, const int &group_ID, const int &phone_number)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?, ?);"));
+        prepared_statement->setInt(1, group_ID);
+        prepared_statement->setInt(2, phone_number);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "add_to_group() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}

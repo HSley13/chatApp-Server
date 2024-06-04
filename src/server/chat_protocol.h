@@ -34,7 +34,9 @@ public:
         sign_up,
         login_request,
 
-        delete_message
+        delete_message,
+        new_group,
+        added_to_group
     };
 
     QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);
@@ -62,6 +64,10 @@ public:
     QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data);
 
     QByteArray set_delete_message(const int &conversation_ID, const QString &sender, const QString &time);
+
+    QByteArray set_new_group_message(const int &group_ID);
+
+    QByteArray set_added_to_group_message(const int &group_ID, const int &adm, const QStringList &group_members, const QString &group_name);
 
     void load_data(const QByteArray &data);
 
@@ -109,6 +115,10 @@ public:
     const QString &secret_answer() const;
 
     const QString &time() const;
+
+    const QString &adm() const;
+    const QStringList &members() const;
+    const QString &group_name() const;
 
 private:
     QByteArray get_data(message_type type, const QString &data);
@@ -158,4 +168,8 @@ private:
     QString _secret_answer;
 
     QString _time;
+
+    QString _adm;
+    QStringList _members;
+    QString _group_name;
 };

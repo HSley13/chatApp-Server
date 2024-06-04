@@ -82,6 +82,14 @@
                 data_type TEXT
             );
 
+            -------group_memberships
+            CREATE TABLE group_memberships 
+            (
+                group_ID INT,
+                participant_ID INT,
+                PRIMARY KEY (group_ID, participant_ID)
+            );
+
 
             *************** ALL THE TRIGGERS ***************
 

@@ -44,6 +44,8 @@ public:
 
     void delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time);
 
+    void create_new_group(const QString &adm, const QStringList &members, const QString &group_name);
+
 private:
     QWidget *central_widget;
 

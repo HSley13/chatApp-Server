@@ -96,6 +96,11 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case new_group:
+        in >> _adm >> _members >> _group_name;
+
+        break;
+
     default:
         break;
     }
@@ -272,6 +277,25 @@ QByteArray chat_protocol::set_delete_message(const int &conversation_ID, const Q
     return byte;
 }
 
+QByteArray chat_protocol::set_new_group_message(const int &conversation_ID)
+{
+    return get_data(new_group, QString::number(conversation_ID));
+}
+
+QByteArray chat_protocol::set_added_to_group_message(const int &group_ID, const int &adm, const QStringList &group_members, const QString &group_name)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << added_to_group << group_ID << adm << group_members << group_name;
+
+    qDebug() << "Added to group message sent";
+
+    return byte;
+}
+
 chat_protocol::message_type chat_protocol::type() const
 {
     return _type;
@@ -427,4 +451,19 @@ const QString &chat_protocol::secret_answer() const
 const QString &chat_protocol::time() const
 {
     return _time;
+}
+
+const QString &chat_protocol::adm() const
+{
+    return _adm;
+}
+
+const QStringList &chat_protocol::members() const
+{
+    return _members;
+}
+
+const QString &chat_protocol::group_name() const
+{
+    return _group_name;
 }

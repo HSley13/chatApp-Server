@@ -60,4 +60,6 @@ public:
     static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int &conversation_ID);
 
     static void delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time);
+
+    static void add_to_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
 };
