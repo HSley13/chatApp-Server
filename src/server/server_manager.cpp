@@ -58,21 +58,6 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
-    case chat_protocol::init_send_file:
-        init_send_file_received(_protocol->file_sender(), _protocol->clients_ID(), _protocol->file_receiver(), _protocol->file_name(), _protocol->file_size());
-
-        break;
-
-    case chat_protocol::file_accepted:
-        file_accepted(_protocol->file_sender(), _protocol->file_receiver());
-
-        break;
-
-    case chat_protocol::file_rejected:
-        file_rejected(_protocol->file_sender(), _protocol->file_receiver());
-
-        break;
-
     case chat_protocol::file:
         file_received(_protocol->file_sender(), _protocol->file_receiver(), _protocol->file_name(), _protocol->file_data(), _protocol->time());
 
@@ -210,33 +195,6 @@ void server_manager::send_text(const QString &text, const QString &time)
 void server_manager::send_is_typing(const QString &sender)
 {
     _socket->sendBinaryMessage(_protocol->set_is_typing_message("Server", ""));
-}
-
-void server_manager::init_send_file_received(const QString &sender, const QString &sender_ID, const QString &receiver, const QString &file_name, const qint64 &file_size)
-{
-    QWebSocket *client = _clients.value(receiver);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_init_send_file_message(sender, sender_ID, file_name, file_size));
-    else
-        qDebug() << "server_manager -->  init_send_file_received() --> receiver not FOUND" << receiver;
-}
-
-void server_manager::file_accepted(const QString &sender, const QString &receiver)
-{
-    QWebSocket *client = _clients.value(receiver);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_file_accepted_message(sender));
-    else
-        qDebug() << "server_manager--> file_accepted()--> receiver not FOUND: " << receiver;
-}
-
-void server_manager::file_rejected(const QString &sender, const QString &receiver)
-{
-    QWebSocket *client = _clients.value(receiver);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_file_rejected_message(sender));
-    else
-        qDebug() << "server_manager --> file_rejected() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time)
@@ -425,9 +383,7 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
         {
             QWebSocket *client = _clients.value(ID);
             if (client)
-                client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, _clients.key(_socket).toInt(), members, group_name));
+                client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, adm, members, group_name));
         }
-
-        qDebug() << "ID's value : " << ID;
     }
 }

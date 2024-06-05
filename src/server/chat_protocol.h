@@ -14,9 +14,6 @@ public:
         is_typing,
         set_name,
 
-        init_send_file,
-        file_accepted,
-        file_rejected,
         file,
 
         client_new_name,
@@ -35,17 +32,19 @@ public:
         login_request,
 
         delete_message,
+
         new_group,
-        added_to_group
+        added_to_group,
+
+        group_is_typing,
+        group_text,
+        group_file,
+        group_audio
     };
 
     QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);
     QByteArray set_is_typing_message(const QString &sender, const QString &receiver);
     QByteArray set_name_message(const QString &name);
-
-    QByteArray set_init_send_file_message(const QString &sender, const QString &sender_ID, const QString &filename, const qint64 &file_size);
-    QByteArray set_file_accepted_message(const QString &sender);
-    QByteArray set_file_rejected_message(const QString &sender);
 
     QByteArray set_file_message(const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time);
     QByteArray set_audio_message(const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time);
@@ -67,7 +66,7 @@ public:
 
     QByteArray set_new_group_message(const int &group_ID);
 
-    QByteArray set_added_to_group_message(const int &group_ID, const int &adm, const QStringList &group_members, const QString &group_name);
+    QByteArray set_added_to_group_message(const int &group_ID, const QString &adm, const QStringList &group_members, const QString &group_name);
 
     void load_data(const QByteArray &data);
 

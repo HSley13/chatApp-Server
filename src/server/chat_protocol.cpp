@@ -31,21 +31,6 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
-    case init_send_file:
-        in >> _file_sender >> _client_ID >> _file_receiver >> _file_name >> _file_size;
-
-        break;
-
-    case file_accepted:
-        in >> _file_sender >> _file_receiver;
-
-        break;
-
-    case file_rejected:
-        in >> _file_sender >> _file_receiver;
-
-        break;
-
     case file:
         in >> _file_sender >> _file_receiver >> _file_name >> _file_data >> _time;
 
@@ -147,42 +132,6 @@ QByteArray chat_protocol::set_name_message(const QString &name)
     return get_data(set_name, name);
 }
 
-QByteArray chat_protocol::set_init_send_file_message(const QString &sender, const QString &sender_ID, const QString &file_name, const qint64 &file_size)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_7);
-
-    out << init_send_file << sender << sender_ID << file_name << file_size;
-
-    return byte;
-}
-
-QByteArray chat_protocol::set_file_accepted_message(const QString &sender)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_7);
-
-    out << file_accepted << sender;
-
-    return byte;
-}
-
-QByteArray chat_protocol::set_file_rejected_message(const QString &sender)
-{
-    QByteArray byte;
-
-    QDataStream out(&byte, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_7);
-
-    out << file_rejected << sender;
-
-    return byte;
-}
-
 QByteArray chat_protocol::set_file_message(const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time)
 {
     QByteArray byte;
@@ -277,12 +226,19 @@ QByteArray chat_protocol::set_delete_message(const int &conversation_ID, const Q
     return byte;
 }
 
-QByteArray chat_protocol::set_new_group_message(const int &conversation_ID)
+QByteArray chat_protocol::set_new_group_message(const int &group_ID)
 {
-    return get_data(new_group, QString::number(conversation_ID));
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << new_group << group_ID;
+
+    return byte;
 }
 
-QByteArray chat_protocol::set_added_to_group_message(const int &group_ID, const int &adm, const QStringList &group_members, const QString &group_name)
+QByteArray chat_protocol::set_added_to_group_message(const int &group_ID, const QString &adm, const QStringList &group_members, const QString &group_name)
 {
     QByteArray byte;
 
@@ -290,8 +246,6 @@ QByteArray chat_protocol::set_added_to_group_message(const int &group_ID, const 
     out.setVersion(QDataStream::Qt_6_7);
 
     out << added_to_group << group_ID << adm << group_members << group_name;
-
-    qDebug() << "Added to group message sent";
 
     return byte;
 }

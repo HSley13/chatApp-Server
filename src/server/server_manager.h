@@ -21,9 +21,6 @@ public:
 
     void notify_other_clients(const QString &old_name, const QString &client_name);
 
-    void init_send_file_received(const QString &sender, const QString &sender_ID, const QString &receiver, const QString &file_name, const qint64 &file_size);
-    void file_accepted(const QString &sender, const QString &receiver);
-    void file_rejected(const QString &sender, const QString &receiver);
     void file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time);
 
     QString name() const;
