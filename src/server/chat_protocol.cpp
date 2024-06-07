@@ -222,14 +222,14 @@ QByteArray chat_protocol::set_audio_message(const QString &sender, const QString
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QString> &group_list, const QHash<int, QVector<QString>> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
+QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QString> &group_list, const QHash<int, QVector<QString>> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << login_request << hashed_password << true_or_false << full_name << friend_list << online_friends << messages << binary_data << group_list << group_messages << group_binary_data << group_members;
+    out << login_request << hashed_password << true_or_false << name << friend_list << online_friends << messages << binary_data << group_list << group_messages << group_binary_data << group_members;
 
     return byte;
 }
