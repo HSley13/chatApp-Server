@@ -86,11 +86,33 @@
             CREATE TABLE group_memberships 
             (
                 group_ID INT,
+                group_name TEXT,
                 participant_ID INT,
                 PRIMARY KEY (group_ID, participant_ID)
             );
 
+            -------group_messages
+            CREATE TABLE group_messages 
+            (
+                date_time TIMESTAMP PRIMARY KEY,
+                group_ID INT,
+                sender TEXT,
+                content TEXT,
+                message_type VARCHAR(25) DEFAULT 'text'
+            );
 
+            -------group_binary_data
+            CREATE TABLE group_binary_data 
+            (
+                date_time TIMESTAMP PRIMARY KEY,
+                group_ID INT,
+                sender TEXT,
+                file_name VARCHAR(255),
+                file_data MEDIUMBLOB,
+                data_type TEXT
+            );
+
+  
             *************** ALL THE TRIGGERS ***************
 
             -------default_alias
@@ -110,9 +132,24 @@
                     VALUES (NEW.date_time, NEW.conversation_ID, NEW.sender_ID, NEW.receiver_ID, NEW.file_name, NEW.data_type);
                 END;
 
-            -------add_file_message
+            -------update_message_deletion
             CREATE TRIGGER update_message_deletion AFTER DELETE ON messages 
             FOR EACH ROW 
                 BEGIN
                     DELETE FROM binary_data WHERE date_time = OLD.date_time AND conversation_ID = OLD.conversation_ID;
+                END;
+
+            -------update_group_message_deletion
+            CREATE TRIGGER update_group_message_deletion AFTER DELETE ON group_messages 
+            FOR EACH ROW 
+                BEGIN
+                    DELETE FROM group_binary_data WHERE date_time = OLD.date_time AND group_ID = OLD.group_ID;
+                END;
+
+            -------add_group_file_message                 
+            CREATE TRIGGER add_group_file_message AFTER INSERT ON group_binary_data 
+            FOR EACH ROW 
+                BEGIN
+                    INSERT INTO group_messages (date_time, group_ID, sender, content, message_type)
+                    VALUES (NEW.date_time, NEW.group_ID, NEW.sender, NEW.file_name, NEW.data_type);
                 END;

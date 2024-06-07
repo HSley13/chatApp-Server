@@ -108,6 +108,26 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::group_is_typing:
+        group_is_typing_received(_protocol->group_ID(), _protocol->group_name(), _protocol->group_sender());
+
+        break;
+
+    case chat_protocol::group_text:
+        group_text_received(_protocol->group_ID(), _protocol->group_name(), _protocol->group_sender(), _protocol->group_message(), _protocol->group_time());
+
+        break;
+
+    case chat_protocol::group_audio:
+        group_audio_received(_protocol->group_ID(), _protocol->group_name(), _protocol->group_sender(), _protocol->group_audio_name(), _protocol->group_audio_data(), _protocol->group_time());
+
+        break;
+
+    case chat_protocol::group_file:
+        group_file_received(_protocol->group_ID(), _protocol->group_name(), _protocol->group_sender(), _protocol->group_file_name(), _protocol->group_file_data(), _protocol->group_time());
+
+        break;
+
     default:
         break;
     }
@@ -322,6 +342,14 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     QHash<int, QHash<QString, QByteArray>> binary_data;
 
+    QHash<int, QString> group_list;
+
+    QHash<int, QVector<QString>> group_messages;
+
+    QHash<int, QHash<QString, QByteArray>> group_binary_data;
+
+    QHash<int, QStringList> group_members;
+
     if (Security::verifying_password(password.toStdString(), hashed_password))
     {
         friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
@@ -330,9 +358,9 @@ void server_manager::login_request(const QString &phone_number, const QString &p
         {
             for (int friend_id : info.values())
             {
-                if (_clients.contains(QString ::number(friend_id)))
+                if (_clients.contains(QString::number(friend_id)))
                 {
-                    QString friend_name = _names.value(QString ::number(friend_id));
+                    QString friend_name = _names.value(QString::number(friend_id));
                     online_friends << friend_name;
                 }
             }
@@ -341,12 +369,21 @@ void server_manager::login_request(const QString &phone_number, const QString &p
             binary_data[friend_list.key(info)] = Account::retrieve_binary_data(_db_connection, friend_list.key(info));
         }
 
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, binary_data));
+        group_list = Account::retrieve_group_list(_db_connection, phone_number.toInt());
+
+        for (int group_ID : group_list.keys())
+        {
+            group_messages[group_ID] = Account::retrieve_group_conversation(_db_connection, group_ID);
+            group_binary_data[group_ID] = Account::retrieve_group_binary_data(_db_connection, group_ID);
+            group_members[group_ID] = Account::retrieve_group_members(_db_connection, group_ID);
+        }
+
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, binary_data, group_list, group_messages, group_binary_data, group_members));
         notify_other_clients("", name);
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, friend_list, online_friends, messages, binary_data));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, friend_list, online_friends, messages, binary_data, group_list, group_messages, group_binary_data, group_members));
         _clients.remove(name);
         _names.remove(name);
         _socket->close();
@@ -377,7 +414,7 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
 
     for (QString ID : members)
     {
-        Account::add_to_group(_db_connection, group_ID, ID.toInt());
+        Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), ID.toInt());
 
         if (ID.compare(_clients.key(_socket)))
         {
@@ -386,4 +423,86 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
                 client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, adm, members, group_name));
         }
     }
+}
+
+void server_manager::group_is_typing_received(const int &group_ID, const QString &group_name, const QString &sender)
+{
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    if (!members.isEmpty())
+    {
+        for (QString ID : members)
+        {
+            if (ID.compare(_clients.key(_socket)))
+            {
+                QWebSocket *client = _clients.value(ID);
+                if (client)
+                    client->sendBinaryMessage(_protocol->set_group_is_typing(group_ID, group_name, sender));
+            }
+        }
+    }
+    else
+        qDebug() << "server_manager ---> group_is_typing_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
+}
+
+void server_manager::group_text_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &message, const QString &time)
+{
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    if (!members.isEmpty())
+    {
+        Account::save_group_text_message(_db_connection, group_ID, sender.toStdString(), message.toStdString(), time.toStdString());
+
+        for (QString ID : members)
+        {
+            if (ID.compare(_clients.key(_socket)))
+            {
+                QWebSocket *client = _clients.value(ID);
+                if (client)
+                    client->sendBinaryMessage(_protocol->set_group_text_message(group_ID, group_name, sender, message, time));
+            }
+        }
+    }
+    else
+        qDebug() << "server_manager ---> group_text_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
+}
+
+void server_manager::group_file_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time)
+{
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    if (!members.isEmpty())
+    {
+        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), file_name.toStdString(), file_data, file_data.size(), "file", time.toStdString());
+
+        for (QString ID : members)
+        {
+            if (ID.compare(_clients.key(_socket)))
+            {
+                QWebSocket *client = _clients.value(ID);
+                if (client)
+                    client->sendBinaryMessage(_protocol->set_group_file_message(group_ID, group_name, sender, file_name, file_data, time));
+            }
+        }
+    }
+    else
+        qDebug() << "server_manager ---> group_file_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
+}
+
+void server_manager::group_audio_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time)
+{
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    if (!members.isEmpty())
+    {
+        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), audio_name.toStdString(), audio_data, audio_data.size(), "audio", time.toStdString());
+
+        for (QString ID : members)
+        {
+            if (ID.compare(_clients.key(_socket)))
+            {
+                QWebSocket *client = _clients.value(ID);
+                if (client)
+                    client->sendBinaryMessage(_protocol->set_group_audio_message(group_ID, group_name, sender, audio_name, audio_data, time));
+            }
+        }
+    }
+    else
+        qDebug() << "server_manager ---> group_audio_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
 }

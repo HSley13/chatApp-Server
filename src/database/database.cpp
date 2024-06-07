@@ -242,11 +242,11 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
 
         while (result->next())
         {
-            std::string participant2 = result->getString("other_participant");
+            QString participant2 = result->getString("other_participant").c_str();
             int participant2_ID = result->getInt("other_participant_ID");
 
             QHash<QString, int> friend_list;
-            friend_list.insert(QString::fromStdString(participant2), participant2_ID);
+            friend_list.insert(participant2, participant2_ID);
 
             int conversation_ID = result->getInt("conversation_ID");
 
@@ -327,9 +327,9 @@ QString Account::retrieve_alias(sql::Connection *connection, const int &phone_nu
         if (!result->next())
             return QString();
 
-        std::string name = result->getString("alias");
+        QString name = result->getString("alias").c_str();
 
-        return QString::fromStdString(name);
+        return name;
     }
     catch (const sql::SQLException &e)
     {
@@ -462,13 +462,14 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
     }
 }
 
-void Account::add_to_group(sql::Connection *connection, const int &group_ID, const int &phone_number)
+void Account::add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?, ?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?,?, ?);"));
         prepared_statement->setInt(1, group_ID);
-        prepared_statement->setInt(2, phone_number);
+        prepared_statement->setString(2, group_name);
+        prepared_statement->setInt(3, phone_number);
 
         prepared_statement->executeUpdate();
     }
@@ -479,5 +480,194 @@ void Account::add_to_group(sql::Connection *connection, const int &group_ID, con
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
+    }
+}
+
+QStringList Account::retrieve_group_members(sql::Connection *connection, const int &group_ID)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT participant_ID FROM group_memberships WHERE group_ID = ?;"));
+        prepared_statement->setInt(1, group_ID);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        QStringList members;
+
+        while (result->next())
+        {
+            QString member = QString::number(result->getInt("participant_ID"));
+
+            members << member;
+        }
+
+        return members;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "add_to_group() ---> SQL ERROR: " << e.what() << std::endl;
+        return QStringList();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return QStringList();
+    }
+}
+
+QHash<int, QString> Account::retrieve_group_list(sql::Connection *connection, const int &phone_number)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT group_ID, group_name FROM group_memberships WHERE participant_ID = ?;"));
+        prepared_statement->setInt(1, phone_number);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        QHash<int, QString> group_list;
+
+        while (result->next())
+        {
+            int group_ID = result->getInt("group_ID");
+            QString group_name = result->getString("group_name").c_str();
+
+            group_list.insert(group_ID, group_name);
+        }
+
+        return group_list;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "retrieve_friend_list() ---> SQL ERROR: " << e.what() << std::endl;
+        return {};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return {};
+    }
+}
+
+void Account::save_group_text_message(sql::Connection *connection, const int &group_ID, const std::string &sender, const std::string &content, const std::string &time)
+{
+    try
+    {
+        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_messages (group_ID, sender, content, date_time) VALUES (?,?,?,?);"));
+        prepared_statement->setInt(1, group_ID);
+        prepared_statement->setString(2, sender);
+        prepared_statement->setString(3, content);
+        prepared_statement->setString(4, date_time.toStdString());
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "save_group_text_message() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+void Account::save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time)
+{
+    try
+    {
+        std::istringstream blob_stream(std::string(file_data, file_size));
+
+        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_binary_data (group_ID, sender, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?);"));
+        prepared_statement->setInt(1, group_ID);
+        prepared_statement->setString(2, sender);
+        prepared_statement->setString(3, file_name);
+        prepared_statement->setBlob(4, &blob_stream);
+        prepared_statement->setString(5, type);
+        prepared_statement->setString(6, date_time.toStdString());
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "save_group_binary_data() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+QVector<QString> Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
+        prepared_statement->setInt(1, group_ID);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        QVector<QString> messages;
+
+        while (result->next())
+        {
+            QString message = QString("%1/%2/%3/%4")
+                                  .arg(result->getString("sender").c_str())
+                                  .arg(result->getString("content").c_str())
+                                  .arg(result->getString("date_time").c_str())
+                                  .arg(result->getString("message_type").c_str());
+
+            messages.push_back(message);
+        }
+
+        return messages;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "retrieve_group_conversation() ---> SQL ERROR: " << e.what() << std::endl;
+        return {};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return {};
+    }
+}
+
+QHash<QString, QByteArray> Account::retrieve_group_binary_data(sql::Connection *connection, const int &group_ID)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM group_binary_data WHERE group_ID = ? ORDER BY date_time;"));
+        prepared_statement->setInt(1, group_ID);
+
+        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+
+        QHash<QString, QByteArray> group_binary_data;
+
+        while (result->next())
+        {
+            QString date_time = result->getString("date_time").c_str();
+
+            std::istream *file_stream = result->getBlob("file_data");
+
+            QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
+
+            group_binary_data.insert(date_time, file_data);
+        }
+
+        return group_binary_data;
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "retrieve_group_binary_data() ---> SQL ERROR: " << e.what() << std::endl;
+        return {};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return {};
     }
 }

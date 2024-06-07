@@ -61,5 +61,17 @@ public:
 
     static void delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time);
 
-    static void add_to_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
+    static void add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number);
+
+    static QStringList retrieve_group_members(sql::Connection *connection, const int &group_ID);
+
+    static QHash<int, QString> retrieve_group_list(sql::Connection *connection, const int &phone_number);
+
+    static void save_group_text_message(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &content, const std::string &time);
+
+    static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time);
+
+    static QVector<QString> retrieve_group_conversation(sql::Connection *connection, const int &group_ID);
+
+    static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID);
 };

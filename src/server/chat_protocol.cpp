@@ -86,6 +86,26 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case group_is_typing:
+        in >> _group_ID >> _group_name >> _group_sender;
+
+        break;
+
+    case group_text:
+        in >> _group_ID >> _group_name >> _group_sender >> _group_message >> _group_time;
+
+        break;
+
+    case group_audio:
+        in >> _group_ID >> _group_name >> _group_sender >> _group_audio_name >> _group_audio_data >> _group_time;
+
+        break;
+
+    case group_file:
+        in >> _group_ID >> _group_name >> _group_sender >> _group_file_name >> _group_file_data >> _group_time;
+
+        break;
+
     default:
         break;
     }
@@ -202,14 +222,14 @@ QByteArray chat_protocol::set_audio_message(const QString &sender, const QString
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data)
+QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QString> &group_list, const QHash<int, QVector<QString>> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << login_request << hashed_password << true_or_false << full_name << friend_list << online_friends << messages << binary_data;
+    out << login_request << hashed_password << true_or_false << full_name << friend_list << online_friends << messages << binary_data << group_list << group_messages << group_binary_data << group_members;
 
     return byte;
 }
@@ -250,6 +270,54 @@ QByteArray chat_protocol::set_added_to_group_message(const int &group_ID, const 
     return byte;
 }
 
+QByteArray chat_protocol::set_group_is_typing(const int &group_ID, const QString &group_name, const QString &sender)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << group_is_typing << group_ID << group_name << sender;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_group_text_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &message, const QString &time)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << group_text << group_ID << group_name << sender << message << time;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_group_file_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << group_file << group_ID << group_name << sender << file_name << file_data << time;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_group_audio_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << group_audio << group_ID << group_name << sender << audio_name << audio_data << time;
+
+    return byte;
+}
+
 chat_protocol::message_type chat_protocol::type() const
 {
     return _type;
@@ -285,6 +353,21 @@ const QByteArray &chat_protocol::file_data() const
     return _file_data;
 }
 
+const QString &chat_protocol::group_file_name() const
+{
+    return _group_file_name;
+}
+
+const qint64 &chat_protocol::group_file_size() const
+{
+    return _group_file_size;
+}
+
+const QByteArray &chat_protocol::group_file_data() const
+{
+    return _group_file_data;
+}
+
 const QString &chat_protocol::client_name() const
 {
     return _client_name;
@@ -313,6 +396,11 @@ const QString &chat_protocol::file_receiver() const
 const QString &chat_protocol::file_sender() const
 {
     return _file_sender;
+}
+
+const QString &chat_protocol::group_file_sender() const
+{
+    return _group_file_sender;
 }
 
 const QString &chat_protocol::receiver_typing() const
@@ -377,6 +465,26 @@ const QString &chat_protocol::data_type() const
     return _data_type;
 }
 
+const QString &chat_protocol::group_audio_name() const
+{
+    return _group_audio_name;
+}
+
+const QByteArray &chat_protocol::group_audio_data() const
+{
+    return _group_audio_data;
+}
+
+const QString &chat_protocol::group_audio_sender() const
+{
+    return _group_audio_sender;
+}
+
+const QString &chat_protocol::group_data_type() const
+{
+    return _group_data_type;
+}
+
 const QString &chat_protocol::last_name() const
 {
     return _last_name;
@@ -407,9 +515,19 @@ const QString &chat_protocol::time() const
     return _time;
 }
 
+const int &chat_protocol::group_ID() const
+{
+    return _group_ID;
+}
+
 const QString &chat_protocol::adm() const
 {
     return _adm;
+}
+
+const QString &chat_protocol::group_sender() const
+{
+    return _group_sender;
 }
 
 const QStringList &chat_protocol::members() const
@@ -420,4 +538,14 @@ const QStringList &chat_protocol::members() const
 const QString &chat_protocol::group_name() const
 {
     return _group_name;
+}
+
+const QString &chat_protocol::group_message() const
+{
+    return _group_message;
+}
+
+const QString &chat_protocol::group_time() const
+{
+    return _group_time;
 }
