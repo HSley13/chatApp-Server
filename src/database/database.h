@@ -55,7 +55,7 @@ public:
 
     static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time);
 
-    static QVector<QString> retrieve_conversation(sql::Connection *connection, const int &conversation_ID);
+    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID);
 
     static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int &conversation_ID);
 
@@ -71,7 +71,7 @@ public:
 
     static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time);
 
-    static QVector<QString> retrieve_group_conversation(sql::Connection *connection, const int &group_ID);
+    static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID);
 
     static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID);
 };

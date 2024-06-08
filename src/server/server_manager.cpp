@@ -336,15 +336,15 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     QHash<int, QHash<QString, int>> friend_list;
 
-    QList<QString> online_friends;
+    QStringList online_friends;
 
-    QHash<int, QVector<QString>> messages;
+    QHash<int, QStringList> messages;
 
     QHash<int, QHash<QString, QByteArray>> binary_data;
 
     QHash<int, QString> group_list;
 
-    QHash<int, QVector<QString>> group_messages;
+    QHash<int, QStringList> group_messages;
 
     QHash<int, QHash<QString, QByteArray>> group_binary_data;
 

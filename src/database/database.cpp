@@ -189,7 +189,7 @@ void Account::create_account(sql::Connection *connection, const int &phone_numbe
     }
 }
 
-QVector<QString> Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID)
+QStringList Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID)
 {
     try
     {
@@ -198,7 +198,7 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QVector<QString> messages;
+        QStringList messages;
 
         while (result->next())
         {
@@ -217,12 +217,12 @@ QVector<QString> Account::retrieve_conversation(sql::Connection *connection, con
     catch (const sql::SQLException &e)
     {
         std::cerr << "retrieve_conversation() ---> SQL ERROR: " << e.what() << std::endl;
-        return QVector<QString>();
+        return QStringList();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        return QVector<QString>();
+        return QStringList();
     }
 }
 
@@ -600,7 +600,7 @@ void Account::save_group_binary_data(sql::Connection *connection, const int &gro
     }
 }
 
-QVector<QString> Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID)
+QStringList Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID)
 {
     try
     {
@@ -609,7 +609,7 @@ QVector<QString> Account::retrieve_group_conversation(sql::Connection *connectio
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QVector<QString> messages;
+        QStringList messages;
 
         while (result->next())
         {

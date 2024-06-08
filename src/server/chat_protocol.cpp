@@ -222,7 +222,7 @@ QByteArray chat_protocol::set_audio_message(const QString &sender, const QString
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QList<QString> &online_friends, const QHash<int, QVector<QString>> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QString> &group_list, const QHash<int, QVector<QString>> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
+QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QString> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
 {
     QByteArray byte;
 
