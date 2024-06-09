@@ -14,14 +14,13 @@
     ------ On/Offline Status implemented using a green and red dot. 
     ------ Using WebAssembly, it's both a Desktop app and WebApp.
     ------ Store Data using emscripten's IDBFS, then sync it with indexed_DB to make Data consistent. File and Audio retrieval can be done without requesting it from the server.
-    ------
-    ------
+    ------ Group Chats (Adding people from your friend_list). 
+    ------ 
     ------
     ------
     ------
 
     TO DO
-    --- Group Chats.
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
 
