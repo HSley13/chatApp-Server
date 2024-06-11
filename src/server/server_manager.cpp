@@ -248,19 +248,36 @@ void server_manager::notify_other_clients(const QString &old_name, const QString
 
     QByteArray message_2 = _protocol->set_client_connected_message(new_name);
 
-    if (!_clients.isEmpty())
+    QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, _clients.key(_socket).toInt());
+    QStringList friend_IDs;
+    for (QHash<QString, int> info : friend_list)
     {
-        for (QWebSocket *cl : _clients)
-        {
-            QString client_name = cl->property("client_name").toString();
+        for (int ID : info)
+            friend_IDs << QString::number(ID);
+    }
 
-            if (client_name.compare(new_name))
-            {
-                if (old_name.isEmpty())
-                    cl->sendBinaryMessage(message_2);
-                else
-                    cl->sendBinaryMessage(message_1);
-            }
+    std::function<void(const QByteArray &)> send_messages = [&](const QByteArray &message)
+    {
+        for (const QString &ID : friend_IDs)
+        {
+            if (_clients.contains(ID))
+                _clients.value(ID)->sendBinaryMessage(message);
+        }
+    };
+
+    if (!old_name.isEmpty())
+        send_messages(message_1);
+    else
+        send_messages(message_2);
+
+    QHash<int, QString> group_list = Account::retrieve_group_list(_db_connection, _clients.key(_socket).toInt());
+    for (const int &group_ID : group_list.keys())
+    {
+        QStringList group_members = Account::retrieve_group_members(_db_connection, group_ID);
+        for (const QString &ID : group_members)
+        {
+            if (_clients.contains(ID))
+                _clients.value(ID)->sendBinaryMessage(message_1);
         }
     }
 }
@@ -386,7 +403,6 @@ void server_manager::login_request(const QString &phone_number, const QString &p
         _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, friend_list, online_friends, messages, binary_data, group_list, group_messages, group_binary_data, group_members));
         _clients.remove(name);
         _names.remove(name);
-        _socket->close();
     }
 }
 
