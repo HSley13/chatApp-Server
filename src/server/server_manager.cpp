@@ -177,8 +177,6 @@ void server_manager::message_received(const QString &sender, const QString &rece
         QWebSocket *client = _clients.value(receiver);
         if (client)
             client->sendBinaryMessage(_protocol->set_text_message(sender, "", message, time));
-        else
-            qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
     }
 }
 
@@ -187,8 +185,6 @@ void server_manager::audio_received(const QString &sender, const QString &receiv
     QWebSocket *client = _clients.value(receiver);
     if (client)
         client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data, time));
-    else
-        qDebug() << "server_manager -->  on_text_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -222,8 +218,6 @@ void server_manager::file_received(const QString &sender, const QString &receive
     QWebSocket *client = _clients.value(receiver);
     if (client)
         client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, time));
-    else
-        qDebug() << "server_manager --> file_received() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::is_typing_for_other_clients(const QString &sender, const QString &receiver)
@@ -231,8 +225,6 @@ void server_manager::is_typing_for_other_clients(const QString &sender, const QS
     QWebSocket *client = _clients.value(receiver);
     if (client)
         client->sendBinaryMessage(_protocol->set_is_typing_message(sender, ""));
-    else
-        qDebug() << "server_manager --> is_typing_for_other_clients() --> receiver not FOUND" << receiver;
 }
 
 QString server_manager::name() const
@@ -413,8 +405,6 @@ void server_manager::delete_message(const int &conversation_ID, const QString &s
     QWebSocket *client = _clients.value(receiver);
     if (client)
         client->sendBinaryMessage(_protocol->set_delete_message(conversation_ID, sender, time));
-    else
-        qDebug() << "server_manager --> delete_message() --> receiver not FOUND" << receiver;
 }
 
 void server_manager::create_new_group(const QString &adm, const QStringList &members, const QString &group_name)
@@ -456,8 +446,6 @@ void server_manager::group_is_typing_received(const int &group_ID, const QString
             }
         }
     }
-    else
-        qDebug() << "server_manager ---> group_is_typing_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
 }
 
 void server_manager::group_text_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &message, const QString &time)
@@ -477,8 +465,6 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
             }
         }
     }
-    else
-        qDebug() << "server_manager ---> group_text_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
 }
 
 void server_manager::group_file_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time)
@@ -498,8 +484,6 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
             }
         }
     }
-    else
-        qDebug() << "server_manager ---> group_file_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
 }
 
 void server_manager::group_audio_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time)
@@ -519,6 +503,4 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
             }
         }
     }
-    else
-        qDebug() << "server_manager ---> group_audio_received() ---> group member list empty: " << group_ID << " Name: " << group_name;
 }
