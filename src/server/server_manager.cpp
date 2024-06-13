@@ -262,7 +262,7 @@ void server_manager::notify_other_clients(const QString &old_name, const QString
     else
         send_messages(message_2);
 
-    QHash<int, QString> group_list = Account::retrieve_group_list(_db_connection, _clients.key(_socket).toInt());
+    QHash<int, QHash<int, QString>> group_list = Account::retrieve_group_list(_db_connection, _clients.key(_socket).toInt());
     for (const int &group_ID : group_list.keys())
     {
         QStringList group_members = Account::retrieve_group_members(_db_connection, group_ID);
@@ -351,7 +351,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     QHash<int, QHash<QString, QByteArray>> binary_data;
 
-    QHash<int, QString> group_list;
+    QHash<int, QHash<int, QString>> group_list;
 
     QHash<int, QStringList> group_messages;
 
@@ -418,9 +418,11 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
 
     _socket->sendBinaryMessage(_protocol->set_new_group_message(group_ID));
 
+    Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), _clients.key(_socket).toInt(), "admin");
+
     for (QString ID : members)
     {
-        Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), ID.toInt());
+        Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), ID.toInt(), "member");
 
         if (ID.compare(_clients.key(_socket)))
         {

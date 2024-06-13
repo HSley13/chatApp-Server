@@ -21,6 +21,8 @@
     ------
 
     TO DO
+    --- Message read/unread
+    --- Remove/Add people from/to groups
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
 
@@ -87,6 +89,7 @@
                 group_ID INT,
                 group_name TEXT,
                 participant_ID INT,
+                user_role TEXT,
                 PRIMARY KEY (group_ID, participant_ID)
             );
 

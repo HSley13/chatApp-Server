@@ -462,14 +462,15 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
     }
 }
 
-void Account::add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number)
+void Account::add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number, const std::string &user_role)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?,?, ?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, group_name);
         prepared_statement->setInt(3, phone_number);
+        prepared_statement->setString(4, user_role);
 
         prepared_statement->executeUpdate();
     }
@@ -515,7 +516,7 @@ QStringList Account::retrieve_group_members(sql::Connection *connection, const i
     }
 }
 
-QHash<int, QString> Account::retrieve_group_list(sql::Connection *connection, const int &phone_number)
+QHash<int, QHash<int, QString>> Account::retrieve_group_list(sql::Connection *connection, const int &phone_number)
 {
     try
     {
@@ -524,14 +525,26 @@ QHash<int, QString> Account::retrieve_group_list(sql::Connection *connection, co
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<int, QString> group_list;
+        QHash<int, QHash<int, QString>> group_list;
 
         while (result->next())
         {
             int group_ID = result->getInt("group_ID");
             QString group_name = result->getString("group_name").c_str();
 
-            group_list.insert(group_ID, group_name);
+            std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT participant_ID FROM group_memberships WHERE user_role = 'admin' AND group_ID = ?;"));
+            prepared_statement_2->setInt(1, group_ID);
+
+            std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
+
+            QHash<int, QString> group_name_and_adm;
+            while (result_2->next())
+            {
+                int admin = result->getInt("participant_ID");
+                group_name_and_adm.insert(admin, group_name);
+            }
+
+            group_list.insert(group_ID, group_name_and_adm);
         }
 
         return group_list;

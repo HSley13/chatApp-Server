@@ -61,11 +61,11 @@ public:
 
     static void delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time);
 
-    static void add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number);
+    static void add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number, const std::string &user_role = std::string());
 
     static QStringList retrieve_group_members(sql::Connection *connection, const int &group_ID);
 
-    static QHash<int, QString> retrieve_group_list(sql::Connection *connection, const int &phone_number);
+    static QHash<int, QHash<int, QString>> retrieve_group_list(sql::Connection *connection, const int &phone_number);
 
     static void save_group_text_message(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &content, const std::string &time);
 
