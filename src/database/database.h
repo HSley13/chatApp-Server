@@ -74,4 +74,6 @@ public:
     static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID);
 
     static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID);
+
+    static void remove_from_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
 };

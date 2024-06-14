@@ -39,7 +39,10 @@ public:
         group_is_typing,
         group_text,
         group_file,
-        group_audio
+        group_audio,
+
+        new_group_member,
+        remove_group_member
     };
 
     QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);
@@ -72,6 +75,8 @@ public:
     QByteArray set_group_text_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &message, const QString &time);
     QByteArray set_group_file_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time);
     QByteArray set_group_audio_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time);
+
+    QByteArray set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm);
 
     void load_data(const QByteArray &data);
 

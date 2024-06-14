@@ -106,6 +106,16 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case new_group_member:
+        in >> _group_ID >> _group_name >> _adm >> _client_ID;
+
+        break;
+
+    case remove_group_member:
+        in >> _group_ID >> _group_name >> _adm >> _client_ID;
+
+        break;
+
     default:
         break;
     }
@@ -314,6 +324,18 @@ QByteArray chat_protocol::set_group_audio_message(const int &group_ID, const QSt
     out.setVersion(QDataStream::Qt_6_7);
 
     out << group_audio << group_ID << group_name << sender << audio_name << audio_data << time;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << remove_group_member << group_ID << group_name << adm;
 
     return byte;
 }

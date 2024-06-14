@@ -48,6 +48,9 @@ public:
     void group_file_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time);
     void group_audio_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time);
 
+    void new_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member);
+    void remove_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member);
+
 private:
     QWidget *central_widget;
 

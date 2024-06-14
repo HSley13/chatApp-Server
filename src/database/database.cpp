@@ -540,7 +540,7 @@ QHash<int, QHash<int, QString>> Account::retrieve_group_list(sql::Connection *co
             QHash<int, QString> group_name_and_adm;
             while (result_2->next())
             {
-                int admin = result->getInt("participant_ID");
+                int admin = result_2->getInt("participant_ID");
                 group_name_and_adm.insert(admin, group_name);
             }
 
@@ -682,5 +682,25 @@ QHash<QString, QByteArray> Account::retrieve_group_binary_data(sql::Connection *
     {
         std::cerr << e.what() << std::endl;
         return {};
+    }
+}
+
+void Account::remove_from_group(sql::Connection *connection, const int &group_ID, const int &phone_number)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM group_memberships WHERE group_ID = ? AND participant_ID = ?;"));
+        prepared_statement->setInt(1, group_ID);
+        prepared_statement->setInt(2, phone_number);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "remove_to_group() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 }

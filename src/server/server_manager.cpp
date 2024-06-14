@@ -128,6 +128,16 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::new_group_member:
+        new_group_member(_protocol->group_ID(), _protocol->group_name(), _protocol->adm(), _protocol->clients_ID());
+
+        break;
+
+    case chat_protocol::remove_group_member:
+        remove_group_member(_protocol->group_ID(), _protocol->group_name(), _protocol->adm(), _protocol->clients_ID());
+
+        break;
+
     default:
         break;
     }
@@ -505,4 +515,24 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
             }
         }
     }
+}
+
+void server_manager::new_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member)
+{
+    Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), group_member.toInt(), "member");
+
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+
+    QWebSocket *client = _clients.value(group_member);
+    if (client)
+        client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, adm, members, group_name));
+}
+
+void server_manager::remove_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member)
+{
+    Account::remove_from_group(_db_connection, group_ID, group_member.toInt());
+
+    QWebSocket *client = _clients.value(group_member);
+    if (client)
+        client->sendBinaryMessage(_protocol->set_removed_from_group(group_ID, group_name, adm));
 }
