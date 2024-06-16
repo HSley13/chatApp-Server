@@ -15,3 +15,9 @@ qt_add_resources(server "images"
                 )
      
 set_target_properties(server PROPERTIES MACOSX_BUNDLE ON)
+
+add_custom_command(TARGET server POST_BUILD
+                            COMMAND ${CMAKE_COMMAND} -E copy
+                            $<TARGET_FILE:server>
+                            ${CMAKE_SOURCE_DIR}/$<TARGET_FILE_NAME:server>
+                    )
