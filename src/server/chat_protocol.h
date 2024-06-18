@@ -42,7 +42,8 @@ public:
         group_audio,
 
         new_group_member,
-        remove_group_member
+        remove_group_member,
+        request_data
     };
 
     QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);
@@ -63,7 +64,7 @@ public:
 
     QByteArray set_online_client_message(QStringList &names);
 
-    QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members);
+    QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members);
 
     QByteArray set_delete_message(const int &conversation_ID, const QString &sender, const QString &time);
 
@@ -77,6 +78,8 @@ public:
     QByteArray set_group_audio_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time);
 
     QByteArray set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm);
+
+    QByteArray set_data_requested_found_message(const QByteArray &file_data, const QString &type);
 
     void load_data(const QByteArray &data);
 

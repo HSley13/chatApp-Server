@@ -51,6 +51,8 @@ public:
     void new_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member);
     void remove_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member);
 
+    void data_requested(const int &conversation_ID, const QString &date_time, const QString &type);
+
 private:
     QWidget *central_widget;
 

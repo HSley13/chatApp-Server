@@ -21,6 +21,7 @@
     ------
 
     TO DO
+    --- Send the file/audio if the indexedDB was deleted/corrupted
     --- Message read/unread
     --- Make the GUI more appealing.
     --- Upload Preview here once Finished.
@@ -32,10 +33,10 @@
             CREATE TABLE accounts
             (
                 phone_number INT PRIMARY KEY,
-                first_name VARCHAR(50),
-                last_name VARCHAR(50),
+                first_name TEXT,
+                last_name TEXT,
                 port INT,
-                alias VARCHAR(50) DEFAULT NULL
+                alias VARCHAR(50) DEFAULT first_name
             );
 
             -------password_security
@@ -43,17 +44,17 @@
             (
                 phone_number INT PRIMARY KEY,
                 hashed_password VARBINARY(500),
-                secret_question VARCHAR(500),
-                secret_answer VARCHAR(500)
+                secret_question TEXT,
+                secret_answer TEXT
             );
 
             -------conversations
             CREATE TABLE conversations 
             (
                 conversation_ID INT PRIMARY KEY,
-                participant1 VARCHAR(50),
+                participant1 TEXT,
                 participant1_ID INT,
-                participant2 VARCHAR(50),
+                participant2 TEXT,
                 participant2_ID INT,
                 start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
@@ -77,7 +78,7 @@
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
-                file_name VARCHAR(255),
+                file_name TEXT,
                 file_data MEDIUMBLOB,
                 data_type TEXT
             );
@@ -108,7 +109,7 @@
                 date_time TIMESTAMP PRIMARY KEY,
                 group_ID INT,
                 sender TEXT,
-                file_name VARCHAR(255),
+                file_name TEXT,
                 file_data MEDIUMBLOB,
                 data_type TEXT
             );

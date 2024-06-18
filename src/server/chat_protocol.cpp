@@ -116,6 +116,11 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case request_data:
+        in >> _conversation_ID >> _time >> _data_type;
+
+        break;
+
     default:
         break;
     }
@@ -232,14 +237,14 @@ QByteArray chat_protocol::set_audio_message(const QString &sender, const QString
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<QString, QByteArray>> &binary_data, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QHash<QString, QByteArray>> &group_binary_data, const QHash<int, QStringList> &group_members)
+QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << login_request << hashed_password << true_or_false << name << friend_list << online_friends << messages << binary_data << group_list << group_messages << group_binary_data << group_members;
+    out << login_request << hashed_password << true_or_false << name << friend_list << online_friends << messages << group_list << group_messages << group_members;
 
     return byte;
 }
@@ -336,6 +341,18 @@ QByteArray chat_protocol::set_removed_from_group(const int &group_ID, const QStr
     out.setVersion(QDataStream::Qt_6_7);
 
     out << remove_group_member << group_ID << group_name << adm;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_data_requested_found_message(const QByteArray &file_data, const QString &type)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << request_data << file_data << type;
 
     return byte;
 }

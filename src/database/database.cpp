@@ -402,26 +402,27 @@ void Account::save_binary_data(sql::Connection *connection, const int &conversat
     }
 }
 
-QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connection, const int &conversation_ID)
+QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connection, const int &conversation_ID, const std::string &date_time)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM binary_data WHERE conversation_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT file_data, data_type FROM binary_data WHERE conversation_ID = ? AND date_time = ?;"));
         prepared_statement->setInt(1, conversation_ID);
+        prepared_statement->setString(2, date_time);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
         QHash<QString, QByteArray> binary_data;
 
-        while (result->next())
+        if (result->next())
         {
-            QString date_time = result->getString("date_time").c_str();
 
             std::istream *file_stream = result->getBlob("file_data");
-
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
-            binary_data.insert(date_time, file_data);
+            QString data_type = result->getString("data_type").c_str();
+
+            binary_data.insert(data_type, file_data);
         }
 
         return binary_data;
@@ -429,12 +430,12 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
     catch (const sql::SQLException &e)
     {
         std::cerr << "retrieve_binary_data() ---> SQL ERROR: " << e.what() << std::endl;
-        return QHash<QString, QByteArray>();
+        return {};
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        return QHash<QString, QByteArray>();
+        return {};
     }
 }
 
@@ -649,29 +650,29 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
     }
 }
 
-QHash<QString, QByteArray> Account::retrieve_group_binary_data(sql::Connection *connection, const int &group_ID)
+QHash<QString, QByteArray> Account::retrieve_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &date_time)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT date_time, file_data FROM group_binary_data WHERE group_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT file_data, data_type FROM group_binary_data WHERE group_ID = ? AND date_time = ?;"));
         prepared_statement->setInt(1, group_ID);
+        prepared_statement->setString(2, date_time);
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<QString, QByteArray> group_binary_data;
+        QHash<QString, QByteArray> binary_data;
 
-        while (result->next())
+        if (result->next())
         {
-            QString date_time = result->getString("date_time").c_str();
-
             std::istream *file_stream = result->getBlob("file_data");
-
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
-            group_binary_data.insert(date_time, file_data);
+            QString data_type = result->getString("data_type").c_str();
+
+            binary_data.insert(data_type, file_data);
         }
 
-        return group_binary_data;
+        return binary_data;
     }
     catch (const sql::SQLException &e)
     {

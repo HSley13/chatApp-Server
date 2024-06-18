@@ -138,6 +138,11 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::request_data:
+        data_requested(_protocol->conversation_ID(), _protocol->time(), _protocol->data_type());
+
+        break;
+
     default:
         break;
     }
@@ -379,13 +384,12 @@ void server_manager::login_request(const QString &phone_number, const QString &p
             {
                 if (_clients.contains(QString::number(friend_id)))
                 {
-                    QString friend_name = _names.value(QString::number(friend_id));
+                    const QString &friend_name = _names.value(QString::number(friend_id));
                     online_friends << friend_name;
                 }
             }
 
             messages[friend_list.key(info)] = Account::retrieve_conversation(_db_connection, friend_list.key(info));
-            binary_data[friend_list.key(info)] = Account::retrieve_binary_data(_db_connection, friend_list.key(info));
         }
 
         group_list = Account::retrieve_group_list(_db_connection, phone_number.toInt());
@@ -393,16 +397,15 @@ void server_manager::login_request(const QString &phone_number, const QString &p
         for (int group_ID : group_list.keys())
         {
             group_messages[group_ID] = Account::retrieve_group_conversation(_db_connection, group_ID);
-            group_binary_data[group_ID] = Account::retrieve_group_binary_data(_db_connection, group_ID);
             group_members[group_ID] = Account::retrieve_group_members(_db_connection, group_ID);
         }
 
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, binary_data, group_list, group_messages, group_binary_data, group_members));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
         notify_other_clients("", name);
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, friend_list, online_friends, messages, binary_data, group_list, group_messages, group_binary_data, group_members));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
         _clients.remove(name);
         _names.remove(name);
     }
@@ -521,7 +524,7 @@ void server_manager::new_group_member(const int &group_ID, const QString &group_
 {
     Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), group_member.toInt(), "member");
 
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
 
     QWebSocket *client = _clients.value(group_member);
     if (client)
@@ -535,4 +538,11 @@ void server_manager::remove_group_member(const int &group_ID, const QString &gro
     QWebSocket *client = _clients.value(group_member);
     if (client)
         client->sendBinaryMessage(_protocol->set_removed_from_group(group_ID, group_name, adm));
+}
+
+void server_manager::data_requested(const int &conversation_ID, const QString &date_time, const QString &type)
+{
+    const QHash<QString, QByteArray> &file_data = (!type.compare("normal")) ? Account::retrieve_binary_data(_db_connection, conversation_ID, date_time.toStdString()) : Account::retrieve_group_binary_data(_db_connection, conversation_ID, date_time.toStdString());
+
+    _socket->sendBinaryMessage(_protocol->set_data_requested_found_message(file_data.values().first(), file_data.keys().first()));
 }
