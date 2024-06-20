@@ -76,4 +76,6 @@ public:
     static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &date_time);
 
     static void remove_from_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
+
+    static void delete_account(sql::Connection *connection, const int &phone_number);
 };

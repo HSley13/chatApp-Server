@@ -43,7 +43,9 @@ public:
 
         new_group_member,
         remove_group_member,
-        request_data
+        request_data,
+
+        delete_account
     };
 
     QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);

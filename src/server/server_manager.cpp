@@ -29,6 +29,7 @@ server_manager::server_manager(QWebSocket *client, QWidget *parent)
 }
 
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+
 void server_manager::on_binary_message_received(const QByteArray &message)
 {
     _protocol->load_data(message);
@@ -142,6 +143,9 @@ void server_manager::on_binary_message_received(const QByteArray &message)
         data_requested(_protocol->conversation_ID(), _protocol->time(), _protocol->data_type());
 
         break;
+
+    case chat_protocol::delete_account:
+        delete_account(_protocol->clients_ID());
 
     default:
         break;
@@ -331,6 +335,9 @@ void server_manager::save_data(const int &conversation_ID, const QString &sender
 void server_manager::sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer)
 {
     Account::create_account(_db_connection, phone_number.toInt(), first_name.toStdString(), last_name.toStdString(), secret_question.toStdString(), secret_answer.toStdString(), password.toStdString());
+
+    QTimer::singleShot(3000, this, [this]()
+                       { _socket->close(); });
 }
 
 void server_manager::login_request(const QString &phone_number, const QString &password)
@@ -343,13 +350,18 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     _clients.insert(phone_number, _socket);
 
-    QString alias = Account::retrieve_alias(_db_connection, phone_number.toInt());
+    QString name = Account::retrieve_alias(_db_connection, phone_number.toInt());
 
-    if (alias.isEmpty())
+    if (name.isEmpty())
+    {
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, QString(), QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+
+        _clients.remove(name);
+        _names.remove(name);
+
         return;
-    // Correct the line above
+    }
 
-    QString name = alias;
     _socket->setProperty("client_name", name);
 
     _names.insert(phone_number, name);
@@ -405,7 +417,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString ::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
         _clients.remove(name);
         _names.remove(name);
     }
@@ -545,4 +557,9 @@ void server_manager::data_requested(const int &conversation_ID, const QString &d
     const QHash<QString, QByteArray> &file_data = (!type.compare("normal")) ? Account::retrieve_binary_data(_db_connection, conversation_ID, date_time.toStdString()) : Account::retrieve_group_binary_data(_db_connection, conversation_ID, date_time.toStdString());
 
     _socket->sendBinaryMessage(_protocol->set_data_requested_found_message(file_data.values().first(), file_data.keys().first()));
+}
+
+void server_manager::delete_account(const QString &phone_number)
+{
+    Account::delete_account(_db_connection, phone_number.toInt());
 }

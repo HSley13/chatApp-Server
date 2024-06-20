@@ -53,6 +53,8 @@ public:
 
     void data_requested(const int &conversation_ID, const QString &date_time, const QString &type);
 
+    void delete_account(const QString &phone_number);
+
 private:
     QWidget *central_widget;
 

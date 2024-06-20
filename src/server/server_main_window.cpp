@@ -46,7 +46,7 @@ server_main_window::server_main_window(sql::Connection *db_connection, QWidget *
     _list->setItemDelegate(new separator_delegate(_list));
 
     _disconnect_all = new QPushButton("Disconnect ALL CLIENTS", this);
-    connect(_disconnect_all, &QPushButton::clicked, this, [=]()
+    connect(_disconnect_all, &QPushButton::clicked, this, [this]()
             { _server->disconnect_all_clients(); });
 
     QVBoxLayout *vbox = new QVBoxLayout();

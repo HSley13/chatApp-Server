@@ -121,6 +121,11 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case delete_account:
+        in >> _client_ID;
+
+        break;
+
     default:
         break;
     }

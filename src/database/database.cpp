@@ -156,16 +156,10 @@ void Account::create_account(sql::Connection *connection, const int &phone_numbe
 {
     try
     {
-        std::random_device rd;
-        std::mt19937 generator(rd());
-
-        std::uniform_int_distribution<int> distribution(1024, 49151);
-
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts (phone_number, first_name, last_name, port) VALUES(?, ?, ?, ?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO accounts (phone_number, first_name, last_name) VALUES(?, ?, ?);"));
         prepared_statement->setInt(1, phone_number);
         prepared_statement->setString(2, first_name);
         prepared_statement->setString(3, last_name);
-        prepared_statement->setInt(4, distribution(generator));
 
         prepared_statement->executeUpdate();
 
@@ -699,6 +693,25 @@ void Account::remove_from_group(sql::Connection *connection, const int &group_ID
     catch (const sql::SQLException &e)
     {
         std::cerr << "remove_to_group() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+void Account::delete_account(sql::Connection *connection, const int &phone_number)
+{
+    try
+    {
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM accounts WHERE phone_number = ?;"));
+        prepared_statement->setInt(1, phone_number);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "delete_account() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {
