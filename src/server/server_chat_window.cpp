@@ -45,7 +45,7 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
 
-    connect(_client, &server_manager::is_typing_received, this, [this](const QString &sender, const QString &receiver)
+    connect(_client, &server_manager::is_typing_received, this, [=](const QString &sender, const QString &receiver)
             { emit is_typing_received(sender, receiver); });
 }
 /*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
@@ -132,7 +132,7 @@ void server_chat_window::add_file(const QString &path)
     file->setIconSize(QSize(60, 60));
     file->setFixedSize(QSize(60, 60));
     file->setStyleSheet("border: none");
-    file->connect(file, &QPushButton::clicked, this, [&]()
+    file->connect(file, &QPushButton::clicked, this, [=]()
                   { QDesktopServices::openUrl(QUrl::fromLocalFile(path)); });
 
     QListWidgetItem *item = new QListWidgetItem(_list);

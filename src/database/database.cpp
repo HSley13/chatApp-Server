@@ -131,10 +131,10 @@ std::string Security::retrieve_hashed_password(sql::Connection *connection, cons
 
         std::unique_ptr<sql::ResultSet> result(prep_statement->executeQuery());
 
-        if (!result->next())
-            return std::string();
+        std::string hashed_password = std::string();
 
-        std::string hashed_password = result->getString("hashed_password");
+        if (result->next())
+            hashed_password = result->getString("hashed_password");
 
         return hashed_password;
     }
@@ -192,7 +192,7 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QStringList messages;
+        QStringList messages = QStringList();
 
         while (result->next())
         {
@@ -203,7 +203,7 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
                                   .arg(result->getString("date_time").c_str())
                                   .arg(result->getString("message_type").c_str());
 
-            messages.push_back(message);
+            messages << message;
         }
 
         return messages;
@@ -220,7 +220,7 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
     }
 }
 
-QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *connection, const int &phone_number)
+QHash<int, QHash<QString, QString>> Account::retrieve_friend_list(sql::Connection *connection, const int &phone_number)
 {
     try
     {
@@ -232,15 +232,16 @@ QHash<int, QHash<QString, int>> Account::retrieve_friend_list(sql::Connection *c
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<int, QHash<QString, int>> friend_list_pack;
+        QHash<int, QHash<QString, QString>> friend_list_pack = {};
 
         while (result->next())
         {
-            QString participant2 = result->getString("other_participant").c_str();
-            int participant2_ID = result->getInt("other_participant_ID");
+            QHash<QString, QString> friend_list = {};
 
-            QHash<QString, int> friend_list;
-            friend_list.insert(participant2, participant2_ID);
+            QString participant2_ID = QString::number(result->getInt("other_participant_ID"));
+            QString participant2 = result->getString("other_participant").c_str();
+
+            friend_list.insert(participant2_ID, participant2);
 
             int conversation_ID = result->getInt("conversation_ID");
 
@@ -265,14 +266,12 @@ void Account::save_text_message(sql::Connection *connection, const int &conversa
 {
     try
     {
-        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
-
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO messages (conversation_ID, sender_ID, receiver_ID, content, date_time) VALUES (?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
         prepared_statement->setString(4, content);
-        prepared_statement->setString(5, date_time.toStdString());
+        prepared_statement->setString(5, time);
 
         prepared_statement->executeUpdate();
     }
@@ -318,10 +317,10 @@ QString Account::retrieve_alias(sql::Connection *connection, const int &phone_nu
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        if (!result->next())
-            return QString();
+        QString name = QString();
 
-        QString name = result->getString("alias").c_str();
+        if (result->next())
+            name = result->getString("alias").c_str();
 
         return name;
     }
@@ -367,22 +366,20 @@ void Account::update_alias(sql::Connection *connection, const int &phone_number,
     }
 }
 
-void Account::save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time)
+void Account::save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time)
 {
     try
     {
-        std::istringstream blob_stream(std::string(file_data, file_size));
-
-        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+        std::istringstream blob_stream(std::string(data_data, data_size));
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
-        prepared_statement->setString(4, file_name);
+        prepared_statement->setString(4, data_name);
         prepared_statement->setBlob(5, &blob_stream);
         prepared_statement->setString(6, type);
-        prepared_statement->setString(7, date_time.toStdString());
+        prepared_statement->setString(7, time);
 
         prepared_statement->executeUpdate();
     }
@@ -406,7 +403,7 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<QString, QByteArray> binary_data;
+        QHash<QString, QByteArray> binary_data = {};
 
         if (result->next())
         {
@@ -439,7 +436,7 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
     {
         QString date_time;
 
-        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+        (time.length() < 10) ? date_time = QString("%1_%2").arg(QDate::currentDate().toString("yyyyMMdd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM messages WHERE conversation_ID = ? AND date_time = ?;"));
         prepared_statement->setInt(1, conversation_ID);
@@ -488,7 +485,7 @@ QStringList Account::retrieve_group_members(sql::Connection *connection, const i
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QStringList members;
+        QStringList members = QStringList();
 
         while (result->next())
         {
@@ -520,7 +517,7 @@ QHash<int, QHash<int, QString>> Account::retrieve_group_list(sql::Connection *co
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<int, QHash<int, QString>> group_list;
+        QHash<int, QHash<int, QString>> group_list = {};
 
         while (result->next())
         {
@@ -560,13 +557,11 @@ void Account::save_group_text_message(sql::Connection *connection, const int &gr
 {
     try
     {
-        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
-
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_messages (group_ID, sender, content, date_time) VALUES (?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, sender);
         prepared_statement->setString(3, content);
-        prepared_statement->setString(4, date_time.toStdString());
+        prepared_statement->setString(4, time);
 
         prepared_statement->executeUpdate();
     }
@@ -580,21 +575,19 @@ void Account::save_group_text_message(sql::Connection *connection, const int &gr
     }
 }
 
-void Account::save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time)
+void Account::save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time)
 {
     try
     {
-        std::istringstream blob_stream(std::string(file_data, file_size));
-
-        QString date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time));
+        std::istringstream blob_stream(std::string(data_data, data_size));
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_binary_data (group_ID, sender, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, sender);
-        prepared_statement->setString(3, file_name);
+        prepared_statement->setString(3, data_name);
         prepared_statement->setBlob(4, &blob_stream);
         prepared_statement->setString(5, type);
-        prepared_statement->setString(6, date_time.toStdString());
+        prepared_statement->setString(6, time);
 
         prepared_statement->executeUpdate();
     }
@@ -617,7 +610,7 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QStringList messages;
+        QStringList messages = QStringList();
 
         while (result->next())
         {
@@ -627,7 +620,7 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
                                   .arg(result->getString("date_time").c_str())
                                   .arg(result->getString("message_type").c_str());
 
-            messages.push_back(message);
+            messages << message;
         }
 
         return messages;
@@ -654,7 +647,7 @@ QHash<QString, QByteArray> Account::retrieve_group_binary_data(sql::Connection *
 
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QHash<QString, QByteArray> binary_data;
+        QHash<QString, QByteArray> binary_data = {};
 
         if (result->next())
         {

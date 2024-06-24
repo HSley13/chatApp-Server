@@ -195,7 +195,7 @@ void server_manager::message_received(const QString &sender, const QString &rece
     {
         QWebSocket *client = _clients.value(receiver);
         if (client)
-            client->sendBinaryMessage(_protocol->set_text_message(sender, "", message, time));
+            client->sendBinaryMessage(_protocol->set_text_message(sender, message, time));
     }
 }
 
@@ -204,6 +204,13 @@ void server_manager::audio_received(const QString &sender, const QString &receiv
     QWebSocket *client = _clients.value(receiver);
     if (client)
         client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data, time));
+}
+
+void server_manager::file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time)
+{
+    QWebSocket *client = _clients.value(receiver);
+    if (client)
+        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, time));
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -224,26 +231,19 @@ void server_manager::disconnect_from_host()
 
 void server_manager::send_text(const QString &text, const QString &time)
 {
-    _socket->sendBinaryMessage(_protocol->set_text_message("Server", name(), text, time));
+    _socket->sendBinaryMessage(_protocol->set_text_message("Server", text, time));
 }
 
 void server_manager::send_is_typing(const QString &sender)
 {
-    _socket->sendBinaryMessage(_protocol->set_is_typing_message("Server", ""));
-}
-
-void server_manager::file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time)
-{
-    QWebSocket *client = _clients.value(receiver);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, time));
+    _socket->sendBinaryMessage(_protocol->set_is_typing_message("Server"));
 }
 
 void server_manager::is_typing_for_other_clients(const QString &sender, const QString &receiver)
 {
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_is_typing_message(sender, ""));
+        client->sendBinaryMessage(_protocol->set_is_typing_message(sender));
 }
 
 QString server_manager::name() const
@@ -259,12 +259,12 @@ void server_manager::notify_other_clients(const QString &old_name, const QString
 
     QByteArray message_2 = _protocol->set_client_connected_message(new_name);
 
-    QHash<int, QHash<QString, int>> friend_list = Account::retrieve_friend_list(_db_connection, _clients.key(_socket).toInt());
+    QHash<int, QHash<QString, QString>> friend_list = Account::retrieve_friend_list(_db_connection, _clients.key(_socket).toInt());
     QStringList friend_IDs;
-    for (QHash<QString, int> info : friend_list)
+    for (QHash<QString, QString> info : friend_list)
     {
-        for (int ID : info)
-            friend_IDs << QString::number(ID);
+        for (QString ID : info.keys())
+            friend_IDs << ID;
     }
 
     std::function<void(const QByteArray &)> send_messages = [&](const QByteArray &message)
@@ -314,7 +314,7 @@ void server_manager::lookup_friend(const QString &ID)
 
     QWebSocket *client = _clients.value(ID);
     if (client)
-        client->sendBinaryMessage(_protocol->set_added_you_message(conversation_ID, alias, ID_2, ""));
+        client->sendBinaryMessage(_protocol->set_added_you_message(conversation_ID, alias, ID_2));
 }
 
 void server_manager::create_conversation(const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID)
@@ -327,9 +327,9 @@ void server_manager::save_conversation_message(const int &conversation_ID, const
     Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString(), time.toStdString());
 }
 
-void server_manager::save_data(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &data_type, const QString &time)
+void server_manager::save_data(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &data_name, const QByteArray &data_data, const QString &data_type, const QString &time)
 {
-    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), file_name.toStdString(), file_data, file_data.size(), data_type.toStdString(), time.toStdString());
+    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), data_name.toStdString(), data_data, data_data.size(), data_type.toStdString(), time.toStdString());
 }
 
 void server_manager::sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer)
@@ -354,7 +354,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     if (name.isEmpty())
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, QString(), QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, QString(), QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
 
         _clients.remove(name);
         _names.remove(name);
@@ -370,7 +370,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
 
-    QHash<int, QHash<QString, int>> friend_list;
+    QHash<int, QHash<QString, QString>> friend_list;
 
     QStringList online_friends;
 
@@ -390,26 +390,23 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     {
         friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
 
-        for (QHash<QString, int> &info : friend_list)
+        for (QHash<QString, QString> &info : friend_list)
         {
-            for (int friend_id : info.values())
+            for (QString friend_ID : info.keys())
             {
-                if (_clients.contains(QString::number(friend_id)))
-                {
-                    const QString &friend_name = _names.value(QString::number(friend_id));
-                    online_friends << friend_name;
-                }
+                if (_clients.contains(friend_ID))
+                    online_friends << info.value(friend_ID);
             }
 
-            messages[friend_list.key(info)] = Account::retrieve_conversation(_db_connection, friend_list.key(info));
+            messages.insert(friend_list.key(info), Account::retrieve_conversation(_db_connection, friend_list.key(info)));
         }
 
         group_list = Account::retrieve_group_list(_db_connection, phone_number.toInt());
 
         for (int group_ID : group_list.keys())
         {
-            group_messages[group_ID] = Account::retrieve_group_conversation(_db_connection, group_ID);
-            group_members[group_ID] = Account::retrieve_group_members(_db_connection, group_ID);
+            group_messages.insert(group_ID, Account::retrieve_group_conversation(_db_connection, group_ID));
+            group_members.insert(group_ID, Account::retrieve_group_members(_db_connection, group_ID));
         }
 
         _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
@@ -417,7 +414,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, int>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
         _clients.remove(name);
         _names.remove(name);
     }
@@ -499,7 +496,7 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
-        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), file_name.toStdString(), file_data, file_data.size(), "file", time.toStdString());
+        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), file_name.split("_").last().toStdString(), file_data, file_data.size(), "file", time.toStdString());
 
         for (QString ID : members)
         {
@@ -507,7 +504,7 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_file_message(group_ID, group_name, sender, file_name, file_data, time));
+                    client->sendBinaryMessage(_protocol->set_group_file_message(group_ID, group_name, sender, file_name, file_data, time.split(" ").last()));
             }
         }
     }
@@ -526,7 +523,7 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_audio_message(group_ID, group_name, sender, audio_name, audio_data, time));
+                    client->sendBinaryMessage(_protocol->set_group_audio_message(group_ID, group_name, sender, audio_name, audio_data, time.split(" ").last()));
             }
         }
     }

@@ -45,7 +45,7 @@ public:
 
     static void create_conversation(sql::Connection *connection, const int &conversation_ID, const std::string &participant1, const int &participant1_ID, const std::string &participant2, const int &participant2_ID);
 
-    static QHash<int, QHash<QString, int>> retrieve_friend_list(sql::Connection *connection, const int &phone_number);
+    static QHash<int, QHash<QString, QString>> retrieve_friend_list(sql::Connection *connection, const int &phone_number);
 
     static QString retrieve_alias(sql::Connection *connection, const int &phone_number);
 
@@ -53,7 +53,7 @@ public:
 
     static void save_text_message(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &content, const std::string &time);
 
-    static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time);
+    static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
 
     static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID);
 
@@ -69,7 +69,7 @@ public:
 
     static void save_group_text_message(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &content, const std::string &time);
 
-    static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &file_name, const char *file_data, const int &file_size, const std::string &type, const std::string &time);
+    static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
 
     static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID);
 

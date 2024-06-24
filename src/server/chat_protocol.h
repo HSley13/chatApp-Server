@@ -48,8 +48,8 @@ public:
         delete_account
     };
 
-    QByteArray set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time);
-    QByteArray set_is_typing_message(const QString &sender, const QString &receiver);
+    QByteArray set_text_message(const QString &sender, const QString &message, const QString &time);
+    QByteArray set_is_typing_message(const QString &sender);
     QByteArray set_name_message(const QString &name);
 
     QByteArray set_file_message(const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time);
@@ -58,7 +58,7 @@ public:
     QByteArray set_client_name_message(const QString &old_name, const QString &client_name);
     QByteArray set_client_disconnected_message(const QString &client_name);
 
-    QByteArray set_added_you_message(const int &conversation_ID, const QString &name, const QString &ID, const QString &receiver);
+    QByteArray set_added_you_message(const int &conversation_ID, const QString &name, const QString &ID);
 
     QByteArray set_lookup_friend_message(const int &conversation_ID, const QString &ID, bool true_or_false);
 
@@ -66,7 +66,7 @@ public:
 
     QByteArray set_online_client_message(QStringList &names);
 
-    QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members);
+    QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, QString>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members);
 
     QByteArray set_delete_message(const int &conversation_ID, const QString &sender, const QString &time);
 

@@ -143,26 +143,26 @@ QByteArray chat_protocol::get_data(message_type type, const QString &data)
     return byte;
 }
 
-QByteArray chat_protocol::set_text_message(const QString &sender, const QString &receiver, const QString &message, const QString &time)
+QByteArray chat_protocol::set_text_message(const QString &sender, const QString &message, const QString &time)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << text << sender << receiver << message << time;
+    out << text << sender << message << time;
 
     return byte;
 }
 
-QByteArray chat_protocol::set_is_typing_message(const QString &sender, const QString &receiver)
+QByteArray chat_protocol::set_is_typing_message(const QString &sender)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << is_typing << sender << receiver;
+    out << is_typing << sender;
 
     return byte;
 }
@@ -206,14 +206,14 @@ QByteArray chat_protocol::set_client_connected_message(const QString &client_nam
     return get_data(client_connected, client_name);
 }
 
-QByteArray chat_protocol::set_added_you_message(const int &conversation_ID, const QString &name, const QString &ID, const QString &receiver)
+QByteArray chat_protocol::set_added_you_message(const int &conversation_ID, const QString &name, const QString &ID)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << added_you << conversation_ID << name << ID << receiver;
+    out << added_you << conversation_ID << name << ID;
 
     return byte;
 }
@@ -242,7 +242,7 @@ QByteArray chat_protocol::set_audio_message(const QString &sender, const QString
     return byte;
 }
 
-QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, int>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members)
+QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool true_or_false, const QString &name, const QHash<int, QHash<QString, QString>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members)
 {
     QByteArray byte;
 
