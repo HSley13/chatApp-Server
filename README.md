@@ -53,8 +53,10 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 conversation_ID INT PRIMARY KEY,
                 participant1 TEXT,
                 participant1_ID INT,
+                last_message_read1 TIMESTAMP,
                 participant2 TEXT,
                 participant2_ID INT,
+                last_message_read2 TIMESTAMP
                 start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 

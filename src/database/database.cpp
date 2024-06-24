@@ -183,25 +183,46 @@ void Account::create_account(sql::Connection *connection, const int &phone_numbe
     }
 }
 
-QStringList Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID)
+QStringList Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, message_type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
-        prepared_statement->setInt(1, conversation_ID);
+        std::unique_ptr<sql::PreparedStatement> prepared_statement_1(connection->prepareStatement("SELECT CASE WHEN participant1_ID = ? THEN last_message_read1 ELSE last_message_read2 END AS last_message_read, CASE WHEN participant2_ID = ? THEN last_message_read2 ELSE last_message_read1 END AS last_message_read FROM conversations WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        prepared_statement_1->setInt(1, client_ID);
+        prepared_statement_1->setInt(2, client_ID);
+        prepared_statement_1->setInt(3, client_ID);
+        prepared_statement_1->setInt(4, client_ID);
 
-        std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
+        std::unique_ptr<sql::ResultSet> result_1(prepared_statement_1->executeQuery());
+
+        QString last_message_read = QString();
+        if (result_1->next())
+            last_message_read = result_1->getString("last_message_read").c_str();
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, message_type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
+        prepared_statement_2->setInt(1, conversation_ID);
+
+        std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
 
         QStringList messages = QStringList();
-
-        while (result->next())
+        int count = 0;
+        while (result_2->next())
         {
-            QString message = QString("%1/%2/%3/%4/%5")
-                                  .arg(result->getString("sender_ID").c_str())
-                                  .arg(result->getString("receiver_ID").c_str())
-                                  .arg(result->getString("content").c_str())
-                                  .arg(result->getString("date_time").c_str())
-                                  .arg(result->getString("message_type").c_str());
+            QString date_time = result_2->getString("date_time").c_str();
+
+            QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
+            QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
+
+            if (dt1.secsTo(dt2) < 0)
+                count++;
+
+            QString message = QString("%1/%2/%3/%4/%5/%6")
+                                  .arg(result_2->getString("sender_ID").c_str())
+                                  .arg(result_2->getString("receiver_ID").c_str())
+                                  .arg(result_2->getString("content").c_str())
+                                  .arg(date_time)
+                                  .arg(result_2->getString("message_type").c_str())
+                                  .arg(QString::number(count));
 
             messages << message;
         }
@@ -434,9 +455,9 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
 {
     try
     {
-        QString date_time;
+        QString date_time = QString();
 
-        (time.length() < 10) ? date_time = QString("%1_%2").arg(QDate::currentDate().toString("yyyyMMdd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM messages WHERE conversation_ID = ? AND date_time = ?;"));
         prepared_statement->setInt(1, conversation_ID);
@@ -524,10 +545,10 @@ QHash<int, QHash<int, QString>> Account::retrieve_group_list(sql::Connection *co
             int group_ID = result->getInt("group_ID");
             QString group_name = result->getString("group_name").c_str();
 
-            std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT participant_ID FROM group_memberships WHERE user_role = 'admin' AND group_ID = ?;"));
-            prepared_statement_2->setInt(1, group_ID);
+            std::unique_ptr<sql::PreparedStatement> prepared_statement_1(connection->prepareStatement("SELECT participant_ID FROM group_memberships WHERE user_role = 'admin' AND group_ID = ?;"));
+            prepared_statement_1->setInt(1, group_ID);
 
-            std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
+            std::unique_ptr<sql::ResultSet> result_2(prepared_statement_1->executeQuery());
 
             QHash<int, QString> group_name_and_adm;
             while (result_2->next())
@@ -705,6 +726,34 @@ void Account::delete_account(sql::Connection *connection, const int &phone_numbe
     catch (const sql::SQLException &e)
     {
         std::cerr << "delete_account() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+void Account::update_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time)
+{
+    try
+    {
+        QString date_time = QString();
+
+        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE conversations SET last_message_read1 = CASE WHEN participant1_ID = ? THEN ? ELSE last_message_read1 END, last_message_read2 = CASE WHEN participant2_ID = ? THEN ? ELSE last_message_read2 END WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        prepared_statement->setInt(1, client_ID);
+        prepared_statement->setString(2, date_time.toStdString());
+        prepared_statement->setInt(3, client_ID);
+        prepared_statement->setString(4, date_time.toStdString());
+        prepared_statement->setInt(5, client_ID);
+        prepared_statement->setInt(6, client_ID);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "update_last_message_read() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {

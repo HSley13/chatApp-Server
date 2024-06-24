@@ -126,6 +126,11 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case last_message_read:
+        in >> _conversation_ID >> _client_ID >> _time;
+
+        break;
+
     default:
         break;
     }

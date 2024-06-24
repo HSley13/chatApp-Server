@@ -45,7 +45,8 @@ public:
         remove_group_member,
         request_data,
 
-        delete_account
+        delete_account,
+        last_message_read
     };
 
     QByteArray set_text_message(const QString &sender, const QString &message, const QString &time);

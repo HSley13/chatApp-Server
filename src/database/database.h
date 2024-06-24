@@ -55,7 +55,7 @@ public:
 
     static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
 
-    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID);
+    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID);
 
     static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int &conversation_ID, const std::string &date_time);
 
@@ -78,4 +78,6 @@ public:
     static void remove_from_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
 
     static void delete_account(sql::Connection *connection, const int &phone_number);
+
+    static void update_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time);
 };

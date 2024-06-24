@@ -398,7 +398,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
                     online_friends << info.value(friend_ID);
             }
 
-            messages.insert(friend_list.key(info), Account::retrieve_conversation(_db_connection, friend_list.key(info)));
+            messages.insert(friend_list.key(info), Account::retrieve_conversation(_db_connection, friend_list.key(info), _clients.key(_socket).toInt()));
         }
 
         group_list = Account::retrieve_group_list(_db_connection, phone_number.toInt());
@@ -485,7 +485,7 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_text_message(group_ID, group_name, sender, message, time));
+                    client->sendBinaryMessage(_protocol->set_group_text_message(group_ID, group_name, sender, message, time.split(" ").last()));
             }
         }
     }
@@ -515,7 +515,7 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
-        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), audio_name.toStdString(), audio_data, audio_data.size(), "audio", time.toStdString());
+        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), audio_name.split("_").last().toStdString(), audio_data, audio_data.size(), "audio", time.toStdString());
 
         for (QString ID : members)
         {
@@ -559,4 +559,9 @@ void server_manager::data_requested(const int &conversation_ID, const QString &d
 void server_manager::delete_account(const QString &phone_number)
 {
     Account::delete_account(_db_connection, phone_number.toInt());
+}
+
+void server_manager::update_last_message_read(const int &conversation_ID, const QString &client_ID, const QString &time)
+{
+    Account::update_last_message_read(_db_connection, conversation_ID, client_ID.toInt(), time.toStdString());
 }
