@@ -473,6 +473,30 @@ void Account::delete_message(sql::Connection *connection, const int &conversatio
     }
 }
 
+void Account::delete_group_message(sql::Connection *connection, const int &group_ID, const std::string &time)
+{
+    try
+    {
+        QString date_time = QString();
+
+        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("DELETE FROM group_messages WHERE group_ID = ? AND date_time = ?;"));
+        prepared_statement->setInt(1, group_ID);
+        prepared_statement->setString(2, date_time.toStdString());
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "delete_group_message() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
 void Account::add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number, const std::string &user_role)
 {
     try
@@ -631,7 +655,7 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
 
         QString last_message_read = QString();
         if (result->next())
-            result->getString("last_message_read").c_str();
+            last_message_read = result->getString("last_message_read").c_str();
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
         prepared_statement_2->setInt(1, group_ID);

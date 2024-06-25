@@ -40,6 +40,7 @@ public:
     void login_request(const QString &phone_number, const QString &password);
 
     void delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time);
+    void delete_group_message(const int &conversation_ID, const QString &group_name, const QString &time);
 
     void create_new_group(const QString &adm, const QStringList &members, const QString &group_name);
 

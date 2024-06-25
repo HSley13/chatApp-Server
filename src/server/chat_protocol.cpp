@@ -81,6 +81,11 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case delete_group_message:
+        in >> _group_ID >> _group_name >> _time;
+
+        break;
+
     case new_group:
         in >> _adm >> _members >> _group_name;
 
@@ -264,7 +269,7 @@ QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool
     return byte;
 }
 
-QByteArray chat_protocol::set_delete_message(const int &conversation_ID, const QString &sender, const QString &time)
+QByteArray chat_protocol::set_delete_message(const QString &sender, const QString &time)
 {
     QByteArray byte;
 

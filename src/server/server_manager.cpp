@@ -104,6 +104,11 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::delete_group_message:
+        delete_group_message(_protocol->group_ID(), _protocol->group_name(), _protocol->time());
+
+        break;
+
     case chat_protocol::new_group:
         create_new_group(_protocol->adm(), _protocol->members(), _protocol->group_name());
 
@@ -288,10 +293,7 @@ void server_manager::notify_other_clients(const QString &old_name, const QString
         }
     };
 
-    if (!old_name.isEmpty())
-        send_messages(message_1);
-    else
-        send_messages(message_2);
+    (!old_name.isEmpty()) ? send_messages(message_1) : send_messages(message_2);
 
     QHash<int, QHash<int, QString>> group_list = Account::retrieve_group_list(_db_connection, _clients.key(_socket).toInt());
     for (const int &group_ID : group_list.keys())
@@ -440,7 +442,20 @@ void server_manager::delete_message(const int &conversation_ID, const QString &s
 
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_delete_message(conversation_ID, sender, time));
+        client->sendBinaryMessage(_protocol->set_delete_message(sender, time));
+}
+
+void server_manager::delete_group_message(const int &group_ID, const QString &group_name, const QString &time)
+{
+    Account::delete_group_message(_db_connection, group_ID, time.toStdString());
+
+    const QStringList &group_members = Account::retrieve_group_members(_db_connection, group_ID);
+    for (const QString &ID : group_members)
+    {
+        QWebSocket *client = _clients.value(ID);
+        if (client)
+            client->sendBinaryMessage(_protocol->set_delete_message(group_name, time));
+    }
 }
 
 void server_manager::create_new_group(const QString &adm, const QStringList &members, const QString &group_name)
@@ -492,6 +507,7 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
     if (!members.isEmpty())
     {
         Account::save_group_text_message(_db_connection, group_ID, sender.toStdString(), message.toStdString(), time.toStdString());
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
 
         for (QString ID : members)
         {
@@ -511,6 +527,7 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
     if (!members.isEmpty())
     {
         Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), file_name.split("_").last().toStdString(), file_data, file_data.size(), "file", time.toStdString());
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
 
         for (QString ID : members)
         {
@@ -530,6 +547,7 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
     if (!members.isEmpty())
     {
         Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), audio_name.split("_").last().toStdString(), audio_data, audio_data.size(), "audio", time.toStdString());
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
 
         for (QString ID : members)
         {

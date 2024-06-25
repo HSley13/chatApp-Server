@@ -115,10 +115,7 @@ void server_main_window::on_client_name_changed(const QString &original_name, co
 
 void server_main_window::on_is_typing_received(const QString &sender, const QString &receiver)
 {
-    if (!receiver.compare("Server"))
-        _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000);
-    else
-        _server->is_typing_for_other_clients(sender, receiver);
+    (!receiver.compare("Server")) ? _status_bar->showMessage(QString("%1 is typing...").arg(sender), 1000) : _server->is_typing_for_other_clients(sender, receiver);
 }
 
 void server_main_window::close_tabs(int index)

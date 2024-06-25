@@ -61,6 +61,8 @@ public:
 
     static void delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time);
 
+    static void delete_group_message(sql::Connection *connection, const int &group_ID, const std::string &time);
+
     static void add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number, const std::string &user_role = std::string());
 
     static QStringList retrieve_group_members(sql::Connection *connection, const int &group_ID);
