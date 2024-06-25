@@ -147,6 +147,13 @@ void server_manager::on_binary_message_received(const QByteArray &message)
     case chat_protocol::delete_account:
         delete_account(_protocol->clients_ID());
 
+        break;
+
+    case chat_protocol::last_message_read:
+        update_last_message_read(_protocol->conversation_ID(), _protocol->clients_ID(), _protocol->time());
+
+        break;
+
     default:
         break;
     }
@@ -196,7 +203,7 @@ void server_manager::message_received(const QString &sender, const QString &rece
         QWebSocket *client = _clients.value(receiver);
         if (client)
             client->sendBinaryMessage(_protocol->set_text_message(sender, message, time));
-    }
+        }
 }
 
 void server_manager::audio_received(const QString &sender, const QString &receiver, const QString &audio_name, const QByteArray &audio_data, const QString &time)
@@ -325,11 +332,13 @@ void server_manager::create_conversation(const int &conversation_ID, const QStri
 void server_manager::save_conversation_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &content, const QString &time)
 {
     Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString(), time.toStdString());
+    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time.toStdString());
 }
 
 void server_manager::save_data(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &data_name, const QByteArray &data_data, const QString &data_type, const QString &time)
 {
     Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), data_name.toStdString(), data_data, data_data.size(), data_type.toStdString(), time.toStdString());
+    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time.toStdString());
 }
 
 void server_manager::sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer)
