@@ -620,24 +620,41 @@ void Account::save_group_binary_data(sql::Connection *connection, const int &gro
     }
 }
 
-QStringList Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID)
+QStringList Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID)
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT last_message_read FROM group_memberships WHERE group_ID = ? AND participant_ID = ?;"));
         prepared_statement->setInt(1, group_ID);
-
+        prepared_statement->setInt(2, client_ID);
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QStringList messages = QStringList();
+        QString last_message_read = QString();
+        if (result->next())
+            result->getString("last_message_read").c_str();
 
-        while (result->next())
+        std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
+        prepared_statement_2->setInt(1, group_ID);
+        std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
+
+        QStringList messages = QStringList();
+        int count = 0;
+        while (result_2->next())
         {
-            QString message = QString("%1/%2/%3/%4")
-                                  .arg(result->getString("sender").c_str())
-                                  .arg(result->getString("content").c_str())
-                                  .arg(result->getString("date_time").c_str())
-                                  .arg(result->getString("message_type").c_str());
+            QString date_time = result_2->getString("date_time").c_str();
+
+            QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
+            QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
+
+            if (dt1.secsTo(dt2) < 0)
+                count++;
+
+            QString message = QString("%1/%2/%3/%4/%5")
+                                  .arg(result_2->getString("sender").c_str())
+                                  .arg(result_2->getString("content").c_str())
+                                  .arg(date_time)
+                                  .arg(result_2->getString("message_type").c_str())
+                                  .arg(QString::number(count));
 
             messages << message;
         }
@@ -753,6 +770,31 @@ void Account::update_last_message_read(sql::Connection *connection, const int &c
     catch (const sql::SQLException &e)
     {
         std::cerr << "update_last_message_read() ---> SQL ERROR: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+void Account::update_group_last_message_read(sql::Connection *connection, const int &group_ID, const int &client_ID, const std::string &time)
+{
+    try
+    {
+        QString date_time = QString();
+
+        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
+
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE group_memberships SET last_message_read = ? WHERE group_ID = ? AND participant_ID = ?;"));
+        prepared_statement->setString(1, date_time.toStdString());
+        prepared_statement->setInt(2, group_ID);
+        prepared_statement->setInt(3, client_ID);
+
+        prepared_statement->executeUpdate();
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cerr << "update_group_last_message_read() ---> SQL ERROR: " << e.what() << std::endl;
     }
     catch (const std::exception &e)
     {

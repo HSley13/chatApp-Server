@@ -154,6 +154,11 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
         break;
 
+    case chat_protocol::group_last_message_read:
+        update_group_last_message_read(_protocol->group_ID(), _protocol->clients_ID(), _protocol->time());
+
+        break;
+
     default:
         break;
     }
@@ -203,7 +208,7 @@ void server_manager::message_received(const QString &sender, const QString &rece
         QWebSocket *client = _clients.value(receiver);
         if (client)
             client->sendBinaryMessage(_protocol->set_text_message(sender, message, time));
-        }
+    }
 }
 
 void server_manager::audio_received(const QString &sender, const QString &receiver, const QString &audio_name, const QByteArray &audio_data, const QString &time)
@@ -414,7 +419,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
         for (int group_ID : group_list.keys())
         {
-            group_messages.insert(group_ID, Account::retrieve_group_conversation(_db_connection, group_ID));
+            group_messages.insert(group_ID, Account::retrieve_group_conversation(_db_connection, group_ID, _clients.key(_socket).toInt()));
             group_members.insert(group_ID, Account::retrieve_group_members(_db_connection, group_ID));
         }
 
@@ -573,4 +578,9 @@ void server_manager::delete_account(const QString &phone_number)
 void server_manager::update_last_message_read(const int &conversation_ID, const QString &client_ID, const QString &time)
 {
     Account::update_last_message_read(_db_connection, conversation_ID, client_ID.toInt(), time.toStdString());
+}
+
+void server_manager::update_group_last_message_read(const int &group_ID, const QString &client_ID, const QString &time)
+{
+    Account::update_group_last_message_read(_db_connection, group_ID, client_ID.toInt(), time.toStdString());
 }

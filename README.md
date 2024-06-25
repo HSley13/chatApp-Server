@@ -56,7 +56,7 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 last_message_read1 TIMESTAMP,
                 participant2 TEXT,
                 participant2_ID INT,
-                last_message_read2 TIMESTAMP
+                last_message_read2 TIMESTAMP,
                 start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
@@ -91,6 +91,7 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 group_name TEXT,
                 participant_ID INT,
                 user_role TEXT,
+                last_message_read TIMESTAMP,
                 PRIMARY KEY (group_ID, participant_ID)
             );
 
