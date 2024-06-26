@@ -34,7 +34,7 @@ endif()
 set(__QT_DEPLOY_SYSTEM_NAME "Emscripten")
 set(__QT_DEPLOY_IS_SHARED_LIBS_BUILD "OFF")
 set(__QT_DEPLOY_TOOL "")
-set(__QT_DEPLOY_IMPL_DIR "/Users/test/Documents/client---server---client_chat_application/.qt")
+set(__QT_DEPLOY_IMPL_DIR "/Users/test/Documents/server_app/.qt")
 set(__QT_DEPLOY_VERBOSE "")
 set(__QT_CMAKE_EXPORT_NAMESPACE "Qt6")
 set(__QT_DEPLOY_GENERATOR_IS_MULTI_CONFIG "0")
@@ -58,7 +58,7 @@ set(__QT_DEPLOY_QT_DEBUG_POSTFIX "")
 
 # Define the CMake commands to be made available during deployment.
 set(__qt_deploy_support_files
-    "/Users/test/Documents/client---server---client_chat_application/.qt/QtDeployTargets.cmake"
+    "/Users/test/Documents/server_app/.qt/QtDeployTargets.cmake"
     "/Users/test/qt-wasm/qtbase/lib/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
     "/Users/test/qt-wasm/qtbase/lib/cmake/Qt6Qml/Qt6QmlDeploySupport.cmake"
 )

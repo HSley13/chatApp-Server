@@ -501,7 +501,7 @@ void Account::add_to_group(sql::Connection *connection, const int &group_ID, con
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships VALUES (?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships (group_ID, group_name, participant_ID, user_role) VALUES (?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, group_name);
         prepared_statement->setInt(3, phone_number);

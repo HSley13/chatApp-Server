@@ -34,7 +34,7 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 phone_number INT PRIMARY KEY,
                 first_name TEXT,
                 last_name TEXT,
-                alias VARCHAR(50) DEFAULT first_name
+                alias VARCHAR(50)
             );
 
             -------password_security
