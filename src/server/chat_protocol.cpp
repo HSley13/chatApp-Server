@@ -72,7 +72,7 @@ void chat_protocol::load_data(const QByteArray &data)
         break;
 
     case login_request:
-        in >> _client_ID >> _password;
+        in >> _client_ID >> _password >> _time_zone;
 
         break;
 
@@ -123,6 +123,8 @@ void chat_protocol::load_data(const QByteArray &data)
 
     case request_data:
         in >> _conversation_ID >> _time >> _data_type;
+
+        qDebug() << "Data requested received for :" << _time << " in Conversation: " << _conversation_ID;
 
         break;
 
@@ -374,6 +376,8 @@ QByteArray chat_protocol::set_data_requested_found_message(const QByteArray &fil
 
     out << request_data << file_data << type;
 
+    qDebug() << "Data requested found for :" << type;
+
     return byte;
 }
 
@@ -607,4 +611,9 @@ const QString &chat_protocol::group_message() const
 const QString &chat_protocol::group_time() const
 {
     return _group_time;
+}
+
+const QString &chat_protocol::time_zone() const
+{
+    return _time_zone;
 }

@@ -55,7 +55,7 @@ public:
 
     static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
 
-    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID);
+    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const QString &timeZone_ID);
 
     static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int &conversation_ID, const std::string &date_time);
 
@@ -73,7 +73,7 @@ public:
 
     static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
 
-    static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID);
+    static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID, const QString &timeZone_ID);
 
     static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &date_time);
 
@@ -84,4 +84,6 @@ public:
     static void update_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time);
 
     static void update_group_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time);
+
+    static QString UTC_to_timeZone(const QString &UTC_time, const QString &timeZone_ID);
 };

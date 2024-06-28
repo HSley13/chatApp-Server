@@ -26,7 +26,7 @@ public:
     QString name() const;
 
     static QHash<QString, QWebSocket *> _clients;
-    static QHash<QString, QString> _names;
+    static QHash<QString, QString> _time_zone;
 
     void create_conversation(const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID);
     void save_conversation_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &content, const QString &time);

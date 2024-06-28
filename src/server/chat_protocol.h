@@ -151,6 +151,8 @@ public:
     const QStringList &members() const;
     const QString &group_name() const;
 
+    const QString &time_zone() const;
+
 private:
     QByteArray get_data(message_type type, const QString &data);
 
@@ -217,4 +219,6 @@ private:
     QStringList _members;
     QString _group_name;
     QString _group_sender;
+
+    QString _time_zone;
 };

@@ -2,7 +2,7 @@
 
 QHash<QString, QWebSocket *> server_manager::_clients = QHash<QString, QWebSocket *>();
 
-QHash<QString, QString> server_manager::_names = QHash<QString, QString>();
+QHash<QString, QString> server_manager::_time_zone = QHash<QString, QString>();
 
 sql::Connection *server_manager::_db_connection = nullptr;
 
@@ -212,7 +212,7 @@ void server_manager::message_received(const QString &sender, const QString &rece
     {
         QWebSocket *client = _clients.value(receiver);
         if (client)
-            client->sendBinaryMessage(_protocol->set_text_message(sender, message, time));
+            client->sendBinaryMessage(_protocol->set_text_message(sender, message, Account::UTC_to_timeZone(time, _time_zone.value(receiver)).split(" ").last()));
     }
 }
 
@@ -220,14 +220,14 @@ void server_manager::audio_received(const QString &sender, const QString &receiv
 {
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data, time));
+        client->sendBinaryMessage(_protocol->set_audio_message(sender, audio_name, audio_data, Account::UTC_to_timeZone(time, _time_zone.value(receiver))));
 }
 
 void server_manager::file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time)
 {
     QWebSocket *client = _clients.value(receiver);
     if (client)
-        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, time));
+        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, Account::UTC_to_timeZone(time, _time_zone.value(receiver))));
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -373,14 +373,14 @@ void server_manager::login_request(const QString &phone_number, const QString &p
         _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, QString(), QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
 
         _clients.remove(name);
-        _names.remove(name);
+        _time_zone.remove(name);
 
         return;
     }
 
     _socket->setProperty("client_name", name);
 
-    _names.insert(phone_number, name);
+    _time_zone.insert(phone_number, _protocol->time_zone());
 
     emit client_name_changed(phone_number, old_name, name);
 
@@ -414,14 +414,14 @@ void server_manager::login_request(const QString &phone_number, const QString &p
                     online_friends << info.value(friend_ID);
             }
 
-            messages.insert(friend_list.key(info), Account::retrieve_conversation(_db_connection, friend_list.key(info), _clients.key(_socket).toInt()));
+            messages.insert(friend_list.key(info), Account::retrieve_conversation(_db_connection, friend_list.key(info), _clients.key(_socket).toInt(), _time_zone.value(phone_number)));
         }
 
         group_list = Account::retrieve_group_list(_db_connection, phone_number.toInt());
 
         for (int group_ID : group_list.keys())
         {
-            group_messages.insert(group_ID, Account::retrieve_group_conversation(_db_connection, group_ID, _clients.key(_socket).toInt()));
+            group_messages.insert(group_ID, Account::retrieve_group_conversation(_db_connection, group_ID, _clients.key(_socket).toInt(), _time_zone.value(phone_number)));
             group_members.insert(group_ID, Account::retrieve_group_members(_db_connection, group_ID));
         }
 
@@ -432,7 +432,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     {
         _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
         _clients.remove(name);
-        _names.remove(name);
+        _time_zone.remove(name);
     }
 }
 
@@ -515,7 +515,7 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_text_message(group_ID, group_name, sender, message, time.split(" ").last()));
+                    client->sendBinaryMessage(_protocol->set_group_text_message(group_ID, group_name, sender, message, Account::UTC_to_timeZone(time, _time_zone.value(ID)).split(" ").last()));
             }
         }
     }
@@ -535,7 +535,7 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_file_message(group_ID, group_name, sender, file_name, file_data, time.split(" ").last()));
+                    client->sendBinaryMessage(_protocol->set_group_file_message(group_ID, group_name, sender, file_name, file_data, Account::UTC_to_timeZone(time, _time_zone.value(ID))));
             }
         }
     }
@@ -555,7 +555,7 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
             {
                 QWebSocket *client = _clients.value(ID);
                 if (client)
-                    client->sendBinaryMessage(_protocol->set_group_audio_message(group_ID, group_name, sender, audio_name, audio_data, time.split(" ").last()));
+                    client->sendBinaryMessage(_protocol->set_group_audio_message(group_ID, group_name, sender, audio_name, audio_data, Account::UTC_to_timeZone(time, _time_zone.value(ID))));
             }
         }
     }

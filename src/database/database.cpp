@@ -183,7 +183,7 @@ void Account::create_account(sql::Connection *connection, const int &phone_numbe
     }
 }
 
-QStringList Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID)
+QStringList Account::retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const QString &timeZone_ID)
 {
     try
     {
@@ -196,7 +196,7 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
 
         QString last_message_read = QString();
         if (result->next())
-            last_message_read = result->getString("last_message_read").c_str();
+            last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, message_type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
         prepared_statement_2->setInt(1, conversation_ID);
@@ -206,7 +206,7 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
         int count = 0;
         while (result_2->next())
         {
-            QString date_time = result_2->getString("date_time").c_str();
+            QString date_time = UTC_to_timeZone(result_2->getString("date_time").c_str(), timeZone_ID);
 
             QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
             QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
@@ -644,7 +644,7 @@ void Account::save_group_binary_data(sql::Connection *connection, const int &gro
     }
 }
 
-QStringList Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID)
+QStringList Account::retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID, const QString &timeZone_ID)
 {
     try
     {
@@ -655,7 +655,7 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
 
         QString last_message_read = QString();
         if (result->next())
-            last_message_read = result->getString("last_message_read").c_str();
+            last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
         prepared_statement_2->setInt(1, group_ID);
@@ -665,7 +665,7 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
         int count = 0;
         while (result_2->next())
         {
-            QString date_time = result_2->getString("date_time").c_str();
+            QString date_time = UTC_to_timeZone(result_2->getString("date_time").c_str(), timeZone_ID);
 
             QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
             QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
@@ -776,15 +776,12 @@ void Account::update_last_message_read(sql::Connection *connection, const int &c
 {
     try
     {
-        QString date_time = QString();
-
-        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
 
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE conversations SET last_message_read1 = CASE WHEN participant1_ID = ? THEN ? ELSE last_message_read1 END, last_message_read2 = CASE WHEN participant2_ID = ? THEN ? ELSE last_message_read2 END WHERE conversation_ID = ? AND (participant1_ID = ? OR participant2_ID = ?) ;"));
         prepared_statement->setInt(1, client_ID);
-        prepared_statement->setString(2, date_time.toStdString());
+        prepared_statement->setString(2, time);
         prepared_statement->setInt(3, client_ID);
-        prepared_statement->setString(4, date_time.toStdString());
+        prepared_statement->setString(4, time);
         prepared_statement->setInt(5, conversation_ID);
         prepared_statement->setInt(6, client_ID);
         prepared_statement->setInt(7, client_ID);
@@ -805,12 +802,8 @@ void Account::update_group_last_message_read(sql::Connection *connection, const 
 {
     try
     {
-        QString date_time = QString();
-
-        (time.length() < 10) ? date_time = QString("%1 %2").arg(QDate::currentDate().toString("yyyy-MM-dd"), QString::fromStdString(time)) : date_time = QString::fromStdString(time);
-
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE group_memberships SET last_message_read = ? WHERE group_ID = ? AND participant_ID = ?;"));
-        prepared_statement->setString(1, date_time.toStdString());
+        prepared_statement->setString(1, time);
         prepared_statement->setInt(2, group_ID);
         prepared_statement->setInt(3, client_ID);
 
@@ -824,4 +817,15 @@ void Account::update_group_last_message_read(sql::Connection *connection, const 
     {
         std::cerr << e.what() << std::endl;
     }
+}
+
+QString Account::UTC_to_timeZone(const QString &UTC_time, const QString &timeZone_ID)
+{
+    QDateTime UTC_dateTime = QDateTime::fromString(UTC_time);
+
+    QTimeZone targetTimeZone(timeZone_ID.toUtf8());
+
+    QDateTime localDateTime = UTC_dateTime.toTimeZone(targetTimeZone);
+
+    return localDateTime.toString("yyyy-MM-dd HH:mm:ss");
 }

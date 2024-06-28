@@ -6,6 +6,7 @@ target_link_libraries(database_library PUBLIC
                                         Qt6::Network
                                         Qt6::Multimedia
                                         Qt6::WebSockets
+                                        Qt6::Sql
                                         argon2 
                                         ssl 
                                         crypto 
