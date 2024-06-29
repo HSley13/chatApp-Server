@@ -212,7 +212,7 @@ void server_manager::message_received(const QString &sender, const QString &rece
     {
         QWebSocket *client = _clients.value(receiver);
         if (client)
-            client->sendBinaryMessage(_protocol->set_text_message(sender, message, Account::UTC_to_timeZone(time, _time_zone.value(receiver)).split(" ").last()));
+            client->sendBinaryMessage(_protocol->set_text_message(sender, message, Account::UTC_to_timeZone(time, _time_zone.value(receiver))));
     }
 }
 
@@ -565,20 +565,28 @@ void server_manager::new_group_member(const int &group_ID, const QString &group_
 {
     Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), group_member.toInt(), "member");
 
-    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
 
-    QWebSocket *client = _clients.value(group_member);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, adm, members, group_name));
+    for (const QString &ID : members)
+    {
+        QWebSocket *client = _clients.value(ID);
+        if (client)
+            client->sendBinaryMessage(_protocol->set_added_to_group_message(group_ID, adm, members, group_name));
+    }
 }
 
 void server_manager::remove_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member)
 {
-    Account::remove_from_group(_db_connection, group_ID, group_member.toInt());
+    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
 
-    QWebSocket *client = _clients.value(group_member);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_removed_from_group(group_ID, group_name, adm));
+    for (const QString &ID : members)
+    {
+        QWebSocket *client = _clients.value(ID);
+        if (client)
+            client->sendBinaryMessage(_protocol->set_removed_from_group(group_ID, group_name, adm, group_member));
+    }
+
+    Account::remove_from_group(_db_connection, group_ID, group_member.toInt());
 }
 
 void server_manager::data_requested(const int &conversation_ID, const QString &date_time, const QString &type)

@@ -355,14 +355,14 @@ QByteArray chat_protocol::set_group_audio_message(const int &group_ID, const QSt
     return byte;
 }
 
-QByteArray chat_protocol::set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm)
+QByteArray chat_protocol::set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm, const QString &removed_member)
 {
     QByteArray byte;
 
     QDataStream out(&byte, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_7);
 
-    out << remove_group_member << group_ID << group_name << adm;
+    out << remove_group_member << group_ID << group_name << adm << removed_member;
 
     return byte;
 }
@@ -375,8 +375,6 @@ QByteArray chat_protocol::set_data_requested_found_message(const QByteArray &fil
     out.setVersion(QDataStream::Qt_6_7);
 
     out << request_data << file_data << type;
-
-    qDebug() << "Data requested found for :" << type;
 
     return byte;
 }

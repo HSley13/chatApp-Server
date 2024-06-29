@@ -426,7 +426,6 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(sql::Connection *connec
 
         if (result->next())
         {
-
             std::istream *file_stream = result->getBlob("file_data");
             QByteArray file_data = QByteArray::fromStdString(std::string(std::istreambuf_iterator<char>(*file_stream), {}));
 
@@ -776,7 +775,6 @@ void Account::update_last_message_read(sql::Connection *connection, const int &c
 {
     try
     {
-
         std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE conversations SET last_message_read1 = CASE WHEN participant1_ID = ? THEN ? ELSE last_message_read1 END, last_message_read2 = CASE WHEN participant2_ID = ? THEN ? ELSE last_message_read2 END WHERE conversation_ID = ? AND (participant1_ID = ? OR participant2_ID = ?) ;"));
         prepared_statement->setInt(1, client_ID);
         prepared_statement->setString(2, time);

@@ -82,7 +82,7 @@ public:
     QByteArray set_group_file_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time);
     QByteArray set_group_audio_message(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time);
 
-    QByteArray set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm);
+    QByteArray set_removed_from_group(const int &group_ID, const QString &group_name, const QString &adm, const QString &removed_member);
 
     QByteArray set_data_requested_found_message(const QByteArray &file_data, const QString &type);
 

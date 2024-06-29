@@ -52,17 +52,17 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 conversation_ID INT PRIMARY KEY,
                 participant1 TEXT,
                 participant1_ID INT,
-                last_message_read1 TIMESTAMP,
+                last_message_read1 TEXT,
                 participant2 TEXT,
                 participant2_ID INT,
-                last_message_read2 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                last_message_read2 TEXT,
                 start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
             -------messages
             CREATE TABLE messages 
             (
-                date_time TIMESTAMP PRIMARY KEY,
+                date_time VARCHAR(100) PRIMARY KEY,
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
@@ -74,7 +74,7 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
             -------binary_data
             CREATE TABLE binary_data 
             (
-                date_time TIMESTAMP PRIMARY KEY,
+                date_time VARCHAR(100) PRIMARY KEY,
                 conversation_ID INT,
                 sender_ID INT,
                 receiver_ID INT,
@@ -90,14 +90,14 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
                 group_name TEXT,
                 participant_ID INT,
                 user_role TEXT,
-                last_message_read TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                last_message_read VARCHAR(100),
                 PRIMARY KEY (group_ID, participant_ID)
             );
 
             -------group_messages
             CREATE TABLE group_messages 
             (
-                date_time TIMESTAMP PRIMARY KEY,
+                date_time VARCHAR(100) PRIMARY KEY,
                 group_ID INT,
                 sender TEXT,
                 content TEXT,
@@ -107,7 +107,7 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
             -------group_binary_data
             CREATE TABLE group_binary_data 
             (
-                date_time TIMESTAMP PRIMARY KEY,
+                date_time VARCHAR(100) PRIMARY KEY,
                 group_ID INT,
                 sender TEXT,
                 file_name TEXT,
