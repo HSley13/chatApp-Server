@@ -124,8 +124,6 @@ void chat_protocol::load_data(const QByteArray &data)
     case request_data:
         in >> _conversation_ID >> _time >> _data_type;
 
-        qDebug() << "Data requested received for :" << _time << " in Conversation: " << _conversation_ID;
-
         break;
 
     case delete_account:

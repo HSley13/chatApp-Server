@@ -187,39 +187,41 @@ QStringList Account::retrieve_conversation(sql::Connection *connection, const in
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT CASE WHEN participant1_ID = ? THEN last_message_read1 ELSE last_message_read2 END AS last_message_read, CASE WHEN participant2_ID = ? THEN last_message_read2 ELSE last_message_read1 END AS last_message_read FROM conversations WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT messages.sender_ID, messages.receiver_ID, messages.content, messages.date_time, messages.message_type, "
+                                                                                                "CASE WHEN conversations.participant1_ID = ? THEN conversations.last_message_read1 ELSE conversations.last_message_read2 END AS last_message_read "
+                                                                                                "FROM messages "
+                                                                                                "JOIN conversations ON messages.conversation_ID = conversations.conversation_ID "
+                                                                                                "WHERE messages.conversation_ID = ? "
+                                                                                                "ORDER BY messages.date_time;"));
+
         prepared_statement->setInt(1, client_ID);
-        prepared_statement->setInt(2, client_ID);
-        prepared_statement->setInt(3, client_ID);
-        prepared_statement->setInt(4, client_ID);
+        prepared_statement->setInt(2, conversation_ID);
+
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QString last_message_read = QString();
-        if (result->next())
-            last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
-
-        std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender_ID, receiver_ID, content, date_time, message_type FROM messages WHERE conversation_ID = ? ORDER BY date_time;"));
-        prepared_statement_2->setInt(1, conversation_ID);
-        std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
-
-        QStringList messages = QStringList();
+        QStringList messages;
         int count = 0;
-        while (result_2->next())
+        QString last_message_read;
+
+        while (result->next())
         {
-            QString date_time = UTC_to_timeZone(result_2->getString("date_time").c_str(), timeZone_ID);
+            if (last_message_read.isEmpty())
+                last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
+
+            QString date_time = UTC_to_timeZone(result->getString("date_time").c_str(), timeZone_ID);
 
             QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
             QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
 
-            if (dt1.secsTo(dt2) < 0)
+            if (dt1 > dt2)
                 count++;
 
             QString message = QString("%1/%2/%3/%4/%5/%6")
-                                  .arg(result_2->getString("sender_ID").c_str())
-                                  .arg(result_2->getString("receiver_ID").c_str())
-                                  .arg(result_2->getString("content").c_str())
+                                  .arg(result->getString("sender_ID").c_str())
+                                  .arg(result->getString("receiver_ID").c_str())
+                                  .arg(result->getString("content").c_str())
                                   .arg(date_time)
-                                  .arg(result_2->getString("message_type").c_str())
+                                  .arg(result->getString("message_type").c_str())
                                   .arg(QString::number(count));
 
             messages << message;
@@ -243,7 +245,9 @@ QHash<int, QHash<QString, QString>> Account::retrieve_friend_list(sql::Connectio
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT CASE WHEN participant1_ID = ? THEN participant2 ELSE participant1 END AS other_participant, CASE WHEN participant1_ID = ? THEN participant2_ID ELSE participant1_ID END AS other_participant_ID, conversation_ID FROM conversations WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT CASE WHEN participant1_ID = ? THEN participant2 ELSE participant1 END AS other_participant, "
+                                                                                                "CASE WHEN participant1_ID = ? THEN participant2_ID ELSE participant1_ID END AS other_participant_ID, "
+                                                                                                "conversation_ID FROM conversations WHERE participant1_ID = ? OR participant2_ID = ?;"));
         prepared_statement->setInt(1, phone_number);
         prepared_statement->setInt(2, phone_number);
         prepared_statement->setInt(3, phone_number);
@@ -308,7 +312,8 @@ void Account::create_conversation(sql::Connection *connection, const int &conver
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (conversation_ID, participant1, participant1_ID, participant2, participant2_ID) VALUES (?,?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO conversations (conversation_ID, participant1, participant1_ID, participant2, participant2_ID) "
+                                                                                                "VALUES (?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setString(2, participant1);
         prepared_statement->setInt(3, participant1_ID);
@@ -365,7 +370,9 @@ void Account::update_alias(sql::Connection *connection, const int &phone_number,
 
         prepared_statement->executeUpdate();
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement_conversation(connection->prepareStatement("UPDATE conversations SET participant1 = CASE WHEN participant1_ID = ? THEN ? ELSE participant1 END, participant2 = CASE WHEN participant2_ID = ? THEN ? ELSE participant2 END WHERE participant1_ID = ? OR participant2_ID = ?;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement_conversation(connection->prepareStatement("UPDATE conversations SET participant1 = CASE WHEN participant1_ID = ? THEN ? ELSE participant1 END, "
+                                                                                                             " participant2 = CASE WHEN participant2_ID = ? THEN ? ELSE participant2 END"
+                                                                                                             " WHERE participant1_ID = ? OR participant2_ID = ?;"));
         prepared_statement_conversation->setInt(1, phone_number);
         prepared_statement_conversation->setString(2, name);
         prepared_statement_conversation->setInt(3, phone_number);
@@ -391,7 +398,8 @@ void Account::save_binary_data(sql::Connection *connection, const int &conversat
     {
         std::istringstream blob_stream(std::string(data_data, data_size));
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO binary_data (conversation_ID, sender_ID, receiver_ID, file_name, file_data, data_type, date_time) "
+                                                                                                "VALUES (?,?,?,?,?,?,?);"));
         prepared_statement->setInt(1, conversation_ID);
         prepared_statement->setInt(2, sender_ID);
         prepared_statement->setInt(3, receiver_ID);
@@ -500,7 +508,8 @@ void Account::add_to_group(sql::Connection *connection, const int &group_ID, con
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships (group_ID, group_name, participant_ID, user_role) VALUES (?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT INTO group_memberships (group_ID, group_name, participant_ID, user_role) "
+                                                                                                "VALUES (?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, group_name);
         prepared_statement->setInt(3, phone_number);
@@ -623,7 +632,8 @@ void Account::save_group_binary_data(sql::Connection *connection, const int &gro
     {
         std::istringstream blob_stream(std::string(data_data, data_size));
 
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_binary_data (group_ID, sender, file_name, file_data, data_type, date_time) VALUES (?,?,?,?,?,?);"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("INSERT IGNORE INTO group_binary_data (group_ID, sender, file_name, file_data, data_type, date_time)"
+                                                                                                " VALUES (?,?,?,?,?,?);"));
         prepared_statement->setInt(1, group_ID);
         prepared_statement->setString(2, sender);
         prepared_statement->setString(3, data_name);
@@ -647,36 +657,37 @@ QStringList Account::retrieve_group_conversation(sql::Connection *connection, co
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT last_message_read FROM group_memberships WHERE group_ID = ? AND participant_ID = ?;"));
-        prepared_statement->setInt(1, group_ID);
-        prepared_statement->setInt(2, client_ID);
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("SELECT gm.sender, gm.content, gm.date_time, gm.message_type, "
+                                                                                                "(SELECT last_message_read FROM group_memberships WHERE group_ID = gm.group_ID AND participant_ID = ?) AS last_message_read "
+                                                                                                "FROM group_messages gm WHERE gm.group_ID = ? ORDER BY gm.date_time;"));
+
+        prepared_statement->setInt(1, client_ID);
+        prepared_statement->setInt(2, group_ID);
+
         std::unique_ptr<sql::ResultSet> result(prepared_statement->executeQuery());
 
-        QString last_message_read = QString();
-        if (result->next())
-            last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
-
-        std::unique_ptr<sql::PreparedStatement> prepared_statement_2(connection->prepareStatement("SELECT sender, content, date_time, message_type FROM group_messages WHERE group_ID = ? ORDER BY date_time;"));
-        prepared_statement_2->setInt(1, group_ID);
-        std::unique_ptr<sql::ResultSet> result_2(prepared_statement_2->executeQuery());
-
-        QStringList messages = QStringList();
+        QStringList messages;
         int count = 0;
-        while (result_2->next())
+        QString last_message_read = QString();
+
+        while (result->next())
         {
-            QString date_time = UTC_to_timeZone(result_2->getString("date_time").c_str(), timeZone_ID);
+            if (last_message_read.isEmpty())
+                last_message_read = UTC_to_timeZone(result->getString("last_message_read").c_str(), timeZone_ID);
+
+            QString date_time = UTC_to_timeZone(result->getString("date_time").c_str(), timeZone_ID);
 
             QDateTime dt1 = QDateTime::fromString(date_time, "yyyy-MM-dd HH:mm:ss");
             QDateTime dt2 = QDateTime::fromString(last_message_read, "yyyy-MM-dd HH:mm:ss");
 
-            if (dt1.secsTo(dt2) < 0)
+            if (dt1 > dt2)
                 count++;
 
             QString message = QString("%1/%2/%3/%4/%5")
-                                  .arg(result_2->getString("sender").c_str())
-                                  .arg(result_2->getString("content").c_str())
+                                  .arg(result->getString("sender").c_str())
+                                  .arg(result->getString("content").c_str())
                                   .arg(date_time)
-                                  .arg(result_2->getString("message_type").c_str())
+                                  .arg(result->getString("message_type").c_str())
                                   .arg(QString::number(count));
 
             messages << message;
@@ -775,7 +786,9 @@ void Account::update_last_message_read(sql::Connection *connection, const int &c
 {
     try
     {
-        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE conversations SET last_message_read1 = CASE WHEN participant1_ID = ? THEN ? ELSE last_message_read1 END, last_message_read2 = CASE WHEN participant2_ID = ? THEN ? ELSE last_message_read2 END WHERE conversation_ID = ? AND (participant1_ID = ? OR participant2_ID = ?) ;"));
+        std::unique_ptr<sql::PreparedStatement> prepared_statement(connection->prepareStatement("UPDATE conversations SET last_message_read1 = CASE WHEN participant1_ID = ? THEN ? ELSE last_message_read1 END, "
+                                                                                                "last_message_read2 = CASE WHEN participant2_ID = ? THEN ? ELSE last_message_read2 END "
+                                                                                                "WHERE conversation_ID = ? AND (participant1_ID = ? OR participant2_ID = ?) ;"));
         prepared_statement->setInt(1, client_ID);
         prepared_statement->setString(2, time);
         prepared_statement->setInt(3, client_ID);
