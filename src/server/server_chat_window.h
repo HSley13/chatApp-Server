@@ -43,5 +43,4 @@ private slots:
     void folder();
 
     void on_text_message_received(const QString &message, const QString &time);
-    void on_file_saved(const QString &path);
 };

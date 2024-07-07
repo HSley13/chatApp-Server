@@ -7,11 +7,11 @@ class server_main_window : public QMainWindow
 {
     Q_OBJECT
 public:
-    server_main_window(sql::Connection *db_connection, QWidget *parent = nullptr);
+    server_main_window(QSqlDatabase &db_connection, QWidget *parent = nullptr);
     ~server_main_window();
 
 private:
-    sql::Connection *_db_connection;
+    QSqlDatabase _db_connection;
 
     QListWidget *_list;
     QTabWidget *_tabs;

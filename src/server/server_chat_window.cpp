@@ -27,7 +27,7 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
     hbox_1->addWidget(_insert_message, 7);
     hbox_1->addWidget(_send_button, 3);
 
-    _file = new QPushButton("Open Client Directory", this);
+    _file = new QPushButton(QString("Open %1's Directory").arg(_client->name()), this);
     connect(_file, &QPushButton::clicked, this, &server_chat_window::folder);
 
     QHBoxLayout *hbox_2 = new QHBoxLayout();
@@ -45,6 +45,9 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 
     connect(_client, &server_manager::client_name_changed, this, &server_chat_window::on_client_name_changed);
 
+    connect(_client, &server_manager::file_saved, this, [=](const QString &path)
+            { add_file(path); });
+
     connect(_client, &server_manager::is_typing_received, this, [=](const QString &sender, const QString &receiver)
             { emit is_typing_received(sender, receiver); });
 }
@@ -52,9 +55,8 @@ server_chat_window::server_chat_window(QWebSocket *client, QWidget *parent)
 
 void server_chat_window::on_text_message_received(const QString &message, const QString &time)
 {
-
     chat_line *wid = new chat_line(this);
-    wid->set_message(message, false, time);
+    wid->set_message(message, false, time.split(" ").last());
     wid->setStyleSheet("color: black;");
 
     QListWidgetItem *line = new QListWidgetItem(_list);
@@ -71,15 +73,6 @@ void server_chat_window::on_client_name_changed(const QString &original_name, co
     _file->setText(QString("Open %1 Directory").arg(name));
 
     emit client_name_changed(original_name, old_name, name);
-}
-
-void server_chat_window::on_file_saved(const QString &path)
-{
-    QString message = QString("File save at: %1").arg(path);
-
-    QMessageBox::information(this, "File Saved", message);
-
-    add_file(path);
 }
 
 void server_chat_window::send_message()

@@ -6,84 +6,84 @@
 #include <stack>
 #include <vector>
 
-#include <mysql_driver.h>
-#include <mysql_connection.h>
-#include <cppconn/prepared_statement.h>
-#include <argon2.h>
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
 
 #include <QtWidgets>
 #include <QtCore>
 #include <QtMultimedia>
 #include <QWebSocket>
 #include <QWebSocketServer>
-
+#include <QtSql>
+#include <sys/stat.h>
+#include <cstdio>
 class connection_details
 {
 public:
-    std::string server, user, schema, password;
+    QString server, user, schema, password;
     int port;
 };
 
-sql::Connection *connection_setup(connection_details *ID);
-
+QSqlDatabase connection_setup(const connection_details &details);
 class Security
 {
 public:
-    static std ::string generate_random_salt(size_t len);
+    static QString generate_random_salt(std::size_t len);
 
-    static std ::string hashing_password(const std::string &password);
+    static QString hashing_password(const QString &password);
 
-    static bool verifying_password(const std::string &password, const std::string &hashed_password);
+    static bool verifying_password(const QString &password, const QString &hashed_password);
 
-    static std ::string retrieve_hashed_password(sql::Connection *connection, const int &account_number);
+    static QString retrieve_hashed_password(QSqlDatabase &db, const int &phone_number);
 };
 
 class Account
 {
 public:
-    static void create_account(sql::Connection *connection, const int &phone_number, const std::string &first_name, const std::string &last_name, const std::string &secret_question, const std::string &secret_answer, const std::string &password);
+    static void create_account(QSqlDatabase &db, const int &phone_number, const QString &first_name, const QString &last_name, const QString &secret_question, const QString &secret_answer, const QString &password);
 
-    static void create_conversation(sql::Connection *connection, const int &conversation_ID, const std::string &participant1, const int &participant1_ID, const std::string &participant2, const int &participant2_ID);
+    static void create_conversation(QSqlDatabase &db, const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID);
 
-    static QHash<int, QHash<QString, QString>> retrieve_friend_list(sql::Connection *connection, const int &phone_number);
+    static QHash<int, QHash<QString, QString>> retrieve_friend_list(QSqlDatabase &db, const int &phone_number);
 
-    static QString retrieve_alias(sql::Connection *connection, const int &phone_number);
+    static QString retrieve_alias(QSqlDatabase &db, const int &phone_number);
 
-    static void update_alias(sql::Connection *connection, const int &phone_number, const std::string &name);
+    static void update_alias(QSqlDatabase &db, const int &phone_number, const QString &name);
 
-    static void save_text_message(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &content, const std::string &time);
+    static void save_text_message(QSqlDatabase &db, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const QString &content, const QString &time);
 
-    static void save_binary_data(sql::Connection *connection, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
+    static void save_binary_data(QSqlDatabase &db, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const QString &data_name, const QByteArray &data_data, const QString &type, const QString &time);
 
-    static QStringList retrieve_conversation(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const QString &timeZone_ID);
+    static QStringList retrieve_conversation(QSqlDatabase &db, const int &conversation_ID, const int &client_ID, const QString &timeZone_ID);
 
-    static QHash<QString, QByteArray> retrieve_binary_data(sql::Connection *connection, const int &conversation_ID, const std::string &date_time);
+    static QHash<QString, QByteArray> retrieve_binary_data(QSqlDatabase &db, const int &conversation_ID, const QString &date_time);
 
-    static void delete_message(sql::Connection *connection, const int &conversation_ID, const std::string &time);
+    static void delete_message(QSqlDatabase &db, const int &conversation_ID, const QString &time);
 
-    static void delete_group_message(sql::Connection *connection, const int &group_ID, const std::string &time);
+    static void delete_group_message(QSqlDatabase &db, const int &group_ID, const QString &time);
 
-    static void add_to_group(sql::Connection *connection, const int &group_ID, const std::string &group_name, const int &phone_number, const std::string &user_role = std::string());
+    static void add_to_group(QSqlDatabase &db, const int &group_ID, const QString &group_name, const int &phone_number, const QString &user_role = QString());
 
-    static QStringList retrieve_group_members(sql::Connection *connection, const int &group_ID);
+    static QStringList retrieve_group_members(QSqlDatabase &db, const int &group_ID);
 
-    static QHash<int, QHash<int, QString>> retrieve_group_list(sql::Connection *connection, const int &phone_number);
+    static QHash<int, QHash<int, QString>> retrieve_group_list(QSqlDatabase &db, const int &phone_number);
 
-    static void save_group_text_message(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &content, const std::string &time);
+    static void save_group_text_message(QSqlDatabase &db, const int &group_ID, const QString &sender_ID, const QString &content, const QString &time);
 
-    static void save_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &sender_ID, const std::string &data_name, const char *data_data, const int &data_size, const std::string &type, const std::string &time);
+    static void save_group_binary_data(QSqlDatabase &db, const int &group_ID, const QString &sender_ID, const QString &data_name, const QByteArray &data_data, const QString &type, const QString &time);
 
-    static QStringList retrieve_group_conversation(sql::Connection *connection, const int &group_ID, const int &client_ID, const QString &timeZone_ID);
+    static QStringList retrieve_group_conversation(QSqlDatabase &db, const int &group_ID, const int &client_ID, const QString &timeZone_ID);
 
-    static QHash<QString, QByteArray> retrieve_group_binary_data(sql::Connection *connection, const int &group_ID, const std::string &date_time);
+    static QHash<QString, QByteArray> retrieve_group_binary_data(QSqlDatabase &db, const int &group_ID, const QString &date_time);
 
-    static void remove_from_group(sql::Connection *connection, const int &group_ID, const int &phone_number);
+    static void remove_from_group(QSqlDatabase &db, const int &group_ID, const int &phone_number);
 
-    static void delete_account(sql::Connection *connection, const int &phone_number);
+    static void delete_account(QSqlDatabase &db, const int &phone_number);
 
-    static void update_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time);
+    static void update_last_message_read(QSqlDatabase &db, const int &conversation_ID, const int &client_ID, const QString &time);
 
-    static void update_group_last_message_read(sql::Connection *connection, const int &conversation_ID, const int &client_ID, const std::string &time);
+    static void update_group_last_message_read(QSqlDatabase &db, const int &conversation_ID, const int &client_ID, const QString &time);
 
     static QString UTC_to_timeZone(const QString &UTC_time, const QString &timeZone_ID);
 };

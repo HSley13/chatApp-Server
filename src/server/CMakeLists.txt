@@ -21,3 +21,8 @@ add_custom_command(TARGET server POST_BUILD
                             $<TARGET_FILE:server>
                             ${CMAKE_SOURCE_DIR}/$<TARGET_FILE_NAME:server>
                     )
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+    include_directories(${EMSCRIPTEN}/system/include)
+    set_target_properties(server PROPERTIES LINK_FLAGS "-lidbfs.js")
+endif()

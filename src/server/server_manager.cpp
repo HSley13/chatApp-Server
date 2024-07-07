@@ -4,9 +4,9 @@ QHash<QString, QWebSocket *> server_manager::_clients = QHash<QString, QWebSocke
 
 QHash<QString, QString> server_manager::_time_zone = QHash<QString, QString>();
 
-sql::Connection *server_manager::_db_connection = nullptr;
+QSqlDatabase server_manager::_db_connection;
 
-server_manager::server_manager(sql::Connection *db_connection, QWidget *parent)
+server_manager::server_manager(QSqlDatabase &db_connection, QWidget *parent)
     : QMainWindow(parent)
 {
     _server = new QWebSocketServer(QString("ChatApp Server"), QWebSocketServer::NonSecureMode, this);
@@ -16,7 +16,7 @@ server_manager::server_manager(sql::Connection *db_connection, QWidget *parent)
 
     _socket = new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this);
 
-    if (!_db_connection)
+    if (_db_connection.isOpen())
         _db_connection = db_connection;
 }
 
@@ -49,7 +49,7 @@ void server_manager::on_binary_message_received(const QByteArray &message)
         emit client_name_changed(_protocol->original_name(), old_name, _protocol->name());
         emit notify_other_clients(old_name, _protocol->name());
 
-        Account::update_alias(_db_connection, _clients.key(_socket).toInt(), _protocol->name().toStdString());
+        Account::update_alias(_db_connection, _clients.key(_socket).toInt(), _protocol->name());
 
         break;
     }
@@ -207,7 +207,7 @@ void server_manager::on_client_disconnected()
 void server_manager::message_received(const QString &sender, const QString &receiver, const QString &message, const QString &time)
 {
     if (!receiver.compare("Server"))
-        emit text_message_received(message, time);
+        emit text_message_received(message, Account::UTC_to_timeZone(time, "Asia/Taipei"));
     else
     {
         QWebSocket *client = _clients.value(receiver);
@@ -225,9 +225,31 @@ void server_manager::audio_received(const QString &sender, const QString &receiv
 
 void server_manager::file_received(const QString &sender, const QString &receiver, const QString &file_name, const QByteArray &file_data, const QString &time)
 {
-    QWebSocket *client = _clients.value(receiver);
-    if (client)
-        client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, Account::UTC_to_timeZone(time, _time_zone.value(receiver))));
+    if (!receiver.compare("Server"))
+    {
+        QString FS_file_name = QString("%1_%2").arg(time, file_name);
+
+        QDir dir;
+        if (!sender.isEmpty() && !sender.isNull())
+            dir.mkdir(sender);
+
+        QString path = QString("%1/%2/%3").arg(dir.canonicalPath(), sender, FS_file_name);
+
+        QFile file(path);
+        if (file.open(QIODevice::WriteOnly))
+        {
+            file.write(file_data);
+            file.close();
+        }
+
+        emit file_saved(path);
+    }
+    else
+    {
+        QWebSocket *client = _clients.value(receiver);
+        if (client)
+            client->sendBinaryMessage(_protocol->set_file_message(sender, file_name, file_data, Account::UTC_to_timeZone(time, _time_zone.value(receiver))));
+    }
 }
 
 /*-------------------------------------------------------------------- Functions --------------------------------------------------------------*/
@@ -333,24 +355,24 @@ void server_manager::lookup_friend(const QString &ID)
 
 void server_manager::create_conversation(const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID)
 {
-    Account::create_conversation(_db_connection, conversation_ID, participant1.toStdString(), participant1_ID, participant2.toStdString(), participant2_ID);
+    Account::create_conversation(_db_connection, conversation_ID, participant1, participant1_ID, participant2, participant2_ID);
 }
 
 void server_manager::save_conversation_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &content, const QString &time)
 {
-    Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content.toStdString(), time.toStdString());
-    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time.toStdString());
+    Account::save_text_message(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), content, time);
+    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time);
 }
 
 void server_manager::save_data(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &data_name, const QByteArray &data_data, const QString &data_type, const QString &time)
 {
-    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), data_name.toStdString(), data_data, data_data.size(), data_type.toStdString(), time.toStdString());
-    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time.toStdString());
+    Account::save_binary_data(_db_connection, conversation_ID, sender.toInt(), receiver.toInt(), data_name, data_data, data_type, time);
+    Account::update_last_message_read(_db_connection, conversation_ID, sender.toInt(), time);
 }
 
 void server_manager::sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer)
 {
-    Account::create_account(_db_connection, phone_number.toInt(), first_name.toStdString(), last_name.toStdString(), secret_question.toStdString(), secret_answer.toStdString(), password.toStdString());
+    Account::create_account(_db_connection, phone_number.toInt(), first_name, last_name, secret_question, secret_answer, password);
 
     QTimer::singleShot(3000, this, [this]()
                        { _socket->close(); });
@@ -384,7 +406,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     emit client_name_changed(phone_number, old_name, name);
 
-    std::string hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
+    QString hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
 
     QHash<int, QHash<QString, QString>> friend_list;
 
@@ -402,7 +424,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     QHash<int, QStringList> group_members;
 
-    if (Security::verifying_password(password.toStdString(), hashed_password))
+    if (Security::verifying_password(password, hashed_password))
     {
         friend_list = Account::retrieve_friend_list(_db_connection, phone_number.toInt());
 
@@ -425,12 +447,12 @@ void server_manager::login_request(const QString &phone_number, const QString &p
             group_members.insert(group_ID, Account::retrieve_group_members(_db_connection, group_ID));
         }
 
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), true, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
-        notify_other_clients("", name);
+        _socket->sendBinaryMessage(_protocol->set_login_message(hashed_password, true, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
+        notify_other_clients(QString(), name);
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString::fromStdString(hashed_password), false, name, QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+        _socket->sendBinaryMessage(_protocol->set_login_message(hashed_password, false, name, QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
         _clients.remove(name);
         _time_zone.remove(name);
     }
@@ -438,7 +460,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
 void server_manager::delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time)
 {
-    Account::delete_message(_db_connection, conversation_ID, time.toStdString());
+    Account::delete_message(_db_connection, conversation_ID, time);
 
     QWebSocket *client = _clients.value(receiver);
     if (client)
@@ -447,7 +469,7 @@ void server_manager::delete_message(const int &conversation_ID, const QString &s
 
 void server_manager::delete_group_message(const int &group_ID, const QString &group_name, const QString &time)
 {
-    Account::delete_group_message(_db_connection, group_ID, time.toStdString());
+    Account::delete_group_message(_db_connection, group_ID, time);
 
     const QStringList &group_members = Account::retrieve_group_members(_db_connection, group_ID);
     for (const QString &ID : group_members)
@@ -469,11 +491,11 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
 
     _socket->sendBinaryMessage(_protocol->set_new_group_message(group_ID));
 
-    Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), _clients.key(_socket).toInt(), "admin");
+    Account::add_to_group(_db_connection, group_ID, group_name, _clients.key(_socket).toInt(), "admin");
 
     for (QString ID : members)
     {
-        Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), ID.toInt(), "member");
+        Account::add_to_group(_db_connection, group_ID, group_name, ID.toInt(), "member");
 
         if (ID.compare(_clients.key(_socket)))
         {
@@ -506,8 +528,8 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
-        Account::save_group_text_message(_db_connection, group_ID, sender.toStdString(), message.toStdString(), time.toStdString());
-        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
+        Account::save_group_text_message(_db_connection, group_ID, sender, message, time);
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time);
 
         for (QString ID : members)
         {
@@ -526,8 +548,8 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
-        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), file_name.split("_").last().toStdString(), file_data, file_data.size(), "file", time.toStdString());
-        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
+        Account::save_group_binary_data(_db_connection, group_ID, sender, file_name.split("_").last(), file_data, "file", time);
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time);
 
         for (QString ID : members)
         {
@@ -546,8 +568,8 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
-        Account::save_group_binary_data(_db_connection, group_ID, sender.toStdString(), audio_name.split("_").last().toStdString(), audio_data, audio_data.size(), "audio", time.toStdString());
-        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time.toStdString());
+        Account::save_group_binary_data(_db_connection, group_ID, sender, audio_name.split("_").last(), audio_data, "audio", time);
+        Account::update_group_last_message_read(_db_connection, group_ID, _clients.key(_socket).toInt(), time);
 
         for (QString ID : members)
         {
@@ -563,7 +585,7 @@ void server_manager::group_audio_received(const int &group_ID, const QString &gr
 
 void server_manager::new_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member)
 {
-    Account::add_to_group(_db_connection, group_ID, group_name.toStdString(), group_member.toInt(), "member");
+    Account::add_to_group(_db_connection, group_ID, group_name, group_member.toInt(), "member");
 
     QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
 
@@ -591,7 +613,7 @@ void server_manager::remove_group_member(const int &group_ID, const QString &gro
 
 void server_manager::data_requested(const int &conversation_ID, const QString &date_time, const QString &type)
 {
-    const QHash<QString, QByteArray> &file_data = (!type.compare("normal")) ? Account::retrieve_binary_data(_db_connection, conversation_ID, date_time.toStdString()) : Account::retrieve_group_binary_data(_db_connection, conversation_ID, date_time.toStdString());
+    const QHash<QString, QByteArray> &file_data = (!type.compare("normal")) ? Account::retrieve_binary_data(_db_connection, conversation_ID, date_time) : Account::retrieve_group_binary_data(_db_connection, conversation_ID, date_time);
 
     _socket->sendBinaryMessage(_protocol->set_data_requested_found_message(file_data.values().first(), file_data.keys().first()));
 }
@@ -603,10 +625,10 @@ void server_manager::delete_account(const QString &phone_number)
 
 void server_manager::update_last_message_read(const int &conversation_ID, const QString &client_ID, const QString &time)
 {
-    Account::update_last_message_read(_db_connection, conversation_ID, client_ID.toInt(), time.toStdString());
+    Account::update_last_message_read(_db_connection, conversation_ID, client_ID.toInt(), time);
 }
 
 void server_manager::update_group_last_message_read(const int &group_ID, const QString &client_ID, const QString &time)
 {
-    Account::update_group_last_message_read(_db_connection, group_ID, client_ID.toInt(), time.toStdString());
+    Account::update_group_last_message_read(_db_connection, group_ID, client_ID.toInt(), time);
 }

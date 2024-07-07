@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     ID.schema = argv[4];
     ID.password = argv[5];
 
-    sql::Connection *db_connection = connection_setup(&ID);
+    QSqlDatabase db_connection = connection_setup(ID);
 
     server_main_window Main_window(db_connection);
     Main_window.show();

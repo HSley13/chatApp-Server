@@ -6,10 +6,10 @@ class server_manager : public QMainWindow
 {
     Q_OBJECT
 public:
-    server_manager(sql::Connection *db_connection, QWidget *parent = nullptr);
+    server_manager(QSqlDatabase &db_connection, QWidget *parent = nullptr);
     server_manager(QWebSocket *client, QWidget *parent = nullptr);
 
-    static sql::Connection *_db_connection;
+    static QSqlDatabase _db_connection;
 
     void disconnect_from_host();
     void disconnect_all_clients();
@@ -81,6 +81,8 @@ signals:
     void is_typing_received(const QString &sender, const QString &receiver);
 
     void after_login(const QString &old_name, const QString &name);
+
+    void file_saved(const QString &path);
 
 private slots:
     void on_new_connection();

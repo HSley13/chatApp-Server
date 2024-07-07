@@ -163,3 +163,5 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
             BEGIN
                 DELETE FROM password_security WHERE phone_number = OLD.phone_number;
             END;
+
+            
