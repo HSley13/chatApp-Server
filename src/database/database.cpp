@@ -31,7 +31,7 @@ QString Security::generate_random_salt(std::size_t len)
     const QString valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#&?!~^-$%*+";
     QString salt;
 
-    for (size_t i = 0; i < len; ++i)
+    for (size_t i{0}; i < len; i++)
     {
         int index = QRandomGenerator::global()->bounded(valid_chars.size());
         salt.append(valid_chars.at(index));
@@ -53,7 +53,7 @@ QString Security::hashing_password(const QString &password)
 
 bool Security::verifying_password(const QString &password, const QString &hashed_password)
 {
-    const uint32_t hash_length = 64; // Length of SHA-256 hash in hex representation
+    const uint32_t hash_length = 64;
     const size_t SALT_LENGTH = hashed_password.length() - hash_length;
 
     QString salt = hashed_password.left(SALT_LENGTH);
@@ -79,7 +79,7 @@ QString Security::retrieve_hashed_password(QSqlDatabase &db, const int &phone_nu
             return QString();
         }
 
-        QString hashed_password = QString();
+        QString hashed_password{};
         if (query.next())
             hashed_password = query.value("hashed_password").toString();
 
@@ -145,9 +145,9 @@ QStringList Account::retrieve_conversation(QSqlDatabase &db, const int &conversa
             return {};
         }
 
-        QStringList messages = {};
-        int count = 0;
-        QString last_message_read = QString();
+        QStringList messages{};
+        int count{0};
+        QString last_message_read{};
 
         while (query.next())
         {
@@ -201,11 +201,11 @@ QHash<int, QHash<QString, QString>> Account::retrieve_friend_list(QSqlDatabase &
             return {};
         }
 
-        QHash<int, QHash<QString, QString>> friend_list_pack = {};
+        QHash<int, QHash<QString, QString>> friend_list_pack{};
 
         while (query.next())
         {
-            QHash<QString, QString> friend_list = {};
+            QHash<QString, QString> friend_list{};
 
             QString participant2_ID = query.value("other_participant_ID").toString();
             QString participant2 = query.value("other_participant").toString();
@@ -283,7 +283,7 @@ QString Account::retrieve_alias(QSqlDatabase &db, const int &phone_number)
             return QString();
         }
 
-        QString name = QString();
+        QString name{};
         if (query.next())
             name = query.value("alias").toString();
 
@@ -370,7 +370,7 @@ QHash<QString, QByteArray> Account::retrieve_binary_data(QSqlDatabase &db, const
             return {};
         }
 
-        QHash<QString, QByteArray> binary_data = {};
+        QHash<QString, QByteArray> binary_data{};
 
         if (query.next())
         {
@@ -463,7 +463,7 @@ QStringList Account::retrieve_group_members(QSqlDatabase &db, const int &group_I
             return {};
         }
 
-        QStringList members = {};
+        QStringList members{};
 
         while (query.next())
             members << query.value("participant_ID").toString();
@@ -491,7 +491,7 @@ QHash<int, QHash<int, QString>> Account::retrieve_group_list(QSqlDatabase &db, c
             return {};
         }
 
-        QHash<int, QHash<int, QString>> group_list = {};
+        QHash<int, QHash<int, QString>> group_list{};
 
         while (query.next())
         {
@@ -508,7 +508,7 @@ QHash<int, QHash<int, QString>> Account::retrieve_group_list(QSqlDatabase &db, c
                 continue;
             }
 
-            QHash<int, QString> group_name_and_admin = {};
+            QHash<int, QString> group_name_and_admin{};
             while (admin_query.next())
             {
                 int admin = admin_query.value("participant_ID").toInt();
@@ -586,9 +586,9 @@ QStringList Account::retrieve_group_conversation(QSqlDatabase &db, const int &gr
             return {};
         }
 
-        QStringList messages = {};
-        int count = 0;
-        QString last_message_read = QString();
+        QStringList messages{};
+        int count{0};
+        QString last_message_read{};
 
         while (query.next())
         {
@@ -637,7 +637,7 @@ QHash<QString, QByteArray> Account::retrieve_group_binary_data(QSqlDatabase &db,
             return {};
         }
 
-        QHash<QString, QByteArray> binary_data = {};
+        QHash<QString, QByteArray> binary_data{};
 
         if (query.next())
         {

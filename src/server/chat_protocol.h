@@ -156,69 +156,69 @@ public:
 private:
     QByteArray get_data(message_type type, const QString &data);
 
-    message_type _type;
-    QString _message;
-    QString _name;
-    QString _is_typing;
+    message_type _type{};
+    QString _message{};
+    QString _name{};
+    QString _is_typing{};
 
-    int _port;
+    int _port{0};
 
-    QString _file_name;
-    qint64 _file_size;
-    QByteArray _file_data;
-    QString _file_sender;
-    QString _file_receiver;
+    QString _file_name{};
+    qint64 _file_size{0};
+    QByteArray _file_data{};
+    QString _file_sender{};
+    QString _file_receiver{};
 
-    QString _group_file_name;
-    qint64 _group_file_size;
-    QByteArray _group_file_data;
-    QString _group_file_sender;
+    QString _group_file_name{};
+    qint64 _group_file_size{0};
+    QByteArray _group_file_data{};
+    QString _group_file_sender{};
 
-    QString _client_name;
-    QString _receiver;
-    QString _sender;
+    QString _client_name{};
+    QString _receiver{};
+    QString _sender{};
 
-    QString _receiver_typing;
-    QString _sender_typing;
+    QString _receiver_typing{};
+    QString _sender_typing{};
 
-    QString _original_name;
-    QHash<QString, QString> _other_clients;
+    QString _original_name{};
+    QHash<QString, QString> _other_clients{};
 
-    QString _client_ID;
+    QString _client_ID{};
 
-    QString _participant1;
-    int _participant1_ID;
-    QString _participant2;
-    int _participant2_ID;
+    QString _participant1{};
+    int _participant1_ID{0};
+    QString _participant2{};
+    int _participant2_ID{0};
 
     int _conversation_ID;
 
-    QString _audio_name;
-    QString _audio_sender;
-    QString _audio_receiver;
-    QByteArray _audio_data;
-    QString _data_type;
+    QString _audio_name{};
+    QString _audio_sender{};
+    QString _audio_receiver{};
+    QByteArray _audio_data{};
+    QString _data_type{};
 
-    QString _group_audio_name;
-    QString _group_audio_sender;
-    QByteArray _group_audio_data;
-    QString _group_data_type;
+    QString _group_audio_name{};
+    QString _group_audio_sender{};
+    QByteArray _group_audio_data{};
+    QString _group_data_type{};
 
-    QString _last_name;
-    QString _first_name;
-    QString _password;
-    QString _secret_question;
-    QString _secret_answer;
+    QString _last_name{};
+    QString _first_name{};
+    QString _password{};
+    QString _secret_question{};
+    QString _secret_answer{};
 
-    QString _time;
+    QString _time{};
 
-    int _group_ID;
-    QString _adm;
-    QString _group_message;
-    QString _group_time;
-    QStringList _members;
-    QString _group_name;
-    QString _group_sender;
+    int _group_ID{0};
+    QString _adm{};
+    QString _group_message{};
+    QString _group_time{};
+    QStringList _members{};
+    QString _group_name{};
+    QString _group_sender{};
 
-    QString _time_zone;
+    QString _time_zone{};
 };

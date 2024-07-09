@@ -242,7 +242,7 @@ void server_manager::file_received(const QString &sender, const QString &receive
             file.close();
         }
 
-        emit file_saved(path);
+        emit file_saved(path, false, Account::UTC_to_timeZone(time, "Asia/Taipei"));
     }
     else
     {
@@ -334,7 +334,7 @@ void server_manager::lookup_friend(const QString &ID)
     std::random_device rd;
     std::mt19937 generator(rd());
 
-    std::uniform_int_distribution<int> distribution(1024, 49151);
+    std::uniform_int_distribution<int> distribution(1, std::numeric_limits<int>::max());
 
     int conversation_ID = distribution(generator);
 
@@ -408,21 +408,21 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
     QString hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
 
-    QHash<int, QHash<QString, QString>> friend_list;
+    QHash<int, QHash<QString, QString>> friend_list{};
 
-    QStringList online_friends;
+    QStringList online_friends{};
 
-    QHash<int, QStringList> messages;
+    QHash<int, QStringList> messages{};
 
-    QHash<int, QHash<QString, QByteArray>> binary_data;
+    QHash<int, QHash<QString, QByteArray>> binary_data{};
 
-    QHash<int, QHash<int, QString>> group_list;
+    QHash<int, QHash<int, QString>> group_list{};
 
-    QHash<int, QStringList> group_messages;
+    QHash<int, QStringList> group_messages{};
 
-    QHash<int, QHash<QString, QByteArray>> group_binary_data;
+    QHash<int, QHash<QString, QByteArray>> group_binary_data{};
 
-    QHash<int, QStringList> group_members;
+    QHash<int, QStringList> group_members{};
 
     if (Security::verifying_password(password, hashed_password))
     {
@@ -452,7 +452,7 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     }
     else
     {
-        _socket->sendBinaryMessage(_protocol->set_login_message(hashed_password, false, name, QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
+        _socket->sendBinaryMessage(_protocol->set_login_message(hashed_password, false, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
         _clients.remove(name);
         _time_zone.remove(name);
     }

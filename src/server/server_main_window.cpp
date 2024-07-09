@@ -30,7 +30,7 @@ public:
 server_main_window::server_main_window(QSqlDatabase &db_connection, QWidget *parent)
     : QMainWindow(parent), _db_connection(db_connection)
 {
-    QWidget *central_widget = new QWidget();
+    QWidget *central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
     resize(800, 200);

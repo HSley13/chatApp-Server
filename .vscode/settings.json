@@ -6,12 +6,12 @@
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
+            "server": "mysql-01-sh13-01.c.aivencloud.com",
+            "port": 13649,
             "driver": "MySQL",
-            "name": "localDB",
-            "database": "chatApplicationDatabase",
-            "username": "root",
+            "name": "onlineDB",
+            "database": "chatAppDB",
+            "username": "avnadmin",
             "askForPassword": true
         }
     ],

@@ -25,9 +25,6 @@ public:
 
     QString name() const;
 
-    static QHash<QString, QWebSocket *> _clients;
-    static QHash<QString, QString> _time_zone;
-
     void create_conversation(const int &conversation_ID, const QString &participant1, const int &participant1_ID, const QString &participant2, const int &participant2_ID);
     void save_conversation_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &content, const QString &time);
     void lookup_friend(const QString &ID);
@@ -59,18 +56,21 @@ public:
     void update_last_message_read(const int &conversation_ID, const QString &client_ID, const QString &time);
     void update_group_last_message_read(const int &group_ID, const QString &client_ID, const QString &time);
 
+    static QHash<QString, QWebSocket *> _clients;
+    static QHash<QString, QString> _time_zone;
+
+    QWebSocket *_socket{};
+
 private:
-    QWidget *central_widget;
+    QWidget *central_widget{};
 
-    QWebSocketServer *_server;
-    chat_protocol *_protocol;
+    QWebSocketServer *_server{};
+    chat_protocol *_protocol{};
 
-    QWebSocket *_socket;
-
-    QString _file_name;
+    QString _file_name{};
 
     QHostAddress _ip = QHostAddress::LocalHost;
-    int _port = 12345;
+    int _port{12345};
 
 signals:
     void new_client_connected(QWebSocket *client);
@@ -82,7 +82,7 @@ signals:
 
     void after_login(const QString &old_name, const QString &name);
 
-    void file_saved(const QString &path);
+    void file_saved(const QString &path, bool is_mine, const QString &time);
 
 private slots:
     void on_new_connection();

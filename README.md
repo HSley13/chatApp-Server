@@ -23,8 +23,6 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
 
     TO DO
     --- Make the GUI more appealing.
-    --- Upload Preview here once Finished.
-
 
             *************** ALL THE TABLES ***************
 
@@ -163,5 +161,3 @@ BELOW ARE ALL THE REQUIREMENTS AND PREPARATIONS FOR THE DATABASE IN ORDER TO USE
             BEGIN
                 DELETE FROM password_security WHERE phone_number = OLD.phone_number;
             END;
-
-            

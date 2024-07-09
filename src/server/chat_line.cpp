@@ -4,7 +4,7 @@
 chat_line::chat_line(QWidget *parent)
     : QMainWindow(parent)
 {
-    central_widget = new QWidget();
+    central_widget = new QWidget(this);
     setCentralWidget(central_widget);
 
     message_layout = new QVBoxLayout();

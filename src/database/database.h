@@ -1,10 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-#include <random>
-#include <stack>
-#include <vector>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -16,8 +12,6 @@
 #include <QWebSocket>
 #include <QWebSocketServer>
 #include <QtSql>
-#include <sys/stat.h>
-#include <cstdio>
 class connection_details
 {
 public:

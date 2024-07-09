@@ -11,11 +11,11 @@ public:
     void set_message(QString message, bool is_mine, QString time);
 
 private:
-    QWidget *central_widget;
+    QWidget *central_widget{};
 
-    QVBoxLayout *VBOX;
-    QVBoxLayout *message_layout;
+    QVBoxLayout *VBOX{};
+    QVBoxLayout *message_layout{};
 
-    QLabel *message;
-    QLabel *time;
+    QLabel *message{};
+    QLabel *time{};
 };
