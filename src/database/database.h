@@ -43,7 +43,11 @@ public:
 
     static QString retrieve_alias(QSqlDatabase &db, const int &phone_number);
 
+    static QStringList retrieve_secret_question_and_answer(QSqlDatabase &db, const int &phone_number);
+
     static void update_alias(QSqlDatabase &db, const int &phone_number, const QString &name);
+
+    static void update_password(QSqlDatabase &db, const int &phone_number, const QString &new_password);
 
     static void save_text_message(QSqlDatabase &db, const int &conversation_ID, const int &sender_ID, const int &receiver_ID, const QString &content, const QString &time);
 

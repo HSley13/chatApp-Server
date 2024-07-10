@@ -62,7 +62,7 @@ bool Security::verifying_password(const QString &password, const QString &hashed
     QByteArray salted_password = salt.toUtf8() + password.toUtf8();
     QByteArray hash = QCryptographicHash::hash(salted_password, QCryptographicHash::Sha256);
 
-    return original_hash == QString::fromUtf8(hash.toHex());
+    return !original_hash.compare(QString::fromUtf8(hash.toHex()));
 }
 
 QString Security::retrieve_hashed_password(QSqlDatabase &db, const int &phone_number)
@@ -76,7 +76,7 @@ QString Security::retrieve_hashed_password(QSqlDatabase &db, const int &phone_nu
         if (!query.exec())
         {
             qDebug() << "retrieve_hashed_password() ---> SQL ERROR:" << query.lastError().text();
-            return QString();
+            return {};
         }
 
         QString hashed_password{};
@@ -88,7 +88,7 @@ QString Security::retrieve_hashed_password(QSqlDatabase &db, const int &phone_nu
     catch (const std::exception &e)
     {
         qDebug() << "retrieve_hashed_password() ---> ERROR:" << e.what();
-        return QString();
+        return {};
     }
 }
 
@@ -108,7 +108,7 @@ void Account::create_account(QSqlDatabase &db, const int &phone_number, const QS
             return;
         }
 
-        QString hashed_password = Security::hashing_password(password);
+        const QString &hashed_password = Security::hashing_password(password);
 
         query.prepare("INSERT INTO password_security VALUES (?, ?, ?, ?);");
         query.addBindValue(phone_number);
@@ -280,7 +280,7 @@ QString Account::retrieve_alias(QSqlDatabase &db, const int &phone_number)
         if (!query.exec())
         {
             qDebug() << "retrieve_alias() ---> SQL ERROR:" << query.lastError().text();
-            return QString();
+            return {};
         }
 
         QString name{};
@@ -292,7 +292,34 @@ QString Account::retrieve_alias(QSqlDatabase &db, const int &phone_number)
     catch (const std::exception &e)
     {
         qDebug() << e.what();
-        return QString();
+        return {};
+    }
+}
+
+QStringList Account::retrieve_secret_question_and_answer(QSqlDatabase &db, const int &phone_number)
+{
+    try
+    {
+        QSqlQuery query(db);
+        query.prepare("SELECT secret_question, secret_answer FROM password_security WHERE phone_number = ?");
+        query.addBindValue(phone_number);
+
+        if (!query.exec())
+        {
+            qDebug() << "retrieve_secret_question_and_answer() ---> SQL ERROR:" << query.lastError().text();
+            return {};
+        }
+
+        QStringList secret_question_and_answer{};
+        if (query.next())
+            secret_question_and_answer << query.value("secret_question").toString() << query.value("secret_answer").toString();
+
+        return secret_question_and_answer;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what();
+        return {};
     }
 }
 
@@ -328,6 +355,29 @@ void Account::update_alias(QSqlDatabase &db, const int &phone_number, const QStr
     catch (const std::exception &e)
     {
         qDebug() << e.what();
+    }
+}
+
+void Account::update_password(QSqlDatabase &db, const int &phone_number, const QString &new_password)
+{
+    try
+    {
+        const QString &hashed_password = Security::hashing_password(new_password);
+
+        QSqlQuery query(db);
+        query.prepare("UPDATE password_security SET hashed_password = ? WHERE phone_number = ?");
+        query.addBindValue(hashed_password);
+        query.addBindValue(phone_number);
+
+        if (!query.exec())
+        {
+            qDebug() << "update_password() ---> SQL ERROR:" << query.lastError().text();
+            return;
+        }
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what();
     }
 }
 
@@ -741,11 +791,11 @@ QString Account::UTC_to_timeZone(const QString &UTC_time, const QString &timeZon
     if (!UTC_dateTime.isValid())
     {
         qDebug() << "Invalid UTC time format:" << UTC_time;
-        return QString();
+        return {};
     }
 
 #ifdef __EMSCRIPTEN__
-    return QString();
+    return {};
 
     // FIXME: find a way to fix this
 #else
@@ -753,7 +803,7 @@ QString Account::UTC_to_timeZone(const QString &UTC_time, const QString &timeZon
     if (!targetTimeZone.isValid())
     {
         qDebug() << "Invalid time zone ID:" << timeZone_ID;
-        return QString();
+        return {};
     }
 
     QDateTime localDateTime = UTC_dateTime.toTimeZone(targetTimeZone);

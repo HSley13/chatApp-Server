@@ -30,6 +30,8 @@ public:
 
         sign_up,
         login_request,
+        new_password_request,
+        update_password,
 
         delete_message,
         delete_group_message,
@@ -70,8 +72,10 @@ public:
     QByteArray set_online_client_message(QStringList &names);
 
     QByteArray set_login_message(const QString &hashed_password, bool true_or_false, const QString &full_name, const QHash<int, QHash<QString, QString>> &friend_list, const QStringList &online_friends, const QHash<int, QStringList> &messages, const QHash<int, QHash<int, QString>> &group_list, const QHash<int, QStringList> &group_messages, const QHash<int, QStringList> &group_members);
+    QByteArray set_password_requested_message(const QString &secret_question, const QString &secret_answer);
 
-    QByteArray set_delete_message(const QString &sender, const QString &time);
+    QByteArray
+    set_delete_message(const QString &sender, const QString &time);
 
     QByteArray set_new_group_message(const int &group_ID);
 

@@ -35,6 +35,8 @@ public:
     void sign_up(const QString &phone_number, const QString &first_name, const QString &last_name, const QString &password, const QString &secret_question, const QString &secret_answer);
 
     void login_request(const QString &phone_number, const QString &password);
+    void new_password_requested(const QString &phone_number);
+    void update_password(const QString &phone_number, const QString &new_password);
 
     void delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time);
     void delete_group_message(const int &conversation_ID, const QString &group_name, const QString &time);

@@ -76,6 +76,16 @@ void chat_protocol::load_data(const QByteArray &data)
 
         break;
 
+    case new_password_request:
+        in >> _client_ID;
+
+        break;
+
+    case update_password:
+        in >> _client_ID >> _password;
+
+        break;
+
     case delete_message:
         in >> _conversation_ID >> _sender >> _receiver >> _time;
 
@@ -265,6 +275,18 @@ QByteArray chat_protocol::set_login_message(const QString &hashed_password, bool
     out.setVersion(QDataStream::Qt_6_7);
 
     out << login_request << hashed_password << true_or_false << name << friend_list << online_friends << messages << group_list << group_messages << group_members;
+
+    return byte;
+}
+
+QByteArray chat_protocol::set_password_requested_message(const QString &secret_question, const QString &secret_answer)
+{
+    QByteArray byte;
+
+    QDataStream out(&byte, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_7);
+
+    out << new_password_request << secret_question << secret_answer;
 
     return byte;
 }

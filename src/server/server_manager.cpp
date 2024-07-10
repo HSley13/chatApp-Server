@@ -28,7 +28,7 @@ server_manager::server_manager(QWebSocket *client, QWidget *parent)
     connect(_socket, &QWebSocket::binaryMessageReceived, this, &server_manager::on_binary_message_received);
 }
 
-/*-------------------------------------------------------------------- Slots --------------------------------------------------------------*/
+/*-------------------------------------Z------------------------------- Slots --------------------------------------------------------------*/
 
 void server_manager::on_binary_message_received(const QByteArray &message)
 {
@@ -96,6 +96,16 @@ void server_manager::on_binary_message_received(const QByteArray &message)
 
     case chat_protocol::login_request:
         login_request(_protocol->clients_ID(), _protocol->password());
+
+        break;
+
+    case chat_protocol::new_password_request:
+        new_password_requested(_protocol->clients_ID());
+
+        break;
+
+    case chat_protocol::update_password:
+        update_password(_protocol->clients_ID(), _protocol->password());
 
         break;
 
@@ -176,7 +186,7 @@ void server_manager::on_new_connection()
     int id = _clients.count() + 1;
     client->setProperty("id", id);
 
-    QString client_name = QString("client %1").arg(id);
+    const QString &client_name = QString("client %1").arg(id);
 
     client->setProperty("client_name", client_name);
     _clients.insert(client_name, client);
@@ -191,7 +201,7 @@ void server_manager::on_client_disconnected()
 
     _clients.remove(_clients.key(client));
 
-    QString client_name = client->property("client_name").toString();
+    const QString &client_name = client->property("client_name").toString();
 
     QByteArray message = _protocol->set_client_disconnected_message(client_name);
 
@@ -227,13 +237,13 @@ void server_manager::file_received(const QString &sender, const QString &receive
 {
     if (!receiver.compare("Server"))
     {
-        QString FS_file_name = QString("%1_%2").arg(time, file_name);
+        const QString &FS_file_name = QString("%1_%2").arg(time, file_name);
 
-        QDir dir;
+        QDir dir{};
         if (!sender.isEmpty() && !sender.isNull())
             dir.mkdir(sender);
 
-        QString path = QString("%1/%2/%3").arg(dir.canonicalPath(), sender, FS_file_name);
+        const QString &path = QString("%1/%2/%3").arg(dir.canonicalPath(), sender, FS_file_name);
 
         QFile file(path);
         if (file.open(QIODevice::WriteOnly))
@@ -383,31 +393,6 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     if (phone_number.isEmpty())
         return;
 
-    QString old_name = _socket->property("client_name").toString();
-    _clients.remove(_clients.key(_socket));
-
-    _clients.insert(phone_number, _socket);
-
-    QString name = Account::retrieve_alias(_db_connection, phone_number.toInt());
-
-    if (name.isEmpty())
-    {
-        _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, QString(), QHash<int, QHash<QString, QString>>(), QStringList(), QHash<int, QStringList>(), QHash<int, QHash<int, QString>>(), QHash<int, QStringList>(), QHash<int, QStringList>()));
-
-        _clients.remove(name);
-        _time_zone.remove(name);
-
-        return;
-    }
-
-    _socket->setProperty("client_name", name);
-
-    _time_zone.insert(phone_number, _protocol->time_zone());
-
-    emit client_name_changed(phone_number, old_name, name);
-
-    QString hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
-
     QHash<int, QHash<QString, QString>> friend_list{};
 
     QStringList online_friends{};
@@ -423,6 +408,30 @@ void server_manager::login_request(const QString &phone_number, const QString &p
     QHash<int, QHash<QString, QByteArray>> group_binary_data{};
 
     QHash<int, QStringList> group_members{};
+
+    const QString &old_name = _socket->property("client_name").toString();
+    _clients.remove(_clients.key(_socket));
+
+    _clients.insert(phone_number, _socket);
+
+    const QString &name = Account::retrieve_alias(_db_connection, phone_number.toInt());
+
+    if (name.isEmpty())
+    {
+        _socket->sendBinaryMessage(_protocol->set_login_message(QString(), false, name, friend_list, online_friends, messages, group_list, group_messages, group_members));
+        _clients.remove(name);
+        _time_zone.remove(name);
+
+        return;
+    }
+
+    _socket->setProperty("client_name", name);
+
+    _time_zone.insert(phone_number, _protocol->time_zone());
+
+    emit client_name_changed(phone_number, old_name, name);
+
+    const QString &hashed_password = Security::retrieve_hashed_password(_db_connection, phone_number.toInt());
 
     if (Security::verifying_password(password, hashed_password))
     {
@@ -456,6 +465,18 @@ void server_manager::login_request(const QString &phone_number, const QString &p
         _clients.remove(name);
         _time_zone.remove(name);
     }
+}
+
+void server_manager::new_password_requested(const QString &phone_number)
+{
+    const QStringList &secret_question_and_answer = Account::retrieve_secret_question_and_answer(_db_connection, phone_number.toInt());
+
+    _socket->sendBinaryMessage(_protocol->set_password_requested_message(secret_question_and_answer.first(), secret_question_and_answer.last()));
+}
+
+void server_manager::update_password(const QString &phone_number, const QString &new_password)
+{
+    Account::update_password(_db_connection, phone_number.toInt(), new_password);
 }
 
 void server_manager::delete_message(const int &conversation_ID, const QString &sender, const QString &receiver, const QString &time)
@@ -508,7 +529,7 @@ void server_manager::create_new_group(const QString &adm, const QStringList &mem
 
 void server_manager::group_is_typing_received(const int &group_ID, const QString &group_name, const QString &sender)
 {
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
         for (QString ID : members)
@@ -525,7 +546,7 @@ void server_manager::group_is_typing_received(const int &group_ID, const QString
 
 void server_manager::group_text_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &message, const QString &time)
 {
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
         Account::save_group_text_message(_db_connection, group_ID, sender, message, time);
@@ -545,7 +566,7 @@ void server_manager::group_text_received(const int &group_ID, const QString &gro
 
 void server_manager::group_file_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &file_name, const QByteArray &file_data, const QString &time)
 {
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
         Account::save_group_binary_data(_db_connection, group_ID, sender, file_name.split("_").last(), file_data, "file", time);
@@ -565,7 +586,7 @@ void server_manager::group_file_received(const int &group_ID, const QString &gro
 
 void server_manager::group_audio_received(const int &group_ID, const QString &group_name, const QString &sender, const QString &audio_name, const QByteArray &audio_data, const QString &time)
 {
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
     if (!members.isEmpty())
     {
         Account::save_group_binary_data(_db_connection, group_ID, sender, audio_name.split("_").last(), audio_data, "audio", time);
@@ -587,7 +608,7 @@ void server_manager::new_group_member(const int &group_ID, const QString &group_
 {
     Account::add_to_group(_db_connection, group_ID, group_name, group_member.toInt(), "member");
 
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
 
     for (const QString &ID : members)
     {
@@ -599,7 +620,7 @@ void server_manager::new_group_member(const int &group_ID, const QString &group_
 
 void server_manager::remove_group_member(const int &group_ID, const QString &group_name, const QString &adm, const QString &group_member)
 {
-    QStringList members = Account::retrieve_group_members(_db_connection, group_ID);
+    const QStringList &members = Account::retrieve_group_members(_db_connection, group_ID);
 
     for (const QString &ID : members)
     {
