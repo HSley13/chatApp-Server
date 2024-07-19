@@ -12,7 +12,13 @@ server_manager::server_manager(QSqlDatabase &db_connection, QWidget *parent)
     _server = new QWebSocketServer(QString("ChatApp Server"), QWebSocketServer::NonSecureMode, this);
     connect(_server, &QWebSocketServer::newConnection, this, &server_manager::on_new_connection);
 
-    _server->listen(_ip, _port);
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    bool ok;
+    int port = env.value("PORT", "12345").toInt(&ok);
+    if (!ok)
+        port = 12345;
+
+    _server->listen(_ip, port);
 
     _socket = new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this);
 
@@ -469,6 +475,9 @@ void server_manager::login_request(const QString &phone_number, const QString &p
 
 void server_manager::new_password_requested(const QString &phone_number)
 {
+    if (phone_number.isEmpty())
+        return;
+
     const QStringList &secret_question_and_answer = Account::retrieve_secret_question_and_answer(_db_connection, phone_number.toInt());
 
     _socket->sendBinaryMessage(_protocol->set_password_requested_message(secret_question_and_answer.first(), secret_question_and_answer.last()));

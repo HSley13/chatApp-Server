@@ -14,13 +14,15 @@ qt_add_resources(${PROJECT_NAME} "images"
                     FILES send_icon.png file_icon.webp
                 )
      
-set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE ON)
+if (APPLE)
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE ON)
+endif()
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                            COMMAND ${CMAKE_COMMAND} -E copy
-                            $<TARGET_FILE:${PROJECT_NAME}>
-                            ${CMAKE_SOURCE_DIR}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
-                    )
+    COMMAND ${CMAKE_COMMAND} -E copy
+    $<TARGET_FILE:${PROJECT_NAME}>
+    ${CMAKE_SOURCE_DIR}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
+)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     include_directories(${EMSCRIPTEN}/system/include)

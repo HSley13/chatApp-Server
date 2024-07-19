@@ -135,7 +135,7 @@ QStringList Account::retrieve_conversation(QSqlDatabase &db, const int &conversa
                       "FROM messages "
                       "JOIN conversations ON messages.conversation_ID = conversations.conversation_ID "
                       "WHERE messages.conversation_ID = ? "
-                      "ORDER BY messages.date_time;");
+                      "ORDER BY messages.id;");
         query.addBindValue(client_ID);
         query.addBindValue(conversation_ID);
 
@@ -626,7 +626,7 @@ QStringList Account::retrieve_group_conversation(QSqlDatabase &db, const int &gr
         QSqlQuery query(db);
         query.prepare("SELECT gm.sender, gm.content, gm.date_time, gm.message_type, "
                       "(SELECT last_message_read FROM group_memberships WHERE group_ID = gm.group_ID AND participant_ID = ?) AS last_message_read "
-                      "FROM group_messages gm WHERE gm.group_ID = ? ORDER BY gm.date_time;");
+                      "FROM group_messages gm WHERE gm.group_ID = ? ORDER BY gm.id;");
         query.addBindValue(client_ID);
         query.addBindValue(group_ID);
 
